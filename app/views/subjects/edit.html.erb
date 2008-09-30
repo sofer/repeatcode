@@ -1,0 +1,13 @@
+<h1>Editing subject</h1>
+
+<% form_for(@subject) do |f| %>
+	
+	<%= render :partial => 'form', :locals => {:f => f } %>
+
+  <p>
+    <%= f.submit "Update" %>
+  </p>
+<% end %>
+
+<%= link_to 'Show', @subject %> |
+<%= link_to 'Back', subjects_path %>

@@ -1,0 +1,15 @@
+<div class="navigation">
+	<%= link_to @subject.name, subject_topics_path(@subject) %>: new topic
+</div>
+
+
+<% form_for 	:topic,
+							:url => subject_topics_path(@subject) do |f| %>
+	<%= render :partial => "form", :locals => {:f => f } %>
+	<p>
+	  <%= f.submit "Create" %>
+	</p>
+<% end %>
+<div id="list-template" style="display:none">
+	<%= render :partial => "exercise", :object => Exercise.new %>
+</div>

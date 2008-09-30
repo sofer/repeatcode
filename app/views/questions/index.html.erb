@@ -1,0 +1,23 @@
+<h1>Recent questions</h1>
+
+<table>
+  <tr>
+		<th>ID</th>
+    <th>Course</th>
+    <th>Exercise</th>
+		<th>Interval</th>
+		<th>Next time</th>
+  </tr>
+
+<% for question in @questions %>
+  <tr>
+    <td><%=h question.id %></td>
+    <td><%=h question.course_id %></td>
+    <td><%=h question.exercise_id %></td>
+    <td><%=h question.current_interval %></td>
+    <td><%=h formatted_date question.next_datetime %></td>
+		<td><%= link_to 'Responses', question %></td>
+  </tr>
+<% end %>
+</table>
+<%= will_paginate @questions %>

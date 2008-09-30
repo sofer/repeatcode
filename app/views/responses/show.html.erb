@@ -1,0 +1,58 @@
+<div id="header">
+	<h1 class="left">
+  	<%=h @question.course.subject.name %>
+	</h1>
+	<h2 class="right">
+		<%=h @question.exercise.topic.name %>
+	</h2>
+</div>
+<div id="main">
+	<div id="question">
+		<div id="phrase">
+			<%= @question.exercise.phrase %><br>
+		</div>
+	</div>
+	<div id="response">
+		<div class="incorrect space">
+			"<%= @response.content %>"
+		</div>
+		<div class="left">
+			<% form_for(@response) do |f| %>
+					<%= f.hidden_field :result, :value => Response::RESULTS['ignore'] %>
+			    <%= f.submit "Try again", :class => "focus space" %>
+			<% end %>
+		</div>
+		<div class="right">
+			<% form_for(@response) do |f| %>
+					<%= f.hidden_field :result, :value => Response::RESULTS['incorrect'] %>
+					<%= f.submit "Show answer", :class => "space" %>
+			<% end %>
+		</div>
+	</div>
+	<% if @question.exercise.topic.add_together %>
+	<div id="tabs">
+		<div class="data tab">
+<%= h @question.exercise.topic.data %>
+		</div>
+		<div class="code tab">
+<%= @question.exercise.code(@response.content) %>
+		</div>
+		<div class="output tab">
+<%= @question.exercise.topic.data %>
+		</div>
+		<div class="clear"></div>
+	</div>
+	<% end %>
+</div>
+
+<div id="footer">
+	Exercise no: <%= @question.exercise.id %> |
+	Question no: <%= @question.id %> | 
+	Repetition no: <%= @question.current_interval %>
+	<div class="left">
+		Logged in as: <%= current_user.login %>
+	</div>
+	<div class="right">
+		<%= link_to 'End lesson', courses_path %>
+	</div>
+</div>

@@ -1,0 +1,13 @@
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+
+one:
+  course_id: 1
+  start_time: 2008-07-24 07:25:31
+  end_time: 2008-07-24 07:25:31
+  correct_responses: 1
+
+two:
+  course_id: 1
+  start_time: 2008-07-24 07:25:31
+  end_time: 2008-07-24 07:25:31
+  correct_responses: 1

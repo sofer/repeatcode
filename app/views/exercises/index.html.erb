@@ -1,0 +1,30 @@
+<h1>Listing exercises</h1>
+
+<table>
+  <tr>
+    <th>Topic</th>
+    <th>Description</th>
+    <th>Phrase</th>
+    <th>Response</th>
+    <th>Pattern</th>
+    <th>Notes</th>
+  </tr>
+
+<% for exercise in @exercises %>
+  <tr>
+    <td><%=h exercise.topic_id %></td>
+    <td><%=h exercise.description %></td>
+    <td><%=h exercise.phrase %></td>
+    <td><%=h exercise.response %></td>
+    <td><%=h exercise.pattern %></td>
+    <td><%=h exercise.notes %></td>
+    <td><%= link_to 'Show', exercise %></td>
+    <td><%= link_to 'Edit', edit_exercise_path(exercise) %></td>
+    <td><%= link_to 'Destroy', exercise, :confirm => 'Are you sure?', :method => :delete %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New exercise', new_exercise_path %>

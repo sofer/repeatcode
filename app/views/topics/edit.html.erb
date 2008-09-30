@@ -1,0 +1,16 @@
+<div class="navigation">
+	Editing <%= link_to @topic.subject.name, subject_topics_path(@topic.subject) %>:
+	<%= link_to @topic.name, topic_path(@topic) %>
+</div>
+
+<% form_for	@topic,
+						:html => { :method => :put } do |f| %>
+	<%= render :partial => "form", :locals => {:f => f } %>
+  <p>
+    <%= f.submit "Update" %>
+  </p>
+<% end %>
+<div id="list-template" style="display:none">
+	<%= render :partial => "exercise", :object => Exercise.new %>
+</div>
+

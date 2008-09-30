@@ -1,0 +1,32 @@
+<div id="header">
+	<h1 class="left">
+		Courses
+	</h1>
+	<h2 class="right">
+		<%= link_to 'Choose a new course', new_course_path %>
+	</h2>
+	<div class="clear"></div>
+</div>
+<div id="main">
+	<% for course in @courses %>
+		<% form_for :lesson,
+		 						:url => course_lessons_path(course) do |f| %>
+			<%= f.submit "Learn now" %>
+			<%= course.subject.name %>
+			<%= link_to "Report", course_path(course) %>
+			<%= link_to "Intervals", course_intervals_path(course) %>
+			<%= link_to "delete", course_path(course), :confirm => 'Are you sure?',  :method => :delete %>
+		<% end %>
+	<% end %>
+</div>
+
+<div id="footer">
+	<div class="left">
+		<%= link_to "Create new learning materials", :controller => 'subjects', :action => 'index' %><br>
+		Logged in as: <%= current_user.login %>
+	</div>
+	<div class="right">
+		<br>
+		<%= link_to "logout", "/logout"%>
+	</div>
+</div>

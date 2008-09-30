@@ -1,0 +1,33 @@
+<div>
+	Course: <%=h @question.course_id %> |
+	Exercise: <%=h @question.exercise_id %> |
+	Interval: <%=h @question.current_interval %> |
+	Next: <%= formatted_date @question.next_datetime %>
+</div>
+
+<div>
+	<%= @question.exercise.phrase %>
+</div>
+
+<table>
+  <tr>
+		<th>Id</th>
+    <th>Question</th>
+    <th>Time</th>
+    <th>Interval</th>
+    <th>Result</th>
+		<th>Updated at</th>
+  </tr>
+<% for response in @question.responses %>
+  <tr>
+    <td><%=h response.id %></td>
+    <td><%=h response.question_id %></td>
+    <td><%=h response.seconds_taken %></td>
+    <td><%=h response.interval %></td>
+    <td><%=h response.result %></td>
+		<td><%= formatted_date response.updated_at %>
+  </tr>
+<% end %>
+</table>
+
+<%= link_to 'Back', questions_path %>

@@ -1,0 +1,19 @@
+<h1>Listing authorships</h1>
+<p>for testing purposes only</p>
+
+<table>
+  <tr>
+    <th>Subject</th>
+    <th>User</th>
+  </tr>
+
+<% for authorship in @authorships %>
+  <tr>
+    <td><%=h authorship.subject_id %></td>
+    <td><%=h authorship.user_id %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+

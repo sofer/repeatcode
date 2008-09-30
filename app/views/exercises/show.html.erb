@@ -1,0 +1,29 @@
+<div>
+  <b>Position:</b>
+  <%=h @exercise.position %>
+ | 
+  <b>Topic:</b>
+  <%=h @exercise.topic_id %>
+ | 
+  <b>Description:</b>
+  <%=h @exercise.description %>
+ | 
+  <b>Phrase:</b>
+  <%=h @exercise.phrase %>
+ | 
+  <b>Response:</b>
+  <%=h @exercise.response %>
+ | 
+  <b>Pattern:</b>
+  <%=h @exercise.pattern %>
+ | 
+  <b>Notes:</b>
+  <%=h @exercise.notes %>
+ | 
+
+<% for question in @exercise.questions %>
+	<div>
+		Question: <%= question.id %> | 
+		Course: <%= question.course_id %>
+	</div>
+<% end %>

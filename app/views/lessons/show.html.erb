@@ -1,0 +1,92 @@
+<% if not @question %>
+
+	<div>
+		Course completed. Come back again in a few days for a review.
+	</div>
+	<div>
+		<%= link_to "Back to courses", courses_path %>
+	</div>
+<% elsif not @question.exercise %>
+
+<% else %>
+<div id="header">
+	<h1 class="left">
+  	<%=h @lesson.course.subject.name %>
+	</h1>
+	<h2 class="right">
+		<%=h @question.exercise.topic.name %>
+	</h2>
+	<div class="clear"></div>
+	<div class="left">
+		Correct responses: <%=h @lesson.correct_responses %>
+	</div>
+	<div class="right">
+		Elapsed time: <%= @lesson.elapsed_time %> minutes
+	</div>
+</div>
+<div id="main">
+	<div id="question">
+		<div id="phrase">
+			<%= @question.exercise.simplified %>
+		</div>
+	</div>
+	<div id="response">
+		<% if @question.current_interval %>
+			<% form_for 	:response,
+			 							:url => question_responses_path(@question) do |f| %>
+				<%= f.text_field :content, :value => @question.exercise.hint, :autocomplete => "off", :class => "focus", :id => "response-field" %>
+				<%= f.hidden_field :seconds_taken, :value => "0"  %>
+		    <%= f.submit "Next", :class => "space" %>
+			<% end %>
+		<% else %>
+			<div class="space">
+				<% if @last_response %>
+				<div class="incorrect space">
+					"<%= @last_response.content %>"
+				</div>
+				<% end %>
+				<%= @question.exercise.expected_response %>
+			</div>
+			<% form_for(@question) do |f| %>
+				<%= f.submit "OK", :class => "focus space" %>
+			<% end %>
+		<% end %>
+	</div>
+	<% if @question.exercise.topic.add_together %>
+	<div id="tabs">
+		<div class="data tab">
+<%= h @question.exercise.topic.data %>
+		</div>
+		<div class="code tab">
+<% if @question.current_interval %>
+<%= @question.exercise.code %>
+<% else %>
+<%= @question.exercise.code(@question.exercise.simplified(@question.exercise.response)) %>
+<% end %>
+		</div>
+		<div class="output tab">
+<%= @question.exercise.topic.data %>
+		</div>
+		<div class="clear"></div>
+	</div>
+	<% end %>
+</div>
+<div id="footer">
+	Exercise no: <%= @question.exercise.id %> |
+	Question no: <%= @question.id %> | 
+	Repetition no: <%= @question.current_interval %> |
+	<span id="seconds">0</span> seconds
+	<div class="left">
+		Logged in as: <%= current_user.login %>
+	</div>
+	<div class="right">
+		<%= link_to 'End lesson', courses_path %>
+	</div>
+</div>
+
+<div id="timeout">
+	<h2>Taking time out</h2>
+	Click here to continue
+</div>
+
+<% end %>

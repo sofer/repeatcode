@@ -1,0 +1,17 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html>
+<head>
+	<title>RepeatCode: <%= controller.action_name + ' ' + controller.controller_name -%></title>
+	<%= stylesheet_link_tag 'stylesheet', 'scaffold' %>
+	<%= javascript_include_tag :defaults, 'utilities' %>
+</head>
+<body>
+	<div id="envelope" class="default">
+		<%= yield :layout %>
+	</div>
+	<div id="message-envelope">
+		<%= content_tag 'div', h(flash[:notice]), :class => 'notice', :id => 'notice' if flash[:notice] %>
+		<%= content_tag 'div', h(flash[:error]), :class => 'error', :id => 'error' if flash[:error] %>
+	</div>
+</body>
+</html>

@@ -1,0 +1,40 @@
+<div id="header">
+	<h1 class="left">
+		<%= link_to 'Courses', courses_path %> |
+		<%= @course.subject.name %>
+	</h1>
+	<div class="right">
+		<%= @course.questions.count %> / 
+		<%= @course.subject.exercise_count %>
+	</div>
+	<br clear="all">
+</div>
+
+<div id="main">
+	<table>
+	  <tr>
+	    <th>Started at</th>
+	    <th>Elapsed time</th>
+			<th>Correct this time</th>
+			<th>Progress</th>
+	  </tr>
+	<% for lesson in @lessons %>
+		<tr>
+			<td>
+				<%= formatted_date lesson.created_at %>
+			</td>
+			<td align="right">
+				<%= elapsed_time lesson.created_at, lesson.updated_at %>
+			</td>
+			<td align="right">
+				<%= lesson.correct_responses %>
+			</td>
+			<td align="right">
+				<%= lesson.total_questions_started %>
+			</td>
+		</tr>	
+	<% end %>
+	
+	</table>
+	<%= will_paginate @lessons %>
+</div>
