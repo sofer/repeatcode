@@ -19,14 +19,22 @@ class LessonsController < ApplicationController
   
   def show
     @lesson = Lesson.find(params[:id])
-    @question = @lesson.next_question
-    if @question
-      @last_response = @question.responses.last or nil
-    end
     
     respond_to do |format|
       format.html # show.html.erb
-      format.xml  { render :xml => @lesson }
+      format.xml  { render :xml => @question.exercise }
+      format.json  { 
+        if params[:exclude]
+          question = @lesson.next_question(params[:exclude])
+        else
+          question = @lesson.next_question
+        end
+        if question
+          render :json => { 'exercise' => question.exercise, 'question' => question, 'topic' => question.exercise.topic.name } 
+        else
+          render :json => { 'end' => 'true' }
+        end
+      }
     end
   end
 

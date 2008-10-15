@@ -22,6 +22,7 @@ ActionController::Routing::Routes.draw do |map|
 
   map.resources :courses do |course|
     course.resources :lessons
+    course.resources :questions
     course.resources :intervals
   end  
   map.resources :lessons

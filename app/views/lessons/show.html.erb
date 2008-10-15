@@ -1,83 +1,93 @@
-<% if not @question %>
-
-	<div>
-		Course completed. Come back again in a few days for a review.
-	</div>
-	<div>
-		<%= link_to "Back to courses", courses_path %>
-	</div>
-<% elsif not @question.exercise %>
-
-<% else %>
 <div id="header">
+	
 	<h1 class="left">
-  	<%=h @lesson.course.subject.name %>
+  	<div id="subject"><%= h @lesson.course.subject.name %></div>
 	</h1>
 	<h2 class="right">
-		<%=h @question.exercise.topic.name %>
+		<div id="topic"></div>
 	</h2>
 	<div class="clear"></div>
+	
 	<div class="left">
-		Correct responses: <%=h @lesson.correct_responses %>
+		Correct responses: <div id="correct-responses"></div>
 	</div>
 	<div class="right">
-		Elapsed time: <%= @lesson.elapsed_time %> minutes
+		Elapsed time: <span id="elapsed-time"></span> minutes
 	</div>
+
 </div>
+
 <div id="main">
+
 	<div id="question">
-		<div id="phrase">
-			<%= @question.exercise.simplified %>
+		<div id="exercise-phrase"></div>
+	</div>
+	
+	<div id="completed" class="hidden">
+		<div>
+			Course completed.<br><br>Come back again in a few days for a review.<br><br>
+		</div>
+		<div>
+			<%= link_to "Back to courses", courses_path %>
 		</div>
 	</div>
+
 	<div id="response">
-		<% if @question.current_interval %>
-			<% form_for 	:response,
-			 							:url => question_responses_path(@question) do |f| %>
-				<%= f.text_field :content, :value => @question.exercise.hint, :autocomplete => "off", :class => "focus", :id => "response-field" %>
-				<%= f.hidden_field :seconds_taken, :value => "0"  %>
-		    <%= f.submit "Next", :class => "space" %>
-			<% end %>
-		<% else %>
-			<div class="space">
-				<% if @last_response %>
-				<div class="incorrect space">
-					"<%= @last_response.content %>"
-				</div>
-				<% end %>
-				<%= @question.exercise.expected_response %>
+
+		<div id="correct" class="hidden">Correct</div>
+
+		<div id="expected" class="hidden">
+			<div class="incorrect space wrong"></div>
+			<div id="exercise-response"></div>
+			<%= submit_tag "OK", :id => "try-now", :class => "space"%>
+		</div>
+		
+		<div id="try" class="hidden">
+			<form id="response-form">
+				<%= text_field_tag "response-field", nil, :autocomplete => "off", :class => "focus" %>
+			</form>
+		</div>
+
+		<div id="unexpected" class="hidden">
+			<div class="incorrect space wrong"></div>
+			<div class="left">
+				<%= submit_tag "Try again", :id => "try-again", :class => "space" %>
 			</div>
-			<% form_for(@question) do |f| %>
-				<%= f.submit "OK", :class => "focus space" %>
-			<% end %>
-		<% end %>
+			<div class="right">
+				<%= submit_tag "Show answer", :id => "show-answer", :class => "space" %>
+			</div>
+		</div>
+
 	</div>
-	<% if @question.exercise.topic.add_together %>
+	
+	<% if 1==0 %> <!-- leave this for now. it's going to be a  bit different -->
 	<div id="tabs">
 		<div class="data tab">
-<%= h @question.exercise.topic.data %>
+ h @question.exercise.topic.data %>
 		</div>
 		<div class="code tab">
-<% if @question.current_interval %>
-<%= @question.exercise.code %>
-<% else %>
-<%= @question.exercise.code(@question.exercise.simplified(@question.exercise.response)) %>
-<% end %>
+ if @question.current_interval %>
+%= @question.exercise.code %>
+% else %>
+%= @question.exercise.code(@question.exercise.simplified(@question.exercise.response)) %>
+% end %>
 		</div>
 		<div class="output tab">
-<%= @question.exercise.topic.data %>
+%= @question.exercise.topic.data %>
 		</div>
 		<div class="clear"></div>
 	</div>
 	<% end %>
+	
 </div>
+
 <div id="footer">
-	Exercise no: <%= @question.exercise.id %> |
-	Question no: <%= @question.id %> | 
-	Repetition no: <%= @question.current_interval %> |
-	<span id="seconds">0</span> seconds
+	Exercise no: <span id="exercise-no"></span> |
+	Question no: <span id="question-no"></span> | 
 	<div class="left">
-		Logged in as: <%= current_user.login %>
+		Logged in as: <%= current_user.login %> |
+		Repetition no: <span id="current_interval"></span> |
+		<span id="seconds">0</span> seconds
 	</div>
 	<div class="right">
 		<%= link_to 'End lesson', courses_path %>
@@ -89,4 +99,4 @@
 	Click here to continue
 </div>
 
-<% end %>
+

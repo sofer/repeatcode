@@ -4,24 +4,32 @@ body	{ background: #eee; font: helvetica, arial, sans-serif; }
 input[type=text] { width: 200px; }
 textarea { width: 400px; height: 400px; }
 style { display: block; }
+input:focus, textarea:focus { xbackground-color: #ffc; }
 
 #envelope	{ position: relative; margin: 0 auto; background: #fff; border: 1px solid; }
-.xdefault	{ width: 460px; height: 300px; }
-.default	{ width: 900px; height: 600px; }
+.default	{ width: 900px; height: 400px; }
+.xdefault	{ width: 900px; height: 600px; }
 .topic	{ width: 900px; }
-#message-envelope { margin: 0 auto; width: 460px; top: border: 1px dashed;}
+#message-envelope { margin: 0 auto; width: 460px; top: border: 1px dashed; }
 #timeout	{ position: absolute; border: 1px solid #666; left: 40px; right: 40px; top: 40px; bottom: 40px; background: #ffc; padding-top: 100px; text-align: center; display: none; }
 #timeout h2	{ font-size: 18px; }
 #header	{ margin: 4px; padding: 0 0 2px 0; border-bottom: 1px solid; }
 #footer	{ position: absolute; left: 0; right: 0; bottom: 0; margin: 4px; border-top: 1px solid; }
 #main	{ position: absolute; top: 22px; right: 0; bottom: 36px; left: 0; margin: 4px 4px 0 4px; }
-#question	{ position: absolute; right: 0; left: 0;}
+
+/* lesson id's */
+#question	{ }
+#xresponse	{ position: absolute; bottom: 200px; left: 0; right: 0; text-align: center; font-size: 28px; line-height: 1.2; }
+#response	{ position: absolute; bottom: 0px; left: 0; right: 0; text-align: center; font-size: 28px; line-height: 1.2; }
 #tabs { position: absolute; bottom: 0; left: 0; right: 0; padding-top: 0px; border-top: 1px solid; }
-#phrase	{ margin-top: 30px; text-align: center; line-height: 1.2;  font-size: 24px; }
-#response	{ position: absolute; bottom: 300px; left: 0; right: 0; text-align: center; font-size: 28px; line-height: 1.2; }
+#completed { margin: 40px; text-align: center; font-size: 18px; }
+#exercise-phrase	{ margin-top: 30px; text-align: center; line-height: 1.2;  font-size: 24px; }
 #response-field	{ width: 442px; margin-bottom: 20px; font-size: 14px; }
+#correct { font: #0f0; }
+
 #course_target	{ text-align: right; width: 30px; height: 13px; font-size: 12px; }
 
+.hidden { display: none; } 
 .notice	{ color: green; }
 .error	{ color: red; }
 .left	{ float: left; }
@@ -33,4 +41,3 @@ style { display: block; }
 .tab { float: left; width: 33%; height: 300px; }
 .data, .code { white-space: pre; font-family: monospace; overflow: auto; }
 .output { padding: 2px; }
-

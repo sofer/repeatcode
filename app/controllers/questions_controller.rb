@@ -3,8 +3,9 @@ class QuestionsController < ApplicationController
   # GET /questions
   # GET /questions.xml
   def index
-    @questions =  Question.paginate(
-                    :per_page => 10, 
+    @course = Course.find(params[:course_id])
+    @questions =  @course.questions.paginate(
+                    :per_page => 24, 
                     :page => params[:page], 
                     :order => "id DESC"
                   )

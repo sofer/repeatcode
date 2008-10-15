@@ -18,14 +18,13 @@ class Lesson < ActiveRecord::Base
     save!
   end
 
-  def next_question
-    self.course.questions.find(:first, 
-                               :conditions => ['next_datetime <= ?', Time.now], 
-                               :order => 'current_interval'
+  def next_question(exclude_question=0)
+    self.course.questions.find( :first,
+                                :conditions => ['next_datetime <= ? and id != ?', Time.now, exclude_question], 
+                                :order => 'current_interval'
                               ) or new_question
-    
   end
-  
+
   def new_question    
     if self.course.questions.empty?
       
@@ -63,6 +62,7 @@ class Lesson < ActiveRecord::Base
   
 private
 
+# REMOVE
   def add_question(exercise)
     new_question = course.questions.new( :exercise_id => exercise.id)
     if new_question.save
@@ -71,6 +71,7 @@ private
     end
   end
 
+  # REMOVE
   def new_topic(topic)
     next_exercise = topic.exercises.first
     next_question = add_question(next_exercise)
@@ -80,8 +81,8 @@ private
         add_question(next_exercise)
         next_exercise = next_exercise.lower_item
       end
-      return next_question
     end
+    return next_question
   end
 
   def set_progress

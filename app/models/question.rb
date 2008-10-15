@@ -4,43 +4,18 @@ class Question < ActiveRecord::Base
   belongs_to :exercise
   has_many :responses, :dependent => :destroy
 
-  before_create :set_datetime
+  before_create :set_interval_and_datetime
 
-=begin - probably not needed if these get set before_create
-  def current_interval
-    self[:current_interval] or 0
-  end
-
-  def next_datetime
-    self[:next_datetime] or Time.now
-  end
-=end
-
-  def set_interval
-    self.current_interval = 0 unless self.current_interval
-  end
-  
-  def reset_interval
-    self.current_interval = ""
-    reset_time
-  end
-  
-  def reset_time
-    self.next_datetime = Time.now
-  end
-  
-  def next_interval
-    self.current_interval += 1 unless self.current_interval == Course::MAX_INDEX
-    interval_index = self.current_interval
-    repeat_interval = course.intervals.find(:first, :conditions => {:index_no => interval_index}).minutes
-    self.next_datetime = Time.now + repeat_interval * 60
+  def reset_interval_and_datetime(interval)
+    self.current_interval = interval + 1 unless interval == Course::MAX_INDEX
+    minutes_to_go = course.intervals.find(:first, :conditions => {:index_no => self.current_interval}).minutes
+    self.next_datetime = Time.now + minutes_to_go * 60
   end
 
 private
 
-  def set_datetime
-#    self.current_interval = 0
-    self.next_datetime = Time.now
+  def set_interval_and_datetime
+    reset_interval_and_datetime(-1)
   end
     
 end

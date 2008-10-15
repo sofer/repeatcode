@@ -38,7 +38,7 @@ class Exercise < ActiveRecord::Base
   end
   
   def simplified(phrase=self.phrase)
-    if phrase =~ /(.*)\s*\(([^)]*)\)\|\(([^)]*)\)\s*(.*)/
+    if phrase =~ /(.*)\s*\(([^)]*)\)\s*\|\s*\(([^)]*)\)\s*(.*)/
       top = $1==''? '':$1+' '
       tail = $4==''? '':' '+$4
       expr1 = top + $2 + tail
@@ -55,12 +55,12 @@ class Exercise < ActiveRecord::Base
   end
   
   def expected_response
-    if self.response =~ /(.*)\s*\(([^)]*)\)\|\(([^)]*)\)\s*(.*)/
+    if self.response =~ /(.*)\s*\(([^)]*)\)\s*\|\s*\(([^)]*)\)\s*(.*)/
       top = $1==''? '':$1+' '
       tail = $4==''? '':' '+$4
       expr1 = top + $2 + tail
       expr2 = top + $3 + tail
-      return "\"#{expr1}\"<br>or \"#{expr2}\""
+      return "\"#{expr1}\" or \"#{expr2}\""
     else
       return self.response
     end
