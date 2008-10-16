@@ -56,4 +56,14 @@ class Course < ActiveRecord::Base
     return results
   end
 
+private
+
+  def set_intervals
+    self.target = DEFAULT_TARGET
+    DEFAULT_INTERVALS.each do |index, mins|
+      new_interval = intervals.new( :index_no => index, :minutes => mins)
+      new_interval.save
+    end
+  end
+
 end

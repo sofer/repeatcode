@@ -33,7 +33,7 @@
 	</div>
 
 	<div id="response">
-
+		
 		<div id="correct" class="hidden">Correct</div>
 
 		<div id="expected" class="hidden">
@@ -82,15 +82,16 @@
 </div>
 
 <div id="footer">
-	Exercise no: <span id="exercise-no"></span> |
-	Question no: <span id="question-no"></span> | 
 	<div class="left">
-		Logged in as: <%= current_user.login %> |
+		Exercise no: <span id="exercise-no"></span> |
+		Question no: <span id="question-no"></span> | 
 		Repetition no: <span id="current_interval"></span> |
-		<span id="seconds">0</span> seconds
+		<span id="seconds">0</span> seconds<br>
+		Logged in as: <%= current_user.login %>
 	</div>
 	<div class="right">
 		<%= link_to 'End lesson', courses_path %>
+		<div id="loading" class="hidden">Loading...</div>
 	</div>
 </div>
 

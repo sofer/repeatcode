@@ -13,11 +13,14 @@ Function.prototype.method = function (name, func) {
 };
 
 String.method('simplify', function () {
-	return this.replace(/[\s,.!?]/g, '').toLowerCase();
+	var str = this.replace(/[\s,.!?]/g, '').toLowerCase();
+//	str.replace(/([]^])/g, '\\'+$1 );
+	return str;
 });
 
 var current; 
 var next;
+var waiting = true;
 var json_url = document.location + '.json';
 
 /*
@@ -34,8 +37,20 @@ var question = {
 };
 */
 
+var loading = function (on) {
+	if (on) {
+		$("#loading").show();
+		waiting = true;
+	} else {
+		$("#loading").hide();
+		waiting = false;
+	}
+};
+
 var get_next_question = function (excluded_id) {
-  $.getJSON( json_url + '?exclude=' + excluded_id, function(json){
+	loading(true);
+  $.getJSON( json_url + '?exclude=' + excluded_id, function(json) {
+		loading(false);
 		next = json;
   });
 };
@@ -50,15 +65,22 @@ var not_completed = function (question) {
   }
 };
 
-var load_first_question = $.getJSON( json_url, function(json){
-  if (not_completed(json)) {
-  	current = json;
-  	show_question(current);
-  	get_next_question(current.question.id);
-  }
-});
+var load_first_question = function () {
+	loading(true);
+	$.getJSON( json_url, function(json) {
+		loading(false);
+	  if (not_completed(json)) {
+	  	current = json;
+	  	show_question(current);
+	  	get_next_question(current.question.id);
+  	}
+	});
+};	
 
 var show_question = function (question) {
+	while (waiting) {
+		sleep(1000);
+	}
 	$(".wrong").html('');
 	$("#topic").html(question.topic);
 	$("#exercise-phrase").html(question.exercise.phrase);
@@ -112,9 +134,9 @@ var timeout_box = function () {
 $(document).ready(function(){
 	
 	// eventually move this stuff into a separate js file
-	$("#response").load(function(){
-		load_first_question;
-	});
+	//$("#envelope").load(function(){
+		load_first_question();
+	//});
 	
 	$("#response-form").submit(function(){
 		var expected = $("#exercise-response").html().simplify();
