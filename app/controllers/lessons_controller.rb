@@ -24,15 +24,15 @@ class LessonsController < ApplicationController
       format.html # show.html.erb
       format.xml  { render :xml => @question.exercise }
       format.json  { 
-        if params[:exclude]
-          question = @lesson.next_question(params[:exclude])
+        if params[:ignore]
+          question = @lesson.next_question(params[:ignore])
         else
           question = @lesson.next_question
         end
         if question
           render :json => { 'exercise' => question.exercise, 'question' => question, 'topic' => question.exercise.topic.name } 
         else
-          render :json => { 'end' => 'true' }
+          render :json => { 'status' => 'end' }
         end
       }
     end

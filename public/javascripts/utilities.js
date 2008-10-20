@@ -1,3 +1,5 @@
+// AM I USING THIS?
+
 /*
  *
  *	jQuery Timer plugin v0.1
