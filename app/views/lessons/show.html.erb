@@ -51,10 +51,10 @@
 		<div id="unexpected" class="hidden">
 			<div class="incorrect space wrong"></div>
 			<div class="left">
-				<%= submit_tag "Try again", :id => "try-again", :class => "space" %>
+				<%= submit_tag "Try again", :id => "try-again" %>
 			</div>
 			<div class="right">
-				<%= submit_tag "Show answer", :id => "show-answer", :class => "space" %>
+				<%= submit_tag "Show answer", :id => "show-answer" %>
 			</div>
 		</div>
 
@@ -91,7 +91,7 @@
 	</div>
 	<div class="right">
 		<%= link_to 'End lesson', courses_path %>
-		<div id="loading" class="hidden">Loading...</div>
+		<div id="loading" class="hidden"><img src="/images/furniture/loading.gif" width="16" height="16" alt="waiting..." align="right"></div>
 	</div>
 </div>
 
