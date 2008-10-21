@@ -14,6 +14,7 @@ var RC = {};
 RC.timeout = 300;
 RC.seconds_to_timeout = RC.timeout;
 RC.total_seconds = 0;
+RC.waiter;
 
 String.prototype.simplify = function () {
 	return this.replace(/[\s,.!?]/g, '').toLowerCase();
@@ -70,9 +71,6 @@ RC.question = {
 					that.show();
 					that.next.get();
 				}
-			},
-			error: function(req, status, error){
-				alert( req + " : " + status + " : " + error );
 			}
 	  });
 	},
@@ -88,9 +86,6 @@ RC.question = {
 			success: function(json){
 				that.loading(false);
 				that.data = json;
-			},
-			error: function(req, status, error){
-				alert( req + " : " + status + " : " + error );
 			}
 	  });
 	},
@@ -115,13 +110,13 @@ RC.question = {
 	},
 	
 	show_next: function() {
-		while (this.next.waiting) {
-			sleep(100);
-		}
-		if (this.next.not_finished()) { 
-			this.data = this.next.data;
-			this.show();
-			this.next.get();
+		if (!this.next.waiting) {
+			clearInterval(RC.waiter);
+			if (this.next.not_finished()) { 
+				this.data = this.next.data;
+				this.show();
+				this.next.get();
+			}
 		}
 	},
 	
@@ -137,11 +132,16 @@ RC.question = {
 
 };
 
+
 RC.current = RC.question;
 RC.next = RC.question;
 RC.current.next = RC.next;
 RC.current.get_first();
 
+// wait for slow server
+var wait_next = function () {
+	RC.waiter = setInterval("RC.current.show_next()", 100);
+};
 
 var set_interval_count = function () {
 	seconds_to_timeout = RC.timeout;
@@ -173,7 +173,7 @@ $(document).ready(function(){
     var response = $("#response-field").val();
 		if (pattern.test(response.simplify())) {
 			RC.current.post_response('correct');
-			RC.current.show_next();
+			wait_next();
       $('#correct').show().fadeOut(1000);
 		} else {
 			$('#try').hide();
