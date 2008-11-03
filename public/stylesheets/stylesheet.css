@@ -1,6 +1,6 @@
 html, div, h1, h2, h3, h4, h5, h6, ul, ol, dl, li, dt, dd, p, blockquote, pre, form, fieldset, table, th, td	{ margin: 0; padding: 0; }
 h1, h2, h3, h4, h5, h6 { font-size: 14px; }
-body	{ background: #eee; font: helvetica, arial, sans-serif; }
+body	{ background: #eee; font-family: helvetica, arial, sans-serif; }
 input[type=text] { width: 200px; }
 textarea { width: 400px; height: 400px; }
 style { display: block; }
@@ -28,6 +28,14 @@ input:focus, textarea:focus { xbackground-color: #ffc; }
 #correct { position: absolute; bottom: 100px; left: 0; right: 0; font: #0f0; }
 
 #course_target	{ text-align: right; width: 30px; height: 13px; font-size: 12px; }
+
+/* maths */
+.maths { display: block; height: 60px; margin: 0 0 20px 220px; }
+.sup { vertical-align: 50%; font-size: 16px; }
+.sub { vertical-align: -50%; font-size: 16px; }
+.radical { border-top: 2px solid; padding-top: 4px; }
+.denominate { display: block; border-top: 2px solid; vertical-align: -100%; }
+.term {float: left; height: 60px; padding: 4px; }
 
 .hidden { display: none; } 
 .notice	{ color: green; }

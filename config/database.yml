@@ -14,7 +14,9 @@ test:
   timeout: 5000
 
 production:
-  adapter: mysql
-  database: antiqueb_repeatcode
-  username: antiqueb_sofer
-  password: laertes
+  adapter: sqlite3
+  database: log/production.sqlite3
+#  adapter: mysql
+#  database: antiqueb_repeatcode
+#  username: antiqueb_sofer
+#  password: laertes

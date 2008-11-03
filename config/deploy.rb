@@ -1,12 +1,13 @@
 set :application, "repeatcode"
-set :target, "www.antiquebox.co.uk"
+set :target, "173.45.226.186"
 set :repository,  "."
+set :port, 30000
 
 # If you aren't deploying to /u/apps/#{application} on the target
 # servers (which is the default), you can specify the actual location
 # via the :deploy_to variable:
-set :user, "antiqueb"
-set :deploy_to, "/home/#{user}/applications/#{application}"
+set :user, "sofer"
+set :deploy_to, "/home/#{user}/public_html/#{application}"
 set :use_sudo, false
 
 # If you aren't using Subversion to manage your source code, specify
@@ -14,7 +15,6 @@ set :use_sudo, false
 set :scm, :git
 
 # see http://toolmantim.com/article/2007/11/20/cap_deploy_via_scp
-# but not necessary: git installed on hostingrails.com
 set :deploy_via, :copy
 set :copy_remote_dir, "/home/#{user}/tmp"
 

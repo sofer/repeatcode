@@ -37,14 +37,16 @@
 		<div id="correct" class="hidden">Correct</div>
 
 		<div id="expected" class="hidden">
-			<div class="incorrect space wrong"></div>
-			<div id="exercise-response"></div>
+			<div id="expected-formula" class="maths"> </div>
+			<div class="incorrect space wrong"> </div>
+			<div id="exercise-response"> </div>
 			<%= submit_tag "OK", :id => "try-now", :class => "space"%>
 		</div>
 		
 		<div id="try" class="hidden">
-			<form id="response-form" method="post">
-				<%= text_field_tag "response-field", nil, :autocomplete => "off", :class => "focus" %>
+			<div id="formula" class="maths"> </div>
+			<form id="response-form">
+				<%= text_field_tag "response-field", nil, :autocomplete => "off" %>
 			</form>
 		</div>
 

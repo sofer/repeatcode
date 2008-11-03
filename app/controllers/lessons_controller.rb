@@ -30,7 +30,7 @@ class LessonsController < ApplicationController
           question = @lesson.next_question
         end
         if question
-          render :json => { 'exercise' => question.exercise, 'question' => question, 'topic' => question.exercise.topic.name } 
+          render :json => { 'status' => 'ok', 'exercise' => question.exercise, 'question' => question, 'topic' => question.exercise.topic.name } 
         else
           render :json => { 'status' => 'end' }
         end
