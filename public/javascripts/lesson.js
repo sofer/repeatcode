@@ -6,6 +6,25 @@ String.prototype.simplify = function () {
 	return this.replace(/[\s,.!?]/g, '').toLowerCase();
 };
 
+RC.DOMnodes = {
+	seconds: '#seconds',
+	timeout: '#timeout',
+	wrong: '.wrong',
+	topic: '#topic',
+	exercise_phrase: '#exercise-phrase',
+	exercise_response: '#exercise-response',
+	exercise_no: '#exercise-no',
+	question_no: '#question-no',
+	current_interval: '#current_interval',
+	response_field: '#response-field',
+	formula: '#formula',
+	expected_formula: '#expected-formula',
+	expected_formula: '#expected-formula',
+	expected: '#expected',
+	try_now: '#try-now',
+  try_: '#try'
+};
+
 // make this lot into a timer object
 RC.timeout = 300;
 RC.seconds_to_timeout = RC.timeout;
@@ -167,7 +186,8 @@ RC.question = {
 					that.loading(false);
 					that.next = json;
 				} else { // something went wrong, try again
-					that.get_next();
+					alert('Server error. Please reload the page');
+					//that.get_next();
 				}
 			}
 	  });
@@ -224,12 +244,22 @@ RC.question = {
 	},
 	
 	check_response: function (response) {
+		response = response.simplify();
 		var expected = this.data.exercise.response.simplify();
-		expected = RC.formula.strip(expected);
-		var pattern = new RegExp(expected);
+		var match = false;
+		if (RC.formula.is_formula(expected)) {
+			expected = RC.formula.strip(expected);
+			if (expected === response) {
+				match = true;
+			}
+		} else {
+			var pattern = new RegExp(expected);
+			if (pattern.test(response)) {
+				match = true;
+			}
+		}
 		$('#try').hide();
-		alert(pattern + ' + ' + response.simplify());
-		if (pattern.test(response.simplify())) {
+		if (match) {
 			this.post_response('correct');
 			$('#correct').show().fadeOut(1000);
 			this.wait_next();

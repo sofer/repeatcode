@@ -32551,3 +32551,1357 @@ OgpAdXNlZHsA--5868b4c04574830caf1bf9bbf7fb8f0e18a1a6c2
   [4;35;1mExercise Load (0.000558)[0m   [0mSELECT * FROM "exercises" WHERE ("exercises"."id" = 244) [0m
   [4;36;1mTopic Load (0.000382)[0m   [0;1mSELECT * FROM "topics" WHERE ("topics"."id" = 10) [0m
 Completed in 0.05540 (18 reqs/sec) | Rendering: 0.00440 (7%) | DB: 0.00464 (8%) | 200 OK [http://repeatcode.local/lessons/237.json]
+
+
+Processing CoursesController#index (for 127.0.0.1 at 2008-11-04 00:32:56) [GET]
+  Session ID: 021b163b7abc667f4fe43b7c0fcf8e90
+  Parameters: {"action"=>"index", "controller"=>"courses"}
+Redirected to http://repeatcode.local/login
+Filter chain halted as [:authorize] rendered_or_redirected.
+Completed in 0.00054 (1851 reqs/sec) | DB: 0.00000 (0%) | 302 Found [http://repeatcode.local/]
+
+
+Processing SessionsController#new (for 127.0.0.1 at 2008-11-04 00:32:56) [GET]
+  Session ID: BAh7BzoRb3JpZ2luYWxfdXJpIgYvIgpmbGFzaElDOidBY3Rpb25Db250cm9s
+bGVyOjpGbGFzaDo6Rmxhc2hIYXNoewY6C25vdGljZSISUGxlYXNlIGxvZyBp
+bgY6CkB1c2VkewY7B0Y=--e7a4e005d0ddd1f53c6fa9aa7273b33a03cc68ac
+  Parameters: {"action"=>"new", "controller"=>"sessions"}
+Rendering template within layouts/application
+Rendering sessions/new
+Completed in 0.01043 (95 reqs/sec) | Rendering: 0.00744 (71%) | DB: 0.00000 (0%) | 200 OK [http://repeatcode.local/login]
+
+
+Processing CoursesController#index (for 127.0.0.1 at 2008-11-04 01:09:27) [GET]
+  Session ID: 5541dcb76046a9f560269802f20511b2
+  Parameters: {"action"=>"index", "controller"=>"courses"}
+Redirected to http://repeatcode.local/login
+Filter chain halted as [:authorize] rendered_or_redirected.
+Completed in 0.00051 (1941 reqs/sec) | DB: 0.00000 (0%) | 302 Found [http://repeatcode.local/]
+
+
+Processing SessionsController#new (for 127.0.0.1 at 2008-11-04 01:09:28) [GET]
+  Session ID: BAh7BzoRb3JpZ2luYWxfdXJpIgYvIgpmbGFzaElDOidBY3Rpb25Db250cm9s
+bGVyOjpGbGFzaDo6Rmxhc2hIYXNoewY6C25vdGljZSISUGxlYXNlIGxvZyBp
+bgY6CkB1c2VkewY7B0Y=--e7a4e005d0ddd1f53c6fa9aa7273b33a03cc68ac
+  Parameters: {"action"=>"new", "controller"=>"sessions"}
+Rendering template within layouts/application
+Rendering sessions/new
+Completed in 0.00919 (108 reqs/sec) | Rendering: 0.00614 (66%) | DB: 0.00000 (0%) | 200 OK [http://repeatcode.local/login]
+
+
+Processing CoursesController#index (for 127.0.0.1 at 2008-11-05 12:07:25) [GET]
+  Session ID: 227f34d34e5e23f2b33dae3959b4c189
+  Parameters: {"action"=>"index", "controller"=>"courses"}
+Redirected to http://repeatcode.local/login
+Filter chain halted as [:authorize] rendered_or_redirected.
+Completed in 0.00064 (1557 reqs/sec) | DB: 0.00000 (0%) | 302 Found [http://repeatcode.local/]
+
+
+Processing SessionsController#new (for 127.0.0.1 at 2008-11-05 12:07:26) [GET]
+  Session ID: BAh7BzoRb3JpZ2luYWxfdXJpIgYvIgpmbGFzaElDOidBY3Rpb25Db250cm9s
+bGVyOjpGbGFzaDo6Rmxhc2hIYXNoewY6C25vdGljZSISUGxlYXNlIGxvZyBp
+bgY6CkB1c2VkewY7B0Y=--e7a4e005d0ddd1f53c6fa9aa7273b33a03cc68ac
+  Parameters: {"action"=>"new", "controller"=>"sessions"}
+Rendering template within layouts/application
+Rendering sessions/new
+Completed in 0.02580 (38 reqs/sec) | Rendering: 0.02270 (87%) | DB: 0.00000 (0%) | 200 OK [http://repeatcode.local/login]
+
+
+Processing SessionsController#create (for 127.0.0.1 at 2008-11-05 12:07:32) [POST]
+  Session ID: BAh7CDoMY3NyZl9pZCIlMWJhMTE5ZDI1MjQzOTU5ZTUzZTYyOThjYTNiMWQ0
+Yzc6EW9yaWdpbmFsX3VyaSIGLyIKZmxhc2hJQzonQWN0aW9uQ29udHJvbGxl
+cjo6Rmxhc2g6OkZsYXNoSGFzaHsGOgtub3RpY2UiElBsZWFzZSBsb2cgaW4G
+OgpAdXNlZHsGOwhU--dbb1e7a36ab0588a4acb9a7e3a4440b653123030
+  Parameters: {"commit"=>"Log in", "authenticity_token"=>"c9442483b2e5a5b0aabbc041d074e94298ed3854", "action"=>"create", "controller"=>"sessions", "password"=>"laertes", "login"=>"danny"}
+Cookie set: auth_token=; path=/; expires=Thu, 01 Jan 1970 00:00:00 GMT
+  [4;36;1mUser Load (0.000445)[0m   [0;1mSELECT * FROM "users" WHERE ("users"."login" = 'danny') LIMIT 1[0m
+Cookie set: auth_token=; path=/
+Redirected to http://repeatcode.local/
+Completed in 0.16643 (6 reqs/sec) | DB: 0.00045 (0%) | 302 Found [http://repeatcode.local/session]
+
+
+Processing CoursesController#index (for 127.0.0.1 at 2008-11-05 12:07:32) [GET]
+  Session ID: BAh7CjoMY3NyZl9pZCIlMWJhMTE5ZDI1MjQzOTU5ZTUzZTYyOThjYTNiMWQ0
+Yzc6DHVzZXJfaWRpBjoOcmV0dXJuX3RvMDoRb3JpZ2luYWxfdXJpIgYvIgpm
+bGFzaElDOidBY3Rpb25Db250cm9sbGVyOjpGbGFzaDo6Rmxhc2hIYXNoewY6
+C25vdGljZSIbTG9nZ2VkIGluIHN1Y2Nlc3NmdWxseQY6CkB1c2VkewY7CkY=--bd43994860b25efa6644b7ffd8e8dbb964aab2a7
+  Parameters: {"action"=>"index", "controller"=>"courses"}
+  [4;35;1mUser Load (0.000375)[0m   [0mSELECT * FROM "users" WHERE ("users"."id" = 1) LIMIT 1[0m
+Rendering template within layouts/application
+Rendering courses/index
+  [4;36;1mCourse Load (0.015766)[0m   [0;1mSELECT DISTINCT "courses".* FROM "courses" INNER JOIN subscriptions ON courses.id = subscriptions.course_id WHERE (("subscriptions".user_id = 1)) [0m
+  [4;35;1mSubject Load (0.000357)[0m   [0mSELECT * FROM "subjects" WHERE ("subjects"."id" = 2) [0m
+  [4;36;1mSubject Load (0.000343)[0m   [0;1mSELECT * FROM "subjects" WHERE ("subjects"."id" = 5) [0m
+  [4;35;1mSubject Load (0.000333)[0m   [0mSELECT * FROM "subjects" WHERE ("subjects"."id" = 4) [0m
+  [4;36;1mSubject Load (0.000274)[0m   [0;1mSELECT * FROM "subjects" WHERE ("subjects"."id" = 6) [0m
+  [4;35;1mSubject Load (0.000256)[0m   [0mSELECT * FROM "subjects" WHERE ("subjects"."id" = 7) [0m
+  [4;36;1mSubject Load (0.000297)[0m   [0;1mSELECT * FROM "subjects" WHERE ("subjects"."id" = 8) [0m
+  [4;35;1mCACHE (0.000000)[0m   [0mSELECT * FROM "subjects" WHERE ("subjects"."id" = 8) [0m
+  [4;36;1mCACHE (0.000000)[0m   [0;1mSELECT * FROM "subjects" WHERE ("subjects"."id" = 2) [0m
+  [4;35;1mSubject Load (0.000287)[0m   [0mSELECT * FROM "subjects" WHERE ("subjects"."id" = 9) [0m
+  [4;36;1mCACHE (0.000000)[0m   [0;1mSELECT * FROM "subjects" WHERE ("subjects"."id" = 9) [0m
+  [4;35;1mSubject Load (0.000262)[0m   [0mSELECT * FROM "subjects" WHERE ("subjects"."id" = 10) [0m
+  [4;36;1mCACHE (0.000000)[0m   [0;1mSELECT * FROM "subjects" WHERE ("subjects"."id" = 10) [0m
+Completed in 0.07377 (13 reqs/sec) | Rendering: 0.03699 (50%) | DB: 0.01855 (25%) | 200 OK [http://repeatcode.local/]
+
+
+Processing CoursesController#index (for 127.0.0.1 at 2008-11-05 12:08:45) [GET]
+  Session ID: BAh7CjoMY3NyZl9pZCIlMWJhMTE5ZDI1MjQzOTU5ZTUzZTYyOThjYTNiMWQ0
+Yzc6DHVzZXJfaWRpBjoRb3JpZ2luYWxfdXJpIgYvOg5yZXR1cm5fdG8wIgpm
+bGFzaElDOidBY3Rpb25Db250cm9sbGVyOjpGbGFzaDo6Rmxhc2hIYXNoewY6
+C25vdGljZSIbTG9nZ2VkIGluIHN1Y2Nlc3NmdWxseQY6CkB1c2VkewY7ClQ=--877ea3af11d25ee02750da2eb5cbb3e0ad2f08c9
+  Parameters: {"action"=>"index", "controller"=>"courses"}
+  [4;35;1mUser Load (0.000363)[0m   [0mSELECT * FROM "users" WHERE ("users"."id" = 1) LIMIT 1[0m
+Rendering template within layouts/application
+Rendering courses/index
+  [4;36;1mCourse Load (0.002039)[0m   [0;1mSELECT DISTINCT "courses".* FROM "courses" INNER JOIN subscriptions ON courses.id = subscriptions.course_id WHERE (("subscriptions".user_id = 1)) [0m
+  [4;35;1mSubject Load (0.000444)[0m   [0mSELECT * FROM "subjects" WHERE ("subjects"."id" = 2) [0m
+  [4;36;1mSubject Load (0.000305)[0m   [0;1mSELECT * FROM "subjects" WHERE ("subjects"."id" = 5) [0m
+  [4;35;1mSubject Load (0.000262)[0m   [0mSELECT * FROM "subjects" WHERE ("subjects"."id" = 4) [0m
+  [4;36;1mSubject Load (0.000305)[0m   [0;1mSELECT * FROM "subjects" WHERE ("subjects"."id" = 6) [0m
+  [4;35;1mSubject Load (0.000265)[0m   [0mSELECT * FROM "subjects" WHERE ("subjects"."id" = 7) [0m
+  [4;36;1mSubject Load (0.000265)[0m   [0;1mSELECT * FROM "subjects" WHERE ("subjects"."id" = 8) [0m
+  [4;35;1mCACHE (0.000000)[0m   [0mSELECT * FROM "subjects" WHERE ("subjects"."id" = 8) [0m
+  [4;36;1mCACHE (0.000000)[0m   [0;1mSELECT * FROM "subjects" WHERE ("subjects"."id" = 2) [0m
+  [4;35;1mSubject Load (0.000274)[0m   [0mSELECT * FROM "subjects" WHERE ("subjects"."id" = 9) [0m
+  [4;36;1mCACHE (0.000000)[0m   [0;1mSELECT * FROM "subjects" WHERE ("subjects"."id" = 9) [0m
+  [4;35;1mSubject Load (0.000265)[0m   [0mSELECT * FROM "subjects" WHERE ("subjects"."id" = 10) [0m
+  [4;36;1mCACHE (0.000000)[0m   [0;1mSELECT * FROM "subjects" WHERE ("subjects"."id" = 10) [0m
+Completed in 0.05714 (17 reqs/sec) | Rendering: 0.03416 (59%) | DB: 0.00479 (8%) | 200 OK [http://repeatcode.local/]
+
+
+Processing CoursesController#index (for 127.0.0.1 at 2008-11-05 12:09:08) [GET]
+  Session ID: BAh7CjoMY3NyZl9pZCIlMWJhMTE5ZDI1MjQzOTU5ZTUzZTYyOThjYTNiMWQ0
+Yzc6DHVzZXJfaWRpBjoOcmV0dXJuX3RvMDoRb3JpZ2luYWxfdXJpIgYvIgpm
+bGFzaElDOidBY3Rpb25Db250cm9sbGVyOjpGbGFzaDo6Rmxhc2hIYXNoewAG
+OgpAdXNlZHsA--b7599539e2c07a16278ed12cc95d6d18c12d7228
+  Parameters: {"action"=>"index", "controller"=>"courses"}
+  [4;35;1mUser Load (0.000405)[0m   [0mSELECT * FROM "users" WHERE ("users"."id" = 1) LIMIT 1[0m
+Rendering template within layouts/application
+Rendering courses/index
+  [4;36;1mCourse Load (0.002022)[0m   [0;1mSELECT DISTINCT "courses".* FROM "courses" INNER JOIN subscriptions ON courses.id = subscriptions.course_id WHERE (("subscriptions".user_id = 1)) [0m
+  [4;35;1mSubject Load (0.000327)[0m   [0mSELECT * FROM "subjects" WHERE ("subjects"."id" = 2) [0m
+  [4;36;1mSubject Load (0.000296)[0m   [0;1mSELECT * FROM "subjects" WHERE ("subjects"."id" = 5) [0m
+  [4;35;1mSubject Load (0.000265)[0m   [0mSELECT * FROM "subjects" WHERE ("subjects"."id" = 4) [0m
+  [4;36;1mSubject Load (0.000329)[0m   [0;1mSELECT * FROM "subjects" WHERE ("subjects"."id" = 6) [0m
+  [4;35;1mSubject Load (0.000330)[0m   [0mSELECT * FROM "subjects" WHERE ("subjects"."id" = 7) [0m
+  [4;36;1mSubject Load (0.000286)[0m   [0;1mSELECT * FROM "subjects" WHERE ("subjects"."id" = 8) [0m
+  [4;35;1mCACHE (0.000000)[0m   [0mSELECT * FROM "subjects" WHERE ("subjects"."id" = 8) [0m
+  [4;36;1mCACHE (0.000000)[0m   [0;1mSELECT * FROM "subjects" WHERE ("subjects"."id" = 2) [0m
+  [4;35;1mSubject Load (0.000284)[0m   [0mSELECT * FROM "subjects" WHERE ("subjects"."id" = 9) [0m
+  [4;36;1mCACHE (0.000000)[0m   [0;1mSELECT * FROM "subjects" WHERE ("subjects"."id" = 9) [0m
+  [4;35;1mSubject Load (0.000340)[0m   [0mSELECT * FROM "subjects" WHERE ("subjects"."id" = 10) [0m
+  [4;36;1mCACHE (0.000000)[0m   [0;1mSELECT * FROM "subjects" WHERE ("subjects"."id" = 10) [0m
+Completed in 0.13302 (7 reqs/sec) | Rendering: 0.11021 (82%) | DB: 0.00488 (3%) | 200 OK [http://repeatcode.local/]
+
+
+Processing CoursesController#index (for 127.0.0.1 at 2008-11-05 12:09:20) [GET]
+  Session ID: BAh7CjoMY3NyZl9pZCIlMWJhMTE5ZDI1MjQzOTU5ZTUzZTYyOThjYTNiMWQ0
+Yzc6DHVzZXJfaWRpBjoRb3JpZ2luYWxfdXJpIgYvOg5yZXR1cm5fdG8wIgpm
+bGFzaElDOidBY3Rpb25Db250cm9sbGVyOjpGbGFzaDo6Rmxhc2hIYXNoewAG
+OgpAdXNlZHsA--e51b1997eaa5910cbd5069d9d90a532dae6b7a1c
+  Parameters: {"action"=>"index", "controller"=>"courses"}
+  [4;35;1mUser Load (0.000360)[0m   [0mSELECT * FROM "users" WHERE ("users"."id" = 1) LIMIT 1[0m
+Rendering template within layouts/application
+Rendering courses/index
+  [4;36;1mCourse Load (0.002081)[0m   [0;1mSELECT DISTINCT "courses".* FROM "courses" INNER JOIN subscriptions ON courses.id = subscriptions.course_id WHERE (("subscriptions".user_id = 1)) [0m
+  [4;35;1mSubject Load (0.000346)[0m   [0mSELECT * FROM "subjects" WHERE ("subjects"."id" = 2) [0m
+  [4;36;1mSubject Load (0.000309)[0m   [0;1mSELECT * FROM "subjects" WHERE ("subjects"."id" = 5) [0m
+  [4;35;1mSubject Load (0.000273)[0m   [0mSELECT * FROM "subjects" WHERE ("subjects"."id" = 4) [0m
+  [4;36;1mSubject Load (0.000298)[0m   [0;1mSELECT * FROM "subjects" WHERE ("subjects"."id" = 6) [0m
+  [4;35;1mSubject Load (0.000278)[0m   [0mSELECT * FROM "subjects" WHERE ("subjects"."id" = 7) [0m
+  [4;36;1mSubject Load (0.000269)[0m   [0;1mSELECT * FROM "subjects" WHERE ("subjects"."id" = 8) [0m
+  [4;35;1mCACHE (0.000000)[0m   [0mSELECT * FROM "subjects" WHERE ("subjects"."id" = 8) [0m
+  [4;36;1mCACHE (0.000000)[0m   [0;1mSELECT * FROM "subjects" WHERE ("subjects"."id" = 2) [0m
+  [4;35;1mSubject Load (0.000286)[0m   [0mSELECT * FROM "subjects" WHERE ("subjects"."id" = 9) [0m
+  [4;36;1mCACHE (0.000000)[0m   [0;1mSELECT * FROM "subjects" WHERE ("subjects"."id" = 9) [0m
+  [4;35;1mSubject Load (0.000275)[0m   [0mSELECT * FROM "subjects" WHERE ("subjects"."id" = 10) [0m
+  [4;36;1mCACHE (0.000000)[0m   [0;1mSELECT * FROM "subjects" WHERE ("subjects"."id" = 10) [0m
+Completed in 0.12460 (8 reqs/sec) | Rendering: 0.10240 (82%) | DB: 0.00477 (3%) | 200 OK [http://repeatcode.local/]
+
+
+Processing CoursesController#index (for 127.0.0.1 at 2008-11-05 12:10:39) [GET]
+  Session ID: BAh7CjoMY3NyZl9pZCIlMWJhMTE5ZDI1MjQzOTU5ZTUzZTYyOThjYTNiMWQ0
+Yzc6DHVzZXJfaWRpBjoOcmV0dXJuX3RvMDoRb3JpZ2luYWxfdXJpIgYvIgpm
+bGFzaElDOidBY3Rpb25Db250cm9sbGVyOjpGbGFzaDo6Rmxhc2hIYXNoewAG
+OgpAdXNlZHsA--b7599539e2c07a16278ed12cc95d6d18c12d7228
+  Parameters: {"action"=>"index", "controller"=>"courses"}
+  [4;35;1mUser Load (0.000359)[0m   [0mSELECT * FROM "users" WHERE ("users"."id" = 1) LIMIT 1[0m
+Rendering template within layouts/application
+Rendering courses/index
+  [4;36;1mCourse Load (0.002182)[0m   [0;1mSELECT DISTINCT "courses".* FROM "courses" INNER JOIN subscriptions ON courses.id = subscriptions.course_id WHERE (("subscriptions".user_id = 1)) [0m
+  [4;35;1mSubject Load (0.000353)[0m   [0mSELECT * FROM "subjects" WHERE ("subjects"."id" = 2) [0m
+  [4;36;1mSubject Load (0.000324)[0m   [0;1mSELECT * FROM "subjects" WHERE ("subjects"."id" = 5) [0m
+  [4;35;1mSubject Load (0.002532)[0m   [0mSELECT * FROM "subjects" WHERE ("subjects"."id" = 4) [0m
+  [4;36;1mSubject Load (0.000399)[0m   [0;1mSELECT * FROM "subjects" WHERE ("subjects"."id" = 6) [0m
+  [4;35;1mSubject Load (0.000295)[0m   [0mSELECT * FROM "subjects" WHERE ("subjects"."id" = 7) [0m
+  [4;36;1mSubject Load (0.000266)[0m   [0;1mSELECT * FROM "subjects" WHERE ("subjects"."id" = 8) [0m
+  [4;35;1mCACHE (0.000000)[0m   [0mSELECT * FROM "subjects" WHERE ("subjects"."id" = 8) [0m
+  [4;36;1mCACHE (0.000000)[0m   [0;1mSELECT * FROM "subjects" WHERE ("subjects"."id" = 2) [0m
+  [4;35;1mSubject Load (0.000344)[0m   [0mSELECT * FROM "subjects" WHERE ("subjects"."id" = 9) [0m
+  [4;36;1mCACHE (0.000000)[0m   [0;1mSELECT * FROM "subjects" WHERE ("subjects"."id" = 9) [0m
+  [4;35;1mSubject Load (0.000312)[0m   [0mSELECT * FROM "subjects" WHERE ("subjects"."id" = 10) [0m
+  [4;36;1mCACHE (0.000000)[0m   [0;1mSELECT * FROM "subjects" WHERE ("subjects"."id" = 10) [0m
+Completed in 0.06007 (16 reqs/sec) | Rendering: 0.03422 (56%) | DB: 0.00737 (12%) | 200 OK [http://repeatcode.local/]
+
+
+Processing CoursesController#index (for 127.0.0.1 at 2008-11-05 12:11:15) [GET]
+  Session ID: BAh7CjoMY3NyZl9pZCIlMWJhMTE5ZDI1MjQzOTU5ZTUzZTYyOThjYTNiMWQ0
+Yzc6DHVzZXJfaWRpBjoRb3JpZ2luYWxfdXJpIgYvOg5yZXR1cm5fdG8wIgpm
+bGFzaElDOidBY3Rpb25Db250cm9sbGVyOjpGbGFzaDo6Rmxhc2hIYXNoewAG
+OgpAdXNlZHsA--e51b1997eaa5910cbd5069d9d90a532dae6b7a1c
+  Parameters: {"action"=>"index", "controller"=>"courses"}
+  [4;35;1mUser Load (0.000401)[0m   [0mSELECT * FROM "users" WHERE ("users"."id" = 1) LIMIT 1[0m
+Rendering template within layouts/application
+Rendering courses/index
+  [4;36;1mCourse Load (0.002206)[0m   [0;1mSELECT DISTINCT "courses".* FROM "courses" INNER JOIN subscriptions ON courses.id = subscriptions.course_id WHERE (("subscriptions".user_id = 1)) [0m
+  [4;35;1mSubject Load (0.000326)[0m   [0mSELECT * FROM "subjects" WHERE ("subjects"."id" = 2) [0m
+  [4;36;1mSubject Load (0.000340)[0m   [0;1mSELECT * FROM "subjects" WHERE ("subjects"."id" = 5) [0m
+  [4;35;1mSubject Load (0.000262)[0m   [0mSELECT * FROM "subjects" WHERE ("subjects"."id" = 4) [0m
+  [4;36;1mSubject Load (0.000265)[0m   [0;1mSELECT * FROM "subjects" WHERE ("subjects"."id" = 6) [0m
+  [4;35;1mSubject Load (0.000263)[0m   [0mSELECT * FROM "subjects" WHERE ("subjects"."id" = 7) [0m
+  [4;36;1mSubject Load (0.000400)[0m   [0;1mSELECT * FROM "subjects" WHERE ("subjects"."id" = 8) [0m
+  [4;35;1mCACHE (0.000000)[0m   [0mSELECT * FROM "subjects" WHERE ("subjects"."id" = 8) [0m
+  [4;36;1mCACHE (0.000000)[0m   [0;1mSELECT * FROM "subjects" WHERE ("subjects"."id" = 2) [0m
+  [4;35;1mSubject Load (0.000377)[0m   [0mSELECT * FROM "subjects" WHERE ("subjects"."id" = 9) [0m
+  [4;36;1mCACHE (0.000000)[0m   [0;1mSELECT * FROM "subjects" WHERE ("subjects"."id" = 9) [0m
+  [4;35;1mSubject Load (0.000577)[0m   [0mSELECT * FROM "subjects" WHERE ("subjects"."id" = 10) [0m
+  [4;36;1mCACHE (0.000000)[0m   [0;1mSELECT * FROM "subjects" WHERE ("subjects"."id" = 10) [0m
+Completed in 0.06457 (15 reqs/sec) | Rendering: 0.04058 (62%) | DB: 0.00542 (8%) | 200 OK [http://repeatcode.local/]
+
+
+Processing CoursesController#index (for 127.0.0.1 at 2008-11-05 12:11:55) [GET]
+  Session ID: BAh7CjoMY3NyZl9pZCIlMWJhMTE5ZDI1MjQzOTU5ZTUzZTYyOThjYTNiMWQ0
+Yzc6DHVzZXJfaWRpBjoOcmV0dXJuX3RvMDoRb3JpZ2luYWxfdXJpIgYvIgpm
+bGFzaElDOidBY3Rpb25Db250cm9sbGVyOjpGbGFzaDo6Rmxhc2hIYXNoewAG
+OgpAdXNlZHsA--b7599539e2c07a16278ed12cc95d6d18c12d7228
+  Parameters: {"action"=>"index", "controller"=>"courses"}
+  [4;35;1mUser Load (0.000371)[0m   [0mSELECT * FROM "users" WHERE ("users"."id" = 1) LIMIT 1[0m
+Rendering template within layouts/application
+Rendering courses/index
+  [4;36;1mCourse Load (0.002131)[0m   [0;1mSELECT DISTINCT "courses".* FROM "courses" INNER JOIN subscriptions ON courses.id = subscriptions.course_id WHERE (("subscriptions".user_id = 1)) [0m
+  [4;35;1mSubject Load (0.000308)[0m   [0mSELECT * FROM "subjects" WHERE ("subjects"."id" = 2) [0m
+  [4;36;1mSubject Load (0.000274)[0m   [0;1mSELECT * FROM "subjects" WHERE ("subjects"."id" = 5) [0m
+  [4;35;1mSubject Load (0.000306)[0m   [0mSELECT * FROM "subjects" WHERE ("subjects"."id" = 4) [0m
+  [4;36;1mSubject Load (0.000401)[0m   [0;1mSELECT * FROM "subjects" WHERE ("subjects"."id" = 6) [0m
+  [4;35;1mSubject Load (0.000329)[0m   [0mSELECT * FROM "subjects" WHERE ("subjects"."id" = 7) [0m
+  [4;36;1mSubject Load (0.000327)[0m   [0;1mSELECT * FROM "subjects" WHERE ("subjects"."id" = 8) [0m
+  [4;35;1mCACHE (0.000000)[0m   [0mSELECT * FROM "subjects" WHERE ("subjects"."id" = 8) [0m
+  [4;36;1mCACHE (0.000000)[0m   [0;1mSELECT * FROM "subjects" WHERE ("subjects"."id" = 2) [0m
+  [4;35;1mSubject Load (0.000275)[0m   [0mSELECT * FROM "subjects" WHERE ("subjects"."id" = 9) [0m
+  [4;36;1mCACHE (0.000000)[0m   [0;1mSELECT * FROM "subjects" WHERE ("subjects"."id" = 9) [0m
+  [4;35;1mSubject Load (0.000271)[0m   [0mSELECT * FROM "subjects" WHERE ("subjects"."id" = 10) [0m
+  [4;36;1mCACHE (0.000000)[0m   [0;1mSELECT * FROM "subjects" WHERE ("subjects"."id" = 10) [0m
+Completed in 0.13037 (7 reqs/sec) | Rendering: 0.03339 (25%) | DB: 0.00499 (3%) | 200 OK [http://repeatcode.local/]
+
+
+Processing CoursesController#index (for 127.0.0.1 at 2008-11-05 12:12:35) [GET]
+  Session ID: BAh7CjoMY3NyZl9pZCIlMWJhMTE5ZDI1MjQzOTU5ZTUzZTYyOThjYTNiMWQ0
+Yzc6DHVzZXJfaWRpBjoRb3JpZ2luYWxfdXJpIgYvOg5yZXR1cm5fdG8wIgpm
+bGFzaElDOidBY3Rpb25Db250cm9sbGVyOjpGbGFzaDo6Rmxhc2hIYXNoewAG
+OgpAdXNlZHsA--e51b1997eaa5910cbd5069d9d90a532dae6b7a1c
+  Parameters: {"action"=>"index", "controller"=>"courses"}
+  [4;35;1mUser Load (0.000395)[0m   [0mSELECT * FROM "users" WHERE ("users"."id" = 1) LIMIT 1[0m
+Rendering template within layouts/application
+Rendering courses/index
+  [4;36;1mCourse Load (0.002227)[0m   [0;1mSELECT DISTINCT "courses".* FROM "courses" INNER JOIN subscriptions ON courses.id = subscriptions.course_id WHERE (("subscriptions".user_id = 1)) [0m
+  [4;35;1mSubject Load (0.000326)[0m   [0mSELECT * FROM "subjects" WHERE ("subjects"."id" = 2) [0m
+  [4;36;1mSubject Load (0.000303)[0m   [0;1mSELECT * FROM "subjects" WHERE ("subjects"."id" = 5) [0m
+  [4;35;1mSubject Load (0.000282)[0m   [0mSELECT * FROM "subjects" WHERE ("subjects"."id" = 4) [0m
+  [4;36;1mSubject Load (0.000269)[0m   [0;1mSELECT * FROM "subjects" WHERE ("subjects"."id" = 6) [0m
+  [4;35;1mSubject Load (0.000266)[0m   [0mSELECT * FROM "subjects" WHERE ("subjects"."id" = 7) [0m
+  [4;36;1mSubject Load (0.000275)[0m   [0;1mSELECT * FROM "subjects" WHERE ("subjects"."id" = 8) [0m
+  [4;35;1mCACHE (0.000000)[0m   [0mSELECT * FROM "subjects" WHERE ("subjects"."id" = 8) [0m
+  [4;36;1mCACHE (0.000000)[0m   [0;1mSELECT * FROM "subjects" WHERE ("subjects"."id" = 2) [0m
+  [4;35;1mSubject Load (0.000280)[0m   [0mSELECT * FROM "subjects" WHERE ("subjects"."id" = 9) [0m
+  [4;36;1mCACHE (0.000000)[0m   [0;1mSELECT * FROM "subjects" WHERE ("subjects"."id" = 9) [0m
+  [4;35;1mSubject Load (0.000278)[0m   [0mSELECT * FROM "subjects" WHERE ("subjects"."id" = 10) [0m
+  [4;36;1mCACHE (0.000000)[0m   [0;1mSELECT * FROM "subjects" WHERE ("subjects"."id" = 10) [0m
+Completed in 0.12670 (7 reqs/sec) | Rendering: 0.10431 (82%) | DB: 0.00490 (3%) | 200 OK [http://repeatcode.local/]
+
+
+Processing LessonsController#create (for 127.0.0.1 at 2008-11-05 12:38:17) [POST]
+  Session ID: BAh7CjoMY3NyZl9pZCIlMWJhMTE5ZDI1MjQzOTU5ZTUzZTYyOThjYTNiMWQ0
+Yzc6DHVzZXJfaWRpBjoOcmV0dXJuX3RvMDoRb3JpZ2luYWxfdXJpIgYvIgpm
+bGFzaElDOidBY3Rpb25Db250cm9sbGVyOjpGbGFzaDo6Rmxhc2hIYXNoewAG
+OgpAdXNlZHsA--b7599539e2c07a16278ed12cc95d6d18c12d7228
+  Parameters: {"commit"=>"Learn now", "authenticity_token"=>"c9442483b2e5a5b0aabbc041d074e94298ed3854", "action"=>"create", "controller"=>"lessons", "course_id"=>"45"}
+  [4;36;1mUser Load (0.000469)[0m   [0;1mSELECT * FROM "users" WHERE ("users"."id" = 1) LIMIT 1[0m
+  [4;35;1mCourse Load (0.000371)[0m   [0mSELECT * FROM "courses" WHERE ("courses"."id" = 45) [0m
+  [4;36;1mCACHE (0.000000)[0m   [0;1mSELECT * FROM "courses" WHERE ("courses"."id" = 45) [0m
+  [4;35;1mSQL (0.051139)[0m   [0mSELECT count(*) AS count_all FROM "questions" WHERE ("questions".course_id = 45) [0m
+  [4;36;1mLesson Create (0.000550)[0m   [0;1mINSERT INTO "lessons" ("correct_responses", "updated_at", "course_id", "total_questions_started", "created_at") VALUES(NULL, '2008-11-05 12:38:17', 45, 7, '2008-11-05 12:38:17')[0m
+Redirected to http://repeatcode.local/lessons/238
+Completed in 0.11001 (9 reqs/sec) | DB: 0.05253 (47%) | 302 Found [http://repeatcode.local/courses/45/lessons]
+
+
+Processing LessonsController#show (for 127.0.0.1 at 2008-11-05 12:38:17) [GET]
+  Session ID: BAh7CjoMY3NyZl9pZCIlMWJhMTE5ZDI1MjQzOTU5ZTUzZTYyOThjYTNiMWQ0
+Yzc6DHVzZXJfaWRpBjoRb3JpZ2luYWxfdXJpIgYvOg5yZXR1cm5fdG8wIgpm
+bGFzaElDOidBY3Rpb25Db250cm9sbGVyOjpGbGFzaDo6Rmxhc2hIYXNoewAG
+OgpAdXNlZHsA--e51b1997eaa5910cbd5069d9d90a532dae6b7a1c
+  Parameters: {"action"=>"show", "id"=>"238", "controller"=>"lessons"}
+  [4;35;1mUser Load (0.000398)[0m   [0mSELECT * FROM "users" WHERE ("users"."id" = 1) LIMIT 1[0m
+  [4;36;1mLesson Load (0.000332)[0m   [0;1mSELECT * FROM "lessons" WHERE ("lessons"."id" = 238) [0m
+Rendering template within layouts/lessons
+Rendering lessons/show
+  [4;35;1mCourse Load (0.000386)[0m   [0mSELECT * FROM "courses" WHERE ("courses"."id" = 45) [0m
+  [4;36;1mSubject Load (0.000309)[0m   [0;1mSELECT * FROM "subjects" WHERE ("subjects"."id" = 5) [0m
+Completed in 0.16128 (6 reqs/sec) | Rendering: 0.13792 (85%) | DB: 0.00143 (0%) | 200 OK [http://repeatcode.local/lessons/238]
+
+
+Processing LessonsController#show (for 127.0.0.1 at 2008-11-05 12:38:33) [GET]
+  Session ID: BAh7CjoMY3NyZl9pZCIlMWJhMTE5ZDI1MjQzOTU5ZTUzZTYyOThjYTNiMWQ0
+Yzc6DHVzZXJfaWRpBjoOcmV0dXJuX3RvMDoRb3JpZ2luYWxfdXJpIgYvIgpm
+bGFzaElDOidBY3Rpb25Db250cm9sbGVyOjpGbGFzaDo6Rmxhc2hIYXNoewAG
+OgpAdXNlZHsA--b7599539e2c07a16278ed12cc95d6d18c12d7228
+  Parameters: {"action"=>"show", "id"=>"238", "controller"=>"lessons"}
+  [4;35;1mUser Load (0.000440)[0m   [0mSELECT * FROM "users" WHERE ("users"."id" = 1) LIMIT 1[0m
+  [4;36;1mLesson Load (0.000331)[0m   [0;1mSELECT * FROM "lessons" WHERE ("lessons"."id" = 238) [0m
+Rendering template within layouts/lessons
+Rendering lessons/show
+  [4;35;1mCourse Load (0.000306)[0m   [0mSELECT * FROM "courses" WHERE ("courses"."id" = 45) [0m
+  [4;36;1mSubject Load (0.000287)[0m   [0;1mSELECT * FROM "subjects" WHERE ("subjects"."id" = 5) [0m
+Completed in 0.03750 (26 reqs/sec) | Rendering: 0.01655 (44%) | DB: 0.00136 (3%) | 200 OK [http://repeatcode.local/lessons/238]
+
+
+Processing LessonsController#show (for 127.0.0.1 at 2008-11-05 12:38:54) [GET]
+  Session ID: BAh7CjoMY3NyZl9pZCIlMWJhMTE5ZDI1MjQzOTU5ZTUzZTYyOThjYTNiMWQ0
+Yzc6DHVzZXJfaWRpBjoRb3JpZ2luYWxfdXJpIgYvOg5yZXR1cm5fdG8wIgpm
+bGFzaElDOidBY3Rpb25Db250cm9sbGVyOjpGbGFzaDo6Rmxhc2hIYXNoewAG
+OgpAdXNlZHsA--e51b1997eaa5910cbd5069d9d90a532dae6b7a1c
+  Parameters: {"action"=>"show", "id"=>"238", "controller"=>"lessons"}
+  [4;35;1mUser Load (0.000360)[0m   [0mSELECT * FROM "users" WHERE ("users"."id" = 1) LIMIT 1[0m
+  [4;36;1mLesson Load (0.000349)[0m   [0;1mSELECT * FROM "lessons" WHERE ("lessons"."id" = 238) [0m
+Rendering template within layouts/lessons
+Rendering lessons/show
+  [4;35;1mCourse Load (0.000345)[0m   [0mSELECT * FROM "courses" WHERE ("courses"."id" = 45) [0m
+  [4;36;1mSubject Load (0.000308)[0m   [0;1mSELECT * FROM "subjects" WHERE ("subjects"."id" = 5) [0m
+Completed in 0.11632 (8 reqs/sec) | Rendering: 0.01817 (15%) | DB: 0.00136 (1%) | 200 OK [http://repeatcode.local/lessons/238]
+
+
+Processing LessonsController#show (for 127.0.0.1 at 2008-11-05 12:38:55) [GET]
+  Session ID: BAh7CjoMY3NyZl9pZCIlMWJhMTE5ZDI1MjQzOTU5ZTUzZTYyOThjYTNiMWQ0
+Yzc6DHVzZXJfaWRpBjoOcmV0dXJuX3RvMDoRb3JpZ2luYWxfdXJpIgYvIgpm
+bGFzaElDOidBY3Rpb25Db250cm9sbGVyOjpGbGFzaDo6Rmxhc2hIYXNoewAG
+OgpAdXNlZHsA--b7599539e2c07a16278ed12cc95d6d18c12d7228
+  Parameters: {"format"=>"json", "action"=>"show", "id"=>"238", "controller"=>"lessons"}
+  [4;35;1mUser Load (0.000491)[0m   [0mSELECT * FROM "users" WHERE ("users"."id" = 1) LIMIT 1[0m
+  [4;36;1mLesson Load (0.000634)[0m   [0;1mSELECT * FROM "lessons" WHERE ("lessons"."id" = 238) [0m
+  [4;35;1mCourse Load (0.000345)[0m   [0mSELECT * FROM "courses" WHERE ("courses"."id" = 45) [0m
+  [4;36;1mQuestion Load (0.002159)[0m   [0;1mSELECT * FROM "questions" WHERE ("questions".course_id = 45 AND (next_datetime <= '2008-11-05 12:38:55' and id != 0)) ORDER BY current_interval LIMIT 1[0m
+  [4;35;1mExercise Load (0.003565)[0m   [0mSELECT * FROM "exercises" WHERE ("exercises"."id" = 697) [0m
+  [4;36;1mTopic Load (0.000389)[0m   [0;1mSELECT * FROM "topics" WHERE ("topics"."id" = 26) [0m
+Completed in 0.09730 (10 reqs/sec) | Rendering: 0.00418 (4%) | DB: 0.00758 (7%) | 200 OK [http://repeatcode.local/lessons/238.json]
+
+
+Processing LessonsController#show (for 127.0.0.1 at 2008-11-05 12:38:55) [GET]
+  Session ID: BAh7CjoMY3NyZl9pZCIlMWJhMTE5ZDI1MjQzOTU5ZTUzZTYyOThjYTNiMWQ0
+Yzc6DHVzZXJfaWRpBjoRb3JpZ2luYWxfdXJpIgYvOg5yZXR1cm5fdG8wIgpm
+bGFzaElDOidBY3Rpb25Db250cm9sbGVyOjpGbGFzaDo6Rmxhc2hIYXNoewAG
+OgpAdXNlZHsA--e51b1997eaa5910cbd5069d9d90a532dae6b7a1c
+  Parameters: {"ignore"=>"820", "format"=>"json", "action"=>"show", "id"=>"238", "controller"=>"lessons"}
+  [4;35;1mUser Load (0.000362)[0m   [0mSELECT * FROM "users" WHERE ("users"."id" = 1) LIMIT 1[0m
+  [4;36;1mLesson Load (0.000349)[0m   [0;1mSELECT * FROM "lessons" WHERE ("lessons"."id" = 238) [0m
+  [4;35;1mCourse Load (0.000322)[0m   [0mSELECT * FROM "courses" WHERE ("courses"."id" = 45) [0m
+  [4;36;1mQuestion Load (0.001914)[0m   [0;1mSELECT * FROM "questions" WHERE ("questions".course_id = 45 AND (next_datetime <= '2008-11-05 12:38:55' and id != '820')) ORDER BY current_interval LIMIT 1[0m
+  [4;35;1mExercise Load (0.000418)[0m   [0mSELECT * FROM "exercises" WHERE ("exercises"."id" = 698) [0m
+  [4;36;1mTopic Load (0.000384)[0m   [0;1mSELECT * FROM "topics" WHERE ("topics"."id" = 26) [0m
+Completed in 0.13594 (7 reqs/sec) | Rendering: 0.00470 (3%) | DB: 0.00375 (2%) | 200 OK [http://repeatcode.local/lessons/238.json?ignore=820]
+
+
+Processing CoursesController#index (for 127.0.0.1 at 2008-11-05 12:49:42) [GET]
+  Session ID: BAh7CjoMY3NyZl9pZCIlMWJhMTE5ZDI1MjQzOTU5ZTUzZTYyOThjYTNiMWQ0
+Yzc6DHVzZXJfaWRpBjoOcmV0dXJuX3RvMDoRb3JpZ2luYWxfdXJpIgYvIgpm
+bGFzaElDOidBY3Rpb25Db250cm9sbGVyOjpGbGFzaDo6Rmxhc2hIYXNoewAG
+OgpAdXNlZHsA--b7599539e2c07a16278ed12cc95d6d18c12d7228
+  Parameters: {"action"=>"index", "controller"=>"courses"}
+  [4;36;1mUser Load (0.000484)[0m   [0;1mSELECT * FROM "users" WHERE ("users"."id" = 1) LIMIT 1[0m
+Rendering template within layouts/application
+Rendering courses/index
+  [4;35;1mCourse Load (0.002204)[0m   [0mSELECT DISTINCT "courses".* FROM "courses" INNER JOIN subscriptions ON courses.id = subscriptions.course_id WHERE (("subscriptions".user_id = 1)) [0m
+  [4;36;1mSubject Load (0.000389)[0m   [0;1mSELECT * FROM "subjects" WHERE ("subjects"."id" = 2) [0m
+  [4;35;1mSubject Load (0.000349)[0m   [0mSELECT * FROM "subjects" WHERE ("subjects"."id" = 5) [0m
+  [4;36;1mSubject Load (0.000286)[0m   [0;1mSELECT * FROM "subjects" WHERE ("subjects"."id" = 4) [0m
+  [4;35;1mSubject Load (0.000346)[0m   [0mSELECT * FROM "subjects" WHERE ("subjects"."id" = 6) [0m
+  [4;36;1mSubject Load (0.000294)[0m   [0;1mSELECT * FROM "subjects" WHERE ("subjects"."id" = 7) [0m
+  [4;35;1mSubject Load (0.000365)[0m   [0mSELECT * FROM "subjects" WHERE ("subjects"."id" = 8) [0m
+  [4;36;1mCACHE (0.000000)[0m   [0;1mSELECT * FROM "subjects" WHERE ("subjects"."id" = 8) [0m
+  [4;35;1mCACHE (0.000000)[0m   [0mSELECT * FROM "subjects" WHERE ("subjects"."id" = 2) [0m
+  [4;36;1mSubject Load (0.000332)[0m   [0;1mSELECT * FROM "subjects" WHERE ("subjects"."id" = 9) [0m
+  [4;35;1mCACHE (0.000000)[0m   [0mSELECT * FROM "subjects" WHERE ("subjects"."id" = 9) [0m
+  [4;36;1mSubject Load (0.000301)[0m   [0;1mSELECT * FROM "subjects" WHERE ("subjects"."id" = 10) [0m
+  [4;35;1mCACHE (0.000000)[0m   [0mSELECT * FROM "subjects" WHERE ("subjects"."id" = 10) [0m
+Completed in 0.07451 (13 reqs/sec) | Rendering: 0.04545 (60%) | DB: 0.00535 (7%) | 200 OK [http://repeatcode.local/courses]
+
+
+Processing LessonsController#create (for 127.0.0.1 at 2008-11-05 13:49:43) [POST]
+  Session ID: BAh7CjoMY3NyZl9pZCIlMWJhMTE5ZDI1MjQzOTU5ZTUzZTYyOThjYTNiMWQ0
+Yzc6DHVzZXJfaWRpBjoRb3JpZ2luYWxfdXJpIgYvOg5yZXR1cm5fdG8wIgpm
+bGFzaElDOidBY3Rpb25Db250cm9sbGVyOjpGbGFzaDo6Rmxhc2hIYXNoewAG
+OgpAdXNlZHsA--e51b1997eaa5910cbd5069d9d90a532dae6b7a1c
+  Parameters: {"commit"=>"Learn now", "authenticity_token"=>"c9442483b2e5a5b0aabbc041d074e94298ed3854", "action"=>"create", "controller"=>"lessons", "course_id"=>"94"}
+  [4;36;1mUser Load (0.000448)[0m   [0;1mSELECT * FROM "users" WHERE ("users"."id" = 1) LIMIT 1[0m
+  [4;35;1mCourse Load (0.000308)[0m   [0mSELECT * FROM "courses" WHERE ("courses"."id" = 94) [0m
+  [4;36;1mCACHE (0.000000)[0m   [0;1mSELECT * FROM "courses" WHERE ("courses"."id" = 94) [0m
+  [4;35;1mSQL (0.001215)[0m   [0mSELECT count(*) AS count_all FROM "questions" WHERE ("questions".course_id = 94) [0m
+  [4;36;1mLesson Create (0.000507)[0m   [0;1mINSERT INTO "lessons" ("correct_responses", "updated_at", "course_id", "total_questions_started", "created_at") VALUES(NULL, '2008-11-05 13:49:43', 94, 32, '2008-11-05 13:49:43')[0m
+Redirected to http://repeatcode.local/lessons/239
+Completed in 0.05203 (19 reqs/sec) | DB: 0.00248 (4%) | 302 Found [http://repeatcode.local/courses/94/lessons]
+
+
+Processing LessonsController#show (for 127.0.0.1 at 2008-11-05 13:49:43) [GET]
+  Session ID: BAh7CjoMY3NyZl9pZCIlMWJhMTE5ZDI1MjQzOTU5ZTUzZTYyOThjYTNiMWQ0
+Yzc6DHVzZXJfaWRpBjoOcmV0dXJuX3RvMDoRb3JpZ2luYWxfdXJpIgYvIgpm
+bGFzaElDOidBY3Rpb25Db250cm9sbGVyOjpGbGFzaDo6Rmxhc2hIYXNoewAG
+OgpAdXNlZHsA--b7599539e2c07a16278ed12cc95d6d18c12d7228
+  Parameters: {"action"=>"show", "id"=>"239", "controller"=>"lessons"}
+  [4;35;1mUser Load (0.000394)[0m   [0mSELECT * FROM "users" WHERE ("users"."id" = 1) LIMIT 1[0m
+  [4;36;1mLesson Load (0.000449)[0m   [0;1mSELECT * FROM "lessons" WHERE ("lessons"."id" = 239) [0m
+Rendering template within layouts/lessons
+Rendering lessons/show
+  [4;35;1mCourse Load (0.000330)[0m   [0mSELECT * FROM "courses" WHERE ("courses"."id" = 94) [0m
+  [4;36;1mSubject Load (0.000318)[0m   [0;1mSELECT * FROM "subjects" WHERE ("subjects"."id" = 10) [0m
+Completed in 0.15402 (6 reqs/sec) | Rendering: 0.12880 (83%) | DB: 0.00149 (0%) | 200 OK [http://repeatcode.local/lessons/239]
+
+
+Processing LessonsController#show (for 127.0.0.1 at 2008-11-05 13:49:43) [GET]
+  Session ID: BAh7CjoMY3NyZl9pZCIlMWJhMTE5ZDI1MjQzOTU5ZTUzZTYyOThjYTNiMWQ0
+Yzc6DHVzZXJfaWRpBjoRb3JpZ2luYWxfdXJpIgYvOg5yZXR1cm5fdG8wIgpm
+bGFzaElDOidBY3Rpb25Db250cm9sbGVyOjpGbGFzaDo6Rmxhc2hIYXNoewAG
+OgpAdXNlZHsA--e51b1997eaa5910cbd5069d9d90a532dae6b7a1c
+  Parameters: {"format"=>"json", "action"=>"show", "id"=>"239", "controller"=>"lessons"}
+  [4;35;1mUser Load (0.000455)[0m   [0mSELECT * FROM "users" WHERE ("users"."id" = 1) LIMIT 1[0m
+  [4;36;1mLesson Load (0.000362)[0m   [0;1mSELECT * FROM "lessons" WHERE ("lessons"."id" = 239) [0m
+  [4;35;1mCourse Load (0.000335)[0m   [0mSELECT * FROM "courses" WHERE ("courses"."id" = 94) [0m
+  [4;36;1mQuestion Load (0.001918)[0m   [0;1mSELECT * FROM "questions" WHERE ("questions".course_id = 94 AND (next_datetime <= '2008-11-05 13:49:43' and id != 0)) ORDER BY current_interval LIMIT 1[0m
+  [4;35;1mExercise Load (0.001315)[0m   [0mSELECT * FROM "exercises" WHERE ("exercises"."id" = 853) [0m
+  [4;36;1mTopic Load (0.000396)[0m   [0;1mSELECT * FROM "topics" WHERE ("topics"."id" = 35) [0m
+Completed in 0.06263 (15 reqs/sec) | Rendering: 0.00439 (7%) | DB: 0.00478 (7%) | 200 OK [http://repeatcode.local/lessons/239.json]
+
+
+Processing LessonsController#show (for 127.0.0.1 at 2008-11-05 13:49:44) [GET]
+  Session ID: BAh7CjoMY3NyZl9pZCIlMWJhMTE5ZDI1MjQzOTU5ZTUzZTYyOThjYTNiMWQ0
+Yzc6DHVzZXJfaWRpBjoOcmV0dXJuX3RvMDoRb3JpZ2luYWxfdXJpIgYvIgpm
+bGFzaElDOidBY3Rpb25Db250cm9sbGVyOjpGbGFzaDo6Rmxhc2hIYXNoewAG
+OgpAdXNlZHsA--b7599539e2c07a16278ed12cc95d6d18c12d7228
+  Parameters: {"ignore"=>"1454", "format"=>"json", "action"=>"show", "id"=>"239", "controller"=>"lessons"}
+  [4;35;1mUser Load (0.000434)[0m   [0mSELECT * FROM "users" WHERE ("users"."id" = 1) LIMIT 1[0m
+  [4;36;1mLesson Load (0.000333)[0m   [0;1mSELECT * FROM "lessons" WHERE ("lessons"."id" = 239) [0m
+  [4;35;1mCourse Load (0.000323)[0m   [0mSELECT * FROM "courses" WHERE ("courses"."id" = 94) [0m
+  [4;36;1mQuestion Load (0.001629)[0m   [0;1mSELECT * FROM "questions" WHERE ("questions".course_id = 94 AND (next_datetime <= '2008-11-05 13:49:44' and id != '1454')) ORDER BY current_interval LIMIT 1[0m
+  [4;35;1mExercise Load (0.025640)[0m   [0mSELECT * FROM "exercises" WHERE ("exercises"."id" = 879) [0m
+  [4;36;1mTopic Load (0.000382)[0m   [0;1mSELECT * FROM "topics" WHERE ("topics"."id" = 35) [0m
+Completed in 0.16264 (6 reqs/sec) | Rendering: 0.00444 (2%) | DB: 0.02874 (17%) | 200 OK [http://repeatcode.local/lessons/239.json?ignore=1454]
+
+
+Processing ResponsesController#create (for 127.0.0.1 at 2008-11-05 13:50:04) [POST]
+  Session ID: BAh7CjoMY3NyZl9pZCIlMWJhMTE5ZDI1MjQzOTU5ZTUzZTYyOThjYTNiMWQ0
+Yzc6DHVzZXJfaWRpBjoRb3JpZ2luYWxfdXJpIgYvOg5yZXR1cm5fdG8wIgpm
+bGFzaElDOidBY3Rpb25Db250cm9sbGVyOjpGbGFzaDo6Rmxhc2hIYXNoewAG
+OgpAdXNlZHsA--e51b1997eaa5910cbd5069d9d90a532dae6b7a1c
+  Parameters: {"response"=>{"result"=>"correct", "seconds_taken"=>"12", "interval"=>"2"}, "format"=>"json", "question_id"=>"1454", "authenticity_token"=>"c9442483b2e5a5b0aabbc041d074e94298ed3854", "action"=>"create", "controller"=>"responses"}
+  [4;35;1mQuestion Load (0.000314)[0m   [0mSELECT * FROM "questions" WHERE ("questions"."id" = 1454) [0m
+  [4;36;1mCACHE (0.000000)[0m   [0;1mSELECT * FROM "questions" WHERE ("questions"."id" = 1454) [0m
+  [4;35;1mCourse Load (0.000426)[0m   [0mSELECT * FROM "courses" WHERE ("courses"."id" = 94) [0m
+  [4;36;1mLesson Load (0.000366)[0m   [0;1mSELECT * FROM "lessons" WHERE ("lessons".course_id = 94) ORDER BY lessons.id DESC LIMIT 1[0m
+  [4;35;1mLesson Update (0.000412)[0m   [0mUPDATE "lessons" SET "correct_responses" = 1, "updated_at" = '2008-11-05 13:50:04' WHERE "id" = 239[0m
+  [4;36;1mInterval Load (0.016239)[0m   [0;1mSELECT * FROM "intervals" WHERE ("intervals".course_id = 94 AND ("intervals"."index_no" = 3)) LIMIT 1[0m
+  [4;35;1mQuestion Update (0.000544)[0m   [0mUPDATE "questions" SET "current_interval" = 3, "next_datetime" = '2008-11-06 01:50:04', "updated_at" = '2008-11-05 13:50:04' WHERE "id" = 1454[0m
+  [4;36;1mResponse Create (0.000431)[0m   [0;1mINSERT INTO "responses" ("result", "updated_at", "question_id", "lesson_id", "seconds_taken", "content", "interval", "created_at") VALUES('correct', '2008-11-05 13:50:04', 1454, NULL, 12, NULL, 2, '2008-11-05 13:50:04')[0m
+Completed in 0.07042 (14 reqs/sec) | Rendering: 0.00032 (0%) | DB: 0.01873 (26%) | 200 OK [http://repeatcode.local/questions/1454/responses.json]
+
+
+Processing LessonsController#show (for 127.0.0.1 at 2008-11-05 13:50:05) [GET]
+  Session ID: BAh7CjoMY3NyZl9pZCIlMWJhMTE5ZDI1MjQzOTU5ZTUzZTYyOThjYTNiMWQ0
+Yzc6DHVzZXJfaWRpBjoRb3JpZ2luYWxfdXJpIgYvOg5yZXR1cm5fdG8wIgpm
+bGFzaElDOidBY3Rpb25Db250cm9sbGVyOjpGbGFzaDo6Rmxhc2hIYXNoewAG
+OgpAdXNlZHsA--e51b1997eaa5910cbd5069d9d90a532dae6b7a1c
+  Parameters: {"ignore"=>"1525", "format"=>"json", "action"=>"show", "id"=>"239", "controller"=>"lessons"}
+  [4;36;1mUser Load (0.000527)[0m   [0;1mSELECT * FROM "users" WHERE ("users"."id" = 1) LIMIT 1[0m
+  [4;35;1mLesson Load (0.000347)[0m   [0mSELECT * FROM "lessons" WHERE ("lessons"."id" = 239) [0m
+  [4;36;1mCourse Load (0.000333)[0m   [0;1mSELECT * FROM "courses" WHERE ("courses"."id" = 94) [0m
+  [4;35;1mQuestion Load (0.002010)[0m   [0mSELECT * FROM "questions" WHERE ("questions".course_id = 94 AND (next_datetime <= '2008-11-05 13:50:05' and id != '1525')) ORDER BY current_interval LIMIT 1[0m
+  [4;36;1mExercise Load (0.000537)[0m   [0;1mSELECT * FROM "exercises" WHERE ("exercises"."id" = 880) [0m
+  [4;35;1mTopic Load (0.000428)[0m   [0mSELECT * FROM "topics" WHERE ("topics"."id" = 35) [0m
+Completed in 0.06722 (14 reqs/sec) | Rendering: 0.00454 (6%) | DB: 0.00418 (6%) | 200 OK [http://repeatcode.local/lessons/239.json?ignore=1525]
+
+
+Processing ResponsesController#create (for 127.0.0.1 at 2008-11-05 13:50:15) [POST]
+  Session ID: BAh7CjoMY3NyZl9pZCIlMWJhMTE5ZDI1MjQzOTU5ZTUzZTYyOThjYTNiMWQ0
+Yzc6DHVzZXJfaWRpBjoOcmV0dXJuX3RvMDoRb3JpZ2luYWxfdXJpIgYvIgpm
+bGFzaElDOidBY3Rpb25Db250cm9sbGVyOjpGbGFzaDo6Rmxhc2hIYXNoewAG
+OgpAdXNlZHsA--b7599539e2c07a16278ed12cc95d6d18c12d7228
+  Parameters: {"response"=>{"result"=>"correct", "seconds_taken"=>"8", "interval"=>"2"}, "format"=>"json", "question_id"=>"1525", "authenticity_token"=>"c9442483b2e5a5b0aabbc041d074e94298ed3854", "action"=>"create", "controller"=>"responses"}
+  [4;36;1mQuestion Load (0.000337)[0m   [0;1mSELECT * FROM "questions" WHERE ("questions"."id" = 1525) [0m
+  [4;35;1mCACHE (0.000000)[0m   [0mSELECT * FROM "questions" WHERE ("questions"."id" = 1525) [0m
+  [4;36;1mCourse Load (0.000390)[0m   [0;1mSELECT * FROM "courses" WHERE ("courses"."id" = 94) [0m
+  [4;35;1mLesson Load (0.000390)[0m   [0mSELECT * FROM "lessons" WHERE ("lessons".course_id = 94) ORDER BY lessons.id DESC LIMIT 1[0m
+  [4;36;1mLesson Update (0.000446)[0m   [0;1mUPDATE "lessons" SET "correct_responses" = 2, "updated_at" = '2008-11-05 13:50:15' WHERE "id" = 239[0m
+  [4;35;1mInterval Load (0.001075)[0m   [0mSELECT * FROM "intervals" WHERE ("intervals".course_id = 94 AND ("intervals"."index_no" = 3)) LIMIT 1[0m
+
+
+Processing LessonsController#show (for 127.0.0.1 at 2008-11-05 13:50:15) [GET]
+  Session ID: BAh7CjoMY3NyZl9pZCIlMWJhMTE5ZDI1MjQzOTU5ZTUzZTYyOThjYTNiMWQ0
+Yzc6DHVzZXJfaWRpBjoOcmV0dXJuX3RvMDoRb3JpZ2luYWxfdXJpIgYvIgpm
+bGFzaElDOidBY3Rpb25Db250cm9sbGVyOjpGbGFzaDo6Rmxhc2hIYXNoewAG
+OgpAdXNlZHsA--b7599539e2c07a16278ed12cc95d6d18c12d7228
+  Parameters: {"ignore"=>"1526", "format"=>"json", "action"=>"show", "id"=>"239", "controller"=>"lessons"}
+  [4;36;1mQuestion Update (0.000187)[0m   [0;1mUPDATE "questions" SET "current_interval" = 3, "next_datetime" = '2008-11-06 01:50:15', "updated_at" = '2008-11-05 13:50:15' WHERE "id" = 1525[0m
+  [4;35;1mResponse Create (0.000242)[0m   [0mINSERT INTO "responses" ("result", "updated_at", "question_id", "lesson_id", "seconds_taken", "content", "interval", "created_at") VALUES('correct', '2008-11-05 13:50:15', 1525, NULL, 8, NULL, 2, '2008-11-05 13:50:15')[0m
+Completed in 0.20944 (4 reqs/sec) | Rendering: 0.00031 (0%) | DB: 0.00307 (1%) | 200 OK [http://repeatcode.local/questions/1525/responses.json]
+  [4;35;1mUser Load (0.000369)[0m   [0mSELECT * FROM "users" WHERE ("users"."id" = 1) LIMIT 1[0m
+  [4;36;1mLesson Load (0.000353)[0m   [0;1mSELECT * FROM "lessons" WHERE ("lessons"."id" = 239) [0m
+  [4;35;1mCourse Load (0.000306)[0m   [0mSELECT * FROM "courses" WHERE ("courses"."id" = 94) [0m
+  [4;36;1mQuestion Load (0.002232)[0m   [0;1mSELECT * FROM "questions" WHERE ("questions".course_id = 94 AND (next_datetime <= '2008-11-05 13:50:15' and id != '1526')) ORDER BY current_interval LIMIT 1[0m
+  [4;35;1mExercise Load (0.000421)[0m   [0mSELECT * FROM "exercises" WHERE ("exercises"."id" = 881) [0m
+  [4;36;1mTopic Load (0.000469)[0m   [0;1mSELECT * FROM "topics" WHERE ("topics"."id" = 35) [0m
+Completed in 0.05834 (17 reqs/sec) | Rendering: 0.00406 (6%) | DB: 0.00415 (7%) | 200 OK [http://repeatcode.local/lessons/239.json?ignore=1526]
+
+
+Processing LessonsController#show (for 127.0.0.1 at 2008-11-05 15:56:42) [GET]
+  Session ID: BAh7CjoMY3NyZl9pZCIlMWJhMTE5ZDI1MjQzOTU5ZTUzZTYyOThjYTNiMWQ0
+Yzc6DHVzZXJfaWRpBjoRb3JpZ2luYWxfdXJpIgYvOg5yZXR1cm5fdG8wIgpm
+bGFzaElDOidBY3Rpb25Db250cm9sbGVyOjpGbGFzaDo6Rmxhc2hIYXNoewAG
+OgpAdXNlZHsA--e51b1997eaa5910cbd5069d9d90a532dae6b7a1c
+  Parameters: {"action"=>"show", "id"=>"239", "controller"=>"lessons"}
+  [4;36;1mUser Load (0.000630)[0m   [0;1mSELECT * FROM "users" WHERE ("users"."id" = 1) LIMIT 1[0m
+  [4;35;1mLesson Load (0.000419)[0m   [0mSELECT * FROM "lessons" WHERE ("lessons"."id" = 239) [0m
+Rendering template within layouts/lessons
+Rendering lessons/show
+  [4;36;1mCourse Load (0.000452)[0m   [0;1mSELECT * FROM "courses" WHERE ("courses"."id" = 94) [0m
+  [4;35;1mSubject Load (0.000324)[0m   [0mSELECT * FROM "subjects" WHERE ("subjects"."id" = 10) [0m
+Completed in 0.06020 (16 reqs/sec) | Rendering: 0.02857 (47%) | DB: 0.00182 (3%) | 200 OK [http://repeatcode.local/lessons/239]
+
+
+Processing LessonsController#show (for 127.0.0.1 at 2008-11-05 15:57:00) [GET]
+  Session ID: BAh7CjoMY3NyZl9pZCIlMWJhMTE5ZDI1MjQzOTU5ZTUzZTYyOThjYTNiMWQ0
+Yzc6DHVzZXJfaWRpBjoOcmV0dXJuX3RvMDoRb3JpZ2luYWxfdXJpIgYvIgpm
+bGFzaElDOidBY3Rpb25Db250cm9sbGVyOjpGbGFzaDo6Rmxhc2hIYXNoewAG
+OgpAdXNlZHsA--b7599539e2c07a16278ed12cc95d6d18c12d7228
+  Parameters: {"action"=>"show", "id"=>"239", "controller"=>"lessons"}
+  [4;36;1mUser Load (0.000391)[0m   [0;1mSELECT * FROM "users" WHERE ("users"."id" = 1) LIMIT 1[0m
+  [4;35;1mLesson Load (0.000391)[0m   [0mSELECT * FROM "lessons" WHERE ("lessons"."id" = 239) [0m
+Rendering template within layouts/lessons
+Rendering lessons/show
+  [4;36;1mCourse Load (0.000324)[0m   [0;1mSELECT * FROM "courses" WHERE ("courses"."id" = 94) [0m
+  [4;35;1mSubject Load (0.000339)[0m   [0mSELECT * FROM "subjects" WHERE ("subjects"."id" = 10) [0m
+Completed in 0.14426 (6 reqs/sec) | Rendering: 0.01860 (12%) | DB: 0.00145 (1%) | 200 OK [http://repeatcode.local/lessons/239]
+
+
+Processing LessonsController#show (for 127.0.0.1 at 2008-11-05 15:57:01) [GET]
+  Session ID: BAh7CjoMY3NyZl9pZCIlMWJhMTE5ZDI1MjQzOTU5ZTUzZTYyOThjYTNiMWQ0
+Yzc6DHVzZXJfaWRpBjoRb3JpZ2luYWxfdXJpIgYvOg5yZXR1cm5fdG8wIgpm
+bGFzaElDOidBY3Rpb25Db250cm9sbGVyOjpGbGFzaDo6Rmxhc2hIYXNoewAG
+OgpAdXNlZHsA--e51b1997eaa5910cbd5069d9d90a532dae6b7a1c
+  Parameters: {"format"=>"json", "action"=>"show", "id"=>"239", "controller"=>"lessons"}
+  [4;36;1mUser Load (0.000496)[0m   [0;1mSELECT * FROM "users" WHERE ("users"."id" = 1) LIMIT 1[0m
+  [4;35;1mLesson Load (0.000955)[0m   [0mSELECT * FROM "lessons" WHERE ("lessons"."id" = 239) [0m
+  [4;36;1mCourse Load (0.000331)[0m   [0;1mSELECT * FROM "courses" WHERE ("courses"."id" = 94) [0m
+  [4;35;1mQuestion Load (0.032944)[0m   [0mSELECT * FROM "questions" WHERE ("questions".course_id = 94 AND (next_datetime <= '2008-11-05 15:57:01' and id != 0)) ORDER BY current_interval LIMIT 1[0m
+  [4;36;1mExercise Load (0.000450)[0m   [0;1mSELECT * FROM "exercises" WHERE ("exercises"."id" = 880) [0m
+  [4;35;1mTopic Load (0.000445)[0m   [0mSELECT * FROM "topics" WHERE ("topics"."id" = 35) [0m
+Completed in 0.09290 (10 reqs/sec) | Rendering: 0.00433 (4%) | DB: 0.03562 (38%) | 200 OK [http://repeatcode.local/lessons/239.json]
+
+
+Processing LessonsController#show (for 127.0.0.1 at 2008-11-05 15:57:01) [GET]
+  Session ID: BAh7CjoMY3NyZl9pZCIlMWJhMTE5ZDI1MjQzOTU5ZTUzZTYyOThjYTNiMWQ0
+Yzc6DHVzZXJfaWRpBjoOcmV0dXJuX3RvMDoRb3JpZ2luYWxfdXJpIgYvIgpm
+bGFzaElDOidBY3Rpb25Db250cm9sbGVyOjpGbGFzaDo6Rmxhc2hIYXNoewAG
+OgpAdXNlZHsA--b7599539e2c07a16278ed12cc95d6d18c12d7228
+  Parameters: {"ignore"=>"1526", "format"=>"json", "action"=>"show", "id"=>"239", "controller"=>"lessons"}
+  [4;36;1mUser Load (0.000379)[0m   [0;1mSELECT * FROM "users" WHERE ("users"."id" = 1) LIMIT 1[0m
+  [4;35;1mLesson Load (0.000406)[0m   [0mSELECT * FROM "lessons" WHERE ("lessons"."id" = 239) [0m
+  [4;36;1mCourse Load (0.000317)[0m   [0;1mSELECT * FROM "courses" WHERE ("courses"."id" = 94) [0m
+  [4;35;1mQuestion Load (0.001648)[0m   [0mSELECT * FROM "questions" WHERE ("questions".course_id = 94 AND (next_datetime <= '2008-11-05 15:57:01' and id != '1526')) ORDER BY current_interval LIMIT 1[0m
+  [4;36;1mExercise Load (0.000429)[0m   [0;1mSELECT * FROM "exercises" WHERE ("exercises"."id" = 881) [0m
+  [4;35;1mTopic Load (0.000374)[0m   [0mSELECT * FROM "topics" WHERE ("topics"."id" = 35) [0m
+Completed in 0.13257 (7 reqs/sec) | Rendering: 0.00429 (3%) | DB: 0.00355 (2%) | 200 OK [http://repeatcode.local/lessons/239.json?ignore=1526]
+
+
+Processing ResponsesController#create (for 127.0.0.1 at 2008-11-05 15:57:29) [POST]
+  Session ID: BAh7CjoMY3NyZl9pZCIlMWJhMTE5ZDI1MjQzOTU5ZTUzZTYyOThjYTNiMWQ0
+Yzc6DHVzZXJfaWRpBjoRb3JpZ2luYWxfdXJpIgYvOg5yZXR1cm5fdG8wIgpm
+bGFzaElDOidBY3Rpb25Db250cm9sbGVyOjpGbGFzaDo6Rmxhc2hIYXNoewAG
+OgpAdXNlZHsA--e51b1997eaa5910cbd5069d9d90a532dae6b7a1c
+  Parameters: {"response"=>{"result"=>"correct", "seconds_taken"=>"28", "interval"=>"2"}, "format"=>"json", "question_id"=>"1526", "authenticity_token"=>"c9442483b2e5a5b0aabbc041d074e94298ed3854", "action"=>"create", "controller"=>"responses"}
+  [4;36;1mQuestion Load (0.001149)[0m   [0;1mSELECT * FROM "questions" WHERE ("questions"."id" = 1526) [0m
+  [4;35;1mCACHE (0.000000)[0m   [0mSELECT * FROM "questions" WHERE ("questions"."id" = 1526) [0m
+  [4;36;1mCourse Load (0.000379)[0m   [0;1mSELECT * FROM "courses" WHERE ("courses"."id" = 94) [0m
+  [4;35;1mLesson Load (0.000308)[0m   [0mSELECT * FROM "lessons" WHERE ("lessons".course_id = 94) ORDER BY lessons.id DESC LIMIT 1[0m
+  [4;36;1mLesson Update (0.000437)[0m   [0;1mUPDATE "lessons" SET "correct_responses" = 3, "updated_at" = '2008-11-05 15:57:29' WHERE "id" = 239[0m
+  [4;35;1mInterval Load (0.002430)[0m   [0mSELECT * FROM "intervals" WHERE ("intervals".course_id = 94 AND ("intervals"."index_no" = 3)) LIMIT 1[0m
+  [4;36;1mQuestion Update (0.000184)[0m   [0;1mUPDATE "questions" SET "current_interval" = 3, "next_datetime" = '2008-11-06 03:57:29', "updated_at" = '2008-11-05 15:57:29' WHERE "id" = 1526[0m
+  [4;35;1mResponse Create (0.000690)[0m   [0mINSERT INTO "responses" ("result", "updated_at", "question_id", "lesson_id", "seconds_taken", "content", "interval", "created_at") VALUES('correct', '2008-11-05 15:57:29', 1526, NULL, 28, NULL, 2, '2008-11-05 15:57:29')[0m
+Completed in 0.05448 (18 reqs/sec) | Rendering: 0.00033 (0%) | DB: 0.00558 (10%) | 200 OK [http://repeatcode.local/questions/1526/responses.json]
+
+
+Processing LessonsController#show (for 127.0.0.1 at 2008-11-05 15:57:29) [GET]
+  Session ID: BAh7CjoMY3NyZl9pZCIlMWJhMTE5ZDI1MjQzOTU5ZTUzZTYyOThjYTNiMWQ0
+Yzc6DHVzZXJfaWRpBjoRb3JpZ2luYWxfdXJpIgYvOg5yZXR1cm5fdG8wIgpm
+bGFzaElDOidBY3Rpb25Db250cm9sbGVyOjpGbGFzaDo6Rmxhc2hIYXNoewAG
+OgpAdXNlZHsA--e51b1997eaa5910cbd5069d9d90a532dae6b7a1c
+  Parameters: {"ignore"=>"1527", "format"=>"json", "action"=>"show", "id"=>"239", "controller"=>"lessons"}
+  [4;36;1mUser Load (0.000371)[0m   [0;1mSELECT * FROM "users" WHERE ("users"."id" = 1) LIMIT 1[0m
+  [4;35;1mLesson Load (0.000352)[0m   [0mSELECT * FROM "lessons" WHERE ("lessons"."id" = 239) [0m
+  [4;36;1mCourse Load (0.000309)[0m   [0;1mSELECT * FROM "courses" WHERE ("courses"."id" = 94) [0m
+  [4;35;1mQuestion Load (0.001700)[0m   [0mSELECT * FROM "questions" WHERE ("questions".course_id = 94 AND (next_datetime <= '2008-11-05 15:57:29' and id != '1527')) ORDER BY current_interval LIMIT 1[0m
+  [4;36;1mExercise Load (0.001410)[0m   [0;1mSELECT * FROM "exercises" WHERE ("exercises"."id" = 872) [0m
+  [4;35;1mTopic Load (0.000381)[0m   [0mSELECT * FROM "topics" WHERE ("topics"."id" = 35) [0m
+Completed in 0.05859 (17 reqs/sec) | Rendering: 0.00432 (7%) | DB: 0.00452 (7%) | 200 OK [http://repeatcode.local/lessons/239.json?ignore=1527]
+
+
+Processing ResponsesController#create (for 127.0.0.1 at 2008-11-05 15:58:16) [POST]
+  Session ID: BAh7CjoMY3NyZl9pZCIlMWJhMTE5ZDI1MjQzOTU5ZTUzZTYyOThjYTNiMWQ0
+Yzc6DHVzZXJfaWRpBjoOcmV0dXJuX3RvMDoRb3JpZ2luYWxfdXJpIgYvIgpm
+bGFzaElDOidBY3Rpb25Db250cm9sbGVyOjpGbGFzaDo6Rmxhc2hIYXNoewAG
+OgpAdXNlZHsA--b7599539e2c07a16278ed12cc95d6d18c12d7228
+  Parameters: {"response"=>{"result"=>"incorrect", "seconds_taken"=>"47", "interval"=>"2"}, "format"=>"json", "question_id"=>"1527", "authenticity_token"=>"c9442483b2e5a5b0aabbc041d074e94298ed3854", "action"=>"create", "controller"=>"responses"}
+  [4;36;1mQuestion Load (0.000316)[0m   [0;1mSELECT * FROM "questions" WHERE ("questions"."id" = 1527) [0m
+  [4;35;1mCACHE (0.000000)[0m   [0mSELECT * FROM "questions" WHERE ("questions"."id" = 1527) [0m
+  [4;36;1mCourse Load (0.000298)[0m   [0;1mSELECT * FROM "courses" WHERE ("courses"."id" = 94) [0m
+  [4;35;1mLesson Load (0.000356)[0m   [0mSELECT * FROM "lessons" WHERE ("lessons".course_id = 94) ORDER BY lessons.id DESC LIMIT 1[0m
+  [4;36;1mLesson Update (0.000637)[0m   [0;1mUPDATE "lessons" SET "correct_responses" = 4, "updated_at" = '2008-11-05 15:58:16' WHERE "id" = 239[0m
+  [4;35;1mInterval Load (0.001110)[0m   [0mSELECT * FROM "intervals" WHERE ("intervals".course_id = 94 AND ("intervals"."index_no" = 3)) LIMIT 1[0m
+  [4;36;1mQuestion Update (0.000156)[0m   [0;1mUPDATE "questions" SET "current_interval" = 3, "next_datetime" = '2008-11-06 03:58:16', "updated_at" = '2008-11-05 15:58:16' WHERE "id" = 1527[0m
+  [4;35;1mResponse Create (0.000215)[0m   [0mINSERT INTO "responses" ("result", "updated_at", "question_id", "lesson_id", "seconds_taken", "content", "interval", "created_at") VALUES('correct', '2008-11-05 15:58:16', 1527, NULL, 47, NULL, 2, '2008-11-05 15:58:16')[0m
+Completed in 0.04742 (21 reqs/sec) | Rendering: 0.00048 (1%) | DB: 0.00309 (6%) | 200 OK [http://repeatcode.local/questions/1527/responses.json]
+
+
+Processing ResponsesController#create (for 127.0.0.1 at 2008-11-05 15:58:48) [POST]
+  Session ID: BAh7CjoMY3NyZl9pZCIlMWJhMTE5ZDI1MjQzOTU5ZTUzZTYyOThjYTNiMWQ0
+Yzc6DHVzZXJfaWRpBjoRb3JpZ2luYWxfdXJpIgYvOg5yZXR1cm5fdG8wIgpm
+bGFzaElDOidBY3Rpb25Db250cm9sbGVyOjpGbGFzaDo6Rmxhc2hIYXNoewAG
+OgpAdXNlZHsA--e51b1997eaa5910cbd5069d9d90a532dae6b7a1c
+  Parameters: {"response"=>{"result"=>"correct", "seconds_taken"=>"78", "interval"=>"0"}, "format"=>"json", "question_id"=>"1527", "authenticity_token"=>"c9442483b2e5a5b0aabbc041d074e94298ed3854", "action"=>"create", "controller"=>"responses"}
+  [4;36;1mQuestion Load (0.000368)[0m   [0;1mSELECT * FROM "questions" WHERE ("questions"."id" = 1527) [0m
+  [4;35;1mCACHE (0.000000)[0m   [0mSELECT * FROM "questions" WHERE ("questions"."id" = 1527) [0m
+  [4;36;1mCourse Load (0.000326)[0m   [0;1mSELECT * FROM "courses" WHERE ("courses"."id" = 94) [0m
+  [4;35;1mLesson Load (0.000393)[0m   [0mSELECT * FROM "lessons" WHERE ("lessons".course_id = 94) ORDER BY lessons.id DESC LIMIT 1[0m
+  [4;36;1mLesson Update (0.000419)[0m   [0;1mUPDATE "lessons" SET "correct_responses" = 5, "updated_at" = '2008-11-05 15:58:48' WHERE "id" = 239[0m
+  [4;35;1mInterval Load (0.001043)[0m   [0mSELECT * FROM "intervals" WHERE ("intervals".course_id = 94 AND ("intervals"."index_no" = 1)) LIMIT 1[0m
+  [4;36;1mQuestion Update (0.000191)[0m   [0;1mUPDATE "questions" SET "current_interval" = 1, "next_datetime" = '2008-11-05 15:59:48', "updated_at" = '2008-11-05 15:58:48' WHERE "id" = 1527[0m
+  [4;35;1mResponse Create (0.000377)[0m   [0mINSERT INTO "responses" ("result", "updated_at", "question_id", "lesson_id", "seconds_taken", "content", "interval", "created_at") VALUES('correct', '2008-11-05 15:58:48', 1527, NULL, 78, NULL, 0, '2008-11-05 15:58:48')[0m
+Completed in 0.06043 (16 reqs/sec) | Rendering: 0.00033 (0%) | DB: 0.00312 (5%) | 200 OK [http://repeatcode.local/questions/1527/responses.json]
+
+
+Processing LessonsController#show (for 127.0.0.1 at 2008-11-05 15:58:48) [GET]
+  Session ID: BAh7CjoMY3NyZl9pZCIlMWJhMTE5ZDI1MjQzOTU5ZTUzZTYyOThjYTNiMWQ0
+Yzc6DHVzZXJfaWRpBjoRb3JpZ2luYWxfdXJpIgYvOg5yZXR1cm5fdG8wIgpm
+bGFzaElDOidBY3Rpb25Db250cm9sbGVyOjpGbGFzaDo6Rmxhc2hIYXNoewAG
+OgpAdXNlZHsA--e51b1997eaa5910cbd5069d9d90a532dae6b7a1c
+  Parameters: {"ignore"=>"1473", "format"=>"json", "action"=>"show", "id"=>"239", "controller"=>"lessons"}
+  [4;36;1mUser Load (0.000449)[0m   [0;1mSELECT * FROM "users" WHERE ("users"."id" = 1) LIMIT 1[0m
+  [4;35;1mLesson Load (0.000434)[0m   [0mSELECT * FROM "lessons" WHERE ("lessons"."id" = 239) [0m
+  [4;36;1mCourse Load (0.000334)[0m   [0;1mSELECT * FROM "courses" WHERE ("courses"."id" = 94) [0m
+  [4;35;1mQuestion Load (0.110918)[0m   [0mSELECT * FROM "questions" WHERE ("questions".course_id = 94 AND (next_datetime <= '2008-11-05 15:58:48' and id != '1473')) ORDER BY current_interval LIMIT 1[0m
+  [4;36;1mExercise Load (0.000450)[0m   [0;1mSELECT * FROM "exercises" WHERE ("exercises"."id" = 873) [0m
+  [4;35;1mTopic Load (0.000460)[0m   [0mSELECT * FROM "topics" WHERE ("topics"."id" = 35) [0m
+Completed in 0.17667 (5 reqs/sec) | Rendering: 0.00492 (2%) | DB: 0.11305 (63%) | 200 OK [http://repeatcode.local/lessons/239.json?ignore=1473]
+
+
+Processing LessonsController#show (for 127.0.0.1 at 2008-11-05 16:03:34) [GET]
+  Session ID: BAh7CjoMY3NyZl9pZCIlMWJhMTE5ZDI1MjQzOTU5ZTUzZTYyOThjYTNiMWQ0
+Yzc6DHVzZXJfaWRpBjoOcmV0dXJuX3RvMDoRb3JpZ2luYWxfdXJpIgYvIgpm
+bGFzaElDOidBY3Rpb25Db250cm9sbGVyOjpGbGFzaDo6Rmxhc2hIYXNoewAG
+OgpAdXNlZHsA--b7599539e2c07a16278ed12cc95d6d18c12d7228
+  Parameters: {"action"=>"show", "id"=>"239", "controller"=>"lessons"}
+  [4;36;1mUser Load (0.000369)[0m   [0;1mSELECT * FROM "users" WHERE ("users"."id" = 1) LIMIT 1[0m
+  [4;35;1mLesson Load (0.000346)[0m   [0mSELECT * FROM "lessons" WHERE ("lessons"."id" = 239) [0m
+Rendering template within layouts/lessons
+Rendering lessons/show
+  [4;36;1mCourse Load (0.000354)[0m   [0;1mSELECT * FROM "courses" WHERE ("courses"."id" = 94) [0m
+  [4;35;1mSubject Load (0.000313)[0m   [0mSELECT * FROM "subjects" WHERE ("subjects"."id" = 10) [0m
+Completed in 0.19481 (5 reqs/sec) | Rendering: 0.02312 (11%) | DB: 0.00138 (0%) | 200 OK [http://repeatcode.local/lessons/239]
+
+
+Processing LessonsController#show (for 127.0.0.1 at 2008-11-05 16:03:34) [GET]
+  Session ID: BAh7CjoMY3NyZl9pZCIlMWJhMTE5ZDI1MjQzOTU5ZTUzZTYyOThjYTNiMWQ0
+Yzc6DHVzZXJfaWRpBjoRb3JpZ2luYWxfdXJpIgYvOg5yZXR1cm5fdG8wIgpm
+bGFzaElDOidBY3Rpb25Db250cm9sbGVyOjpGbGFzaDo6Rmxhc2hIYXNoewAG
+OgpAdXNlZHsA--e51b1997eaa5910cbd5069d9d90a532dae6b7a1c
+  Parameters: {"format"=>"json", "action"=>"show", "id"=>"239", "controller"=>"lessons"}
+  [4;36;1mUser Load (0.000560)[0m   [0;1mSELECT * FROM "users" WHERE ("users"."id" = 1) LIMIT 1[0m
+  [4;35;1mLesson Load (0.000499)[0m   [0mSELECT * FROM "lessons" WHERE ("lessons"."id" = 239) [0m
+  [4;36;1mCourse Load (0.000365)[0m   [0;1mSELECT * FROM "courses" WHERE ("courses"."id" = 94) [0m
+  [4;35;1mQuestion Load (0.025788)[0m   [0mSELECT * FROM "questions" WHERE ("questions".course_id = 94 AND (next_datetime <= '2008-11-05 16:03:35' and id != 0)) ORDER BY current_interval LIMIT 1[0m
+  [4;36;1mExercise Load (0.000420)[0m   [0;1mSELECT * FROM "exercises" WHERE ("exercises"."id" = 881) [0m
+  [4;35;1mTopic Load (0.000405)[0m   [0mSELECT * FROM "topics" WHERE ("topics"."id" = 35) [0m
+Completed in 0.08326 (12 reqs/sec) | Rendering: 0.00405 (4%) | DB: 0.02804 (33%) | 200 OK [http://repeatcode.local/lessons/239.json]
+
+
+Processing LessonsController#show (for 127.0.0.1 at 2008-11-05 16:03:35) [GET]
+  Session ID: BAh7CjoMY3NyZl9pZCIlMWJhMTE5ZDI1MjQzOTU5ZTUzZTYyOThjYTNiMWQ0
+Yzc6DHVzZXJfaWRpBjoOcmV0dXJuX3RvMDoRb3JpZ2luYWxfdXJpIgYvIgpm
+bGFzaElDOidBY3Rpb25Db250cm9sbGVyOjpGbGFzaDo6Rmxhc2hIYXNoewAG
+OgpAdXNlZHsA--b7599539e2c07a16278ed12cc95d6d18c12d7228
+  Parameters: {"ignore"=>"1527", "format"=>"json", "action"=>"show", "id"=>"239", "controller"=>"lessons"}
+  [4;36;1mUser Load (0.000368)[0m   [0;1mSELECT * FROM "users" WHERE ("users"."id" = 1) LIMIT 1[0m
+  [4;35;1mLesson Load (0.000353)[0m   [0mSELECT * FROM "lessons" WHERE ("lessons"."id" = 239) [0m
+  [4;36;1mCourse Load (0.000315)[0m   [0;1mSELECT * FROM "courses" WHERE ("courses"."id" = 94) [0m
+  [4;35;1mQuestion Load (0.001719)[0m   [0mSELECT * FROM "questions" WHERE ("questions".course_id = 94 AND (next_datetime <= '2008-11-05 16:03:35' and id != '1527')) ORDER BY current_interval LIMIT 1[0m
+  [4;36;1mExercise Load (0.000442)[0m   [0;1mSELECT * FROM "exercises" WHERE ("exercises"."id" = 872) [0m
+  [4;35;1mTopic Load (0.000366)[0m   [0mSELECT * FROM "topics" WHERE ("topics"."id" = 35) [0m
+Completed in 0.05465 (18 reqs/sec) | Rendering: 0.00417 (7%) | DB: 0.00356 (6%) | 200 OK [http://repeatcode.local/lessons/239.json?ignore=1527]
+
+
+Processing LessonsController#show (for 127.0.0.1 at 2008-11-05 16:04:07) [GET]
+  Session ID: BAh7CjoMY3NyZl9pZCIlMWJhMTE5ZDI1MjQzOTU5ZTUzZTYyOThjYTNiMWQ0
+Yzc6DHVzZXJfaWRpBjoRb3JpZ2luYWxfdXJpIgYvOg5yZXR1cm5fdG8wIgpm
+bGFzaElDOidBY3Rpb25Db250cm9sbGVyOjpGbGFzaDo6Rmxhc2hIYXNoewAG
+OgpAdXNlZHsA--e51b1997eaa5910cbd5069d9d90a532dae6b7a1c
+  Parameters: {"action"=>"show", "id"=>"239", "controller"=>"lessons"}
+  [4;36;1mUser Load (0.000352)[0m   [0;1mSELECT * FROM "users" WHERE ("users"."id" = 1) LIMIT 1[0m
+  [4;35;1mLesson Load (0.000314)[0m   [0mSELECT * FROM "lessons" WHERE ("lessons"."id" = 239) [0m
+Rendering template within layouts/lessons
+Rendering lessons/show
+  [4;36;1mCourse Load (0.000341)[0m   [0;1mSELECT * FROM "courses" WHERE ("courses"."id" = 94) [0m
+  [4;35;1mSubject Load (0.000361)[0m   [0mSELECT * FROM "subjects" WHERE ("subjects"."id" = 10) [0m
+Completed in 0.03866 (25 reqs/sec) | Rendering: 0.01806 (46%) | DB: 0.00137 (3%) | 200 OK [http://repeatcode.local/lessons/239]
+
+
+Processing LessonsController#show (for 127.0.0.1 at 2008-11-05 16:04:08) [GET]
+  Session ID: BAh7CjoMY3NyZl9pZCIlMWJhMTE5ZDI1MjQzOTU5ZTUzZTYyOThjYTNiMWQ0
+Yzc6DHVzZXJfaWRpBjoOcmV0dXJuX3RvMDoRb3JpZ2luYWxfdXJpIgYvIgpm
+bGFzaElDOidBY3Rpb25Db250cm9sbGVyOjpGbGFzaDo6Rmxhc2hIYXNoewAG
+OgpAdXNlZHsA--b7599539e2c07a16278ed12cc95d6d18c12d7228
+  Parameters: {"format"=>"json", "action"=>"show", "id"=>"239", "controller"=>"lessons"}
+  [4;36;1mUser Load (0.000358)[0m   [0;1mSELECT * FROM "users" WHERE ("users"."id" = 1) LIMIT 1[0m
+  [4;35;1mLesson Load (0.000351)[0m   [0mSELECT * FROM "lessons" WHERE ("lessons"."id" = 239) [0m
+  [4;36;1mCourse Load (0.000336)[0m   [0;1mSELECT * FROM "courses" WHERE ("courses"."id" = 94) [0m
+  [4;35;1mQuestion Load (0.033263)[0m   [0mSELECT * FROM "questions" WHERE ("questions".course_id = 94 AND (next_datetime <= '2008-11-05 16:04:08' and id != 0)) ORDER BY current_interval LIMIT 1[0m
+  [4;36;1mExercise Load (0.000438)[0m   [0;1mSELECT * FROM "exercises" WHERE ("exercises"."id" = 881) [0m
+  [4;35;1mTopic Load (0.000369)[0m   [0mSELECT * FROM "topics" WHERE ("topics"."id" = 35) [0m
+Completed in 0.08686 (11 reqs/sec) | Rendering: 0.00418 (4%) | DB: 0.03511 (40%) | 200 OK [http://repeatcode.local/lessons/239.json]
+
+
+Processing LessonsController#show (for 127.0.0.1 at 2008-11-05 16:04:08) [GET]
+  Session ID: BAh7CjoMY3NyZl9pZCIlMWJhMTE5ZDI1MjQzOTU5ZTUzZTYyOThjYTNiMWQ0
+Yzc6DHVzZXJfaWRpBjoRb3JpZ2luYWxfdXJpIgYvOg5yZXR1cm5fdG8wIgpm
+bGFzaElDOidBY3Rpb25Db250cm9sbGVyOjpGbGFzaDo6Rmxhc2hIYXNoewAG
+OgpAdXNlZHsA--e51b1997eaa5910cbd5069d9d90a532dae6b7a1c
+  Parameters: {"ignore"=>"1527", "format"=>"json", "action"=>"show", "id"=>"239", "controller"=>"lessons"}
+  [4;36;1mUser Load (0.000353)[0m   [0;1mSELECT * FROM "users" WHERE ("users"."id" = 1) LIMIT 1[0m
+  [4;35;1mLesson Load (0.000390)[0m   [0mSELECT * FROM "lessons" WHERE ("lessons"."id" = 239) [0m
+  [4;36;1mCourse Load (0.000295)[0m   [0;1mSELECT * FROM "courses" WHERE ("courses"."id" = 94) [0m
+  [4;35;1mQuestion Load (0.001619)[0m   [0mSELECT * FROM "questions" WHERE ("questions".course_id = 94 AND (next_datetime <= '2008-11-05 16:04:08' and id != '1527')) ORDER BY current_interval LIMIT 1[0m
+  [4;36;1mExercise Load (0.000499)[0m   [0;1mSELECT * FROM "exercises" WHERE ("exercises"."id" = 872) [0m
+  [4;35;1mTopic Load (0.000376)[0m   [0mSELECT * FROM "topics" WHERE ("topics"."id" = 35) [0m
+Completed in 0.05246 (19 reqs/sec) | Rendering: 0.00400 (7%) | DB: 0.00353 (6%) | 200 OK [http://repeatcode.local/lessons/239.json?ignore=1527]
+
+
+Processing LessonsController#show (for 127.0.0.1 at 2008-11-05 16:04:13) [GET]
+  Session ID: BAh7CjoMY3NyZl9pZCIlMWJhMTE5ZDI1MjQzOTU5ZTUzZTYyOThjYTNiMWQ0
+Yzc6DHVzZXJfaWRpBjoOcmV0dXJuX3RvMDoRb3JpZ2luYWxfdXJpIgYvIgpm
+bGFzaElDOidBY3Rpb25Db250cm9sbGVyOjpGbGFzaDo6Rmxhc2hIYXNoewAG
+OgpAdXNlZHsA--b7599539e2c07a16278ed12cc95d6d18c12d7228
+  Parameters: {"action"=>"show", "id"=>"239", "controller"=>"lessons"}
+  [4;36;1mUser Load (0.000442)[0m   [0;1mSELECT * FROM "users" WHERE ("users"."id" = 1) LIMIT 1[0m
+  [4;35;1mLesson Load (0.000340)[0m   [0mSELECT * FROM "lessons" WHERE ("lessons"."id" = 239) [0m
+Rendering template within layouts/lessons
+Rendering lessons/show
+  [4;36;1mCourse Load (0.000306)[0m   [0;1mSELECT * FROM "courses" WHERE ("courses"."id" = 94) [0m
+  [4;35;1mSubject Load (0.000291)[0m   [0mSELECT * FROM "subjects" WHERE ("subjects"."id" = 10) [0m
+Completed in 0.03810 (26 reqs/sec) | Rendering: 0.01702 (44%) | DB: 0.00138 (3%) | 200 OK [http://repeatcode.local/lessons/239]
+
+
+Processing LessonsController#show (for 127.0.0.1 at 2008-11-05 16:04:13) [GET]
+  Session ID: BAh7CjoMY3NyZl9pZCIlMWJhMTE5ZDI1MjQzOTU5ZTUzZTYyOThjYTNiMWQ0
+Yzc6DHVzZXJfaWRpBjoRb3JpZ2luYWxfdXJpIgYvOg5yZXR1cm5fdG8wIgpm
+bGFzaElDOidBY3Rpb25Db250cm9sbGVyOjpGbGFzaDo6Rmxhc2hIYXNoewAG
+OgpAdXNlZHsA--e51b1997eaa5910cbd5069d9d90a532dae6b7a1c
+  Parameters: {"format"=>"json", "action"=>"show", "id"=>"239", "controller"=>"lessons"}
+  [4;36;1mUser Load (0.000482)[0m   [0;1mSELECT * FROM "users" WHERE ("users"."id" = 1) LIMIT 1[0m
+  [4;35;1mLesson Load (0.000351)[0m   [0mSELECT * FROM "lessons" WHERE ("lessons"."id" = 239) [0m
+  [4;36;1mCourse Load (0.000297)[0m   [0;1mSELECT * FROM "courses" WHERE ("courses"."id" = 94) [0m
+  [4;35;1mQuestion Load (0.001971)[0m   [0mSELECT * FROM "questions" WHERE ("questions".course_id = 94 AND (next_datetime <= '2008-11-05 16:04:13' and id != 0)) ORDER BY current_interval LIMIT 1[0m
+  [4;36;1mExercise Load (0.000438)[0m   [0;1mSELECT * FROM "exercises" WHERE ("exercises"."id" = 881) [0m
+  [4;35;1mTopic Load (0.000489)[0m   [0mSELECT * FROM "topics" WHERE ("topics"."id" = 35) [0m
+Completed in 0.13688 (7 reqs/sec) | Rendering: 0.08193 (59%) | DB: 0.00403 (2%) | 200 OK [http://repeatcode.local/lessons/239.json]
+
+
+Processing LessonsController#show (for 127.0.0.1 at 2008-11-05 16:04:13) [GET]
+  Session ID: BAh7CjoMY3NyZl9pZCIlMWJhMTE5ZDI1MjQzOTU5ZTUzZTYyOThjYTNiMWQ0
+Yzc6DHVzZXJfaWRpBjoOcmV0dXJuX3RvMDoRb3JpZ2luYWxfdXJpIgYvIgpm
+bGFzaElDOidBY3Rpb25Db250cm9sbGVyOjpGbGFzaDo6Rmxhc2hIYXNoewAG
+OgpAdXNlZHsA--b7599539e2c07a16278ed12cc95d6d18c12d7228
+  Parameters: {"ignore"=>"1527", "format"=>"json", "action"=>"show", "id"=>"239", "controller"=>"lessons"}
+  [4;36;1mUser Load (0.000354)[0m   [0;1mSELECT * FROM "users" WHERE ("users"."id" = 1) LIMIT 1[0m
+  [4;35;1mLesson Load (0.000343)[0m   [0mSELECT * FROM "lessons" WHERE ("lessons"."id" = 239) [0m
+  [4;36;1mCourse Load (0.000302)[0m   [0;1mSELECT * FROM "courses" WHERE ("courses"."id" = 94) [0m
+  [4;35;1mQuestion Load (0.001621)[0m   [0mSELECT * FROM "questions" WHERE ("questions".course_id = 94 AND (next_datetime <= '2008-11-05 16:04:13' and id != '1527')) ORDER BY current_interval LIMIT 1[0m
+  [4;36;1mExercise Load (0.000433)[0m   [0;1mSELECT * FROM "exercises" WHERE ("exercises"."id" = 872) [0m
+  [4;35;1mTopic Load (0.000369)[0m   [0mSELECT * FROM "topics" WHERE ("topics"."id" = 35) [0m
+Completed in 0.05235 (19 reqs/sec) | Rendering: 0.00414 (7%) | DB: 0.00342 (6%) | 200 OK [http://repeatcode.local/lessons/239.json?ignore=1527]
+
+
+Processing LessonsController#show (for 127.0.0.1 at 2008-11-05 16:04:30) [GET]
+  Session ID: BAh7CjoMY3NyZl9pZCIlMWJhMTE5ZDI1MjQzOTU5ZTUzZTYyOThjYTNiMWQ0
+Yzc6DHVzZXJfaWRpBjoRb3JpZ2luYWxfdXJpIgYvOg5yZXR1cm5fdG8wIgpm
+bGFzaElDOidBY3Rpb25Db250cm9sbGVyOjpGbGFzaDo6Rmxhc2hIYXNoewAG
+OgpAdXNlZHsA--e51b1997eaa5910cbd5069d9d90a532dae6b7a1c
+  Parameters: {"action"=>"show", "id"=>"239", "controller"=>"lessons"}
+  [4;36;1mUser Load (0.000361)[0m   [0;1mSELECT * FROM "users" WHERE ("users"."id" = 1) LIMIT 1[0m
+  [4;35;1mLesson Load (0.000370)[0m   [0mSELECT * FROM "lessons" WHERE ("lessons"."id" = 239) [0m
+Rendering template within layouts/lessons
+Rendering lessons/show
+  [4;36;1mCourse Load (0.000333)[0m   [0;1mSELECT * FROM "courses" WHERE ("courses"."id" = 94) [0m
+  [4;35;1mSubject Load (0.000308)[0m   [0mSELECT * FROM "subjects" WHERE ("subjects"."id" = 10) [0m
+Completed in 0.11896 (8 reqs/sec) | Rendering: 0.09758 (82%) | DB: 0.00137 (1%) | 200 OK [http://repeatcode.local/lessons/239]
+
+
+Processing LessonsController#show (for 127.0.0.1 at 2008-11-05 16:04:30) [GET]
+  Session ID: BAh7CjoMY3NyZl9pZCIlMWJhMTE5ZDI1MjQzOTU5ZTUzZTYyOThjYTNiMWQ0
+Yzc6DHVzZXJfaWRpBjoOcmV0dXJuX3RvMDoRb3JpZ2luYWxfdXJpIgYvIgpm
+bGFzaElDOidBY3Rpb25Db250cm9sbGVyOjpGbGFzaDo6Rmxhc2hIYXNoewAG
+OgpAdXNlZHsA--b7599539e2c07a16278ed12cc95d6d18c12d7228
+  Parameters: {"format"=>"json", "action"=>"show", "id"=>"239", "controller"=>"lessons"}
+  [4;36;1mUser Load (0.000469)[0m   [0;1mSELECT * FROM "users" WHERE ("users"."id" = 1) LIMIT 1[0m
+  [4;35;1mLesson Load (0.000745)[0m   [0mSELECT * FROM "lessons" WHERE ("lessons"."id" = 239) [0m
+  [4;36;1mCourse Load (0.000689)[0m   [0;1mSELECT * FROM "courses" WHERE ("courses"."id" = 94) [0m
+  [4;35;1mQuestion Load (0.003514)[0m   [0mSELECT * FROM "questions" WHERE ("questions".course_id = 94 AND (next_datetime <= '2008-11-05 16:04:30' and id != 0)) ORDER BY current_interval LIMIT 1[0m
+  [4;36;1mExercise Load (0.000436)[0m   [0;1mSELECT * FROM "exercises" WHERE ("exercises"."id" = 881) [0m
+  [4;35;1mTopic Load (0.000383)[0m   [0mSELECT * FROM "topics" WHERE ("topics"."id" = 35) [0m
+Completed in 0.06184 (16 reqs/sec) | Rendering: 0.00414 (6%) | DB: 0.00624 (10%) | 200 OK [http://repeatcode.local/lessons/239.json]
+
+
+Processing LessonsController#show (for 127.0.0.1 at 2008-11-05 16:04:30) [GET]
+  Session ID: BAh7CjoMY3NyZl9pZCIlMWJhMTE5ZDI1MjQzOTU5ZTUzZTYyOThjYTNiMWQ0
+Yzc6DHVzZXJfaWRpBjoRb3JpZ2luYWxfdXJpIgYvOg5yZXR1cm5fdG8wIgpm
+bGFzaElDOidBY3Rpb25Db250cm9sbGVyOjpGbGFzaDo6Rmxhc2hIYXNoewAG
+OgpAdXNlZHsA--e51b1997eaa5910cbd5069d9d90a532dae6b7a1c
+  Parameters: {"ignore"=>"1527", "format"=>"json", "action"=>"show", "id"=>"239", "controller"=>"lessons"}
+  [4;36;1mUser Load (0.000477)[0m   [0;1mSELECT * FROM "users" WHERE ("users"."id" = 1) LIMIT 1[0m
+  [4;35;1mLesson Load (0.000370)[0m   [0mSELECT * FROM "lessons" WHERE ("lessons"."id" = 239) [0m
+  [4;36;1mCourse Load (0.000389)[0m   [0;1mSELECT * FROM "courses" WHERE ("courses"."id" = 94) [0m
+  [4;35;1mQuestion Load (0.001740)[0m   [0mSELECT * FROM "questions" WHERE ("questions".course_id = 94 AND (next_datetime <= '2008-11-05 16:04:30' and id != '1527')) ORDER BY current_interval LIMIT 1[0m
+  [4;36;1mExercise Load (0.000517)[0m   [0;1mSELECT * FROM "exercises" WHERE ("exercises"."id" = 872) [0m
+  [4;35;1mTopic Load (0.000382)[0m   [0mSELECT * FROM "topics" WHERE ("topics"."id" = 35) [0m
+Completed in 0.13694 (7 reqs/sec) | Rendering: 0.00457 (3%) | DB: 0.00387 (2%) | 200 OK [http://repeatcode.local/lessons/239.json?ignore=1527]
+
+
+Processing LessonsController#show (for 127.0.0.1 at 2008-11-05 16:04:37) [GET]
+  Session ID: BAh7CjoMY3NyZl9pZCIlMWJhMTE5ZDI1MjQzOTU5ZTUzZTYyOThjYTNiMWQ0
+Yzc6DHVzZXJfaWRpBjoOcmV0dXJuX3RvMDoRb3JpZ2luYWxfdXJpIgYvIgpm
+bGFzaElDOidBY3Rpb25Db250cm9sbGVyOjpGbGFzaDo6Rmxhc2hIYXNoewAG
+OgpAdXNlZHsA--b7599539e2c07a16278ed12cc95d6d18c12d7228
+  Parameters: {"action"=>"show", "id"=>"239", "controller"=>"lessons"}
+  [4;36;1mUser Load (0.000348)[0m   [0;1mSELECT * FROM "users" WHERE ("users"."id" = 1) LIMIT 1[0m
+  [4;35;1mLesson Load (0.000829)[0m   [0mSELECT * FROM "lessons" WHERE ("lessons"."id" = 239) [0m
+Rendering template within layouts/lessons
+Rendering lessons/show
+  [4;36;1mCourse Load (0.000315)[0m   [0;1mSELECT * FROM "courses" WHERE ("courses"."id" = 94) [0m
+  [4;35;1mSubject Load (0.000288)[0m   [0mSELECT * FROM "subjects" WHERE ("subjects"."id" = 10) [0m
+Completed in 0.03721 (26 reqs/sec) | Rendering: 0.01649 (44%) | DB: 0.00178 (4%) | 200 OK [http://repeatcode.local/lessons/239]
+
+
+Processing LessonsController#show (for 127.0.0.1 at 2008-11-05 16:04:37) [GET]
+  Session ID: BAh7CjoMY3NyZl9pZCIlMWJhMTE5ZDI1MjQzOTU5ZTUzZTYyOThjYTNiMWQ0
+Yzc6DHVzZXJfaWRpBjoRb3JpZ2luYWxfdXJpIgYvOg5yZXR1cm5fdG8wIgpm
+bGFzaElDOidBY3Rpb25Db250cm9sbGVyOjpGbGFzaDo6Rmxhc2hIYXNoewAG
+OgpAdXNlZHsA--e51b1997eaa5910cbd5069d9d90a532dae6b7a1c
+  Parameters: {"format"=>"json", "action"=>"show", "id"=>"239", "controller"=>"lessons"}
+  [4;36;1mUser Load (0.000378)[0m   [0;1mSELECT * FROM "users" WHERE ("users"."id" = 1) LIMIT 1[0m
+  [4;35;1mLesson Load (0.000395)[0m   [0mSELECT * FROM "lessons" WHERE ("lessons"."id" = 239) [0m
+  [4;36;1mCourse Load (0.000331)[0m   [0;1mSELECT * FROM "courses" WHERE ("courses"."id" = 94) [0m
+  [4;35;1mQuestion Load (0.001985)[0m   [0mSELECT * FROM "questions" WHERE ("questions".course_id = 94 AND (next_datetime <= '2008-11-05 16:04:37' and id != 0)) ORDER BY current_interval LIMIT 1[0m
+  [4;36;1mExercise Load (0.000475)[0m   [0;1mSELECT * FROM "exercises" WHERE ("exercises"."id" = 881) [0m
+  [4;35;1mTopic Load (0.000433)[0m   [0mSELECT * FROM "topics" WHERE ("topics"."id" = 35) [0m
+Completed in 0.14890 (6 reqs/sec) | Rendering: 0.00432 (2%) | DB: 0.00400 (2%) | 200 OK [http://repeatcode.local/lessons/239.json]
+
+
+Processing LessonsController#show (for 127.0.0.1 at 2008-11-05 16:04:38) [GET]
+  Session ID: BAh7CjoMY3NyZl9pZCIlMWJhMTE5ZDI1MjQzOTU5ZTUzZTYyOThjYTNiMWQ0
+Yzc6DHVzZXJfaWRpBjoOcmV0dXJuX3RvMDoRb3JpZ2luYWxfdXJpIgYvIgpm
+bGFzaElDOidBY3Rpb25Db250cm9sbGVyOjpGbGFzaDo6Rmxhc2hIYXNoewAG
+OgpAdXNlZHsA--b7599539e2c07a16278ed12cc95d6d18c12d7228
+  Parameters: {"ignore"=>"1527", "format"=>"json", "action"=>"show", "id"=>"239", "controller"=>"lessons"}
+  [4;36;1mUser Load (0.000355)[0m   [0;1mSELECT * FROM "users" WHERE ("users"."id" = 1) LIMIT 1[0m
+  [4;35;1mLesson Load (0.000329)[0m   [0mSELECT * FROM "lessons" WHERE ("lessons"."id" = 239) [0m
+  [4;36;1mCourse Load (0.000318)[0m   [0;1mSELECT * FROM "courses" WHERE ("courses"."id" = 94) [0m
+  [4;35;1mQuestion Load (0.001607)[0m   [0mSELECT * FROM "questions" WHERE ("questions".course_id = 94 AND (next_datetime <= '2008-11-05 16:04:38' and id != '1527')) ORDER BY current_interval LIMIT 1[0m
+  [4;36;1mExercise Load (0.000437)[0m   [0;1mSELECT * FROM "exercises" WHERE ("exercises"."id" = 872) [0m
+  [4;35;1mTopic Load (0.000456)[0m   [0mSELECT * FROM "topics" WHERE ("topics"."id" = 35) [0m
+Completed in 0.05254 (19 reqs/sec) | Rendering: 0.00409 (7%) | DB: 0.00350 (6%) | 200 OK [http://repeatcode.local/lessons/239.json?ignore=1527]
+
+
+Processing LessonsController#show (for 127.0.0.1 at 2008-11-05 16:05:15) [GET]
+  Session ID: BAh7CjoMY3NyZl9pZCIlMWJhMTE5ZDI1MjQzOTU5ZTUzZTYyOThjYTNiMWQ0
+Yzc6DHVzZXJfaWRpBjoRb3JpZ2luYWxfdXJpIgYvOg5yZXR1cm5fdG8wIgpm
+bGFzaElDOidBY3Rpb25Db250cm9sbGVyOjpGbGFzaDo6Rmxhc2hIYXNoewAG
+OgpAdXNlZHsA--e51b1997eaa5910cbd5069d9d90a532dae6b7a1c
+  Parameters: {"action"=>"show", "id"=>"239", "controller"=>"lessons"}
+  [4;36;1mUser Load (0.000362)[0m   [0;1mSELECT * FROM "users" WHERE ("users"."id" = 1) LIMIT 1[0m
+  [4;35;1mLesson Load (0.000349)[0m   [0mSELECT * FROM "lessons" WHERE ("lessons"."id" = 239) [0m
+Rendering template within layouts/lessons
+Rendering lessons/show
+  [4;36;1mCourse Load (0.000314)[0m   [0;1mSELECT * FROM "courses" WHERE ("courses"."id" = 94) [0m
+  [4;35;1mSubject Load (0.000320)[0m   [0mSELECT * FROM "subjects" WHERE ("subjects"."id" = 10) [0m
+Completed in 0.03935 (25 reqs/sec) | Rendering: 0.01755 (44%) | DB: 0.00135 (3%) | 200 OK [http://repeatcode.local/lessons/239]
+
+
+Processing LessonsController#show (for 127.0.0.1 at 2008-11-05 16:05:15) [GET]
+  Session ID: BAh7CjoMY3NyZl9pZCIlMWJhMTE5ZDI1MjQzOTU5ZTUzZTYyOThjYTNiMWQ0
+Yzc6DHVzZXJfaWRpBjoOcmV0dXJuX3RvMDoRb3JpZ2luYWxfdXJpIgYvIgpm
+bGFzaElDOidBY3Rpb25Db250cm9sbGVyOjpGbGFzaDo6Rmxhc2hIYXNoewAG
+OgpAdXNlZHsA--b7599539e2c07a16278ed12cc95d6d18c12d7228
+  Parameters: {"format"=>"json", "action"=>"show", "id"=>"239", "controller"=>"lessons"}
+  [4;36;1mUser Load (0.000479)[0m   [0;1mSELECT * FROM "users" WHERE ("users"."id" = 1) LIMIT 1[0m
+  [4;35;1mLesson Load (0.000448)[0m   [0mSELECT * FROM "lessons" WHERE ("lessons"."id" = 239) [0m
+  [4;36;1mCourse Load (0.000427)[0m   [0;1mSELECT * FROM "courses" WHERE ("courses"."id" = 94) [0m
+  [4;35;1mQuestion Load (0.001790)[0m   [0mSELECT * FROM "questions" WHERE ("questions".course_id = 94 AND (next_datetime <= '2008-11-05 16:05:15' and id != 0)) ORDER BY current_interval LIMIT 1[0m
+  [4;36;1mExercise Load (0.000500)[0m   [0;1mSELECT * FROM "exercises" WHERE ("exercises"."id" = 881) [0m
+  [4;35;1mTopic Load (0.000404)[0m   [0mSELECT * FROM "topics" WHERE ("topics"."id" = 35) [0m
+Completed in 0.06222 (16 reqs/sec) | Rendering: 0.00405 (6%) | DB: 0.00405 (6%) | 200 OK [http://repeatcode.local/lessons/239.json]
+
+
+Processing LessonsController#show (for 127.0.0.1 at 2008-11-05 16:05:15) [GET]
+  Session ID: BAh7CjoMY3NyZl9pZCIlMWJhMTE5ZDI1MjQzOTU5ZTUzZTYyOThjYTNiMWQ0
+Yzc6DHVzZXJfaWRpBjoRb3JpZ2luYWxfdXJpIgYvOg5yZXR1cm5fdG8wIgpm
+bGFzaElDOidBY3Rpb25Db250cm9sbGVyOjpGbGFzaDo6Rmxhc2hIYXNoewAG
+OgpAdXNlZHsA--e51b1997eaa5910cbd5069d9d90a532dae6b7a1c
+  Parameters: {"ignore"=>"1527", "format"=>"json", "action"=>"show", "id"=>"239", "controller"=>"lessons"}
+  [4;36;1mUser Load (0.000359)[0m   [0;1mSELECT * FROM "users" WHERE ("users"."id" = 1) LIMIT 1[0m
+  [4;35;1mLesson Load (0.000367)[0m   [0mSELECT * FROM "lessons" WHERE ("lessons"."id" = 239) [0m
+  [4;36;1mCourse Load (0.000303)[0m   [0;1mSELECT * FROM "courses" WHERE ("courses"."id" = 94) [0m
+  [4;35;1mQuestion Load (0.001696)[0m   [0mSELECT * FROM "questions" WHERE ("questions".course_id = 94 AND (next_datetime <= '2008-11-05 16:05:15' and id != '1527')) ORDER BY current_interval LIMIT 1[0m
+  [4;36;1mExercise Load (0.000409)[0m   [0;1mSELECT * FROM "exercises" WHERE ("exercises"."id" = 872) [0m
+  [4;35;1mTopic Load (0.000376)[0m   [0mSELECT * FROM "topics" WHERE ("topics"."id" = 35) [0m
+Completed in 0.05403 (18 reqs/sec) | Rendering: 0.00448 (8%) | DB: 0.00351 (6%) | 200 OK [http://repeatcode.local/lessons/239.json?ignore=1527]
+
+
+Processing LessonsController#show (for 127.0.0.1 at 2008-11-05 16:05:27) [GET]
+  Session ID: BAh7CjoMY3NyZl9pZCIlMWJhMTE5ZDI1MjQzOTU5ZTUzZTYyOThjYTNiMWQ0
+Yzc6DHVzZXJfaWRpBjoOcmV0dXJuX3RvMDoRb3JpZ2luYWxfdXJpIgYvIgpm
+bGFzaElDOidBY3Rpb25Db250cm9sbGVyOjpGbGFzaDo6Rmxhc2hIYXNoewAG
+OgpAdXNlZHsA--b7599539e2c07a16278ed12cc95d6d18c12d7228
+  Parameters: {"action"=>"show", "id"=>"239", "controller"=>"lessons"}
+  [4;36;1mUser Load (0.000374)[0m   [0;1mSELECT * FROM "users" WHERE ("users"."id" = 1) LIMIT 1[0m
+  [4;35;1mLesson Load (0.000315)[0m   [0mSELECT * FROM "lessons" WHERE ("lessons"."id" = 239) [0m
+Rendering template within layouts/lessons
+Rendering lessons/show
+  [4;36;1mCourse Load (0.000303)[0m   [0;1mSELECT * FROM "courses" WHERE ("courses"."id" = 94) [0m
+  [4;35;1mSubject Load (0.000291)[0m   [0mSELECT * FROM "subjects" WHERE ("subjects"."id" = 10) [0m
+Completed in 0.03729 (26 reqs/sec) | Rendering: 0.01638 (43%) | DB: 0.00128 (3%) | 200 OK [http://repeatcode.local/lessons/239]
+
+
+Processing LessonsController#show (for 127.0.0.1 at 2008-11-05 16:05:27) [GET]
+  Session ID: BAh7CjoMY3NyZl9pZCIlMWJhMTE5ZDI1MjQzOTU5ZTUzZTYyOThjYTNiMWQ0
+Yzc6DHVzZXJfaWRpBjoRb3JpZ2luYWxfdXJpIgYvOg5yZXR1cm5fdG8wIgpm
+bGFzaElDOidBY3Rpb25Db250cm9sbGVyOjpGbGFzaDo6Rmxhc2hIYXNoewAG
+OgpAdXNlZHsA--e51b1997eaa5910cbd5069d9d90a532dae6b7a1c
+  Parameters: {"format"=>"json", "action"=>"show", "id"=>"239", "controller"=>"lessons"}
+  [4;36;1mUser Load (0.000434)[0m   [0;1mSELECT * FROM "users" WHERE ("users"."id" = 1) LIMIT 1[0m
+  [4;35;1mLesson Load (0.000359)[0m   [0mSELECT * FROM "lessons" WHERE ("lessons"."id" = 239) [0m
+  [4;36;1mCourse Load (0.000315)[0m   [0;1mSELECT * FROM "courses" WHERE ("courses"."id" = 94) [0m
+  [4;35;1mQuestion Load (0.001626)[0m   [0mSELECT * FROM "questions" WHERE ("questions".course_id = 94 AND (next_datetime <= '2008-11-05 16:05:27' and id != 0)) ORDER BY current_interval LIMIT 1[0m
+  [4;36;1mExercise Load (0.000420)[0m   [0;1mSELECT * FROM "exercises" WHERE ("exercises"."id" = 881) [0m
+  [4;35;1mTopic Load (0.000388)[0m   [0mSELECT * FROM "topics" WHERE ("topics"."id" = 35) [0m
+Completed in 0.05669 (17 reqs/sec) | Rendering: 0.00492 (8%) | DB: 0.00354 (6%) | 200 OK [http://repeatcode.local/lessons/239.json]
+
+
+Processing LessonsController#show (for 127.0.0.1 at 2008-11-05 16:05:27) [GET]
+  Session ID: BAh7CjoMY3NyZl9pZCIlMWJhMTE5ZDI1MjQzOTU5ZTUzZTYyOThjYTNiMWQ0
+Yzc6DHVzZXJfaWRpBjoOcmV0dXJuX3RvMDoRb3JpZ2luYWxfdXJpIgYvIgpm
+bGFzaElDOidBY3Rpb25Db250cm9sbGVyOjpGbGFzaDo6Rmxhc2hIYXNoewAG
+OgpAdXNlZHsA--b7599539e2c07a16278ed12cc95d6d18c12d7228
+  Parameters: {"ignore"=>"1527", "format"=>"json", "action"=>"show", "id"=>"239", "controller"=>"lessons"}
+  [4;36;1mUser Load (0.000450)[0m   [0;1mSELECT * FROM "users" WHERE ("users"."id" = 1) LIMIT 1[0m
+  [4;35;1mLesson Load (0.000396)[0m   [0mSELECT * FROM "lessons" WHERE ("lessons"."id" = 239) [0m
+  [4;36;1mCourse Load (0.000349)[0m   [0;1mSELECT * FROM "courses" WHERE ("courses"."id" = 94) [0m
+  [4;35;1mQuestion Load (0.001627)[0m   [0mSELECT * FROM "questions" WHERE ("questions".course_id = 94 AND (next_datetime <= '2008-11-05 16:05:27' and id != '1527')) ORDER BY current_interval LIMIT 1[0m
+  [4;36;1mExercise Load (0.000512)[0m   [0;1mSELECT * FROM "exercises" WHERE ("exercises"."id" = 872) [0m
+  [4;35;1mTopic Load (0.000417)[0m   [0mSELECT * FROM "topics" WHERE ("topics"."id" = 35) [0m
+Completed in 0.13128 (7 reqs/sec) | Rendering: 0.00434 (3%) | DB: 0.00375 (2%) | 200 OK [http://repeatcode.local/lessons/239.json?ignore=1527]
+
+
+Processing LessonsController#show (for 127.0.0.1 at 2008-11-05 16:06:17) [GET]
+  Session ID: BAh7CjoMY3NyZl9pZCIlMWJhMTE5ZDI1MjQzOTU5ZTUzZTYyOThjYTNiMWQ0
+Yzc6DHVzZXJfaWRpBjoRb3JpZ2luYWxfdXJpIgYvOg5yZXR1cm5fdG8wIgpm
+bGFzaElDOidBY3Rpb25Db250cm9sbGVyOjpGbGFzaDo6Rmxhc2hIYXNoewAG
+OgpAdXNlZHsA--e51b1997eaa5910cbd5069d9d90a532dae6b7a1c
+  Parameters: {"action"=>"show", "id"=>"239", "controller"=>"lessons"}
+  [4;36;1mUser Load (0.000432)[0m   [0;1mSELECT * FROM "users" WHERE ("users"."id" = 1) LIMIT 1[0m
+  [4;35;1mLesson Load (0.000361)[0m   [0mSELECT * FROM "lessons" WHERE ("lessons"."id" = 239) [0m
+Rendering template within layouts/lessons
+Rendering lessons/show
+  [4;36;1mCourse Load (0.000438)[0m   [0;1mSELECT * FROM "courses" WHERE ("courses"."id" = 94) [0m
+  [4;35;1mSubject Load (0.000311)[0m   [0mSELECT * FROM "subjects" WHERE ("subjects"."id" = 10) [0m
+Completed in 0.04938 (20 reqs/sec) | Rendering: 0.02494 (50%) | DB: 0.00154 (3%) | 200 OK [http://repeatcode.local/lessons/239]
+
+
+Processing LessonsController#show (for 127.0.0.1 at 2008-11-05 16:06:17) [GET]
+  Session ID: BAh7CjoMY3NyZl9pZCIlMWJhMTE5ZDI1MjQzOTU5ZTUzZTYyOThjYTNiMWQ0
+Yzc6DHVzZXJfaWRpBjoOcmV0dXJuX3RvMDoRb3JpZ2luYWxfdXJpIgYvIgpm
+bGFzaElDOidBY3Rpb25Db250cm9sbGVyOjpGbGFzaDo6Rmxhc2hIYXNoewAG
+OgpAdXNlZHsA--b7599539e2c07a16278ed12cc95d6d18c12d7228
+  Parameters: {"format"=>"json", "action"=>"show", "id"=>"239", "controller"=>"lessons"}
+  [4;36;1mUser Load (0.000465)[0m   [0;1mSELECT * FROM "users" WHERE ("users"."id" = 1) LIMIT 1[0m
+  [4;35;1mLesson Load (0.000371)[0m   [0mSELECT * FROM "lessons" WHERE ("lessons"."id" = 239) [0m
+  [4;36;1mCourse Load (0.000337)[0m   [0;1mSELECT * FROM "courses" WHERE ("courses"."id" = 94) [0m
+  [4;35;1mQuestion Load (0.001742)[0m   [0mSELECT * FROM "questions" WHERE ("questions".course_id = 94 AND (next_datetime <= '2008-11-05 16:06:17' and id != 0)) ORDER BY current_interval LIMIT 1[0m
+  [4;36;1mExercise Load (0.000427)[0m   [0;1mSELECT * FROM "exercises" WHERE ("exercises"."id" = 881) [0m
+  [4;35;1mTopic Load (0.000429)[0m   [0mSELECT * FROM "topics" WHERE ("topics"."id" = 35) [0m
+Completed in 0.21852 (4 reqs/sec) | Rendering: 0.00453 (2%) | DB: 0.00377 (1%) | 200 OK [http://repeatcode.local/lessons/239.json]
+
+
+Processing LessonsController#show (for 127.0.0.1 at 2008-11-05 16:06:17) [GET]
+  Session ID: BAh7CjoMY3NyZl9pZCIlMWJhMTE5ZDI1MjQzOTU5ZTUzZTYyOThjYTNiMWQ0
+Yzc6DHVzZXJfaWRpBjoRb3JpZ2luYWxfdXJpIgYvOg5yZXR1cm5fdG8wIgpm
+bGFzaElDOidBY3Rpb25Db250cm9sbGVyOjpGbGFzaDo6Rmxhc2hIYXNoewAG
+OgpAdXNlZHsA--e51b1997eaa5910cbd5069d9d90a532dae6b7a1c
+  Parameters: {"ignore"=>"1527", "format"=>"json", "action"=>"show", "id"=>"239", "controller"=>"lessons"}
+  [4;36;1mUser Load (0.000420)[0m   [0;1mSELECT * FROM "users" WHERE ("users"."id" = 1) LIMIT 1[0m
+  [4;35;1mLesson Load (0.000357)[0m   [0mSELECT * FROM "lessons" WHERE ("lessons"."id" = 239) [0m
+  [4;36;1mCourse Load (0.000396)[0m   [0;1mSELECT * FROM "courses" WHERE ("courses"."id" = 94) [0m
+  [4;35;1mQuestion Load (0.002742)[0m   [0mSELECT * FROM "questions" WHERE ("questions".course_id = 94 AND (next_datetime <= '2008-11-05 16:06:17' and id != '1527')) ORDER BY current_interval LIMIT 1[0m
+  [4;36;1mExercise Load (0.000548)[0m   [0;1mSELECT * FROM "exercises" WHERE ("exercises"."id" = 872) [0m
+  [4;35;1mTopic Load (0.000456)[0m   [0mSELECT * FROM "topics" WHERE ("topics"."id" = 35) [0m
+Completed in 0.06747 (14 reqs/sec) | Rendering: 0.00436 (6%) | DB: 0.00492 (7%) | 200 OK [http://repeatcode.local/lessons/239.json?ignore=1527]
+
+
+Processing LessonsController#show (for 127.0.0.1 at 2008-11-05 16:06:35) [GET]
+  Session ID: BAh7CjoMY3NyZl9pZCIlMWJhMTE5ZDI1MjQzOTU5ZTUzZTYyOThjYTNiMWQ0
+Yzc6DHVzZXJfaWRpBjoOcmV0dXJuX3RvMDoRb3JpZ2luYWxfdXJpIgYvIgpm
+bGFzaElDOidBY3Rpb25Db250cm9sbGVyOjpGbGFzaDo6Rmxhc2hIYXNoewAG
+OgpAdXNlZHsA--b7599539e2c07a16278ed12cc95d6d18c12d7228
+  Parameters: {"action"=>"show", "id"=>"239", "controller"=>"lessons"}
+  [4;36;1mUser Load (0.000371)[0m   [0;1mSELECT * FROM "users" WHERE ("users"."id" = 1) LIMIT 1[0m
+  [4;35;1mLesson Load (0.000338)[0m   [0mSELECT * FROM "lessons" WHERE ("lessons"."id" = 239) [0m
+Rendering template within layouts/lessons
+Rendering lessons/show
+  [4;36;1mCourse Load (0.000319)[0m   [0;1mSELECT * FROM "courses" WHERE ("courses"."id" = 94) [0m
+  [4;35;1mSubject Load (0.000318)[0m   [0mSELECT * FROM "subjects" WHERE ("subjects"."id" = 10) [0m
+Completed in 0.12646 (7 reqs/sec) | Rendering: 0.02167 (17%) | DB: 0.00135 (1%) | 200 OK [http://repeatcode.local/lessons/239]
+
+
+Processing LessonsController#show (for 127.0.0.1 at 2008-11-05 16:06:35) [GET]
+  Session ID: BAh7CjoMY3NyZl9pZCIlMWJhMTE5ZDI1MjQzOTU5ZTUzZTYyOThjYTNiMWQ0
+Yzc6DHVzZXJfaWRpBjoRb3JpZ2luYWxfdXJpIgYvOg5yZXR1cm5fdG8wIgpm
+bGFzaElDOidBY3Rpb25Db250cm9sbGVyOjpGbGFzaDo6Rmxhc2hIYXNoewAG
+OgpAdXNlZHsA--e51b1997eaa5910cbd5069d9d90a532dae6b7a1c
+  Parameters: {"format"=>"json", "action"=>"show", "id"=>"239", "controller"=>"lessons"}
+  [4;36;1mUser Load (0.000467)[0m   [0;1mSELECT * FROM "users" WHERE ("users"."id" = 1) LIMIT 1[0m
+  [4;35;1mLesson Load (0.000551)[0m   [0mSELECT * FROM "lessons" WHERE ("lessons"."id" = 239) [0m
+  [4;36;1mCourse Load (0.000354)[0m   [0;1mSELECT * FROM "courses" WHERE ("courses"."id" = 94) [0m
+  [4;35;1mQuestion Load (0.003182)[0m   [0mSELECT * FROM "questions" WHERE ("questions".course_id = 94 AND (next_datetime <= '2008-11-05 16:06:35' and id != 0)) ORDER BY current_interval LIMIT 1[0m
+  [4;36;1mExercise Load (0.000430)[0m   [0;1mSELECT * FROM "exercises" WHERE ("exercises"."id" = 881) [0m
+  [4;35;1mTopic Load (0.000375)[0m   [0mSELECT * FROM "topics" WHERE ("topics"."id" = 35) [0m
+Completed in 0.06587 (15 reqs/sec) | Rendering: 0.00419 (6%) | DB: 0.00536 (8%) | 200 OK [http://repeatcode.local/lessons/239.json]
+
+
+Processing LessonsController#show (for 127.0.0.1 at 2008-11-05 16:06:36) [GET]
+  Session ID: BAh7CjoMY3NyZl9pZCIlMWJhMTE5ZDI1MjQzOTU5ZTUzZTYyOThjYTNiMWQ0
+Yzc6DHVzZXJfaWRpBjoOcmV0dXJuX3RvMDoRb3JpZ2luYWxfdXJpIgYvIgpm
+bGFzaElDOidBY3Rpb25Db250cm9sbGVyOjpGbGFzaDo6Rmxhc2hIYXNoewAG
+OgpAdXNlZHsA--b7599539e2c07a16278ed12cc95d6d18c12d7228
+  Parameters: {"ignore"=>"1527", "format"=>"json", "action"=>"show", "id"=>"239", "controller"=>"lessons"}
+  [4;36;1mUser Load (0.000388)[0m   [0;1mSELECT * FROM "users" WHERE ("users"."id" = 1) LIMIT 1[0m
+  [4;35;1mLesson Load (0.000350)[0m   [0mSELECT * FROM "lessons" WHERE ("lessons"."id" = 239) [0m
+  [4;36;1mCourse Load (0.000386)[0m   [0;1mSELECT * FROM "courses" WHERE ("courses"."id" = 94) [0m
+  [4;35;1mQuestion Load (0.001656)[0m   [0mSELECT * FROM "questions" WHERE ("questions".course_id = 94 AND (next_datetime <= '2008-11-05 16:06:36' and id != '1527')) ORDER BY current_interval LIMIT 1[0m
+  [4;36;1mExercise Load (0.000472)[0m   [0;1mSELECT * FROM "exercises" WHERE ("exercises"."id" = 872) [0m
+  [4;35;1mTopic Load (0.000370)[0m   [0mSELECT * FROM "topics" WHERE ("topics"."id" = 35) [0m
+Completed in 0.05464 (18 reqs/sec) | Rendering: 0.00441 (8%) | DB: 0.00362 (6%) | 200 OK [http://repeatcode.local/lessons/239.json?ignore=1527]
+
+
+Processing LessonsController#show (for 127.0.0.1 at 2008-11-05 16:06:39) [GET]
+  Session ID: BAh7CjoMY3NyZl9pZCIlMWJhMTE5ZDI1MjQzOTU5ZTUzZTYyOThjYTNiMWQ0
+Yzc6DHVzZXJfaWRpBjoRb3JpZ2luYWxfdXJpIgYvOg5yZXR1cm5fdG8wIgpm
+bGFzaElDOidBY3Rpb25Db250cm9sbGVyOjpGbGFzaDo6Rmxhc2hIYXNoewAG
+OgpAdXNlZHsA--e51b1997eaa5910cbd5069d9d90a532dae6b7a1c
+  Parameters: {"action"=>"show", "id"=>"239", "controller"=>"lessons"}
+  [4;36;1mUser Load (0.000351)[0m   [0;1mSELECT * FROM "users" WHERE ("users"."id" = 1) LIMIT 1[0m
+  [4;35;1mLesson Load (0.000318)[0m   [0mSELECT * FROM "lessons" WHERE ("lessons"."id" = 239) [0m
+Rendering template within layouts/lessons
+Rendering lessons/show
+  [4;36;1mCourse Load (0.000312)[0m   [0;1mSELECT * FROM "courses" WHERE ("courses"."id" = 94) [0m
+  [4;35;1mSubject Load (0.000308)[0m   [0mSELECT * FROM "subjects" WHERE ("subjects"."id" = 10) [0m
+Completed in 0.04044 (24 reqs/sec) | Rendering: 0.01980 (48%) | DB: 0.00129 (3%) | 200 OK [http://repeatcode.local/lessons/239]
+
+
+Processing LessonsController#show (for 127.0.0.1 at 2008-11-05 16:06:40) [GET]
+  Session ID: BAh7CjoMY3NyZl9pZCIlMWJhMTE5ZDI1MjQzOTU5ZTUzZTYyOThjYTNiMWQ0
+Yzc6DHVzZXJfaWRpBjoOcmV0dXJuX3RvMDoRb3JpZ2luYWxfdXJpIgYvIgpm
+bGFzaElDOidBY3Rpb25Db250cm9sbGVyOjpGbGFzaDo6Rmxhc2hIYXNoewAG
+OgpAdXNlZHsA--b7599539e2c07a16278ed12cc95d6d18c12d7228
+  Parameters: {"format"=>"json", "action"=>"show", "id"=>"239", "controller"=>"lessons"}
+  [4;36;1mUser Load (0.000407)[0m   [0;1mSELECT * FROM "users" WHERE ("users"."id" = 1) LIMIT 1[0m
+  [4;35;1mLesson Load (0.000333)[0m   [0mSELECT * FROM "lessons" WHERE ("lessons"."id" = 239) [0m
+  [4;36;1mCourse Load (0.000327)[0m   [0;1mSELECT * FROM "courses" WHERE ("courses"."id" = 94) [0m
+  [4;35;1mQuestion Load (0.001643)[0m   [0mSELECT * FROM "questions" WHERE ("questions".course_id = 94 AND (next_datetime <= '2008-11-05 16:06:40' and id != 0)) ORDER BY current_interval LIMIT 1[0m
+  [4;36;1mExercise Load (0.000444)[0m   [0;1mSELECT * FROM "exercises" WHERE ("exercises"."id" = 881) [0m
+  [4;35;1mTopic Load (0.000386)[0m   [0mSELECT * FROM "topics" WHERE ("topics"."id" = 35) [0m
+Completed in 0.05522 (18 reqs/sec) | Rendering: 0.00476 (8%) | DB: 0.00354 (6%) | 200 OK [http://repeatcode.local/lessons/239.json]
+
+
+Processing LessonsController#show (for 127.0.0.1 at 2008-11-05 16:06:40) [GET]
+  Session ID: BAh7CjoMY3NyZl9pZCIlMWJhMTE5ZDI1MjQzOTU5ZTUzZTYyOThjYTNiMWQ0
+Yzc6DHVzZXJfaWRpBjoRb3JpZ2luYWxfdXJpIgYvOg5yZXR1cm5fdG8wIgpm
+bGFzaElDOidBY3Rpb25Db250cm9sbGVyOjpGbGFzaDo6Rmxhc2hIYXNoewAG
+OgpAdXNlZHsA--e51b1997eaa5910cbd5069d9d90a532dae6b7a1c
+  Parameters: {"ignore"=>"1527", "format"=>"json", "action"=>"show", "id"=>"239", "controller"=>"lessons"}
+  [4;36;1mUser Load (0.000355)[0m   [0;1mSELECT * FROM "users" WHERE ("users"."id" = 1) LIMIT 1[0m
+  [4;35;1mLesson Load (0.000349)[0m   [0mSELECT * FROM "lessons" WHERE ("lessons"."id" = 239) [0m
+  [4;36;1mCourse Load (0.000314)[0m   [0;1mSELECT * FROM "courses" WHERE ("courses"."id" = 94) [0m
+  [4;35;1mQuestion Load (0.001781)[0m   [0mSELECT * FROM "questions" WHERE ("questions".course_id = 94 AND (next_datetime <= '2008-11-05 16:06:40' and id != '1527')) ORDER BY current_interval LIMIT 1[0m
+  [4;36;1mExercise Load (0.000403)[0m   [0;1mSELECT * FROM "exercises" WHERE ("exercises"."id" = 872) [0m
+  [4;35;1mTopic Load (0.000363)[0m   [0mSELECT * FROM "topics" WHERE ("topics"."id" = 35) [0m
+Completed in 0.05259 (19 reqs/sec) | Rendering: 0.00472 (8%) | DB: 0.00357 (6%) | 200 OK [http://repeatcode.local/lessons/239.json?ignore=1527]
+
+
+Processing LessonsController#show (for 127.0.0.1 at 2008-11-05 16:07:03) [GET]
+  Session ID: BAh7CjoMY3NyZl9pZCIlMWJhMTE5ZDI1MjQzOTU5ZTUzZTYyOThjYTNiMWQ0
+Yzc6DHVzZXJfaWRpBjoOcmV0dXJuX3RvMDoRb3JpZ2luYWxfdXJpIgYvIgpm
+bGFzaElDOidBY3Rpb25Db250cm9sbGVyOjpGbGFzaDo6Rmxhc2hIYXNoewAG
+OgpAdXNlZHsA--b7599539e2c07a16278ed12cc95d6d18c12d7228
+  Parameters: {"action"=>"show", "id"=>"239", "controller"=>"lessons"}
+  [4;36;1mUser Load (0.000831)[0m   [0;1mSELECT * FROM "users" WHERE ("users"."id" = 1) LIMIT 1[0m
+  [4;35;1mLesson Load (0.000416)[0m   [0mSELECT * FROM "lessons" WHERE ("lessons"."id" = 239) [0m
+Rendering template within layouts/lessons
+Rendering lessons/show
+  [4;36;1mCourse Load (0.000304)[0m   [0;1mSELECT * FROM "courses" WHERE ("courses"."id" = 94) [0m
+  [4;35;1mSubject Load (0.000299)[0m   [0mSELECT * FROM "subjects" WHERE ("subjects"."id" = 10) [0m
+Completed in 0.04052 (24 reqs/sec) | Rendering: 0.01644 (40%) | DB: 0.00185 (4%) | 200 OK [http://repeatcode.local/lessons/239]
+
+
+Processing LessonsController#show (for 127.0.0.1 at 2008-11-05 16:07:04) [GET]
+  Session ID: BAh7CjoMY3NyZl9pZCIlMWJhMTE5ZDI1MjQzOTU5ZTUzZTYyOThjYTNiMWQ0
+Yzc6DHVzZXJfaWRpBjoRb3JpZ2luYWxfdXJpIgYvOg5yZXR1cm5fdG8wIgpm
+bGFzaElDOidBY3Rpb25Db250cm9sbGVyOjpGbGFzaDo6Rmxhc2hIYXNoewAG
+OgpAdXNlZHsA--e51b1997eaa5910cbd5069d9d90a532dae6b7a1c
+  Parameters: {"format"=>"json", "action"=>"show", "id"=>"239", "controller"=>"lessons"}
+  [4;36;1mUser Load (0.000558)[0m   [0;1mSELECT * FROM "users" WHERE ("users"."id" = 1) LIMIT 1[0m
+  [4;35;1mLesson Load (0.000415)[0m   [0mSELECT * FROM "lessons" WHERE ("lessons"."id" = 239) [0m
+  [4;36;1mCourse Load (0.000373)[0m   [0;1mSELECT * FROM "courses" WHERE ("courses"."id" = 94) [0m
+  [4;35;1mQuestion Load (0.001855)[0m   [0mSELECT * FROM "questions" WHERE ("questions".course_id = 94 AND (next_datetime <= '2008-11-05 16:07:04' and id != 0)) ORDER BY current_interval LIMIT 1[0m
+  [4;36;1mExercise Load (0.000451)[0m   [0;1mSELECT * FROM "exercises" WHERE ("exercises"."id" = 881) [0m
+  [4;35;1mTopic Load (0.000375)[0m   [0mSELECT * FROM "topics" WHERE ("topics"."id" = 35) [0m
+Completed in 0.13784 (7 reqs/sec) | Rendering: 0.08127 (58%) | DB: 0.00403 (2%) | 200 OK [http://repeatcode.local/lessons/239.json]
+
+
+Processing LessonsController#show (for 127.0.0.1 at 2008-11-05 16:07:04) [GET]
+  Session ID: BAh7CjoMY3NyZl9pZCIlMWJhMTE5ZDI1MjQzOTU5ZTUzZTYyOThjYTNiMWQ0
+Yzc6DHVzZXJfaWRpBjoOcmV0dXJuX3RvMDoRb3JpZ2luYWxfdXJpIgYvIgpm
+bGFzaElDOidBY3Rpb25Db250cm9sbGVyOjpGbGFzaDo6Rmxhc2hIYXNoewAG
+OgpAdXNlZHsA--b7599539e2c07a16278ed12cc95d6d18c12d7228
+  Parameters: {"ignore"=>"1527", "format"=>"json", "action"=>"show", "id"=>"239", "controller"=>"lessons"}
+  [4;36;1mUser Load (0.000417)[0m   [0;1mSELECT * FROM "users" WHERE ("users"."id" = 1) LIMIT 1[0m
+  [4;35;1mLesson Load (0.000331)[0m   [0mSELECT * FROM "lessons" WHERE ("lessons"."id" = 239) [0m
+  [4;36;1mCourse Load (0.000321)[0m   [0;1mSELECT * FROM "courses" WHERE ("courses"."id" = 94) [0m
+  [4;35;1mQuestion Load (0.001635)[0m   [0mSELECT * FROM "questions" WHERE ("questions".course_id = 94 AND (next_datetime <= '2008-11-05 16:07:04' and id != '1527')) ORDER BY current_interval LIMIT 1[0m
+  [4;36;1mExercise Load (0.000424)[0m   [0;1mSELECT * FROM "exercises" WHERE ("exercises"."id" = 872) [0m
+  [4;35;1mTopic Load (0.000361)[0m   [0mSELECT * FROM "topics" WHERE ("topics"."id" = 35) [0m
+Completed in 0.05291 (18 reqs/sec) | Rendering: 0.00430 (8%) | DB: 0.00349 (6%) | 200 OK [http://repeatcode.local/lessons/239.json?ignore=1527]
+
+
+Processing LessonsController#show (for 127.0.0.1 at 2008-11-05 16:07:09) [GET]
+  Session ID: BAh7CjoMY3NyZl9pZCIlMWJhMTE5ZDI1MjQzOTU5ZTUzZTYyOThjYTNiMWQ0
+Yzc6DHVzZXJfaWRpBjoRb3JpZ2luYWxfdXJpIgYvOg5yZXR1cm5fdG8wIgpm
+bGFzaElDOidBY3Rpb25Db250cm9sbGVyOjpGbGFzaDo6Rmxhc2hIYXNoewAG
+OgpAdXNlZHsA--e51b1997eaa5910cbd5069d9d90a532dae6b7a1c
+  Parameters: {"action"=>"show", "id"=>"239", "controller"=>"lessons"}
+  [4;36;1mUser Load (0.000375)[0m   [0;1mSELECT * FROM "users" WHERE ("users"."id" = 1) LIMIT 1[0m
+  [4;35;1mLesson Load (0.000330)[0m   [0mSELECT * FROM "lessons" WHERE ("lessons"."id" = 239) [0m
+Rendering template within layouts/lessons
+Rendering lessons/show
+  [4;36;1mCourse Load (0.000337)[0m   [0;1mSELECT * FROM "courses" WHERE ("courses"."id" = 94) [0m
+  [4;35;1mSubject Load (0.000321)[0m   [0mSELECT * FROM "subjects" WHERE ("subjects"."id" = 10) [0m
+Completed in 0.12186 (8 reqs/sec) | Rendering: 0.10079 (82%) | DB: 0.00136 (1%) | 200 OK [http://repeatcode.local/lessons/239]
+
+
+Processing LessonsController#show (for 127.0.0.1 at 2008-11-05 16:07:09) [GET]
+  Session ID: BAh7CjoMY3NyZl9pZCIlMWJhMTE5ZDI1MjQzOTU5ZTUzZTYyOThjYTNiMWQ0
+Yzc6DHVzZXJfaWRpBjoOcmV0dXJuX3RvMDoRb3JpZ2luYWxfdXJpIgYvIgpm
+bGFzaElDOidBY3Rpb25Db250cm9sbGVyOjpGbGFzaDo6Rmxhc2hIYXNoewAG
+OgpAdXNlZHsA--b7599539e2c07a16278ed12cc95d6d18c12d7228
+  Parameters: {"format"=>"json", "action"=>"show", "id"=>"239", "controller"=>"lessons"}
+  [4;36;1mUser Load (0.000513)[0m   [0;1mSELECT * FROM "users" WHERE ("users"."id" = 1) LIMIT 1[0m
+  [4;35;1mLesson Load (0.000355)[0m   [0mSELECT * FROM "lessons" WHERE ("lessons"."id" = 239) [0m
+  [4;36;1mCourse Load (0.000657)[0m   [0;1mSELECT * FROM "courses" WHERE ("courses"."id" = 94) [0m
+  [4;35;1mQuestion Load (0.001863)[0m   [0mSELECT * FROM "questions" WHERE ("questions".course_id = 94 AND (next_datetime <= '2008-11-05 16:07:09' and id != 0)) ORDER BY current_interval LIMIT 1[0m
+  [4;36;1mExercise Load (0.000410)[0m   [0;1mSELECT * FROM "exercises" WHERE ("exercises"."id" = 881) [0m
+  [4;35;1mTopic Load (0.000391)[0m   [0mSELECT * FROM "topics" WHERE ("topics"."id" = 35) [0m
+Completed in 0.05902 (16 reqs/sec) | Rendering: 0.00405 (6%) | DB: 0.00419 (7%) | 200 OK [http://repeatcode.local/lessons/239.json]
+
+
+Processing LessonsController#show (for 127.0.0.1 at 2008-11-05 16:07:09) [GET]
+  Session ID: BAh7CjoMY3NyZl9pZCIlMWJhMTE5ZDI1MjQzOTU5ZTUzZTYyOThjYTNiMWQ0
+Yzc6DHVzZXJfaWRpBjoRb3JpZ2luYWxfdXJpIgYvOg5yZXR1cm5fdG8wIgpm
+bGFzaElDOidBY3Rpb25Db250cm9sbGVyOjpGbGFzaDo6Rmxhc2hIYXNoewAG
+OgpAdXNlZHsA--e51b1997eaa5910cbd5069d9d90a532dae6b7a1c
+  Parameters: {"ignore"=>"1527", "format"=>"json", "action"=>"show", "id"=>"239", "controller"=>"lessons"}
+  [4;36;1mUser Load (0.000366)[0m   [0;1mSELECT * FROM "users" WHERE ("users"."id" = 1) LIMIT 1[0m
+  [4;35;1mLesson Load (0.000487)[0m   [0mSELECT * FROM "lessons" WHERE ("lessons"."id" = 239) [0m
+  [4;36;1mCourse Load (0.000330)[0m   [0;1mSELECT * FROM "courses" WHERE ("courses"."id" = 94) [0m
+  [4;35;1mQuestion Load (0.001722)[0m   [0mSELECT * FROM "questions" WHERE ("questions".course_id = 94 AND (next_datetime <= '2008-11-05 16:07:09' and id != '1527')) ORDER BY current_interval LIMIT 1[0m
+  [4;36;1mExercise Load (0.000426)[0m   [0;1mSELECT * FROM "exercises" WHERE ("exercises"."id" = 872) [0m
+  [4;35;1mTopic Load (0.000375)[0m   [0mSELECT * FROM "topics" WHERE ("topics"."id" = 35) [0m
+Completed in 0.13675 (7 reqs/sec) | Rendering: 0.00459 (3%) | DB: 0.00371 (2%) | 200 OK [http://repeatcode.local/lessons/239.json?ignore=1527]
+
+
+Processing LessonsController#show (for 127.0.0.1 at 2008-11-05 16:07:22) [GET]
+  Session ID: BAh7CjoMY3NyZl9pZCIlMWJhMTE5ZDI1MjQzOTU5ZTUzZTYyOThjYTNiMWQ0
+Yzc6DHVzZXJfaWRpBjoOcmV0dXJuX3RvMDoRb3JpZ2luYWxfdXJpIgYvIgpm
+bGFzaElDOidBY3Rpb25Db250cm9sbGVyOjpGbGFzaDo6Rmxhc2hIYXNoewAG
+OgpAdXNlZHsA--b7599539e2c07a16278ed12cc95d6d18c12d7228
+  Parameters: {"action"=>"show", "id"=>"239", "controller"=>"lessons"}
+  [4;36;1mUser Load (0.000440)[0m   [0;1mSELECT * FROM "users" WHERE ("users"."id" = 1) LIMIT 1[0m
+  [4;35;1mLesson Load (0.000380)[0m   [0mSELECT * FROM "lessons" WHERE ("lessons"."id" = 239) [0m
+Rendering template within layouts/lessons
+Rendering lessons/show
+  [4;36;1mCourse Load (0.000316)[0m   [0;1mSELECT * FROM "courses" WHERE ("courses"."id" = 94) [0m
+  [4;35;1mSubject Load (0.000293)[0m   [0mSELECT * FROM "subjects" WHERE ("subjects"."id" = 10) [0m
+Completed in 0.03784 (26 reqs/sec) | Rendering: 0.01718 (45%) | DB: 0.00143 (3%) | 200 OK [http://repeatcode.local/lessons/239]
+
+
+Processing LessonsController#show (for 127.0.0.1 at 2008-11-05 16:07:22) [GET]
+  Session ID: BAh7CjoMY3NyZl9pZCIlMWJhMTE5ZDI1MjQzOTU5ZTUzZTYyOThjYTNiMWQ0
+Yzc6DHVzZXJfaWRpBjoRb3JpZ2luYWxfdXJpIgYvOg5yZXR1cm5fdG8wIgpm
+bGFzaElDOidBY3Rpb25Db250cm9sbGVyOjpGbGFzaDo6Rmxhc2hIYXNoewAG
+OgpAdXNlZHsA--e51b1997eaa5910cbd5069d9d90a532dae6b7a1c
+  Parameters: {"format"=>"json", "action"=>"show", "id"=>"239", "controller"=>"lessons"}
+  [4;36;1mUser Load (0.000433)[0m   [0;1mSELECT * FROM "users" WHERE ("users"."id" = 1) LIMIT 1[0m
+  [4;35;1mLesson Load (0.000339)[0m   [0mSELECT * FROM "lessons" WHERE ("lessons"."id" = 239) [0m
+  [4;36;1mCourse Load (0.000328)[0m   [0;1mSELECT * FROM "courses" WHERE ("courses"."id" = 94) [0m
+  [4;35;1mQuestion Load (0.001714)[0m   [0mSELECT * FROM "questions" WHERE ("questions".course_id = 94 AND (next_datetime <= '2008-11-05 16:07:23' and id != 0)) ORDER BY current_interval LIMIT 1[0m
+  [4;36;1mExercise Load (0.000428)[0m   [0;1mSELECT * FROM "exercises" WHERE ("exercises"."id" = 881) [0m
+  [4;35;1mTopic Load (0.000394)[0m   [0mSELECT * FROM "topics" WHERE ("topics"."id" = 35) [0m
+Completed in 0.14819 (6 reqs/sec) | Rendering: 0.00475 (3%) | DB: 0.00364 (2%) | 200 OK [http://repeatcode.local/lessons/239.json]
+
+
+Processing LessonsController#show (for 127.0.0.1 at 2008-11-05 16:07:23) [GET]
+  Session ID: BAh7CjoMY3NyZl9pZCIlMWJhMTE5ZDI1MjQzOTU5ZTUzZTYyOThjYTNiMWQ0
+Yzc6DHVzZXJfaWRpBjoOcmV0dXJuX3RvMDoRb3JpZ2luYWxfdXJpIgYvIgpm
+bGFzaElDOidBY3Rpb25Db250cm9sbGVyOjpGbGFzaDo6Rmxhc2hIYXNoewAG
+OgpAdXNlZHsA--b7599539e2c07a16278ed12cc95d6d18c12d7228
+  Parameters: {"ignore"=>"1527", "format"=>"json", "action"=>"show", "id"=>"239", "controller"=>"lessons"}
+  [4;36;1mUser Load (0.000347)[0m   [0;1mSELECT * FROM "users" WHERE ("users"."id" = 1) LIMIT 1[0m
+  [4;35;1mLesson Load (0.000341)[0m   [0mSELECT * FROM "lessons" WHERE ("lessons"."id" = 239) [0m
+  [4;36;1mCourse Load (0.000306)[0m   [0;1mSELECT * FROM "courses" WHERE ("courses"."id" = 94) [0m
+  [4;35;1mQuestion Load (0.001656)[0m   [0mSELECT * FROM "questions" WHERE ("questions".course_id = 94 AND (next_datetime <= '2008-11-05 16:07:23' and id != '1527')) ORDER BY current_interval LIMIT 1[0m
+  [4;36;1mExercise Load (0.000459)[0m   [0;1mSELECT * FROM "exercises" WHERE ("exercises"."id" = 872) [0m
+  [4;35;1mTopic Load (0.000371)[0m   [0mSELECT * FROM "topics" WHERE ("topics"."id" = 35) [0m
+Completed in 0.05148 (19 reqs/sec) | Rendering: 0.00414 (8%) | DB: 0.00348 (6%) | 200 OK [http://repeatcode.local/lessons/239.json?ignore=1527]
+
+
+Processing LessonsController#show (for 127.0.0.1 at 2008-11-05 16:07:31) [GET]
+  Session ID: BAh7CjoMY3NyZl9pZCIlMWJhMTE5ZDI1MjQzOTU5ZTUzZTYyOThjYTNiMWQ0
+Yzc6DHVzZXJfaWRpBjoRb3JpZ2luYWxfdXJpIgYvOg5yZXR1cm5fdG8wIgpm
+bGFzaElDOidBY3Rpb25Db250cm9sbGVyOjpGbGFzaDo6Rmxhc2hIYXNoewAG
+OgpAdXNlZHsA--e51b1997eaa5910cbd5069d9d90a532dae6b7a1c
+  Parameters: {"action"=>"show", "id"=>"239", "controller"=>"lessons"}
+  [4;36;1mUser Load (0.000379)[0m   [0;1mSELECT * FROM "users" WHERE ("users"."id" = 1) LIMIT 1[0m
+  [4;35;1mLesson Load (0.000327)[0m   [0mSELECT * FROM "lessons" WHERE ("lessons"."id" = 239) [0m
+Rendering template within layouts/lessons
+Rendering lessons/show
+  [4;36;1mCourse Load (0.000346)[0m   [0;1mSELECT * FROM "courses" WHERE ("courses"."id" = 94) [0m
+  [4;35;1mSubject Load (0.000411)[0m   [0mSELECT * FROM "subjects" WHERE ("subjects"."id" = 10) [0m
+Completed in 0.04079 (24 reqs/sec) | Rendering: 0.01923 (47%) | DB: 0.00146 (3%) | 200 OK [http://repeatcode.local/lessons/239]
+
+
+Processing LessonsController#show (for 127.0.0.1 at 2008-11-05 16:07:32) [GET]
+  Session ID: BAh7CjoMY3NyZl9pZCIlMWJhMTE5ZDI1MjQzOTU5ZTUzZTYyOThjYTNiMWQ0
+Yzc6DHVzZXJfaWRpBjoOcmV0dXJuX3RvMDoRb3JpZ2luYWxfdXJpIgYvIgpm
+bGFzaElDOidBY3Rpb25Db250cm9sbGVyOjpGbGFzaDo6Rmxhc2hIYXNoewAG
+OgpAdXNlZHsA--b7599539e2c07a16278ed12cc95d6d18c12d7228
+  Parameters: {"format"=>"json", "action"=>"show", "id"=>"239", "controller"=>"lessons"}
+  [4;36;1mUser Load (0.000489)[0m   [0;1mSELECT * FROM "users" WHERE ("users"."id" = 1) LIMIT 1[0m
+  [4;35;1mLesson Load (0.000546)[0m   [0mSELECT * FROM "lessons" WHERE ("lessons"."id" = 239) [0m
+  [4;36;1mCourse Load (0.000362)[0m   [0;1mSELECT * FROM "courses" WHERE ("courses"."id" = 94) [0m
+  [4;35;1mQuestion Load (0.023681)[0m   [0mSELECT * FROM "questions" WHERE ("questions".course_id = 94 AND (next_datetime <= '2008-11-05 16:07:32' and id != 0)) ORDER BY current_interval LIMIT 1[0m
+  [4;36;1mExercise Load (0.000436)[0m   [0;1mSELECT * FROM "exercises" WHERE ("exercises"."id" = 881) [0m
+  [4;35;1mTopic Load (0.000407)[0m   [0mSELECT * FROM "topics" WHERE ("topics"."id" = 35) [0m
+Completed in 0.08131 (12 reqs/sec) | Rendering: 0.00402 (4%) | DB: 0.02592 (31%) | 200 OK [http://repeatcode.local/lessons/239.json]
+
+
+Processing LessonsController#show (for 127.0.0.1 at 2008-11-05 16:07:32) [GET]
+  Session ID: BAh7CjoMY3NyZl9pZCIlMWJhMTE5ZDI1MjQzOTU5ZTUzZTYyOThjYTNiMWQ0
+Yzc6DHVzZXJfaWRpBjoRb3JpZ2luYWxfdXJpIgYvOg5yZXR1cm5fdG8wIgpm
+bGFzaElDOidBY3Rpb25Db250cm9sbGVyOjpGbGFzaDo6Rmxhc2hIYXNoewAG
+OgpAdXNlZHsA--e51b1997eaa5910cbd5069d9d90a532dae6b7a1c
+  Parameters: {"ignore"=>"1527", "format"=>"json", "action"=>"show", "id"=>"239", "controller"=>"lessons"}
+  [4;36;1mUser Load (0.000519)[0m   [0;1mSELECT * FROM "users" WHERE ("users"."id" = 1) LIMIT 1[0m
+  [4;35;1mLesson Load (0.000329)[0m   [0mSELECT * FROM "lessons" WHERE ("lessons"."id" = 239) [0m
+  [4;36;1mCourse Load (0.000332)[0m   [0;1mSELECT * FROM "courses" WHERE ("courses"."id" = 94) [0m
+  [4;35;1mQuestion Load (0.001621)[0m   [0mSELECT * FROM "questions" WHERE ("questions".course_id = 94 AND (next_datetime <= '2008-11-05 16:07:32' and id != '1527')) ORDER BY current_interval LIMIT 1[0m
+  [4;36;1mExercise Load (0.000417)[0m   [0;1mSELECT * FROM "exercises" WHERE ("exercises"."id" = 872) [0m
+  [4;35;1mTopic Load (0.000367)[0m   [0mSELECT * FROM "topics" WHERE ("topics"."id" = 35) [0m
+Completed in 0.05364 (18 reqs/sec) | Rendering: 0.00436 (8%) | DB: 0.00359 (6%) | 200 OK [http://repeatcode.local/lessons/239.json?ignore=1527]
+
+
+Processing LessonsController#show (for 127.0.0.1 at 2008-11-05 16:08:42) [GET]
+  Session ID: BAh7CjoMY3NyZl9pZCIlMWJhMTE5ZDI1MjQzOTU5ZTUzZTYyOThjYTNiMWQ0
+Yzc6DHVzZXJfaWRpBjoOcmV0dXJuX3RvMDoRb3JpZ2luYWxfdXJpIgYvIgpm
+bGFzaElDOidBY3Rpb25Db250cm9sbGVyOjpGbGFzaDo6Rmxhc2hIYXNoewAG
+OgpAdXNlZHsA--b7599539e2c07a16278ed12cc95d6d18c12d7228
+  Parameters: {"action"=>"show", "id"=>"239", "controller"=>"lessons"}
+  [4;36;1mUser Load (0.000378)[0m   [0;1mSELECT * FROM "users" WHERE ("users"."id" = 1) LIMIT 1[0m
+  [4;35;1mLesson Load (0.000383)[0m   [0mSELECT * FROM "lessons" WHERE ("lessons"."id" = 239) [0m
+Rendering template within layouts/lessons
+Rendering lessons/show
+  [4;36;1mCourse Load (0.000356)[0m   [0;1mSELECT * FROM "courses" WHERE ("courses"."id" = 94) [0m
+  [4;35;1mSubject Load (0.000296)[0m   [0mSELECT * FROM "subjects" WHERE ("subjects"."id" = 10) [0m
+Completed in 0.04098 (24 reqs/sec) | Rendering: 0.01829 (44%) | DB: 0.00141 (3%) | 200 OK [http://repeatcode.local/lessons/239]
+
+
+Processing LessonsController#show (for 127.0.0.1 at 2008-11-05 16:08:42) [GET]
+  Session ID: BAh7CjoMY3NyZl9pZCIlMWJhMTE5ZDI1MjQzOTU5ZTUzZTYyOThjYTNiMWQ0
+Yzc6DHVzZXJfaWRpBjoRb3JpZ2luYWxfdXJpIgYvOg5yZXR1cm5fdG8wIgpm
+bGFzaElDOidBY3Rpb25Db250cm9sbGVyOjpGbGFzaDo6Rmxhc2hIYXNoewAG
+OgpAdXNlZHsA--e51b1997eaa5910cbd5069d9d90a532dae6b7a1c
+  Parameters: {"format"=>"json", "action"=>"show", "id"=>"239", "controller"=>"lessons"}
+  [4;36;1mUser Load (0.000519)[0m   [0;1mSELECT * FROM "users" WHERE ("users"."id" = 1) LIMIT 1[0m
+  [4;35;1mLesson Load (0.000353)[0m   [0mSELECT * FROM "lessons" WHERE ("lessons"."id" = 239) [0m
+  [4;36;1mCourse Load (0.000305)[0m   [0;1mSELECT * FROM "courses" WHERE ("courses"."id" = 94) [0m
+  [4;35;1mQuestion Load (0.032181)[0m   [0mSELECT * FROM "questions" WHERE ("questions".course_id = 94 AND (next_datetime <= '2008-11-05 16:08:42' and id != 0)) ORDER BY current_interval LIMIT 1[0m
+  [4;36;1mExercise Load (0.000433)[0m   [0;1mSELECT * FROM "exercises" WHERE ("exercises"."id" = 881) [0m
+  [4;35;1mTopic Load (0.000368)[0m   [0mSELECT * FROM "topics" WHERE ("topics"."id" = 35) [0m
+Completed in 0.08626 (11 reqs/sec) | Rendering: 0.00437 (5%) | DB: 0.03416 (39%) | 200 OK [http://repeatcode.local/lessons/239.json]
+
+
+Processing LessonsController#show (for 127.0.0.1 at 2008-11-05 16:08:42) [GET]
+  Session ID: BAh7CjoMY3NyZl9pZCIlMWJhMTE5ZDI1MjQzOTU5ZTUzZTYyOThjYTNiMWQ0
+Yzc6DHVzZXJfaWRpBjoOcmV0dXJuX3RvMDoRb3JpZ2luYWxfdXJpIgYvIgpm
+bGFzaElDOidBY3Rpb25Db250cm9sbGVyOjpGbGFzaDo6Rmxhc2hIYXNoewAG
+OgpAdXNlZHsA--b7599539e2c07a16278ed12cc95d6d18c12d7228
+  Parameters: {"ignore"=>"1527", "format"=>"json", "action"=>"show", "id"=>"239", "controller"=>"lessons"}
+  [4;36;1mUser Load (0.000357)[0m   [0;1mSELECT * FROM "users" WHERE ("users"."id" = 1) LIMIT 1[0m
+  [4;35;1mLesson Load (0.000415)[0m   [0mSELECT * FROM "lessons" WHERE ("lessons"."id" = 239) [0m
+  [4;36;1mCourse Load (0.000308)[0m   [0;1mSELECT * FROM "courses" WHERE ("courses"."id" = 94) [0m
+  [4;35;1mQuestion Load (0.001650)[0m   [0mSELECT * FROM "questions" WHERE ("questions".course_id = 94 AND (next_datetime <= '2008-11-05 16:08:42' and id != '1527')) ORDER BY current_interval LIMIT 1[0m
+  [4;36;1mExercise Load (0.000403)[0m   [0;1mSELECT * FROM "exercises" WHERE ("exercises"."id" = 872) [0m
+  [4;35;1mTopic Load (0.000487)[0m   [0mSELECT * FROM "topics" WHERE ("topics"."id" = 35) [0m
+Completed in 0.13117 (7 reqs/sec) | Rendering: 0.00436 (3%) | DB: 0.00362 (2%) | 200 OK [http://repeatcode.local/lessons/239.json?ignore=1527]
+
+
+Processing ResponsesController#create (for 127.0.0.1 at 2008-11-05 16:09:22) [POST]
+  Session ID: BAh7CjoMY3NyZl9pZCIlMWJhMTE5ZDI1MjQzOTU5ZTUzZTYyOThjYTNiMWQ0
+Yzc6DHVzZXJfaWRpBjoRb3JpZ2luYWxfdXJpIgYvOg5yZXR1cm5fdG8wIgpm
+bGFzaElDOidBY3Rpb25Db250cm9sbGVyOjpGbGFzaDo6Rmxhc2hIYXNoewAG
+OgpAdXNlZHsA--e51b1997eaa5910cbd5069d9d90a532dae6b7a1c
+  Parameters: {"response"=>{"result"=>"correct", "seconds_taken"=>"40", "interval"=>"1"}, "format"=>"json", "question_id"=>"1527", "authenticity_token"=>"c9442483b2e5a5b0aabbc041d074e94298ed3854", "action"=>"create", "controller"=>"responses"}
+  [4;36;1mQuestion Load (0.000394)[0m   [0;1mSELECT * FROM "questions" WHERE ("questions"."id" = 1527) [0m
+  [4;35;1mCACHE (0.000000)[0m   [0mSELECT * FROM "questions" WHERE ("questions"."id" = 1527) [0m
+  [4;36;1mCourse Load (0.000364)[0m   [0;1mSELECT * FROM "courses" WHERE ("courses"."id" = 94) [0m
+  [4;35;1mLesson Load (0.000309)[0m   [0mSELECT * FROM "lessons" WHERE ("lessons".course_id = 94) ORDER BY lessons.id DESC LIMIT 1[0m
+  [4;36;1mLesson Update (0.000718)[0m   [0;1mUPDATE "lessons" SET "correct_responses" = 6, "updated_at" = '2008-11-05 16:09:22' WHERE "id" = 239[0m
+  [4;35;1mInterval Load (0.002101)[0m   [0mSELECT * FROM "intervals" WHERE ("intervals".course_id = 94 AND ("intervals"."index_no" = 2)) LIMIT 1[0m
+  [4;36;1mQuestion Update (0.000180)[0m   [0;1mUPDATE "questions" SET "current_interval" = 2, "next_datetime" = '2008-11-05 16:14:22', "updated_at" = '2008-11-05 16:09:22' WHERE "id" = 1527[0m
+  [4;35;1mResponse Create (0.000759)[0m   [0mINSERT INTO "responses" ("result", "updated_at", "question_id", "lesson_id", "seconds_taken", "content", "interval", "created_at") VALUES('correct', '2008-11-05 16:09:22', 1527, NULL, 40, NULL, 1, '2008-11-05 16:09:22')[0m
+Completed in 0.05363 (18 reqs/sec) | Rendering: 0.00039 (0%) | DB: 0.00483 (8%) | 200 OK [http://repeatcode.local/questions/1527/responses.json]
+
+
+Processing LessonsController#show (for 127.0.0.1 at 2008-11-05 16:09:22) [GET]
+  Session ID: BAh7CjoMY3NyZl9pZCIlMWJhMTE5ZDI1MjQzOTU5ZTUzZTYyOThjYTNiMWQ0
+Yzc6DHVzZXJfaWRpBjoRb3JpZ2luYWxfdXJpIgYvOg5yZXR1cm5fdG8wIgpm
+bGFzaElDOidBY3Rpb25Db250cm9sbGVyOjpGbGFzaDo6Rmxhc2hIYXNoewAG
+OgpAdXNlZHsA--e51b1997eaa5910cbd5069d9d90a532dae6b7a1c
+  Parameters: {"ignore"=>"1473", "format"=>"json", "action"=>"show", "id"=>"239", "controller"=>"lessons"}
+  [4;36;1mUser Load (0.000349)[0m   [0;1mSELECT * FROM "users" WHERE ("users"."id" = 1) LIMIT 1[0m
+  [4;35;1mLesson Load (0.000327)[0m   [0mSELECT * FROM "lessons" WHERE ("lessons"."id" = 239) [0m
+  [4;36;1mCourse Load (0.000485)[0m   [0;1mSELECT * FROM "courses" WHERE ("courses"."id" = 94) [0m
+  [4;35;1mQuestion Load (0.001908)[0m   [0mSELECT * FROM "questions" WHERE ("questions".course_id = 94 AND (next_datetime <= '2008-11-05 16:09:22' and id != '1473')) ORDER BY current_interval LIMIT 1[0m
+  [4;36;1mExercise Load (0.000573)[0m   [0;1mSELECT * FROM "exercises" WHERE ("exercises"."id" = 873) [0m
+  [4;35;1mTopic Load (0.000440)[0m   [0mSELECT * FROM "topics" WHERE ("topics"."id" = 35) [0m
+Completed in 0.14290 (6 reqs/sec) | Rendering: 0.00452 (3%) | DB: 0.00408 (2%) | 200 OK [http://repeatcode.local/lessons/239.json?ignore=1473]
