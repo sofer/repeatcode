@@ -1,105 +1,112 @@
-<div id="header">
+<div id="content">
+
+	<div id="header">
 	
-	<h1 class="left">
-  	<div id="subject"><%= h @lesson.course.subject.name %></div>
-	</h1>
-	<h2 class="right">
-		<div id="topic"></div>
-	</h2>
-	<div class="clear"></div>
-	
-</div>
-
-<div id="main">
-
-	<div class="left">
-		Correct responses: <div id="correct-responses"></div>
-	</div>
-	<div class="right">
-		Elapsed time: <span id="elapsed-time"></span> minutes
-	</div>
-
-	<div id="question">
-		<div id="exercise-phrase"></div>
-	</div>
-	
-	<div id="completed" class="hidden">
-		<div>
-			Course completed.<br><br>Come back again in a few days for a review.<br><br>
-		</div>
-		<div>
-			<%= link_to "Back to courses", courses_path %>
-		</div>
-	</div>
-
-	<div id="response">
-		
-		<div id="correct" class="hidden">Correct</div>
-
-		<div id="expected" class="hidden">
-			<div id="expected-formula" class="maths"> </div>
-			<div class="incorrect space wrong"> </div>
-			<div id="exercise-response"> </div>
-			<%= submit_tag "OK", :id => "try-now", :class => "space"%>
-		</div>
-		
-		<div id="try" class="hidden">
-			<div id="formula" class="maths"> </div>
-			<form id="response-form">
-				<%= text_field_tag "response-field", nil, :autocomplete => "off" %>
-			</form>
-		</div>
-
-		<div id="unexpected" class="hidden">
-			<div class="incorrect space wrong"></div>
-			<div class="left">
-				<%= submit_tag "Try again", :id => "try-again" %>
-			</div>
-			<div class="right">
-				<%= submit_tag "Show answer", :id => "show-answer" %>
-			</div>
-		</div>
-
-	</div>
-	
-	<% if 1==0 %> <!-- leave this for now. it's going to be a  bit different -->
-	<div id="tabs">
-		<div class="data tab">
- h @question.exercise.topic.data %>
-		</div>
-		<div class="code tab">
- if @question.current_interval %>
-%= @question.exercise.code %>
-% else %>
-%= @question.exercise.code(@question.exercise.simplified(@question.exercise.response)) %>
-% end %>
-		</div>
-		<div class="output tab">
-%= @question.exercise.topic.data %>
-		</div>
+		<h1 class="left">
+	  	<div id="subject"><%= h @lesson.course.subject.name %></div>
+		</h1>
+		<h2 class="right">
+			<div id="topic"></div>
+		</h2>
 		<div class="clear"></div>
-	</div>
-	<% end %>
 	
-</div>
-
-<div id="footer">
-	<div class="left">
-		Exercise no: <span id="exercise-no"></span> |
-		Question no: <span id="question-no"></span> | 
-		Repetition no: <span id="current_interval"></span> |
-		<span id="seconds">0</span> seconds<br>
-		Logged in as: <%= current_user.login %>
 	</div>
-	<div class="right">
-		<%= link_to 'End lesson', courses_path %>
-		<div id="loading" class="hidden"><img src="/images/furniture/loading.gif" width="16" height="16" alt="waiting..." align="right"></div>
+
+	<div id="main">
+
+		<div class="left">
+			Correct responses: <div id="correct-responses"></div>
+		</div>
+		<div class="right">
+			Elapsed time: <span id="elapsed-time"></span> minutes
+		</div>
+
+		<div id="question">
+			<div id="exercise-phrase"></div>
+		</div>
+	
+		<div id="completed" class="hidden">
+			<div>
+				Course completed.<br><br>Come back again in a few days for a review.<br><br>
+			</div>
+			<div>
+				<%= link_to "Back to courses", courses_path %>
+			</div>
+		</div>
+
+		<div id="response">
+		
+			<div id="correct" class="hidden">Correct</div>
+
+			<div id="expected" class="hidden">
+				<div id="expected-maths">
+					<div id="expected-formula"> </div>
+				</div>
+				<div class="incorrect space wrong"> </div>
+				<div id="exercise-response"> </div>
+				<%= submit_tag "OK", :id => "try-now", :class => "space"%>
+			</div>
+		
+			<div id="attempt" class="hidden">
+				<div id="maths">
+					<div id="formula"> </div>
+				</div>
+				<form id="response-form">
+					<%= text_field_tag "response-field", nil, :autocomplete => "off" %>
+				</form>
+			</div>
+
+			<div id="unexpected" class="hidden">
+				<div class="incorrect space wrong"></div>
+				<div class="left">
+					<%= submit_tag "Try again", :id => "try-again" %>
+				</div>
+				<div class="right">
+					<%= submit_tag "Show answer", :id => "show-answer" %>
+				</div>
+			</div>
+
+		</div>
+	
+		<% if 1==0 %> <!-- leave this for now. it's going to be a  bit different -->
+		<div id="tabs">
+			<div class="data tab">
+	 h @question.exercise.topic.data %>
+			</div>
+			<div class="code tab">
+	 if @question.current_interval %>
+	%= @question.exercise.code %>
+	% else %>
+	%= @question.exercise.code(@question.exercise.simplified(@question.exercise.response)) %>
+	% end %>
+			</div>
+			<div class="output tab">
+	%= @question.exercise.topic.data %>
+			</div>
+			<div class="clear"></div>
+		</div>
+		<% end %>
+	
+	</div>
+
+	<div id="footer">
+		<div class="left">
+			Exercise no: <span id="exercise-no"></span> |
+			Question no: <span id="question-no"></span> | 
+			Repetition no: <span id="current_interval"></span> |
+			<span id="seconds">0</span> seconds<br>
+			Logged in as: <%= current_user.login %>
+		</div>
+		<div class="right">
+			<%= link_to 'End lesson', courses_path %>
+			<div id="loading" class="hidden"><img src="/images/furniture/loading.gif" width="16" height="16" alt="waiting..." align="right"></div>
+		</div>
 	</div>
 </div>
 
 <div id="timeout">
 	<h2>Taking time out</h2>
-	Click here to continue
+	Click to continue
 </div>
 
 

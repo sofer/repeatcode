@@ -7,49 +7,70 @@ String.prototype.simplify = function () {
 };
 
 RC.DOMnodes = {
+	wrong: '.wrong',
+	content: '#content',
 	seconds: '#seconds',
 	timeout: '#timeout',
-	wrong: '.wrong',
+	loading: '#loading',
 	topic: '#topic',
+	response: '#response',
+	completed: '#completed',
+	attempt: '#attempt',
+	unexpected: '#unexpected',
+	expected: '#expected',
+	correct: '#correct',
+	wrong: '.wrong',
+	try_now: '#try-now',
+	try_again: '#try-again',
+	show_answer: '#show-answer',
 	exercise_phrase: '#exercise-phrase',
 	exercise_response: '#exercise-response',
 	exercise_no: '#exercise-no',
 	question_no: '#question-no',
 	current_interval: '#current_interval',
+	response_form: '#response-form',
 	response_field: '#response-field',
+	response_submit: '#response_submit',
+	maths: '#maths',
 	formula: '#formula',
+	expected_maths: '#expected-maths',
 	expected_formula: '#expected-formula',
-	expected_formula: '#expected-formula',
-	expected: '#expected',
-	try_now: '#try-now',
-  try_: '#try'
 };
 
-// make this lot into a timer object
-RC.timeout = 300;
-RC.seconds_to_timeout = RC.timeout;
-RC.total_seconds = 0;
-RC.interval_timer;
-var set_interval_count = function () {
-	RC.seconds_to_timeout = RC.timeout;	
-	RC.interval_timer = setInterval('increment_seconds()', 1000);	
+RC.centre = function(outer, inner) {
+	var offset = $(outer).width()/2 - $(inner).width()/2;
+	$(inner).css("margin-left", offset);
 };
 
-var increment_seconds = function () {
-  RC.total_seconds = RC.total_seconds + 1;
-	RC.seconds_to_timeout = RC.seconds_to_timeout - 1;
-	if (RC.seconds_to_timeout === 0) {
-		RC.total_seconds = RC.total_seconds - RC.timeout;
-		timeout_box();
+RC.timer = {
+
+	timeout: 30,
+	seconds_to_timeout: RC.timeout,
+	total_seconds: 0,
+	interval_timer: {},
+	
+	set_interval_count: function () {
+		this.seconds_to_timeout = this.timeout;	
+		this.interval_timer = setInterval('RC.timer.increment_seconds()', 1000);	
+	},
+
+	increment_seconds: function () {
+	  this.total_seconds = this.total_seconds + 1;
+		this.seconds_to_timeout = this.seconds_to_timeout - 1;
+		if (this.seconds_to_timeout === 0) {
+			this.total_seconds = this.total_seconds - this.timeout;
+			this.timeout_box();
+		}
+		$(RC.DOMnodes.seconds).text(this.total_seconds);
+	},
+
+	timeout_box: function () {
+			$(RC.DOMnodes.timeout).slideDown('slow');
+			$(RC.DOMnodes.content).addClass('faded');
+			$(RC.DOMnodes.timeout).focus();
+			clearInterval(this.interval_timer);
 	}
-	$('#seconds').text(RC.total_seconds);
-	$('#response_seconds_taken').val(RC.total_seconds);
-};
 
-var timeout_box = function () {
-		$('#timeout').slideDown('slow');
-		$('#timeout').focus();
-		clearInterval(RC.interval_timer);
 };
 
 RC.formula = {
@@ -138,8 +159,8 @@ RC.question = {
 
 	not_finished: function () {
 	  if (this.data.status === 'end') {
-			$('#response').hide();
-    	$('#completed').show();
+			$(RC.DOMnodes.response).hide();
+    	$(RC.DOMnodes.completed).show();
 	    return false;
 	  } else {
 			return true;
@@ -148,10 +169,10 @@ RC.question = {
 
 	loading: function (on) {
 		if (on) {
-			$('#loading').show();
+			$(RC.DOMnodes.loading).show();
 			this.waiting = true;
 		} else {
-			$('#loading').hide();
+			$(RC.DOMnodes.loading).hide();
 			this.waiting = false;
 		}
 	},
@@ -195,29 +216,30 @@ RC.question = {
 
   show: function() {
 		RC.total_seconds = 0;
-		$('.wrong').html(' ');
-		$('#topic').html(this.data.topic);
+		$(RC.DOMnodes.wrong).html(' ');
+		$(RC.DOMnodes.topic).html(this.data.topic);
 		if (RC.formula.is_formula(this.data.exercise.phrase)) {
-			$('#exercise-phrase').html(RC.formula.translate(this.data.exercise.phrase));
+			$(RC.DOMnodes.exercise_phrase).html(RC.formula.translate(this.data.exercise.phrase));
 		} else {
-			$('#exercise-phrase').html(this.data.exercise.phrase);
+			$(RC.DOMnodes.exercise_phrase).html(this.data.exercise.phrase);
 		}
-		$('#exercise-response').html(RC.formula.strip(this.data.exercise.response));
-		$('#exercise-no').html(this.data.exercise.id);
-		$('#question-no').html(this.data.question.id);
-		$('#current_interval').html(this.data.question.current_interval.toString());
-		$('#response-field').val(this.data.exercise.hint);
-		$('#formula').html(' ');
-		$('#expected-formula').html(' ');
-		if (RC.formula.is_formula(this.data.exercise.response)) {
-			$('#expected-formula').html(RC.formula.translate(this.data.exercise.response));
-		}
+		$(RC.DOMnodes.exercise_response).html(RC.formula.strip(this.data.exercise.response));
+		$(RC.DOMnodes.exercise_no).html(this.data.exercise.id);
+		$(RC.DOMnodes.question_no).html(this.data.question.id);
+		$(RC.DOMnodes.current_interval).html(this.data.question.current_interval.toString());
+		$(RC.DOMnodes.response_field).val(this.data.exercise.hint);
+		$(RC.DOMnodes.formula).html(' ');
+		$(RC.DOMnodes.expected_formula).html(' ');
 		if (this.data.question.current_interval === 0) {
-		 	$('#expected').show();
-			$('#try-now').focus();
+		 	$(RC.DOMnodes.expected).show();
+			$(RC.DOMnodes.try_now).focus();
 		} else {
-		  $('#try').show();
-			$('#response-field').focus();
+		  $(RC.DOMnodes.attempt).show();
+			$(RC.DOMnodes.response_field).focus();
+		}
+		if (RC.formula.is_formula(this.data.exercise.response)) {
+			$(RC.DOMnodes.expected_formula).html(RC.formula.translate(this.data.exercise.response));
+			RC.centre(RC.DOMnodes.expected_maths, RC.DOMnodes.expected_formula);
 		}
 	},
 	
@@ -258,15 +280,15 @@ RC.question = {
 				match = true;
 			}
 		}
-		$('#try').hide();
+		$(RC.DOMnodes.attempt).hide();
 		if (match) {
 			this.post_response('correct');
-			$('#correct').show().fadeOut(1000);
+			$(RC.DOMnodes.correct).show().fadeOut(1000);
 			this.wait_next();
 		} else {
-			$('#unexpected').show();
-			$('.wrong').html(response);
-			$('#try-again').focus();
+			$(RC.DOMnodes.unexpected).show();
+			$(RC.DOMnodes.wrong).html(response);
+			$(RC.DOMnodes.try_again).focus();
     }
 	}
 
@@ -278,50 +300,59 @@ RC.current.get_first();
 
 $(document).ready(function(){
 	
-	$('#response-form').submit(function(){
-    var response = $('#response-field').val();
+	$(RC.DOMnodes.response_form).submit(function(){
+    var response = $(RC.DOMnodes.response_field).val();
 		RC.current.check_response(response);
 		return false;
 	});
 
-	$('#try-now').click(function() {
-		$('#expected').hide();
-		$('#try').show();
-		$('#response-submit').focus();
-		$('#response-field').select();
+	$(RC.DOMnodes.try_now).click(function() {
+		$(RC.DOMnodes.expected).hide();
+		$(RC.DOMnodes.attempt).show();
+		$(RC.DOMnodes.response_submit).focus();
+		$(RC.DOMnodes.response_field).select();
 	});
 
-	$('#try-again').click(function() {
-		$('#unexpected').hide();
-		$('#try').show();
-		$('#response-field').select();
+	$(RC.DOMnodes.try_again).click(function() {
+		$(RC.DOMnodes.unexpected).hide();
+		$(RC.DOMnodes.attempt).show();
+		$(RC.DOMnodes.response_field).select();
 	});
 
-	$('#show-answer').click(function() {		
+	$(RC.DOMnodes.show_answer).click(function() {		
 		RC.current.post_response('incorrect');
 		RC.current.data.question.current_interval = 0;
-		$('#unexpected').hide();
-		$('#expected').show();
-		$('#try-now').focus();
+		$(RC.DOMnodes.unexpected).hide();
+		$(RC.DOMnodes.expected).show();
+		RC.centre(RC.DOMnodes.expected_maths, RC.DOMnodes.expected_formula);
+		$(RC.DOMnodes.try_now).focus();
 	});
 
-	$('#response-field').each(function(){
-		RC.total_seconds = 0;
-		set_interval_count();
+	$(RC.DOMnodes.response_field).each(function(){
+		RC.timer.total_seconds = 0;
+		RC.timer.set_interval_count();
 	});
 
-	$('#response-field').keyup(function(){
+	$(RC.DOMnodes.response_field).keyup(function(){
 		if (RC.formula.is_formula(RC.current.data.exercise.response)) {
-	    var response = $('#response-field').val();
-			$('#formula').html(RC.formula.translate(response));
+	    var response = $(RC.DOMnodes.response_field).val();
+			$(RC.DOMnodes.formula).html(RC.formula.translate(response));
+			RC.centre(RC.DOMnodes.maths, RC.DOMnodes.formula);
 		}
-		RC.seconds_to_timeout = RC.timeout;
+		RC.timer.seconds_to_timeout = RC.timer.timeout;
 	});
 
-	$('#timeout').click(function(){
-		$('#timeout').hide();
-		$('#response-field').focus();
-		set_interval_count();
+	$(RC.DOMnodes.timeout).click(function(){
+		$(RC.DOMnodes.timeout).hide();
+		$(RC.DOMnodes.content).removeClass('faded');
+		$(RC.DOMnodes.response_field).focus();
+		RC.timer.set_interval_count();
+	});
+
+	$(RC.DOMnodes.content).click(function(){
+		if ($(RC.DOMnodes.content).hasClass('faded')) {
+			return false;
+		}
 	});
 
 });
