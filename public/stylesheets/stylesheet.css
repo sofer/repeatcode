@@ -10,7 +10,7 @@ input:focus, textarea:focus { xbackground-color: #ffc; }
 .default	{ width: 900px; height: 500px; }
 .topic	{ width: 900px; }
 #message-envelope { margin: 0 auto; width: 900px; top: border: 1px dashed; }
-#timeout	{ position: absolute; border: 1px solid #666; left: 40px; right: 40px; top: 40px; bottom: 40px; background: #ffc; padding-top: 100px; text-align: center; display: none; }
+#timeout	{ position: absolute; border: 1px solid #666; left: 40px; right: 40px; top: 40px; bottom: 40px; background: #ffc; padding-top: 200px; text-align: center; display: none; }
 #timeout h2	{ font-size: 18px; }
 #header	{ margin: 4px; padding-bottom: 2px; border-bottom: 1px solid; }
 #footer	{ position: absolute; left: 0; right: 0; bottom: 0; margin: 4px; padding-top: 2px; border-top: 1px solid; }
@@ -25,8 +25,8 @@ input:focus, textarea:focus { xbackground-color: #ffc; }
 #exercise-phrase	{ margin-top: 30px; text-align: center; line-height: 1.2;  font-size: 24px; }
 #response-field	{ width: 442px; margin-bottom: 30px; font-size: 14px; }
 #correct { position: absolute; bottom: 100px; left: 0; right: 0; font: #0f0; }
-#formula, #expected-formula { float: left; xdisplay: block; height: 60px; xmargin: 0 0 20px 220px; }
-#maths, #expected-maths { height: 80px; }
+#formula, #expected-formula, #phrase-formula { float: left; xdisplay: block; height: 60px; xmargin: 0 0 20px 220px; }
+#maths, #expected-maths, #phrase-maths { height: 80px; }
 
 #course_target	{ text-align: right; width: 30px; height: 13px; font-size: 12px; }
 

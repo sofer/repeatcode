@@ -33,6 +33,8 @@ RC.DOMnodes = {
 	response_submit: '#response_submit',
 	maths: '#maths',
 	formula: '#formula',
+	phrase_maths: '#phrase-maths',
+	phrase_formula: '#phrase-formula',	
 	expected_maths: '#expected-maths',
 	expected_formula: '#expected-formula',
 };
@@ -219,7 +221,8 @@ RC.question = {
 		$(RC.DOMnodes.wrong).html(' ');
 		$(RC.DOMnodes.topic).html(this.data.topic);
 		if (RC.formula.is_formula(this.data.exercise.phrase)) {
-			$(RC.DOMnodes.exercise_phrase).html(RC.formula.translate(this.data.exercise.phrase));
+			$(RC.DOMnodes.phrase_formula).html(RC.formula.translate(this.data.exercise.phrase));
+			RC.centre(RC.DOMnodes.phrase_maths, RC.DOMnodes.phrase_formula);
 		} else {
 			$(RC.DOMnodes.exercise_phrase).html(this.data.exercise.phrase);
 		}
