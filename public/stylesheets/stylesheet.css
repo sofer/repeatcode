@@ -17,12 +17,12 @@ input:focus, textarea:focus { xbackground-color: #ffc; }
 #main	{ position: absolute; top: 22px; right: 0; bottom: 36px; left: 0; margin: 4px 4px 0 4px; }
 
 /* lesson id's */
-#question	{ }
+#question	{ margin-top: 30px; text-align: center; line-height: 1.2;  font-size: 24px; }
 #xresponse	{ position: absolute; bottom: 200px; left: 0; right: 0; text-align: center; font-size: 28px; line-height: 1.2; }
 #response	{ position: absolute; bottom: 20px; left: 0; right: 0; text-align: center; font-size: 28px; line-height: 1.2; }
 #tabs { position: absolute; bottom: 0; left: 0; right: 0; padding-top: 0px; border-top: 1px solid; }
 #completed { margin: 40px; text-align: center; font-size: 18px; }
-#exercise-phrase	{ margin-top: 30px; text-align: center; line-height: 1.2;  font-size: 24px; }
+#exercise-phrase	{ }
 #response-field	{ width: 442px; margin-bottom: 30px; font-size: 14px; }
 #correct { position: absolute; bottom: 100px; left: 0; right: 0; font: #0f0; }
 #formula, #expected-formula, #phrase-formula { float: left; xdisplay: block; height: 60px; xmargin: 0 0 20px 220px; }
@@ -33,7 +33,7 @@ input:focus, textarea:focus { xbackground-color: #ffc; }
 /* maths */
 .sup { vertical-align: 50%; font-size: 16px; }
 .sub { vertical-align: -50%; font-size: 16px; }
-.radical { border-top: 2px solid; padding-top: 4px; }
+.radical { border-top: 3px solid; padding-top: 4px; }
 .denominate { display: block; border-top: 3px solid; vertical-align: -100%; }
 .term {float: left; height: 60px; padding: 4px; }
 

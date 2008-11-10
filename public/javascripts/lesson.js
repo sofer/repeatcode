@@ -46,7 +46,7 @@ RC.centre = function(outer, inner) {
 
 RC.timer = {
 
-	timeout: 30,
+	timeout: 60,
 	seconds_to_timeout: RC.timeout,
 	total_seconds: 0,
 	interval_timer: {},
@@ -77,9 +77,10 @@ RC.timer = {
 
 RC.formula = {
 	
-	close_char: ':',
-	term_separator: ';',
+	close_char: ';',
+	term_separator: '\\',
 	formula_prefix: '=',
+	html_entity_start: '&',
 	
 	keys: {
 		'_' : { char: '', class: 'denominate' },
@@ -90,10 +91,23 @@ RC.formula = {
 
 	},
 	
+	html_entity: function(str) {
+		
+		
+	},
+	
+	
 	term: function(str) {
 		if (str) {
 			var car = str.charAt(0);
 			var cdr = str.slice(1);
+			if (car === this.html_entity_start) { //special case for HTML entities
+				var pattern = /^([^\s;]+;)(.*)/;
+				var result = cdr.match(pattern);
+				if (result) {
+					return this.html_entity_start + result[1] + this.term(result[2]);
+				}
+			}
 			if (car === this.close_char) {
 				return '</span>' + this.term(cdr);
 			}
@@ -114,7 +128,7 @@ RC.formula = {
 		var phrase = '';
 		var i;
 		for (i=0; i<arr.length; i+=1) {
-			phrase += '<span class="term">' + this.term(arr[i]) + '</span>';
+			phrase += '<div class="term">' + this.term(arr[i]) + '</div>';
 		}
 		return phrase;
 	},
@@ -221,9 +235,11 @@ RC.question = {
 		$(RC.DOMnodes.wrong).html(' ');
 		$(RC.DOMnodes.topic).html(this.data.topic);
 		if (RC.formula.is_formula(this.data.exercise.phrase)) {
+			$(RC.DOMnodes.exercise_phrase).empty();
 			$(RC.DOMnodes.phrase_formula).html(RC.formula.translate(this.data.exercise.phrase));
 			RC.centre(RC.DOMnodes.phrase_maths, RC.DOMnodes.phrase_formula);
 		} else {
+			$(RC.DOMnodes.phrase_formula).empty();
 			$(RC.DOMnodes.exercise_phrase).html(this.data.exercise.phrase);
 		}
 		$(RC.DOMnodes.exercise_response).html(RC.formula.strip(this.data.exercise.response));
@@ -272,7 +288,7 @@ RC.question = {
 		response = response.simplify();
 		var expected = this.data.exercise.response.simplify();
 		var match = false;
-		if (RC.formula.is_formula(expected)) {
+		if (RC.formula.is_formula(expected)) { // no pattern matching on formulas
 			expected = RC.formula.strip(expected);
 			if (expected === response) {
 				match = true;
