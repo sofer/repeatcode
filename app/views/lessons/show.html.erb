@@ -22,11 +22,12 @@
 		</div>
 
 		<div id="question">
-			<div id="phrase-maths">
-				<div id="phrase-formula"> </div>
-			</div>
 			<div id="exercise-phrase"> 
 			</div>
+			<div id="phrase-maths" class="hidden">
+				<div id="phrase-formula"> </div>
+			</div>
+			<div id="graph" class="hidden"> </div>
 		</div>
 	
 		<div id="completed" class="hidden">
@@ -58,6 +59,14 @@
 				<form id="response-form">
 					<%= text_field_tag "response-field", nil, :autocomplete => "off" %>
 				</form>
+				<div id="palette" class="hidden">
+					<div class="button" value="%">Root</div>
+					<div class="button" value="^">Power</div>
+					<div class="button" value="_">Subscript</div>
+					<div class="button" value=" ">Close term</div>
+					<div class="button" value="/">Fraction</div>
+					<div class="button" value="\">End fraction</div> 
+				</div>
 			</div>
 
 			<div id="unexpected" class="hidden">
@@ -71,7 +80,7 @@
 			</div>
 
 		</div>
-	
+	 
 		<% if 1==0 %> <!-- leave this for now. it's going to be a  bit different -->
 		<div id="tabs">
 			<div class="data tab">
@@ -111,6 +120,15 @@
 <div id="timeout">
 	<h2>Taking time out</h2>
 	Click to continue
+</div>
+
+<div id="maths-palette" class="hidden">
+	<div class="button">Root: %</div>
+	<div class="button">Power: ^</div>
+	<div class="button">Subscript: _</div>
+	<div class="button">Space: close term</div>
+	<div class="button">Fraction: /</div>
+	<div class="button">End fraction: \</div> 
 </div>
 
 

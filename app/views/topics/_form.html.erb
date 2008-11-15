@@ -12,6 +12,19 @@
 			<div class="toggle-switch">
 				<%= link_to "Import a list", "#" %>
 			</div>
+			<div class="phrase">
+				Question/phrase
+			</div>
+			<div class="response">
+				Response
+			</div>
+			<div class="hint">
+				Hint (or '#' for graph)
+			</div>
+			<div class="insert">
+				Insertion point (for code)
+			</div>
+			<div class="clear"> </div>
 		  <%= render :partial => "exercise", :collection => @topic.exercises %>
 		</div>
 		<div class="link append-to-list">

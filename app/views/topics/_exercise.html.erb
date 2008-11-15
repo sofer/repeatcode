@@ -1,19 +1,20 @@
 <div class="item">
   <% fields_for_exercise(exercise) do |exercise_form| %>
-		<span class="phrase">
+		<div class="phrase">
 			<%= exercise_form.text_field :phrase %>
-		</span>
-		<span class="response">
+		</div>
+		<div class="response">
 			<%= exercise_form.text_field :response %>
-		</span>
-		<span class="hint">
+		</div>
+		<div class="hint">
 			<%= exercise_form.text_field :hint %>
-		</span>
-		<span class="insert">
+		</div>
+		<div class="insert">
 			<%= exercise_form.text_field :insert %>
-		</span>
-		<span class="remove">
-			<%= link_to 'Delete', topic_exercise_path(@topic, exercise), :method => :delete %></td
-		</span>
+		</div>
+		<div class="remove">
+			<%= link_to 'Delete', topic_exercise_path(@topic, exercise), :method => :delete %>
+		</div>
+		<div class="clear">
 	<% end %>
 </div>
