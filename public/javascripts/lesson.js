@@ -104,11 +104,12 @@ RC.timer = {
 
 RC.formula = {
 	
-	close_char: ' ',
+	close_char: ';',
 	term_separator: '\\',
 	formula_prefix: '=',
 	html_entity_start: '&',
 	denominator: '/',
+	space: ' ',
 
 	spancount: 0,
 	
@@ -131,11 +132,9 @@ RC.formula = {
 					return this.html_entity_start + result[1] + this.term(result[2]);
 				}
 			}
-			if (car === this.close_char) { //only use space as closing marker if inside a span
-				if (this.spancount > 0) {
-					this.spancount -= 1;
-					return '</span>' + this.term(cdr);
-				}
+			if (car === this.close_char) {
+				this.spancount -= 1;
+				return '</span>' + this.term(cdr);
 			}
 			if (car === this.denominator) {
 				if (this.spancount == 0) {
@@ -152,6 +151,7 @@ RC.formula = {
 		}
 	},
 
+
 	translate: function(str) {
 		if (str && str.charAt(0) === this.formula_prefix) {
 			str = str.slice(1);
@@ -162,6 +162,11 @@ RC.formula = {
 		for (i=0; i<arr.length; i+=1) {
 			this.spancount = 0;
 			phrase += '<div class="term">' + this.term(arr[i]) + '</div>';
+		}
+		// substitute close_char for space
+		if (str.slice(-1) === this.space && this.spancount > 0) {
+			str = str.slice(0,str.length-1) + this.close_char;
+			$(RC.DOMnodes.response_field).val(str);
 		}
 		return phrase;
 	},
