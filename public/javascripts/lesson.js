@@ -232,17 +232,11 @@ RC.question = {
 		}
 	},
 	
-	successful_load: function (json) {
-		if (json.status) {
+	tidy: function (json) {
 			this.loading(false);
 			if (json.question && json.question.current_interval == null) {
 				json.question.current_interval = 0;
 			}
-			return true;
-		} else {
-			alert('Server error. Please reload the page');
-			return false;
-		}
 	},
 	
 	get_first: function () {
@@ -251,13 +245,15 @@ RC.question = {
 	  $.ajax({
 			url: this.json_url,
 			dataType: 'json',
-			success: function(json){
-				if (that.successful_load(json)) {
-					that.data = json;
-					if (that.not_finished(that.data)) {
-						that.show();
-						that.get_next();
-					}
+			error: function () {
+				that.get_first();
+			},
+			success: function (json) {
+				that.data = json;
+				if (that.not_finished(that.data)) {
+					that.tidy(json);
+					that.show();
+					that.get_next();
 				}
 			}
 	  });
@@ -271,10 +267,12 @@ RC.question = {
 			url: this.json_url,
 			data: this.ignored_data(),
 			dataType: 'json',
+			error: function () {
+				that.get_next();
+			},
 			success: function(json){
-				if (that.successful_load(json)) {
-					that.next = json;
-				}
+				that.next = json;
+				that.tidy(json);
 			}
 	  });
 	},
