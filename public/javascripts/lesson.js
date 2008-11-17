@@ -11,6 +11,7 @@ RC.DOMnodes = {
 	content: '#content',
 	seconds: '#seconds',
 	timeout: '#timeout',
+	start: '#start',
 	loading: '#loading',
 	topic: '#topic',
 	question: '#question',
@@ -252,6 +253,7 @@ RC.question = {
 				that.data = json;
 				if (that.not_finished(that.data)) {
 					that.tidy(json);
+					//alert('just about to show');
 					that.show();
 					that.get_next();
 				}
@@ -297,6 +299,7 @@ RC.question = {
 
   show: function() {
 		RC.total_seconds = 0;
+		$(RC.DOMnodes.start).hide();
 		$(RC.DOMnodes.exercise_response).show();
 		$(RC.DOMnodes.palette).hide();
 		$(RC.DOMnodes.wrong).html(' ');

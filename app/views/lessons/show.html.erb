@@ -21,15 +21,12 @@
 			Elapsed time: <span id="elapsed-time"></span> minutes
 		</div>
 
-		<div id="question">
-			<div id="exercise-phrase"> 
+		<div id="start">
+			<div>
+				Course loading...<br><br>(<%= link_to "reload" %>)
 			</div>
-			<div id="phrase-maths" class="hidden">
-				<div id="phrase-formula"> </div>
-			</div>
-			<div id="graph" class="hidden"> </div>
 		</div>
-	
+
 		<div id="completed" class="hidden">
 			<div>
 				Course completed.<br><br>Come back again in a few days for a review.<br><br>
@@ -39,6 +36,15 @@
 			</div>
 		</div>
 
+		<div id="question">
+			<div id="exercise-phrase"> 
+			</div>
+			<div id="phrase-maths" class="hidden">
+				<div id="phrase-formula"> </div>
+			</div>
+			<div id="graph" class="hidden"> </div>
+		</div>
+	
 		<div id="response">
 		
 			<div id="correct" class="hidden">Correct</div>
