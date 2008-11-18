@@ -18,7 +18,7 @@ class CoursesController < ApplicationController
   def show
     @course = Course.find(params[:id])
     @lessons =  @course.lessons.paginate(
-                  :per_page => 10, 
+                  :per_page => 20, 
                   :page => params[:page], 
                   :order => "id DESC",
                   :conditions => "updated_at > created_at"

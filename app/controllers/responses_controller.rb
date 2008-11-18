@@ -4,7 +4,7 @@ class ResponsesController < ApplicationController
   
   def index
     @responses = Response.paginate(
-                  :per_page => 24, 
+                  :per_page => 20, 
                   :page => params[:page], 
                   :order => "id DESC"
                   )

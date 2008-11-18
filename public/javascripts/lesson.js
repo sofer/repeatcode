@@ -10,6 +10,7 @@ RC.DOMnodes = {
 	wrong: '.wrong',
 	content: '#content',
 	seconds: '#seconds',
+	elapsed_time: '#elapsed-time',
 	timeout: '#timeout',
 	start: '#start',
 	loading: '#loading',
@@ -75,30 +76,56 @@ RC.augmentResponse = function(response_field) {
 RC.timer = {
 
 	timeout: 120,
-	seconds_to_timeout: RC.timeout,
-	total_seconds: 0,
-	interval_timer: {},
+	seconds_to_timeout: 120,
+	question_seconds: 0,
+	lesson_seconds: 0,
+	timed_out: false,
 	
-	set_interval_count: function () {
-		this.seconds_to_timeout = this.timeout;	
-		this.interval_timer = setInterval('RC.timer.increment_seconds()', 1000);	
+	tick: function () {
+		RC.timer.increment_seconds(); //apparently, 'this' won't work from inside a setInterval call
+	},  
+	
+	update_question_seconds: function () {
+		$(RC.DOMnodes.seconds).text(this.question_seconds);
+	},
+	
+	update_lesson_minutes: function () {
+		var minutes =(this.lesson_seconds - this.lesson_seconds % 60) / 60;
+		$(RC.DOMnodes.elapsed_time).text(minutes);
 	},
 
 	increment_seconds: function () {
-	  this.total_seconds = this.total_seconds + 1;
-		this.seconds_to_timeout = this.seconds_to_timeout - 1;
-		if (this.seconds_to_timeout === 0) {
-			this.total_seconds = this.total_seconds - this.timeout;
-			this.timeout_box();
+		if (!this.timed_out) {
+		  this.lesson_seconds += 1;
+		  this.question_seconds += 1;
+			this.seconds_to_timeout -= 1;
+			if (this.seconds_to_timeout === 0) {
+				this.question_seconds = this.question_seconds - this.timeout;
+				this.timeout_box();
+			}
+			this.update_question_seconds();
+			this.update_lesson_minutes();
 		}
-		$(RC.DOMnodes.seconds).text(this.total_seconds);
+	},
+
+	reset_timeout: function () {
+		this.seconds_to_timeout = this.timeout;
+	},
+	
+	reset_seconds: function () {
+		this.question_seconds = 0;
 	},
 
 	timeout_box: function () {
 			$(RC.DOMnodes.timeout).slideDown('slow');
 			$(RC.DOMnodes.content).addClass('faded');
 			$(RC.DOMnodes.timeout).focus();
-			clearInterval(this.interval_timer);
+			this.seconds_to_timeout = this.timeout;
+			this.timed_out = true;
+	},
+	
+	end_timeout: function () {
+		this.timed_out = false;
 	}
 
 };
@@ -199,11 +226,6 @@ RC.question = {
 	ignore: false,
 	next: { status: 'waiting' },
 	
-	// wait for slow server
-	wait_next: function () {
-		this.waiter = setInterval('RC.current.show_next()', 100);
-	},
-
 	ignored_data: function() {
 		if (this.ignore) {
 			return 'ignore=' + this.data.question.id
@@ -223,25 +245,21 @@ RC.question = {
 	  }
 	},
 
-	loading: function (on) {
-		if (on) {
-			$(RC.DOMnodes.loading).show();
-			this.waiting = true;
-		} else {
-			$(RC.DOMnodes.loading).hide();
-			this.waiting = false;
+	loading: function () {
+		$(RC.DOMnodes.loading).show();
+		this.waiting = true;
+	},
+	
+	loaded: function (json) {
+		$(RC.DOMnodes.loading).hide();
+		this.waiting = false;
+		if (json.question && json.question.current_interval == null) {
+			json.question.current_interval = 0;
 		}
 	},
 	
-	tidy: function (json) {
-			this.loading(false);
-			if (json.question && json.question.current_interval == null) {
-				json.question.current_interval = 0;
-			}
-	},
-	
 	get_first: function () {
-		this.loading(true);
+		this.loading();
 		that = this;
 	  $.ajax({
 			url: this.json_url,
@@ -252,8 +270,7 @@ RC.question = {
 			success: function (json) {
 				that.data = json;
 				if (that.not_finished(that.data)) {
-					that.tidy(json);
-					//alert('just about to show');
+					that.loaded(json);
 					that.show();
 					that.get_next();
 				}
@@ -273,8 +290,8 @@ RC.question = {
 				that.get_next();
 			},
 			success: function(json){
+				that.loaded(json);
 				that.next = json;
-				that.tidy(json);
 			}
 	  });
 	},
@@ -298,7 +315,7 @@ RC.question = {
 	},
 
   show: function() {
-		RC.total_seconds = 0;
+		RC.timer.reset_seconds();
 		$(RC.DOMnodes.start).hide();
 		$(RC.DOMnodes.exercise_response).show();
 		$(RC.DOMnodes.palette).hide();
@@ -338,8 +355,10 @@ RC.question = {
 	},
 	
 	show_next: function() {
-		if (!this.waiting) {
-			clearInterval(this.waiter);
+		if (this.waiting) { // still waiting: start again
+			$(RC.DOMnodes.start).show();
+			this.get_first();
+		} else {
 			if (this.not_finished(this.next)) { 
 				this.data = this.next;
 				this.show();
@@ -353,7 +372,7 @@ RC.question = {
 		var post_url = '/questions/' + this.data.question.id + '/responses.json';
 		$.post(post_url, {
 			'response[result]': result,
-		  'response[seconds_taken]': RC.total_seconds, 
+		  'response[seconds_taken]': RC.timer.question_seconds, 
 	    'response[interval]': this.data.question.current_interval,
 		  'authenticity_token': AUTH_TOKEN 
 		});
@@ -378,7 +397,7 @@ RC.question = {
 		if (match) {
 			this.post_response('correct');
 			$(RC.DOMnodes.correct).show().fadeOut(1000);
-			this.wait_next();
+			this.show_next();
 		} else {
 			$(RC.DOMnodes.unexpected).show();
 			$(RC.DOMnodes.wrong).html(response);
@@ -391,6 +410,7 @@ RC.question = {
 
 RC.current = RC.question;
 RC.current.get_first();
+RC.interval_timer = setInterval(RC.timer.tick, 1000);
 
 $(document).ready(function(){
 	
@@ -422,10 +442,11 @@ $(document).ready(function(){
 		$(RC.DOMnodes.try_now).focus();
 	});
 
+/* remove?
 	$(RC.DOMnodes.response_field).each(function(){
-		RC.timer.total_seconds = 0;
-		RC.timer.set_interval_count();
+		RC.timer.reset_timeout();
 	});
+*/
 
 	$(RC.DOMnodes.response_field).keyup(function(key){
 		RC.augmentResponse(RC.DOMnodes.response_field);
@@ -434,7 +455,7 @@ $(document).ready(function(){
 			$(RC.DOMnodes.formula).html(RC.formula.translate(response));
 			RC.centre(RC.DOMnodes.maths, RC.DOMnodes.formula);
 		}
-		RC.timer.seconds_to_timeout = RC.timer.timeout;
+		RC.timer.reset_timeout();
 	});
 
 	$(RC.DOMnodes.button).click(function () {
@@ -452,7 +473,7 @@ $(document).ready(function(){
 		$(this).hide();
 		$(RC.DOMnodes.content).removeClass('faded');
 		$(RC.DOMnodes.response_field).focus();
-		RC.timer.set_interval_count();
+		RC.timer.end_timeout();
 	});
 
 	$(RC.DOMnodes.content).click(function(){
