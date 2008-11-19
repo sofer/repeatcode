@@ -32,22 +32,23 @@
 		</div>
 	</div>
 	<div id="import-frame" style="display:none" class="toggleable">
-		<div class="toggle-switch">
-			<%= link_to "Back to items", "#" %>
-		</div>
+		<span class="toggle-switch">
+			<%= link_to "Cancel import", "#" %>
+		</span> | 
+		<span><%= link_to "Import items now", "#", :id => "add-items" %></span>
 		<br>
 		<%= text_area_tag "import" %>
-		<br>
-		<%= link_to "Add items now", "#", :id => "add-items" %>
+		<br><br>
 		<div class="link">
 		</div>	
 	</div>
 </div>
-<div id="data">
+
+<div id="data" class="hidden">
 	<%= f.label :data %><br />
 	<%= f.text_area :data %><br>
-<div>
-<div id="code">
+</div>
+<div id="code" class="hidden">
  	<%= f.label :code %><br />
 	<%= f.text_area :code %><br>
 </div>

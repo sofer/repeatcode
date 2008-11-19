@@ -236,7 +236,8 @@ RC.question = {
 
 	not_finished: function (data) {
 	  if (data.status === 'end') {
-			$(RC.DOMnodes.question).hide();		
+			$(RC.DOMnodes.start).hide();
+			$(RC.DOMnodes.question).hide();
 			$(RC.DOMnodes.response).hide();
     	$(RC.DOMnodes.completed).show();
 	    return false;
@@ -298,16 +299,21 @@ RC.question = {
 
 	hint: function(hint_text) {
 		var math_char = '#';
+		var split_char = '|';
 		$(RC.DOMnodes.response_field).val('');
 	 	$(RC.DOMnodes.graph).hide();
 		if (!hint_text) return;
 		if (hint_text.charAt(0) === math_char) {
 			var data = [];
-			var fx = hint_text.slice(1);
-			for (var x=-4; x<=4.1; x+=.1) {
-	      data.push([x, eval(fx)]); //EVIL eval
+			var functs = hint_text.slice(1);
+			var fx_array = functs.split(split_char);
+			for (var fx=0; fx<fx_array.length; fx+=1) {
+				data.push([]);
+				for (var x=-4; x<=4.1; x+=.1) {
+		      data[fx].push([x, eval(fx_array[fx])]); //EVIL eval. Is there another way of doing this?
+				}
 			}
-			$.plot($($(RC.DOMnodes.graph)), [ data ], { xaxis: { ticks: [-4,0,4] }, yaxis: { min: -5, max: 10, ticks: [0,10], labelWidth: '10px' }, shadowSize: 0 } );
+			$.plot($($(RC.DOMnodes.graph)), data, { xaxis: { ticks: [-4,0,4] }, yaxis: { min: -5, max: 10, ticks: [0,10], labelWidth: '10px' }, shadowSize: 0 } );
 		 	$(RC.DOMnodes.graph).show();
 		} else {
 			$(RC.DOMnodes.response_field).val(hint_text);
