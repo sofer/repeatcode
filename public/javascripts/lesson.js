@@ -266,7 +266,7 @@ RC.question = {
 			url: this.json_url,
 			dataType: 'json',
 			error: function () {
-				that.get_first();
+				//that.get_first();
 			},
 			success: function (json) {
 				that.data = json;
@@ -288,7 +288,7 @@ RC.question = {
 			data: this.ignored_data(),
 			dataType: 'json',
 			error: function () {
-				that.get_next();
+				//that.get_next();
 			},
 			success: function(json){
 				that.loaded(json);

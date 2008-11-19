@@ -1,7 +1,7 @@
 class Topic < ActiveRecord::Base
   belongs_to :subject
   acts_as_list :scope => :subject
-  has_many :exercises
+  has_many :exercises, :dependent => :destroy
   
   after_update :save_exercises
 
