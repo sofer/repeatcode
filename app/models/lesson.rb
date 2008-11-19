@@ -29,8 +29,9 @@ class Lesson < ActiveRecord::Base
     if self.course.questions.empty?
       
       # get first question
-      return new_topic(course.subject.topics.first)
-      
+      if course.subject.topics.first
+        return new_topic(course.subject.topics.first)
+      end
     else
     
       # get the last question added to the course
@@ -51,18 +52,8 @@ class Lesson < ActiveRecord::Base
     end
   end
   
-  # not currently in use
-  def jump_topic
-    last_question = course.questions.find(:first, :order => 'id DESC')    
-    next_topic = last_question.exercise.topic.lower_item
-    if next_topic
-      return new_topic(next_topic)
-    end
-  end
-  
 private
 
-# REMOVE
   def add_question(exercise)
     new_question = course.questions.new( :exercise_id => exercise.id)
     if new_question.save
@@ -71,18 +62,19 @@ private
     end
   end
 
-  # REMOVE
   def new_topic(topic)
     next_exercise = topic.exercises.first
-    next_question = add_question(next_exercise)
-    if topic.add_together
-      next_exercise = next_exercise.lower_item
-      while next_exercise
-        add_question(next_exercise)
+    if next_exercise
+      next_question = add_question(next_exercise)
+      if topic.add_together
         next_exercise = next_exercise.lower_item
+        while next_exercise
+          add_question(next_exercise)
+          next_exercise = next_exercise.lower_item
+        end
       end
+      return next_question
     end
-    return next_question
   end
 
   def set_progress
