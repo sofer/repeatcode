@@ -19,7 +19,6 @@ input:focus, textarea:focus { xbackground-color: #ffc; }
 
 /* lesson id's */
 #question	{ margin-top: 30px; text-align: center; line-height: 1.2;  font-size: 24px; }
-#xresponse	{ position: absolute; bottom: 200px; left: 0; right: 0; text-align: center; font-size: 28px; line-height: 1.2; }
 #response	{ position: absolute; bottom: 20px; left: 0; right: 0; text-align: center; font-size: 28px; line-height: 1.2; }
 #tabs { position: absolute; bottom: 0; left: 0; right: 0; padding-top: 0px; border-top: 1px solid; }
 #start, #completed { margin: 150px; text-align: center; font-size: 18px; }

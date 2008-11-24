@@ -49,11 +49,12 @@
 		
 			<div id="correct" class="hidden">Correct</div>
 
+			<div class="incorrect space" id="wrong"></div>
+
 			<div id="expected" class="hidden">
 				<div id="expected-maths">
 					<div id="expected-formula"> </div>
 				</div>
-				<div class="incorrect space wrong"> </div>
 				<div id="exercise-response"> </div>
 				<%= submit_tag "OK", :id => "try-now", :class => "space"%>
 			</div>
@@ -75,9 +76,7 @@
 					<div class="button" value="n$r=1 ">&Sigma;</div>
 				</div>
 			</div>
-
-			<div id="unexpected" class="hidden">
-				<div class="incorrect space wrong"></div>
+			<div id="wrong-answer" class="hidden">
 				<div class="left">
 					<%= submit_tag "Try again", :id => "try-again" %>
 				</div>

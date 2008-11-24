@@ -7,7 +7,6 @@ String.prototype.simplify = function () {
 };
 
 RC.DOMnodes = {
-	wrong: '.wrong',
 	content: '#content',
 	seconds: '#seconds',
 	elapsed_time: '#elapsed-time',
@@ -22,7 +21,8 @@ RC.DOMnodes = {
 	unexpected: '#unexpected',
 	expected: '#expected',
 	correct: '#correct',
-	wrong: '.wrong',
+	wrong: '#wrong',
+	wrong_answer: '#wrong-answer',
 	try_now: '#try-now',
 	try_again: '#try-again',
 	show_answer: '#show-answer',
@@ -374,7 +374,8 @@ RC.question = {
 		this.previously_incorrect = false;
 		this.post_response('incorrect');
 		this.data.question.current_interval = 0;
-		$(RC.DOMnodes.unexpected).hide();
+		$(RC.DOMnodes.attempt).hide();
+		$(RC.DOMnodes.wrong_answer).hide();
 		$(RC.DOMnodes.expected).show();
 		RC.centre(RC.DOMnodes.expected_maths, RC.DOMnodes.expected_formula);
 		$(RC.DOMnodes.try_now).focus();
@@ -390,7 +391,7 @@ RC.question = {
 		  'authenticity_token': AUTH_TOKEN 
 		};
 		//show next question before posting response
-		if (!this.waiting && this.not_finished(this.next)) { 
+		if (result == 'correct' && !this.waiting && this.not_finished(this.next)) { 
 			this.data = this.next;
 			this.show();
 		}
@@ -402,12 +403,14 @@ RC.question = {
 				that.post_response(result);
 			},
 			success: function(json){
-				if (this.waiting) { // still haven't picked up next question. Start again.
-					$(RC.DOMnodes.start).show();
-					this.get_first();
-				} else {
-					that.next = { status: 'waiting' };
-					that.get_next();
+				if (result === 'correct') { //only get next if correcrt answer given
+					if (this.waiting) { // still haven't picked up next question. Start again.
+						$(RC.DOMnodes.start).show();
+						this.get_first();
+					} else {
+						that.next = { status: 'waiting' };
+						that.get_next();
+					}
 				}
 			}
 	  });
@@ -438,7 +441,7 @@ RC.question = {
 				this.show_answer();
 			} else {
 				this.previously_incorrect = true; // allow one re-try
-				$(RC.DOMnodes.unexpected).show();
+				$(RC.DOMnodes.wrong_answer).show();
 				$(RC.DOMnodes.wrong).html(response);
 				$(RC.DOMnodes.try_again).focus();
 			}
@@ -468,7 +471,7 @@ $(document).ready(function(){
 	});
 
 	$(RC.DOMnodes.try_again).click(function() {
-		$(RC.DOMnodes.unexpected).hide();
+		$(RC.DOMnodes.wrong_answer).hide();
 		$(RC.DOMnodes.attempt).show();
 		$(RC.DOMnodes.response_field).select();
 	});
@@ -477,15 +480,10 @@ $(document).ready(function(){
 		RC.current.show_answer();
 	});
 
-/* remove?
-	$(RC.DOMnodes.response_field).each(function(){
-		RC.timer.reset_timeout();
-	});
-*/
-
 	$(RC.DOMnodes.response_field).keyup(function(key){
 		RC.augmentResponse(RC.DOMnodes.response_field);
 		if (RC.formula.is_formula(RC.current.data.exercise.response)) {
+			// move this into function: same 3 lines repeated below
 	    var response = $(RC.DOMnodes.response_field).val();
 			$(RC.DOMnodes.formula).html(RC.formula.translate(response));
 			RC.centre(RC.DOMnodes.maths, RC.DOMnodes.formula);
