@@ -370,20 +370,6 @@ RC.question = {
 		
 	},
 	
-	show_next: function() {
-		if (this.waiting) { // still waiting: start again
-			$(RC.DOMnodes.start).show();
-			this.get_first();
-		} else {
-			if (this.not_finished(this.next)) { 
-				this.data = this.next;
-				this.show();
-				this.next = { status: 'waiting' };
-				this.get_next();
-			}
-		}
-	},
-	
 	show_answer: function () {
 		this.previously_incorrect = false;
 		this.post_response('incorrect');
@@ -395,13 +381,36 @@ RC.question = {
 	},
 	
 	post_response: function (result) {
+		var that = this;
 		var post_url = '/questions/' + this.data.question.id + '/responses.json';
-		$.post(post_url, {
+		var post_data = {
 			'response[result]': result,
 		  'response[seconds_taken]': RC.timer.question_seconds, 
 	    'response[interval]': this.data.question.current_interval,
 		  'authenticity_token': AUTH_TOKEN 
-		});
+		};
+		//show next question before posting response
+		if (!this.waiting && this.not_finished(this.next)) { 
+			this.data = this.next;
+			this.show();
+		}
+		$.ajax({
+			url: post_url,
+			data: post_data,
+			type: 'POST',
+			error: function () {
+				that.post_response(result);
+			},
+			success: function(json){
+				if (this.waiting) { // still haven't picked up next question. Start again.
+					$(RC.DOMnodes.start).show();
+					this.get_first();
+				} else {
+					that.next = { status: 'waiting' };
+					that.get_next();
+				}
+			}
+	  });
 	},
 	
 	check_response: function (response) {
@@ -424,7 +433,6 @@ RC.question = {
 			this.previously_incorrect = false;
 			this.post_response('correct');
 			$(RC.DOMnodes.correct).show().fadeOut(1000);
-			this.show_next();
 		} else {
 			if (this.previously_incorrect) {
 				this.show_answer();

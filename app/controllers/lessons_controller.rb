@@ -35,7 +35,7 @@ class LessonsController < ApplicationController
           else
             topic = "question removed from course"
           end
-          render :json => { 'status' => 'ok', 'exercise' => question.exercise, 'question' => question, 'topic' => topic }
+          render :json => { 'ignored' => params[:ignore], 'status' => 'ok', 'exercise' => question.exercise, 'question' => question, 'topic' => topic }
         else
           render :json => { 'status' => 'end' }
         end

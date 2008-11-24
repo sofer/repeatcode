@@ -16,7 +16,7 @@ private
       self.question.course.current_lesson.increment_correct
       question.reset_interval_and_datetime(self.interval)
     else
-      question.reset_interval_and_datetime(-1)
+      question.reset_interval_and_datetime(0)
     end
     question.save!
   end
