@@ -39,6 +39,9 @@ input:focus, textarea:focus { xbackground-color: #ffc; }
 .radical { border-top: 3px solid; padding-top: 4px; }
 .denominate { display: block; border-top: 3px solid; padding: 6px; vertical-align: -100%; }
 .term {float: left; height: 60px; padding: 4px; }
+.n { display: block; font-size: 14px; margin-top: -10px; }
+.sigma { display: block; line-height: .8em;}
+.r { display: block; font-size: 14px; }
 .button { display: inline; padding: 4px; border: 1px solid; margin: -1px; xbackground: #ccc; }
 
 .hidden { display: none; } 

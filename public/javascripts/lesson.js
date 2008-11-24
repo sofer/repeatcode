@@ -138,6 +138,7 @@ RC.formula = {
 	html_entity_start: '&',
 	denominator: '/',
 	space: ' ',
+	sum_start: '$',
 
 	spancount: 0,
 	
@@ -158,6 +159,13 @@ RC.formula = {
 				var result = cdr.match(pattern);
 				if (result) {
 					return this.html_entity_start + result[1] + this.term(result[2]);
+				}
+			}
+			if (car === this.sum_start) { //special case for sums
+				var pattern = /^\s(\S+)\$(\S+)\b/;
+				var result = cdr.match(pattern);
+				if (result) {
+					return '<span class="n">' + result[1] + '</span><span class="sigma">&Sigma;</span><span class="r">' + result[2] + '</span>'
 				}
 			}
 			if (car === this.close_char) {
@@ -184,6 +192,7 @@ RC.formula = {
 		if (str && str.charAt(0) === this.formula_prefix) {
 			str = str.slice(1);
 		}
+		str = str.replace(/\b\S+\$\S+\b/g, this.term_separator + '\$ $& ' + this.term_separator); // special case for Sigma
 		var arr = str.split(this.term_separator);
 		var phrase = '';
 		var i;
@@ -225,6 +234,7 @@ RC.question = {
 	data: { status: 'waiting' },
 	ignore: false,
 	next: { status: 'waiting' },
+	previously_incorrect: false,
 	
 	ignored_data: function() {
 		if (this.ignore) {
@@ -266,7 +276,7 @@ RC.question = {
 			url: this.json_url,
 			dataType: 'json',
 			error: function () {
-				//that.get_first();
+				that.get_first();
 			},
 			success: function (json) {
 				that.data = json;
@@ -288,7 +298,7 @@ RC.question = {
 			data: this.ignored_data(),
 			dataType: 'json',
 			error: function () {
-				//that.get_next();
+				that.get_next();
 			},
 			success: function(json){
 				that.loaded(json);
@@ -374,6 +384,16 @@ RC.question = {
 		}
 	},
 	
+	show_answer: function () {
+		this.previously_incorrect = false;
+		this.post_response('incorrect');
+		this.data.question.current_interval = 0;
+		$(RC.DOMnodes.unexpected).hide();
+		$(RC.DOMnodes.expected).show();
+		RC.centre(RC.DOMnodes.expected_maths, RC.DOMnodes.expected_formula);
+		$(RC.DOMnodes.try_now).focus();
+	},
+	
 	post_response: function (result) {
 		var post_url = '/questions/' + this.data.question.id + '/responses.json';
 		$.post(post_url, {
@@ -401,13 +421,19 @@ RC.question = {
 		}
 		$(RC.DOMnodes.attempt).hide();
 		if (match) {
+			this.previously_incorrect = false;
 			this.post_response('correct');
 			$(RC.DOMnodes.correct).show().fadeOut(1000);
 			this.show_next();
 		} else {
-			$(RC.DOMnodes.unexpected).show();
-			$(RC.DOMnodes.wrong).html(response);
-			$(RC.DOMnodes.try_again).focus();
+			if (this.previously_incorrect) {
+				this.show_answer();
+			} else {
+				this.previously_incorrect = true; // allow one re-try
+				$(RC.DOMnodes.unexpected).show();
+				$(RC.DOMnodes.wrong).html(response);
+				$(RC.DOMnodes.try_again).focus();
+			}
     }
 	}
 
@@ -439,13 +465,8 @@ $(document).ready(function(){
 		$(RC.DOMnodes.response_field).select();
 	});
 
-	$(RC.DOMnodes.show_answer).click(function() {		
-		RC.current.post_response('incorrect');
-		RC.current.data.question.current_interval = 0;
-		$(RC.DOMnodes.unexpected).hide();
-		$(RC.DOMnodes.expected).show();
-		RC.centre(RC.DOMnodes.expected_maths, RC.DOMnodes.expected_formula);
-		$(RC.DOMnodes.try_now).focus();
+	$(RC.DOMnodes.show_answer).click(function() {
+		RC.current.show_answer();
 	});
 
 /* remove?

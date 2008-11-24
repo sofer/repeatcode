@@ -66,12 +66,13 @@
 					<%= text_field_tag "response-field", nil, :autocomplete => "off" %>
 				</form>
 				<div id="palette" class="hidden">
-					<div class="button" value="%">Root</div>
-					<div class="button" value="^">Power</div>
-					<div class="button" value="_">Subscript</div>
-					<div class="button" value=";">Close term</div>
-					<div class="button" value="/">Fraction</div>
-					<div class="button" value="\">End fraction</div> 
+					<div class="button" value="%">&radic;</div>
+					<div class="button" value="^">x<sup>a</sup></div>
+					<div class="button" value="_">x<sub>a</sub></div>
+					<div class="button" value=";">end</div> | 
+					<div class="button" value="/">x/y</div>
+					<div class="button" value="\">end</div> | 
+					<div class="button" value="n$r=1 ">&Sigma;</div>
 				</div>
 			</div>
 
@@ -127,14 +128,3 @@
 	<h2>Taking time out</h2>
 	Click to continue
 </div>
-
-<div id="maths-palette" class="hidden">
-	<div class="button">Root: %</div>
-	<div class="button">Power: ^</div>
-	<div class="button">Subscript: _</div>
-	<div class="button">Space: close term</div>
-	<div class="button">Fraction: /</div>
-	<div class="button">End fraction: \</div> 
-</div>
-
-

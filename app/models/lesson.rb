@@ -43,9 +43,11 @@ class Lesson < ActiveRecord::Base
       if next_exercise
         return add_question(next_exercise)
       else
-        next_topic = last_question.exercise.topic.lower_item
-        if next_topic
-          return new_topic(next_topic)
+        if last_question.exercise.topic
+          next_topic = last_question.exercise.topic.lower_item
+          if next_topic
+            return new_topic(next_topic)
+          end
         end
       end
 

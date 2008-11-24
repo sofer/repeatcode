@@ -29,6 +29,21 @@ class Course < ActiveRecord::Base
     8 => DAY * 224
   }
   
+  def clear_all
+    questions = Question.find(:all)
+    count = 0
+    for question in questions
+      if not question.exercise or not question.exercise.topic
+        if question.exercise
+          question.exercise.destroy
+        end
+        question.destroy
+        count += 1
+      end
+    end
+    return count
+  end
+  
   def target
     self[:target] or DEFAULT_TARGET
   end

@@ -5,21 +5,19 @@ class Response < ActiveRecord::Base
   before_create :reset_question
   
   RESULTS = {
-    'correct' => 'correct',
-    'incorrect' => 'incorrect',
+    :correct => 'correct',
+    :incorrect => 'incorrect'
   }
 
 private
 
-  def check
-    self.question.course.current_lesson.increment_correct
-  end
-
   def reset_question
-    if self.result = RESULTS['correct']
+    if self.result == RESULTS[:correct]
       self.question.course.current_lesson.increment_correct
+      question.reset_interval_and_datetime(self.interval)
+    else
+      question.reset_interval_and_datetime(-1)
     end
-    question.reset_interval_and_datetime(self.interval)
     question.save!
   end
 end
