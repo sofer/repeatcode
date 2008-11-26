@@ -9,13 +9,13 @@ input:focus, textarea:focus { xbackground-color: #ffc; }
 #envelope	{ position: relative; margin: 0 auto; background: #fff; border: 1px solid; }
 .default	{ width: 900px; height: 500px; }
 .topic	{ width: 900px; }
-#message-envelope { margin: 0 auto; width: 900px; top: border: 1px dashed; }
+#message-envelope { margin: 4px auto; width: 900px; top: border: 1px dashed; }
 #timeout	{ position: absolute; border: 1px solid #666; left: 40px; right: 40px; top: 40px; bottom: 40px; background: #ffc; padding-top: 200px; text-align: center; display: none; }
 #timeout h2	{ font-size: 18px; }
 #header	{ margin: 4px; padding-bottom: 2px; border-bottom: 1px solid; }
 #footer	{ position: absolute; left: 0; right: 0; bottom: 0; margin: 4px; padding-top: 2px; border-top: 1px solid; }
 #main	{ position: absolute; top: 22px; right: 0; bottom: 36px; left: 0; margin: 4px 4px 0 4px; }
-#login { width: 150px; }
+#signin { margin: 160px auto; width: 300px; }
 
 /* lesson id's */
 #question	{ margin-top: 30px; text-align: center; line-height: 1.2;  font-size: 24px; }
@@ -59,6 +59,9 @@ input:focus, textarea:focus { xbackground-color: #ffc; }
 .faded { opacity: 0.2; }
 .phrase, .response, .hint, .insert { float: left; width: 180px; }
 .phrase { width: 280px }
+
+#signin label { float: left; width: 120px; margin: 2px; padding-top: 2px; text-align: right; }
+#signin input[type=text], input[type=password] { width: 120px; margin: 2px; }
 
 
 

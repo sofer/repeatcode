@@ -55,15 +55,15 @@ class Course < ActiveRecord::Base
   def responses
     results = {}
     for interval in self.intervals
-      results[interval.index_no] = { 'correct' => 0, 'incorrect' => 0, 'last_reset' => interval.last_reset_date }
+      results[interval.index_no] = { :correct => 0, :incorrect => 0, :last_reset => interval.last_reset_date }
     end
     for question in self.questions
       for response in question.responses.find(:all)
-        if response.updated_at > results[response.interval]['last_reset']
-          if response.result == Response::RESULTS['correct']
-            results[response.interval]['correct'] += 1
-          elsif response.result == Response::RESULTS['incorrect']
-            results[response.interval]['incorrect'] += 1
+        if response.updated_at > results[response.interval][:last_reset]
+          if response.result == Response::RESULTS[:correct]
+            results[response.interval][:correct] += 1
+          elsif response.result == Response::RESULTS[:incorrect]
+            results[response.interval][:incorrect] += 1
           end
         end
       end

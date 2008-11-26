@@ -32,8 +32,8 @@ module ApplicationHelper
   end
   
   def success_rate(responses)
-    if responses['correct'] + responses['incorrect'] > 0
-      return "#{100 * responses['correct'] / (responses['correct'] + responses['incorrect'])}% of #{responses['correct'] + responses['incorrect']}"
+    if responses[:correct] + responses[:incorrect] > 0
+      return "#{100 * responses[:correct] / (responses[:correct] + responses[:incorrect])}% of #{responses[:correct] + responses[:incorrect]}"
     else
       return 0
     end

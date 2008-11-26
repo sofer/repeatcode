@@ -30,11 +30,11 @@
 	    <td><%= interval_time interval.minutes %></td>
 			<td><%= success_rate(responses) %></td>
 			<td><%= formatted_date interval.updated_at %></td>
-			<% if interval.index_no > 1 and responses['correct'] > 10 %>
+			<% if interval.index_no > 1 and responses[:correct] > 10 %>
 			<td>
 				<% form_for interval do |f| %>
-					<%= hidden_field_tag 'correct', responses['correct'] %>
-					<%= hidden_field_tag 'incorrect', responses['incorrect'] %>
+					<%= hidden_field_tag 'correct', responses[:correct] %>
+					<%= hidden_field_tag 'incorrect', responses[:incorrect] %>
 					<%= f.submit "Reset" %>
 				<% end %>
 			</td>
