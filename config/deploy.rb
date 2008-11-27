@@ -16,6 +16,7 @@ set :scm, :git
 
 # see http://toolmantim.com/article/2007/11/20/cap_deploy_via_scp
 set :deploy_via, :copy
+set :git_shallow_clone, 1
 set :copy_remote_dir, "/home/#{user}/tmp"
 
 # Problems here, which I don't understand
