@@ -329,6 +329,12 @@ RC.question = {
 			$(RC.DOMnodes.response_field).val(hint_text);
 		}
 	},
+	
+	display_response: function () {
+		var response = RC.formula.strip(this.data.exercise.response)
+		var re = /(.*)\(([^)]+)\)\s*\|\s*\(([^)]+)\)(.*)/;
+		return response.replace(re, '"$1$2$4" or "$1$3$4"')
+	},
 
   show: function() {
 		RC.timer.reset_seconds();
@@ -347,7 +353,7 @@ RC.question = {
 			$(RC.DOMnodes.phrase_maths).hide();
 			$(RC.DOMnodes.exercise_phrase).show();
 		}
-		$(RC.DOMnodes.exercise_response).html(RC.formula.strip(this.data.exercise.response));
+		$(RC.DOMnodes.exercise_response).html(this.display_response());
 		$(RC.DOMnodes.exercise_no).html(this.data.exercise.id);
 		$(RC.DOMnodes.question_no).html(this.data.question.id);
 		$(RC.DOMnodes.current_interval).html(this.data.question.current_interval.toString());
