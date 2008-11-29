@@ -471,6 +471,9 @@ $(document).ready(function(){
 
 	$(RC.DOMnodes.try_now).click(function() {
 		$(RC.DOMnodes.expected).hide();
+		$(RC.DOMnodes.wrong).html('');
+		$(RC.DOMnodes.formula).html('');
+    $(RC.DOMnodes.response_field).val('');
 		$(RC.DOMnodes.attempt).show();
 		$(RC.DOMnodes.response_submit).focus();
 		$(RC.DOMnodes.response_field).select();
