@@ -3,8 +3,13 @@
 var RC = {};
 
 String.prototype.simplify = function () {
-	return this.replace(/[\s,.!?]/g, '').toLowerCase();
+	return this.replace(/[\s,.!?-]/g, '').toLowerCase();
 };
+
+String.prototype.strip_spaces = function () {
+	return this.replace(/\s/g, '').toLowerCase();
+};
+
 
 RC.DOMnodes = {
 	content: '#content',
@@ -208,7 +213,7 @@ RC.formula = {
 		return phrase;
 	},
 	
-	strip: function(str) {
+	strip_prefix: function(str) {
 		if (str && str.charAt(0) === this.formula_prefix) {
 			return str.slice(1);
 		} else {
@@ -331,7 +336,7 @@ RC.question = {
 	},
 	
 	display_response: function () {
-		var response = RC.formula.strip(this.data.exercise.response)
+		var response = RC.formula.strip_prefix(this.data.exercise.response)
 		var re = /(.*)\(([^)]+)\)\s*\|\s*\(([^)]+)\)(.*)/;
 		return response.replace(re, '"$1$2$4" or "$1$3$4"')
 	},
@@ -423,17 +428,16 @@ RC.question = {
 	},
 	
 	check_response: function (response) {
-		var simplified = response.simplify();
-		var expected = this.data.exercise.response.simplify();
+		var expected = this.data.exercise.response;
 		var match = false;
 		if (RC.formula.is_formula(expected)) { // no pattern matching on formulas
-			expected = RC.formula.strip(expected);
-			if (expected === simplified) {
+			expected = RC.formula.strip_prefix(expected);
+			if (expected.strip_spaces() === response.strip_spaces()) {
 				match = true;
 			}
 		} else {
-			var pattern = new RegExp(expected);
-			if (pattern.test(simplified)) {
+			var pattern = new RegExp(expected.simplify());
+			if (pattern.test(response.simplify())) {
 				match = true;
 			}
 		}
@@ -448,7 +452,11 @@ RC.question = {
 			} else {
 				this.previously_incorrect = true; // allow one re-try
 				$(RC.DOMnodes.wrong_answer).show();
-				$(RC.DOMnodes.wrong).html(response);
+				if (RC.formula.is_formula(this.data.exercise.response)) {
+					$(RC.DOMnodes.wrong).html(RC.formula.translate(response));
+				} else {
+					$(RC.DOMnodes.wrong).html(response);
+				}
 				$(RC.DOMnodes.try_again).focus();
 			}
     }
