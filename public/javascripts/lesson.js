@@ -39,7 +39,6 @@ RC.DOMnodes = {
 	response_form: '#response-form',
 	response_field: '#response-field',
 	response_submit: '#response_submit',
-	maths: '#maths',
 	formula: '#formula',
 	phrase_maths: '#phrase-maths',
 	phrase_formula: '#phrase-formula',	
