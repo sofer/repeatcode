@@ -13,6 +13,7 @@ input:focus, textarea:focus { xbackground-color: #ffc; }
 #timeout	{ position: absolute; border: 1px solid #666; left: 40px; right: 40px; top: 40px; bottom: 40px; background: #ffc; padding-top: 200px; text-align: center; display: none; }
 #timeout h2	{ font-size: 18px; }
 #header	{ padding: 4px; padding-bottom: 2px; background: SteelBlue; }
+#header a { color: Thistle; }
 #footer	{ position: absolute; left: 0; right: 0; bottom: 0; margin: 4px; padding-top: 4px; border-top: 1px solid; }
 #main	{ position: absolute; top: 24px; right: 0; bottom: 36px; left: 0; margin: 4px; }
 #signin { margin: 160px auto; width: 300px; }
