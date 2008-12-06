@@ -4,15 +4,15 @@ body	{ background: LightGrey; font-family: helvetica, arial, sans-serif; }
 input[type=text] { width: 96%; }
 textarea { width: 400px; height: 400px; }
 style { display: block; }
-input:focus, textarea:focus { xbackground-color: #ffc; }
+input:focus, textarea:focus { }
 
-#envelope	{ position: relative; margin: 0 auto; background: white; border: 4px SteelBlue solid; -moz-border-radius: 10px; -webkit-border-radius: 10px; }
+#envelope	{ position: relative; margin: 0 auto; background: white; border: 4px DodgerBlue solid; -moz-border-radius: 10px; -webkit-border-radius: 10px; }
 .default	{ width: 900px; height: 500px; }
 .topic	{ width: 900px; }
 #message-envelope { margin: 4px auto; width: 900px; top: border: 1px dashed; }
-#timeout	{ position: absolute; border: 1px solid #666; left: 40px; right: 40px; top: 40px; bottom: 40px; background: #ffc; padding-top: 200px; text-align: center; display: none; }
+#timeout	{ position: absolute; border: 1px solid DimGray; left: 40px; right: 40px; top: 40px; bottom: 40px; background: LightYellow; padding-top: 200px; text-align: center; display: none; }
 #timeout h2	{ font-size: 18px; }
-#header	{ padding: 4px; padding-bottom: 2px; background: SteelBlue; }
+#header	{ padding: 4px; padding-bottom: 2px; background: DodgerBlue; }
 #header a { color: MidnightBlue; }
 #footer	{ position: absolute; left: 0; right: 0; bottom: 0; margin: 4px; padding-top: 4px; border-top: 1px solid; }
 #main	{ position: absolute; top: 24px; right: 0; bottom: 36px; left: 0; margin: 4px; }
@@ -25,7 +25,7 @@ input:focus, textarea:focus { xbackground-color: #ffc; }
 #start, #completed { margin: 150px; text-align: center; font-size: 18px; }
 #exercise-phrase	{ }
 #response-field	{ width: 442px; font-size: 14px; }
-#correct { position: absolute; bottom: 100px; left: 0; right: 0; font: #0f0; }
+#correct { position: absolute; bottom: 100px; left: 0; right: 0; font: LimeGreen; }
 #formula, #expected-formula, #phrase-formula { float: left; height: 60px; }
 #maths, #expected-maths, #phrase-maths { height: 80px; }
 #graph { margin: 0 auto; width: 200px; height: 200px; }
@@ -42,7 +42,7 @@ input:focus, textarea:focus { xbackground-color: #ffc; }
 .n { display: block; font-size: 14px; margin-top: -10px; }
 .sigma { display: block; line-height: .8em;}
 .r { display: block; font-size: 14px; }
-.button { display: inline; padding: 4px; border: 1px solid; margin: -1px; xbackground: #LightGrey; }
+.button { display: inline; padding: 4px; border: 1px solid; margin: -1px; xbackground: LightGrey; }
 
 .hidden { display: none; } 
 .notice	{ color: green; }
