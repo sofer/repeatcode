@@ -8,17 +8,23 @@
 
 	<div id="signin">
 		<% form_tag session_path do -%>
-		<p><label for="login">Login</label>
-		<%= text_field_tag 'login', @login %></p>
+		<label for="login">Login</label>
+		<%= text_field_tag 'login', @login %>
+
+		<br class="clear">
 
 		<p><label for="password">Password</label>
-		<%= password_field_tag 'password', nil %></p>
+		<%= password_field_tag 'password', nil %>
+
+		<br class="clear">
 
 		<p><label for="remember_me">Remember me</label>
-		<%= check_box_tag 'remember_me', '1', @remember_me %></p>
+		<%= check_box_tag 'remember_me', '1', @remember_me %>
 
-		<p><label> </label>
-		<p><%= submit_tag 'Log in' %></p>
+		<br class="clear">
+
+		<label> </label>
+		<%= submit_tag 'Log in' %>
 		<% end -%>
 	</div>
 
