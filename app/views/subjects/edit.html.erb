@@ -1,13 +1,33 @@
-<h1>Editing subject</h1>
+<div id="header">
+	<h1 class="left">
+		<%= link_to 'Courses', courses_path %> | 
+		<%= link_to 'Learning materials', subjects_path %> | 
+		<%= link_to @subject.name, @subject %> |
+		Edit
+	</h1>
+	<h2 class="right">
+		<%= link_to 'Edit subject', edit_subject_path(@subject) %>
+	</h2>
+	<div class="clear"></div>
+</div>
+<div id="main">
+	<% form_for(@subject) do |f| %>
 
-<% form_for(@subject) do |f| %>
-	
-	<%= render :partial => 'form', :locals => {:f => f } %>
+		<%= render :partial => 'form', :locals => {:f => f } %>
 
-  <p>
-    <%= f.submit "Update" %>
-  </p>
-<% end %>
+	  <p>
+	    <%= f.submit "Update" %>
+	  </p>
+	<% end %>
+</div>
 
-<%= link_to 'Show', @subject %> |
-<%= link_to 'Back', subjects_path %>
+<div id="footer">
+	<div class="left">
+		<br>
+		Logged in as: <%= current_user.login %>
+	</div>
+	<div class="right">
+		<br>
+		<%= link_to "logout", "/logout"%>
+	</div>
+</div>

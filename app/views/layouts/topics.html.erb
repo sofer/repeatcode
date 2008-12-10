@@ -6,10 +6,11 @@
 	<%= javascript_include_tag 'jquery', 'topic' %>
 </head>
 <body>
-	<div id="envelope" class="topic">
-
+	<div id="message-envelope">
 		<%= content_tag 'div', h(flash[:notice]), :class => 'notice', :id => 'notice' if flash[:notice] %>
 		<%= content_tag 'div', h(flash[:error]), :class => 'error', :id => 'error' if flash[:error] %>
+	</div>
+	<div id="envelope" class="variable">
 		<%= yield :layout %>
 	</div>
 </body>

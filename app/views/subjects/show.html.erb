@@ -1,16 +1,29 @@
-<p>
-  <b>Name:</b>
-  <%=h @subject.name %>
-</p>
+<div id="header">
+	<h1 class="left">
+		<%= link_to 'Courses', courses_path %> | 
+		<%= link_to 'Materials', subjects_path %> | 
+	  <%=h @subject.name %>
+	</h1>
+	<h2 class="right">
+		<%= link_to 'Edit subject', edit_subject_path(@subject) %>
+	</h2>
+	<div class="clear"></div>
+</div>
+<div id="main">
+	<% for topic in @subject.topics %>
+		<p>
+			<%= link_to topic.name, edit_topic_path(topic) %>
+		</p>
+	<% end %>
+</div>
 
-<%= link_to 'New topic', new_subject_topic_path(@subject) %>
-
-<% for topic in @subject.topics %>
-	<p>
-		<%= link_to topic.name, edit_topic_path(topic) %>
-	</p>
-<% end %>
-
-<%= link_to 'Edit', edit_subject_path(@subject) %> |
-<%= link_to 'Back', subjects_path %>
-
+<div id="footer">
+	<div class="left">
+		<br>
+		Logged in as: <%= current_user.login %>
+	</div>
+	<div class="right">
+		<br>
+		<%= link_to "logout", "/logout"%>
+	</div>
+</div>
