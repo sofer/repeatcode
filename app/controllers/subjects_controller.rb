@@ -17,6 +17,10 @@ class SubjectsController < ApplicationController
   # GET /subjects/1.xml
   def show
     @subject = current_user.subjects.find(params[:id])
+    @topics =  @subject.topics.paginate(
+                :per_page => 24, 
+                :page => params[:page]
+                )
 
     respond_to do |format|
       format.html # show.html.erb

@@ -8,7 +8,7 @@
 	<div class="clear"></div>
 </div>
 
-<div id="main-variable">
+<div id="main">
 	<% form_for	@topic,
 							:html => { :method => :put } do |f| %>
 		<%= render :partial => "form", :locals => {:f => f } %>
@@ -21,7 +21,7 @@
 	</div>
 </div>
 
-<div id="footer-variable">
+<div id="footer">
 	<div class="left">
 		<br>
 		Logged in as: <%= current_user.login %>

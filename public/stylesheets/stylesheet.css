@@ -14,10 +14,10 @@ input:focus, textarea:focus { }
 #timeout h2	{ font-size: 18px; }
 #header	{ padding: 4px; padding-bottom: 2px; background: DodgerBlue; }
 #header a { color: MidnightBlue; }
-#footer	{ position: absolute; left: 0; right: 0; bottom: 0; margin: 4px; padding-top: 4px; border-top: 1px solid; }
-#footer-variable	{ margin: 4px; padding-top: 4px; border-top: 1px solid; }
-#main	{ position: absolute; top: 24px; right: 0; bottom: 36px; left: 0; margin: 4px; }
-#main-variable	{ margin: 4px; }
+.fixed #footer	{ position: absolute; left: 0; right: 0; bottom: 0; margin: 4px; padding-top: 4px; border-top: 1px solid; }
+.variable #footer	{ margin: 4px; padding-top: 4px; border-top: 1px solid; }
+.fixed #main	{ position: absolute; top: 24px; right: 0; bottom: 36px; left: 0; margin: 4px; }
+.variable #main	{ margin: 4px; }
 
 #signin { margin: 160px auto; width: 300px; }
 
