@@ -15,16 +15,16 @@
 			<%= link_to topic.name, edit_topic_path(topic) %>
 		</p>
 	<% end %>
-	<%= will_paginate @topics %>
 </div>
 
 <div id="footer">
+	<div class="center">
+		<%= will_paginate @topics %>
+	</div>
 	<div class="left">
-		<br>
 		Logged in as: <%= current_user.login %>
 	</div>
 	<div class="right">
-		<br>
 		<%= link_to "logout", "/logout"%>
 	</div>
 </div>

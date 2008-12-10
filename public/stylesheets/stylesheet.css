@@ -52,6 +52,7 @@ input:focus, textarea:focus { }
 .error	{ color: red; }
 .left	{ float: left; }
 .right	{ float: right; }
+.center { text-align: center; }
 .incorrect	{ text-decoration: line-through; color: red; }
 .space	{ margin: 10px; }
 .clear	{ clear: both; }
