@@ -1,15 +1,35 @@
-<div class="navigation">
-	<%= link_to @subject.name, subject_topics_path(@subject) %>: new topic
+<div id="header">
+	<h1 class="left">
+		<%= link_to 'Courses', courses_path %> | 
+		<%= link_to 'Materials', subjects_path %> | 
+		<%= link_to @subject.name, @subject %> | 
+		New
+	</h1>
+	<div class="clear"></div>
 </div>
 
+<div id="main-variable">
+	<% form_for 	:topic,
+								:url => subject_topics_path(@subject) do |f| %>
+		<%= render :partial => "form", :locals => {:f => f } %>
+		<p>
+		  <%= f.submit "Create" %>
+		</p>
+	<% end %>
+	<div id="list-template" style="display:none">
+		<%= render :partial => "new_exercise", :object => Exercise.new %>
+	</div>
 
-<% form_for 	:topic,
-							:url => subject_topics_path(@subject) do |f| %>
-	<%= render :partial => "form", :locals => {:f => f } %>
-	<p>
-	  <%= f.submit "Create" %>
-	</p>
-<% end %>
-<div id="list-template" style="display:none">
-	<%= render :partial => "new_exercise", :object => Exercise.new %>
+</div>
+
+<div id="footer-variable">
+	<div class="left">
+		<br>
+		Logged in as: <%= current_user.login %>
+	</div>
+	<div class="right">
+		<br>
+		<%= link_to "logout", "/logout"%>
+	</div>
+	<div class="clear"></div>
 </div>
