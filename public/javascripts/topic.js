@@ -2,25 +2,26 @@
 
 $(document).ready(function(){	
 
-	$(".toggle").click(function(){
-		$(this).toggle();
+	$("#import-list a").click(function(){
+		$("#list-frame").hide();
+		$("#import-frame").show();
 		return false;
 	});
 
-	// click inside a toggle-switch to toggle all toggleable elements
-	$(".toggle-switch a").click(function(){
-		$(".toggleable").toggle();
+	$("#cancel-import a").click(function(){
+		$("#import-frame").hide();
+		$("#list-frame").show();
 		return false;
 	});
 
 	// click inside append-to-list to add list-item to list
-	$(".append-to-list a").click(function(){
+	$("#add-item a").click(function(){
 		$("#list-template").children().clone().appendTo("#list");
 		return false;
 	});
 	
 	//split phrase/response/hint/insert in textarea and populate #list from #list-template
-	$("#add-items").click(function(){
+	$("#import-now").click(function(){
 		import_text = $("#import").val();
 		import_array = import_text.split("\n");
 		for (var i = 0; i < import_array.length; i += 1) {
@@ -39,7 +40,8 @@ $(document).ready(function(){
 				$("#list").append(item);
 			}
 		}
-		$(".toggleable").toggle();
+		$("#import-frame").hide();
+		$("#list-frame").show();
 		return false;
 	});
 

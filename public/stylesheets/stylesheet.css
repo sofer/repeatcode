@@ -1,78 +1,89 @@
 html, div, h1, h2, h3, h4, h5, h6, ul, ol, dl, li, dt, dd, p, blockquote, pre, form, fieldset, table, th, td	{ margin: 0; padding: 0; }
-h1, h2, h3, h4, h5, h6 { font-size: 16px; }
-style { display: block; }
+h1, h2, h3, h4, h5, h6	{ font-size: 16px; }
+style	{ display: block; }
 body	{ background: LightGrey; font-family: helvetica, arial, sans-serif; }
-table { width: 100%; border-collapse: collapse; }
-tr { border-bottom: solid 1px DodgerBlue; }
-td { padding: 4px; }
-input[type=text] { width: 96%; }
-textarea { width: 400px; height: 400px; }
-input:focus, textarea:focus { }
+table	{ width: 100%; border-collapse: collapse; }
+tr	{ border-bottom: solid 1px DodgerBlue; }
+td	{ padding: 4px; }
+hr	{ height: 1px; border: 0; color: DodgerBlue; background-color: DodgerBlue; }
+input[type=text]	{ width: 96%; }
+textarea	{ width: 100%; height: 300px; }
+input:focus, textarea:focus	{ }
 
-#envelope	{ position: relative; margin: 0 auto; background: white; border: 4px DodgerBlue solid; -moz-border-radius: 10px; -webkit-border-radius: 10px; }
-.fixed	{ width: 900px; height: 500px; }
-.variable	{ width: 900px; }
-#message-envelope { margin: 4px auto; width: 892px; top: border: 1px dashed; }
+#envelope	{ position: relative; margin: 0 auto; background: white; border: 4px DodgerBlue solid; -moz-border-radius: 10px; -webkit-border-radius: 10px; width: 900px; }
+.fixed	{ height: 500px; }
+#message-envelope	{ margin: 4px auto; width: 892px; top: border: 1px dashed; }
 #timeout	{ position: absolute; border: 1px solid DimGray; left: 40px; right: 40px; top: 40px; bottom: 40px; background: LightYellow; padding-top: 200px; text-align: center; display: none; }
 #timeout h2	{ font-size: 18px; }
 #header	{ padding: 4px; padding-bottom: 2px; background: DodgerBlue; }
-#header a { color: MidnightBlue; }
+#header a	{ color: MidnightBlue; }
+#footer	{ margin: 4px; padding-top: 4px; border-top: 1px solid black; }
 .fixed #footer	{ position: absolute; left: 0; right: 0; bottom: 0; margin: 4px; padding-top: 4px; border-top: 1px solid; }
-.variable #footer	{ margin: 4px; padding-top: 4px; border-top: 1px solid DodgerBlue; }
+#main	{ margin: 4px; }
 .fixed #main	{ position: absolute; top: 24px; right: 0; bottom: 36px; left: 0; margin: 4px; }
-.variable #main	{ margin: 4px; }
 
-#signin { margin: 160px auto; width: 300px; }
+#signin	{ margin: 160px auto; width: 300px; }
+
+/* error id's - NOT SURE IF NEEDED */
+.fieldWithErrors	{ padding: 2px; background-color: red; display: table; }
+#errorExplanation	{ width: 400px; border: 2px solid red; padding: 7px; padding-bottom: 12px; margin-bottom: 20px; background-color: #f0f0f0; }
+#errorExplanation h2	{ text-align: left; font-weight: bold; padding: 5px 5px 5px 15px; font-size: 12px; margin: -7px; background-color: #c00; color: #fff; }
+#errorExplanation p	{ color: #333; margin-bottom: 0; padding: 5px; }
+#errorExplanation ul li	{ font-size: 12px; list-style: square; }
 
 /* lesson id's */
 #question	{ margin-top: 30px; text-align: center; line-height: 1.2;  font-size: 24px; }
 #response	{ position: absolute; bottom: 20px; left: 0; right: 0; text-align: center; font-size: 28px; line-height: 1.2; }
-#tabs { position: absolute; bottom: 0; left: 0; right: 0; padding-top: 0px; border-top: 1px solid DodgerBlue; }
-#start, #completed { margin: 150px; text-align: center; font-size: 18px; }
+#tabs	{ position: absolute; bottom: 0; left: 0; right: 0; padding-top: 0px; border-top: 1px solid DodgerBlue; }
+#start, #completed	{ margin: 150px; text-align: center; font-size: 18px; }
 #exercise-phrase	{ }
 #response-field	{ width: 442px; font-size: 14px; }
-#correct { position: absolute; bottom: 100px; left: 0; right: 0; font: LimeGreen; }
-#formula, #expected-formula, #phrase-formula { float: left; height: 60px; }
-#maths, #expected-maths, #phrase-maths { height: 80px; }
-#graph { margin: 0 auto; width: 200px; height: 200px; }
-#palette { height: 30px; font-size: 14px; padding-top: 8px; }
+#correct	{ position: absolute; bottom: 100px; left: 0; right: 0; font: LimeGreen; }
+#formula, #expected-formula, #phrase-formula	{ float: left; height: 60px; }
+#maths, #expected-maths, #phrase-maths	{ height: 80px; }
+#graph	{ margin: 0 auto; width: 200px; height: 200px; }
+#palette	{ height: 30px; font-size: 14px; padding-top: 8px; }
 
 #course_target	{ text-align: right; width: 30px; height: 13px; font-size: 12px; }
 
-#signin label { float: left; width: 120px; height: 14px; margin: 4px; padding-top: 4px; text-align: right; }
-#signin input[type=text], input[type=password], input[type=checkbox] { width: 120px; height: 14px; margin: 4px; }
-#signin input[type=checkbox] { margin: 8px 2px; }
+#signin label	{ float: left; width: 120px; height: 14px; margin: 4px; padding-top: 4px; text-align: right; }
+#signin input[type=text], input[type=password], input[type=checkbox]	{ width: 120px; height: 14px; margin: 4px; }
+#signin input[type=checkbox]	{ margin: 8px 2px; }
 
 /* maths */
-.sup { vertical-align: 50%; font-size: 16px; }
-.sub { vertical-align: -50%; font-size: 16px; }
-.radical { border-top: 3px solid; padding-top: 4px; }
-.denominate { display: block; border-top: 3px solid; padding: 6px; vertical-align: -100%; }
-.term {float: left; height: 60px; padding: 4px; }
-.n { display: block; font-size: 14px; margin-top: -10px; }
-.sigma { display: block; line-height: .8em;}
-.r { display: block; font-size: 14px; }
-.button { display: inline; padding: 4px; border: 1px solid; margin: -1px; xbackground: LightGrey; }
+.sup	{ vertical-align: 50%; font-size: 16px; }
+.sub	{ vertical-align: -50%; font-size: 16px; }
+.radical	{ border-top: 3px solid; padding-top: 4px; }
+.denominate	{ display: block; border-top: 3px solid; padding: 6px; vertical-align: -100%; }
+.term	{float: left; height: 60px; padding: 4px; }
+.n	{ display: block; font-size: 14px; margin-top: -10px; }
+.sigma	{ display: block; line-height: .8em;}
+.r	{ display: block; font-size: 14px; }
+.button	{ display: inline; padding: 4px; border: 1px solid; margin: -1px; xbackground: LightGrey; }
 
-.hidden { display: none; } 
+/* topics */
+.item .phrase, .response, .hint, .insert, .remove	{ float: left; }
+.item .response, .hint, .insert	{ width: 180px; }
+.item .phrase	{ width: 300px; }
+
+.border	{border: 1px dashed; }
+.hidden	{ display: none; } 
 .notice	{ color: green; }
 .error	{ color: red; }
 .left	{ float: left; }
 .right	{ float: right; }
-.center { text-align: center; }
-.half { width: 50%; }
-.bold { font-weight: bold; }
+.center	{ text-align: center; }
+.half	{ width: 50%; }
+.bold	{ font-weight: bold; }
 .incorrect	{ text-decoration: line-through; color: red; }
 .space	{ margin: 10px; }
 .clear	{ clear: both; }
-.tab { float: left; width: 33%; height: 300px; }
-.data, .code { white-space: pre; font-family: monospace; overflow: auto; }
-.output { padding: 2px; }
-.faded { opacity: 0.2; }
-.phrase, .response, .hint, .insert { float: left; width: 180px; }
-.phrase { width: 280px }
-.copy { margin: 20px 80px; }
-.q { font-weight: bold; margin-bottom: 4px; }
-.a { margin-bottom: 20px; }
-.a:first-letter { font-weight: bold; }
+.tab	{ float: left; width: 33%; height: 300px; }
+.data, .code	{ white-space: pre; font-family: monospace; overflow: auto; }
+.output	{ padding: 2px; }
+.faded	{ opacity: 0.2; }
+.copy	{ margin: 20px 80px; }
+.q	{ font-weight: bold; margin-bottom: 4px; }
+.a	{ margin-bottom: 20px; }
+.a:first-letter	{ font-weight: bold; }
 

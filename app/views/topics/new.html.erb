@@ -8,13 +8,10 @@
 	<div class="clear"></div>
 </div>
 
-<div id="main-variable">
+<div id="main">
 	<% form_for 	:topic,
 								:url => subject_topics_path(@subject) do |f| %>
 		<%= render :partial => "form", :locals => {:f => f } %>
-		<p>
-		  <%= f.submit "Create" %>
-		</p>
 	<% end %>
 	<div id="list-template" style="display:none">
 		<%= render :partial => "new_exercise", :object => Exercise.new %>
@@ -22,7 +19,7 @@
 
 </div>
 
-<div id="footer-variable">
+<div id="footer">
 	<div class="left">
 		<br>
 		Logged in as: <%= current_user.login %>

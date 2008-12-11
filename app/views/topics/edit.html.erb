@@ -12,9 +12,6 @@
 	<% form_for	@topic,
 							:html => { :method => :put } do |f| %>
 		<%= render :partial => "form", :locals => {:f => f } %>
-	  <p>
-	    <%= f.submit "Update" %>
-	  </p>
 	<% end %>
 	<div id="list-template" style="display:none">
 		<%= render :partial => "new_exercise", :object => Exercise.new %>

@@ -2,7 +2,7 @@
 <html>
 <head>
 	<title>RepeatCode: <%= controller.action_name + ' ' + controller.controller_name -%></title>
-	<%= stylesheet_link_tag 'stylesheet', 'scaffold' %>
+	<%= stylesheet_link_tag 'stylesheet' %>
 	<%= javascript_include_tag %>
 	<%= javascript_tag "var AUTH_TOKEN = #{form_authenticity_token.inspect};" if protect_against_forgery? %>
 </head>

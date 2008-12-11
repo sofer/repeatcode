@@ -1,47 +1,58 @@
+
 <%= f.error_messages %>
+
 <br>
-<div id="name">
- 	<%= f.label :name %>
- 	<%= f.text_field :name, :class => 'focus' %><br>
-	<%= f.label :add_together %>
-	<%= f.check_box :add_together %><br>
+
+<%= f.label :name %>
+<%= f.text_field :name, :class => 'focus' %><br>
+<%= f.label :add_together %>
+<%= f.check_box :add_together %><br>
+
+<hr>
+
+<div id="list-frame">
+	<div class="item">
+		<div class="phrase">
+			Question/phrase
+		</div>
+		<div class="response">
+			Response
+		</div>
+		<div class="hint">
+			Hint (or '#' for graph)
+		</div>
+		<div class="insert">
+			Insertion point (for code)
+		</div>
+		<div class="clear"> </div>	
+	</div>
+	<div id="list">
+		<%= render :partial => "exercise", :collection => @topic.exercises %>
+	</div>
+	<br>
+	<div id="add-item" class="left">
+		<%= link_to "Add item",  "#" %>
+	</div>
+	<div id="import-list" class="right">
+		<%= link_to "Import a list", "#" %>
+	</div>
+	<div class="clear"> </div>
+	<br>
+	<div class="center">
+		<%= f.submit "Update" %>
+	</div>
 </div>
-<div id="exercises">
-	<div id="list-frame" class="toggleable">
-		<div id="list">
-			<div class="toggle-switch">
-				<%= link_to "Import a list", "#" %>
-			</div>
-			<div class="phrase">
-				Question/phrase
-			</div>
-			<div class="response">
-				Response
-			</div>
-			<div class="hint">
-				Hint (or '#' for graph)
-			</div>
-			<div class="insert">
-				Insertion point (for code)
-			</div>
-			<div class="clear"> </div>
-		  <%= render :partial => "exercise", :collection => @topic.exercises %>
-		</div>
-		<div class="link append-to-list">
-			<%= link_to "Add item",  "#" %>
-		</div>
+
+<div id="import-frame" style="display:none">
+	<%= text_area_tag "import" %>
+	<div id="import-now" class="left">
+		<%= link_to "Import items now", "#" %>
 	</div>
-	<div id="import-frame" style="display:none" class="toggleable">
-		<span class="toggle-switch">
-			<%= link_to "Cancel import", "#" %>
-		</span> | 
-		<span><%= link_to "Import items now", "#", :id => "add-items" %></span>
-		<br>
-		<%= text_area_tag "import" %>
-		<br><br>
-		<div class="link">
-		</div>	
-	</div>
+	<div id="cancel-import" class="right">
+		<%= link_to "Cancel import", "#" %>
+	</div> 
+	<div class="clear"> </div>
+	<br>
 </div>
 
 <div id="data" class="hidden">

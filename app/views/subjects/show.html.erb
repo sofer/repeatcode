@@ -10,11 +10,22 @@
 	<div class="clear"></div>
 </div>
 <div id="main">
+	<table>
 	<% for topic in @topics %>
-		<p>
-			<%= link_to topic.name, edit_topic_path(topic) %>
-		</p>
+		<tr>
+			<td class="bold">
+				<%= link_to topic.name.slice(0..64), edit_topic_path(topic) %>
+			</td>
+			<td>
+				<% if topic.exercises.first %>
+				<%= topic.exercises.first.phrase.slice(0..40) %>...
+				<% else %>
+				No exercises yet
+				<% end %>
+			</td>
+		</tr>
 	<% end %>
+	</table>
 </div>
 
 <div id="footer">

@@ -10,7 +10,7 @@
 		<%= content_tag 'div', h(flash[:notice]), :class => 'notice', :id => 'notice' if flash[:notice] %>
 		<%= content_tag 'div', h(flash[:error]), :class => 'error', :id => 'error' if flash[:error] %>
 	</div>
-	<div id="envelope" class="variable">
+	<div id="envelope">
 		<%= yield :layout %>
 	</div>
 </body>
