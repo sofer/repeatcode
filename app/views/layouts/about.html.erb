@@ -1,0 +1,12 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html>
+<head>
+	<title>RepeatCode: <%= controller.action_name + ' ' + controller.controller_name -%></title>
+	<%= stylesheet_link_tag 'stylesheet' %>
+</head>
+<body>
+	<div id="envelope">
+		<%= yield :layout %>
+	</div>
+</body>
+</html>

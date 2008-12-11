@@ -1,0 +1,49 @@
+q|Q. What can I use this site for?
+a|A. For learning and revising a variety of material, including programming languages and various academic subjects.
+
+q|Q. How does it work?
+a|A. It uses the principles of spaced repetition and active recall.
+
+q|Q. What is spaced repetition?
+a|A. It is a learning technique where material is reviewed at increasing intervals of time. It was first suggested in 1932 by Cecil Mace in his book Psychology of Study, adopted by Pimsleur (and called "graduated interval recall") for his language learning courses and by Sebastian Leitner for his flashcard-based system. It has also been recommended by Tony Buzan. The idea draws on Hermann Ebbinghous' study in 1885 of the exponential nature of forgetting. See |http://en.wikipedia.org/wiki/Spaced_repetition|Wikipedia|.
+
+q|Q. What is active recall?
+a|A. It is where information has to be actively recalled and used rather than just recited or re-read. Pimsleur referred to this as "anticipation". See |http://en.wikipedia.org/wiki/Active_recall|Wikipedia|.
+
+q|Q. How do I start?
+a|A. After you <%= link_to 'register', '/signup' %>, you can select a <%= link_to 'new course', new_course_path %> from the several that are available.
+
+q|Q. Once I have started a course, how often should I learn?
+a|A. you can study as often as long as you like, but you are likely to get most benefit from studying each course for about 20 minutes daily. If you are not in a hurry, or if you are studying several courses simultaneously, you may want to study each course less frequently or for shorter periods of time. You can also study more intensively, although some of the benefits of combining the gradual introduction of new material with the spaced revision of old material will be lost if you attempt to cover an entire course in too short a period of time.
+
+q|Q. What should I do once I have reached the end of a course?
+a|A. It is recommended that you return to the course once or twice a week initially and then once or twice a month for several months to commit the material you have learned to long-term memory.
+
+q|Q. The intervals between each repetition feel too short or too long for me. How can I change them?
+a|A. The intervals have a default setting, which can be changed quite easily by following the "Intervals" link for any course on your home page. From there, you can "Reset" each of the default intervals. The new interval will be calculated based on the success rate of your previous answers. You can also change the target success rate for a course. In this way, you will get a learning experience better matched to your needs.
+
+q|Q. What can I do if I spot errors or omissions in some of the course materials? COMING SOON
+a|A. Please follow the "Report an error" link on the lesson page.
+
+q|Q. Can I edit existing materials?
+a|A. You cannot edit materials that have not been created by you.
+
+q|Q. How do I create my own course materials?
+a|A. Just follow the <%= link_to 'Edit course materials', subjects_path %> link on your home page and select "New subject". Creating course materials is a bit more complicated than following an existing course. You will probably want to read the instructions first.
+
+q|Q. How can I share my own course materials with other people? COMING SOON
+a|A. You can keep your course materials private, in which case only people invited by you can use them, or you can make them public, in which case all other users will have access to them.
+
+q|Q. Can I allow other people to help me edit my course materials? COMING SOON
+a|A. Yes, you can invite other people to help you edit your material, but be aware that there is currently no source control on them, so if you over-write each others' work, there will be no way of recovering it.
+
+q|Q. Who runs this site.
+a|A. It is owned and managed by |http://www.sofer.com/|Danny Sofer|.
+
+q|Q. What is the technology behind this site?
+a|A. It is developed in Rails (soon to be Merb) on a MacBook with significant use of JavaScript and the JQuery library. It is source controlled at GitHub and hosted at SliceHost. I am unboundedly grateful to the developers and maintainers of all of the software and services that I use.
+
+q|Q. How does this site support itself?
+a|A. I am working on it.
+
+
