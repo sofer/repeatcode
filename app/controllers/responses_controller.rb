@@ -1,7 +1,9 @@
 class ResponsesController < ApplicationController
+
+  before_filter :authorize
+
   # GET /responses
   # GET /responses.xml
-  
   def index
     @responses = Response.paginate(
                   :per_page => 20, 

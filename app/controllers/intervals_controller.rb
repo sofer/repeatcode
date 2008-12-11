@@ -1,4 +1,7 @@
 class IntervalsController < ApplicationController
+
+  before_filter :authorize
+
   # GET /course/1/intervals
   # GET /course/1/intervals.xml
   def index

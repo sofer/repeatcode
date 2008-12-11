@@ -1,17 +1,38 @@
-<h1>New course</h1>
-
-	<% form_for :course do |f| %>
-		<%= f.error_messages %>
-	<% end %>
-
+<div id="header">
+	<h1 class="left">
+		<%= link_to "Courses", courses_path %> |
+		New
+	</h1>
+	<h2 class="right">
+	</h2>
+	<div class="clear"></div>
+</div>
+<div id="main">
+	<table>
 	<% for subject in @subjects %>
-		<div>
-			<% form_for :course,
-			 						:url => subject_courses_path(subject) do |f| %>
-				<%= f.submit "Add course" %>
+		<tr>
+			<td>
+				<% form_for :course,
+				 						:url => subject_courses_path(subject) do |f| %>
+					<%= f.submit "Add course" %>
+			</td>
+			<td class="bold">
 				<%= subject.name %>
-			<% end %>
-		</div>
+			</td>
+		<% end %>
+		</tr>
 	<% end %>
+	</table>
+</div>
 
-<%= link_to 'Back', courses_path %>
+<div id="footer">
+	<div class="left">
+		<br>
+		Logged in as: <%= current_user.login %>
+	</div>
+	<div class="right">
+		<br>
+		<%= link_to "FAQ", "/about/faq" %> |
+		<%= link_to "logout", "/logout"%>
+	</div>
+</div>

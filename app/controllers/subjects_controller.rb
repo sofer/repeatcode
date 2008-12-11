@@ -18,7 +18,7 @@ class SubjectsController < ApplicationController
   def show
     @subject = current_user.subjects.find(params[:id])
     @topics =  @subject.topics.paginate(
-                :per_page => 24, 
+                :per_page => 22, 
                 :page => params[:page]
                 )
 

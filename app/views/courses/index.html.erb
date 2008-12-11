@@ -8,16 +8,35 @@
 	<div class="clear"></div>
 </div>
 <div id="main">
+	<table>
 	<% for course in @courses %>
-		<% form_for :lesson,
-		 						:url => course_lessons_path(course) do |f| %>
-			<%= f.submit "Learn now" %>
-			<%= course.subject.name %>
-			<%= link_to "Report", course_path(course) %>
-			<%= link_to "Intervals", course_intervals_path(course) %>
-			<%= link_to "delete", course_path(course), :confirm => 'Are you sure?',  :method => :delete %>
+		<tr>
+			<td>
+				<% form_for :lesson,
+		 								:url => course_lessons_path(course) do |f| %>
+			</td>
+			<td>
+				<%= f.submit "Learn now" %>
+			</td>
+			<td>
+				<%= link_to "Report", course_path(course) %>
+			</td>
+			<td>
+				<%= link_to "Intervals", course_intervals_path(course) %>
+			</td>
+			<td>
+				Rate this course
+			</td>
+			<td class="half bold">
+				<%= course.subject.name %>
+			</td>
+			<td>
+				<%= link_to "delete", course_path(course), :confirm => 'WARNING: This will delete all record of your work. Are you absolutely sure you want to do this?',  :method => :delete %>
+			</td>
 		<% end %>
+		</tr>
 	<% end %>
+	</table>
 </div>
 
 <div id="footer">
@@ -27,6 +46,7 @@
 	</div>
 	<div class="right">
 		<br>
+		<%= link_to "FAQ", "/about/faq" %> |
 		<%= link_to "logout", "/logout"%>
 	</div>
 </div>

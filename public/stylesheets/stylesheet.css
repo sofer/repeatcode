@@ -1,21 +1,24 @@
 html, div, h1, h2, h3, h4, h5, h6, ul, ol, dl, li, dt, dd, p, blockquote, pre, form, fieldset, table, th, td	{ margin: 0; padding: 0; }
 h1, h2, h3, h4, h5, h6 { font-size: 16px; }
+style { display: block; }
 body	{ background: LightGrey; font-family: helvetica, arial, sans-serif; }
+table { width: 100%; border-collapse: collapse; }
+tr { border-bottom: solid 1px DodgerBlue; }
+td { padding: 4px; }
 input[type=text] { width: 96%; }
 textarea { width: 400px; height: 400px; }
-style { display: block; }
 input:focus, textarea:focus { }
 
 #envelope	{ position: relative; margin: 0 auto; background: white; border: 4px DodgerBlue solid; -moz-border-radius: 10px; -webkit-border-radius: 10px; }
 .fixed	{ width: 900px; height: 500px; }
 .variable	{ width: 900px; }
-#message-envelope { margin: 4px auto; width: 900px; top: border: 1px dashed; }
+#message-envelope { margin: 4px auto; width: 892px; top: border: 1px dashed; }
 #timeout	{ position: absolute; border: 1px solid DimGray; left: 40px; right: 40px; top: 40px; bottom: 40px; background: LightYellow; padding-top: 200px; text-align: center; display: none; }
 #timeout h2	{ font-size: 18px; }
 #header	{ padding: 4px; padding-bottom: 2px; background: DodgerBlue; }
 #header a { color: MidnightBlue; }
 .fixed #footer	{ position: absolute; left: 0; right: 0; bottom: 0; margin: 4px; padding-top: 4px; border-top: 1px solid; }
-.variable #footer	{ margin: 4px; padding-top: 4px; border-top: 1px solid; }
+.variable #footer	{ margin: 4px; padding-top: 4px; border-top: 1px solid DodgerBlue; }
 .fixed #main	{ position: absolute; top: 24px; right: 0; bottom: 36px; left: 0; margin: 4px; }
 .variable #main	{ margin: 4px; }
 
@@ -24,7 +27,7 @@ input:focus, textarea:focus { }
 /* lesson id's */
 #question	{ margin-top: 30px; text-align: center; line-height: 1.2;  font-size: 24px; }
 #response	{ position: absolute; bottom: 20px; left: 0; right: 0; text-align: center; font-size: 28px; line-height: 1.2; }
-#tabs { position: absolute; bottom: 0; left: 0; right: 0; padding-top: 0px; border-top: 1px solid; }
+#tabs { position: absolute; bottom: 0; left: 0; right: 0; padding-top: 0px; border-top: 1px solid DodgerBlue; }
 #start, #completed { margin: 150px; text-align: center; font-size: 18px; }
 #exercise-phrase	{ }
 #response-field	{ width: 442px; font-size: 14px; }
@@ -35,6 +38,10 @@ input:focus, textarea:focus { }
 #palette { height: 30px; font-size: 14px; padding-top: 8px; }
 
 #course_target	{ text-align: right; width: 30px; height: 13px; font-size: 12px; }
+
+#signin label { float: left; width: 120px; height: 14px; margin: 4px; padding-top: 4px; text-align: right; }
+#signin input[type=text], input[type=password], input[type=checkbox] { width: 120px; height: 14px; margin: 4px; }
+#signin input[type=checkbox] { margin: 8px 2px; }
 
 /* maths */
 .sup { vertical-align: 50%; font-size: 16px; }
@@ -53,20 +60,19 @@ input:focus, textarea:focus { }
 .left	{ float: left; }
 .right	{ float: right; }
 .center { text-align: center; }
+.half { width: 50%; }
+.bold { font-weight: bold; }
 .incorrect	{ text-decoration: line-through; color: red; }
 .space	{ margin: 10px; }
 .clear	{ clear: both; }
-.xcolumn { width: 200px; padding: 2px; border-left: 1px solid; }
 .tab { float: left; width: 33%; height: 300px; }
 .data, .code { white-space: pre; font-family: monospace; overflow: auto; }
 .output { padding: 2px; }
 .faded { opacity: 0.2; }
 .phrase, .response, .hint, .insert { float: left; width: 180px; }
 .phrase { width: 280px }
-
-#signin label { float: left; width: 120px; height: 14px; margin: 4px; padding-top: 4px; text-align: right; }
-#signin input[type=text], input[type=password], input[type=checkbox] { width: 120px; height: 14px; margin: 4px; }
-#signin input[type=checkbox] { margin: 8px 2px; }
-
-
+.copy { margin: 20px 80px; }
+.q { font-weight: bold; margin-bottom: 4px; }
+.a { margin-bottom: 20px; }
+.a:first-letter { font-weight: bold; }
 

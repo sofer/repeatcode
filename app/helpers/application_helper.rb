@@ -1,6 +1,12 @@
 # Methods added to this helper will be available to all templates in the application.
 module ApplicationHelper
   
+  def htmlize(text)
+    text.gsub!(/^(\w+)\|(.*)/, '<p div class="\1">\2</p>')
+    text.gsub!(/\|([^|]+)\|([^|]+)\|/, '<a href="\1" target="_blank">\2</a>')
+    return text
+  end
+
   def interval_time(minutes)
     case
     when minutes == 0
