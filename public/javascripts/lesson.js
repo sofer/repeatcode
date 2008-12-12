@@ -147,11 +147,10 @@ RC.formula = {
 	spancount: 0,
 	
 	keys: {
-		'^' : { char: '', class: 'sup' },
-		'_' : { char: '', class: 'sub' },
-		'√' : { char: '&radic;', class: 'radical' },
-		'%' : { char: '&radic;', class: 'radical' },
-
+		'^' : { char: '', css_class: 'sup' },
+		'_' : { char: '', css_class: 'sub' },
+		'√' : { char: '&radic;', css_class: 'radical' },
+		'%' : { char: '&radic;', css_class: 'radical' }
 	},
 	
 	term: function(str) {
@@ -183,7 +182,7 @@ RC.formula = {
 			}
 			if (this.keys[car]) {
 					this.spancount += 1;
-					return this.keys[car].char + '<span class="'+this.keys[car].class+'">' + this.term(cdr);
+					return this.keys[car].char + '<span class="'+this.keys[car].css_class + '">' + this.term(cdr);
 			}
 			return car + this.term(cdr);
 		} else {
