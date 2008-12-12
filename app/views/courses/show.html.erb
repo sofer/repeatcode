@@ -1,6 +1,8 @@
 <div id="header">
 	<h1 class="left">
 		<%= link_to 'Courses', courses_path %> |
+		lessons |
+		<%= link_to 'intervals', course_intervals_path(@course) %> |
 		<%= @course.subject.name %>
 	</h1>
 	<div class="right">
@@ -34,7 +36,17 @@
 			</td>
 		</tr>	
 	<% end %>
-	
 	</table>
-	<%= will_paginate @lessons %>
+</div>
+
+<div id="footer">
+	<div class="center">
+		<%= will_paginate @lessons %>
+	</div>
+	<div class="left">
+		Logged in as: <%= current_user.login %>
+	</div>
+	<div class="right">
+		<%= link_to "logout", "/logout"%>
+	</div>
 </div>

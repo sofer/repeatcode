@@ -1,7 +1,9 @@
 <div id="header">
 	<h1 class="left">
 		<%= link_to 'Courses', courses_path %> |
-		<%= @course.subject.name %> | intervals
+		<%= link_to 'lessons', course_path(@course) %> |
+		intervals | 
+		<%= @course.subject.name %>
 	</h1>
 	<br clear="all">
 </div>
