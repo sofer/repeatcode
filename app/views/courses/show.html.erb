@@ -1,9 +1,9 @@
 <div id="header">
 	<h1 class="left">
 		<%= link_to 'Courses', courses_path %> |
-		lessons |
-		<%= link_to 'intervals', course_intervals_path(@course) %> |
-		<%= @course.subject.name %>
+		<%= @course.subject.name %> |
+		lessons &amp;
+		<%= link_to 'intervals', course_intervals_path(@course) %>
 	</h1>
 	<div class="right">
 		<%= @course.questions.count %> / 

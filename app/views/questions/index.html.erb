@@ -1,23 +1,49 @@
-<h1>Recent questions</h1>
+<div id="header">
+	<h1 class="left">
+		<%= link_to 'Courses', courses_path %> |
+		lessons |
+		<%= link_to 'intervals', course_intervals_path(@course) %> |
+		<%= @course.subject.name %> |
+		recent questions
+	</h1>
+	<div class="right">
+		<%= @course.questions.count %> / 
+		<%= @course.subject.exercise_count %>
+	</div>
+	<br clear="all">
+</div>
 
-<table>
-  <tr>
-		<th>ID</th>
-    <th>Course</th>
-    <th>Exercise</th>
-		<th>Interval</th>
-		<th>Next time</th>
-  </tr>
+<div id="main">
+	<table>
+	  <tr>
+			<th>ID</th>
+	    <th>Course</th>
+	    <th>Exercise</th>
+			<th>Interval</th>
+			<th>Next time</th>
+	  </tr>
 
-<% for question in @questions %>
-  <tr>
-    <td><%=h question.id %></td>
-    <td><%=h question.course_id %></td>
-    <td><%=h question.exercise_id %></td>
-    <td><%=h question.current_interval %></td>
-    <td><%=h formatted_date question.next_datetime %></td>
-		<td><%= link_to 'Responses', question %></td>
-  </tr>
-<% end %>
-</table>
-<%= will_paginate @questions %>
+	<% for question in @questions %>
+	  <tr>
+	    <td><%=h question.id %></td>
+	    <td><%=h question.course_id %></td>
+	    <td><%=h question.exercise_id %></td>
+	    <td><%=h question.current_interval %></td>
+	    <td><%=h formatted_date question.next_datetime %></td>
+			<td><%= link_to 'Responses', question %></td>
+	  </tr>
+	<% end %>
+	</table>
+</div>
+
+<div id="footer">
+	<div class="center">
+		<%= will_paginate @questions %>
+	</div>
+	<div class="left">
+		Logged in as: <%= current_user.login %>
+	</div>
+	<div class="right">
+		<%= link_to "logout", "/logout"%>
+	</div>
+</div>

@@ -7,7 +7,7 @@ class QuestionsController < ApplicationController
   def index
     @course = Course.find(params[:course_id])
     @questions =  @course.questions.paginate(
-                    :per_page => 20, 
+                    :per_page => 15, 
                     :page => params[:page], 
                     :order => "id DESC"
                   )
@@ -15,7 +15,7 @@ class QuestionsController < ApplicationController
     # check the queue of pending questions
     if params[:version] and params[:version]=='pending' 
       @questions =  Question.paginate(
-                      :per_page => 20, 
+                      :per_page => 15, 
                       :page => params[:page], 
                       :order => "current_interval",
                       :conditions => ['next_datetime <= ? and course_id = 12', Time.now]
