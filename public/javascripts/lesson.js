@@ -3,7 +3,17 @@
 var RC = {};
 
 String.prototype.simplify = function () {
-	return this.replace(/[\s,.!?-]/g, '').toLowerCase();
+	var str=this;
+	// accent insensitive for now
+	str=str.replace(/À|Á|Â|Ã|Ä|Å|à|á|â|ã|ä|å/ig,'a');
+	str=str.replace(/Ò|Ó|Ô|Õ|Ö|Ø|ò|ó|ô|õ|ö|ø/ig,'o');
+	str=str.replace(/È|É|Ê|Ë|è|é|ê|ë/ig,'e');
+	str=str.replace(/Ç|ç/ig,'c');
+	str=str.replace(/Ì|Í|Î|Ï|ì|í|î|ï/ig,'i');
+	str=str.replace(/Ù|Ú|Û|Ü|ù|ú|û|ü/ig,'u');
+	str=str.replace(/ÿ/ig,'y');
+	str=str.replace(/Ñ|ñ/ig,'n');
+	return str.replace(/[\s,.!?-]/g, '').toLowerCase();
 };
 
 String.prototype.strip_spaces = function () {
