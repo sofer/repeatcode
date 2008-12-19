@@ -516,6 +516,7 @@ $(document).ready(function(){
 	});
 
 	$(RC.DOMnodes.button).click(function () {
+		var insert = $(this).attr('value');
 		$(RC.DOMnodes.response_field).val($(RC.DOMnodes.response_field).val()+insert);
 		if (RC.question.is_formula(RC.current.data.exercise.response)) {
 			RC.formula.display(RC.DOMnodes.attempt_translated, $(RC.DOMnodes.response_field).val());
