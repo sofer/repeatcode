@@ -36,36 +36,25 @@
 			</div>
 		</div>
 
-		<div id="question">
-			<div id="exercise-phrase"> </div>
-			<div id="phrase-maths" class="maths hidden">
-				<div id="phrase-formula"> </div>
-			</div>
-			<div id="graph" class="hidden"> </div>
-		</div>
+		<div id="question"> </div>
 	
 		<div id="response">
 		
-			<div id="correct" class="hidden">Correct</div>
+			<div id="response-message" class="hidden">Correct</div>
 
-			<div class="incorrect space" id="wrong"> </div>
+			<div class="incorrect" id="wrong"> </div>
 
 			<div id="expected" class="hidden">
-				<div id="expected-maths" class="maths">
-					<div id="expected-formula"> </div>
-				</div>
 				<div id="exercise-response"> </div>
 				<%= submit_tag "OK", :id => "try-now", :class => "space"%>
 			</div>
 		
 			<div id="attempt" class="hidden">
-				<div id="maths">
-					<div id="formula"> </div>
-				</div>
+				<div id="attempt-translated"> </div>
 				<form id="response-form">
 					<%= text_field_tag "response-field", nil, :autocomplete => "off" %>
 				</form>
-				<div id="palette" class="hidden">
+				<div id="maths-palette" class="palette hidden">
 					<div class="button" value="%">&radic;</div>
 					<div class="button" value="^">x<sup>a</sup></div>
 					<div class="button" value="_">x<sub>a</sub></div>
@@ -74,8 +63,21 @@
 					<div class="button" value="\">end</div> | 
 					<div class="button" value="n$r=1 ">&Sigma;</div>
 				</div>
+				<div id="language-palette" class="palette hidden">
+					<div class="button" value=à">&agrave;</div>
+					<div class="button" value="á">&aacute;</div>
+					<div class="button" value="â">&acirc;</div>
+					<div class="button" value="ç">&ccedil;</div>
+					<div class="button" value="è">&egrave;</div>
+					<div class="button" value="é">&eacute;</div>
+					<div class="button" value="ê">&ecirc;</div>
+					<div class="button" value="ì">&igrave;</div>
+					<div class="button" value="í">&iacute;</div>
+					<div class="button" value="î">&icirc;</div>
+					<div class="button" value="%">&ocirc;</div>
+				</div>
 			</div>
-			<div id="wrong-answer" class="hidden">
+			<div id="wrong-buttons" class="hidden">
 				<div class="left">
 					<%= submit_tag "Try again", :id => "try-again" %>
 				</div>
@@ -116,7 +118,6 @@
 			Logged in as: <%= current_user.login %>
 		</div>
 		<div class="right">
-			Report an error |
 			<%= link_to 'End lesson', courses_path %>
 			<div id="loading" class="hidden"><img src="/images/furniture/loading.gif" width="16" height="16" alt="waiting..." align="right"></div>
 		</div>

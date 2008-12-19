@@ -35,13 +35,12 @@ RC.DOMnodes = {
 	attempt: '#attempt',
 	unexpected: '#unexpected',
 	expected: '#expected',
-	correct: '#correct',
+	correct: '#response-message',
 	wrong: '#wrong',
-	wrong_answer: '#wrong-answer',
+	wrong_buttons: '#wrong-buttons',
 	try_now: '#try-now',
 	try_again: '#try-again',
 	show_answer: '#show-answer',
-	exercise_phrase: '#exercise-phrase',
 	exercise_response: '#exercise-response',
 	exercise_no: '#exercise-no',
 	question_no: '#question-no',
@@ -49,13 +48,10 @@ RC.DOMnodes = {
 	response_form: '#response-form',
 	response_field: '#response-field',
 	response_submit: '#response_submit',
-	formula: '#formula',
-	phrase_maths: '#phrase-maths',
-	phrase_formula: '#phrase-formula',	
-	expected_maths: '#expected-maths',
-	expected_formula: '#expected-formula',
+	attempt_translated: '#attempt-translated',
 	graph: '#graph',
-	palette: '#palette',
+	maths_palette: '#maths-palette',
+	language_palette: '#language-palette',
 	button: '.button'
 };
 
@@ -148,7 +144,6 @@ RC.formula = {
 	
 	close_char: ';',
 	term_separator: '\\',
-	formula_prefix: '=',
 	html_entity_start: '&',
 	denominator: '/',
 	space: ' ',
@@ -202,9 +197,6 @@ RC.formula = {
 
 
 	translate: function(str) {
-		if (str && str.charAt(0) === this.formula_prefix) {
-			str = str.slice(1);
-		}
 		str = str.replace(/\b\S+\$\S+\b/g, this.term_separator + '\$ $& ' + this.term_separator); // special case for Sigma
 		var arr = str.split(this.term_separator);
 		var phrase = '';
@@ -221,6 +213,35 @@ RC.formula = {
 		return phrase;
 	},
 	
+	display: function(id,str) {
+		var formula = '<div class="maths"><div class="formula">' + this.translate(str) + '</div></div>';
+		$(id).html(formula);
+		var inner = id + ' .maths';
+		var outer = id + ' .formula';
+		RC.centre(inner, outer);
+	}
+	
+}
+
+RC.question = {
+
+	json_url: document.location + '.json',
+	waiter: null,
+	waiting: true,
+	data: { status: 'waiting' },
+	ignore: false,
+	next: { status: 'waiting' },
+	previously_incorrect: false,
+	formula_prefix: '=',
+	
+	ignored_data: function() {
+		if (this.ignore) {
+			return 'ignore=' + this.data.question.id
+		} else {
+			return '';
+		}
+	},
+
 	strip_prefix: function(str) {
 		if (str && str.charAt(0) === this.formula_prefix) {
 			return str.slice(1);
@@ -235,28 +256,8 @@ RC.formula = {
 		} else {
 			return false;
 		}
-	}
-	
-}
-
-RC.question = {
-
-	json_url: document.location + '.json',
-	waiter: null,
-	waiting: true,
-	data: { status: 'waiting' },
-	ignore: false,
-	next: { status: 'waiting' },
-	previously_incorrect: false,
-	
-	ignored_data: function() {
-		if (this.ignore) {
-			return 'ignore=' + this.data.question.id
-		} else {
-			return '';
-		}
 	},
-
+	
 	not_finished: function (data) {
 	  if (data.status === 'end') {
 			$(RC.DOMnodes.start).hide();
@@ -344,60 +345,70 @@ RC.question = {
 	},
 	
 	display_response: function () {
-		var response = RC.formula.strip_prefix(this.data.exercise.response)
+		var response = this.strip_prefix(this.data.exercise.response)
 		var re = /(.*)\(([^)]+)\)\s*\|\s*\(([^)]+)\)(.*)/;
 		return response.replace(re, '"$1$2$4" or "$1$3$4"')
-	},
-
-  show: function() {
-		RC.timer.reset_seconds();
-		$(RC.DOMnodes.start).hide();
-		$(RC.DOMnodes.exercise_response).show();
-		$(RC.DOMnodes.palette).hide();
-		$(RC.DOMnodes.wrong).html(' ');
-		$(RC.DOMnodes.topic).html(this.data.topic);
-		if (RC.formula.is_formula(this.data.exercise.phrase)) {
-			$(RC.DOMnodes.exercise_phrase).hide();
-			$(RC.DOMnodes.phrase_maths).show();
-			$(RC.DOMnodes.phrase_formula).html(RC.formula.translate(this.data.exercise.phrase));
-			RC.centre(RC.DOMnodes.phrase_maths, RC.DOMnodes.phrase_formula);
-		} else {
-			$(RC.DOMnodes.exercise_phrase).html(this.data.exercise.phrase);
-			$(RC.DOMnodes.phrase_maths).hide();
-			$(RC.DOMnodes.exercise_phrase).show();
-		}
-		$(RC.DOMnodes.exercise_response).html(this.display_response());
-		$(RC.DOMnodes.exercise_no).html(this.data.exercise.id);
-		$(RC.DOMnodes.question_no).html(this.data.question.id);
-		$(RC.DOMnodes.current_interval).html(this.data.question.current_interval.toString());
-		this.hint(this.data.exercise.hint);
-		$(RC.DOMnodes.formula).html(' ');
-		$(RC.DOMnodes.expected_formula).html(' ');
-		if (this.data.question.current_interval === 0) {
-		 	$(RC.DOMnodes.expected).show();
-			$(RC.DOMnodes.try_now).focus();
-		} else {
-		  $(RC.DOMnodes.attempt).show();
-			$(RC.DOMnodes.response_field).focus();
-		}
-		if (RC.formula.is_formula(this.data.exercise.response)) {
-			$(RC.DOMnodes.expected_formula).html(RC.formula.translate(this.data.exercise.response));
-			RC.centre(RC.DOMnodes.expected_maths, RC.DOMnodes.expected_formula);
-		 	$(RC.DOMnodes.exercise_response).hide();
-			$(RC.DOMnodes.palette).show();
-		}
-		
 	},
 	
 	show_answer: function () {
 		this.previously_incorrect = false;
 		this.post_response('incorrect');
 		this.data.question.current_interval = 0;
-		$(RC.DOMnodes.attempt).hide();
-		$(RC.DOMnodes.wrong_answer).hide();
+		this.update_stats();
 		$(RC.DOMnodes.expected).show();
-		RC.centre(RC.DOMnodes.expected_maths, RC.DOMnodes.expected_formula);
+		$(RC.DOMnodes.exercise_response).show();
+		this.show_response(RC.DOMnodes.exercise_response, this.data.exercise.response);
 		$(RC.DOMnodes.try_now).focus();
+	},
+	
+	show_response: function (node, response) {
+		$(node).show();
+		if (this.is_formula(this.data.exercise.response)) {
+			response = this.strip_prefix(response);
+			$(node).html(RC.formula.display(node, response));
+		} else {
+			$(node).html(response);
+		}
+	},
+	
+	update_stats: function() {
+		$(RC.DOMnodes.exercise_no).html(this.data.exercise.id);
+		$(RC.DOMnodes.question_no).html(this.data.question.id);
+		$(RC.DOMnodes.current_interval).html(this.data.question.current_interval.toString());
+	},
+
+  show: function() {
+		RC.timer.reset_seconds();
+		$(RC.DOMnodes.wrong).html('');
+		$(RC.DOMnodes.response_field).val('')
+		$(RC.DOMnodes.attempt_translated).html('');
+		$(RC.DOMnodes.start).hide();
+		$(RC.DOMnodes.exercise_response).show();
+		$(RC.DOMnodes.topic).html(this.data.topic);
+		if (this.is_formula(this.data.exercise.phrase)) {
+			RC.formula.display(RC.DOMnodes.question, this.strip_prefix(this.data.exercise.phrase));
+		} else {
+			$(RC.DOMnodes.question).html(this.data.exercise.phrase);
+			$(RC.DOMnodes.phrase_maths).hide();
+			$(RC.DOMnodes.question).show();
+		}
+		$(RC.DOMnodes.exercise_response).html(this.display_response());
+		this.update_stats();
+		this.hint(this.data.exercise.hint);
+		if (this.data.question.current_interval === 0) {
+		 	$(RC.DOMnodes.expected).show();
+			this.show_response(RC.DOMnodes.exercise_response, this.data.exercise.response);
+			$(RC.DOMnodes.try_now).focus();
+		} else {
+		  $(RC.DOMnodes.attempt).show();
+			$(RC.DOMnodes.response_field).focus();
+		}
+		if (this.is_formula(this.data.exercise.response)) {
+			//RC.formula.display(RC.DOMnodes.exercise_response, this.strip_prefix(this.data.exercise.response));
+		 	//$(RC.DOMnodes.exercise_response).hide();
+			$(RC.DOMnodes.maths_palette).show();
+		}
+		
 	},
 	
 	post_response: function (result) {
@@ -438,8 +449,8 @@ RC.question = {
 	check_response: function (response) {
 		var expected = this.data.exercise.response;
 		var match = false;
-		if (RC.formula.is_formula(expected)) { // no pattern matching on formulas
-			expected = RC.formula.strip_prefix(expected);
+		if (this.is_formula(expected)) { // no pattern matching on formulas
+			expected = this.strip_prefix(expected);
 			if (expected.strip_spaces() === response.strip_spaces()) {
 				match = true;
 			}
@@ -455,23 +466,19 @@ RC.question = {
 			this.post_response('correct');
 			$(RC.DOMnodes.correct).show().fadeOut(1000);
 		} else {
+			this.show_response(RC.DOMnodes.wrong, response);
 			if (this.previously_incorrect) {
+				this.update_stats();
 				this.show_answer();
 			} else {
 				this.previously_incorrect = true; // allow one re-try
-				$(RC.DOMnodes.wrong_answer).show();
-				if (RC.formula.is_formula(this.data.exercise.response)) {
-					$(RC.DOMnodes.wrong).html(RC.formula.translate(response));
-				} else {
-					$(RC.DOMnodes.wrong).html(response);
-				}
+				$(RC.DOMnodes.wrong_buttons).show();
 				$(RC.DOMnodes.try_again).focus();
 			}
     }
 	}
 
 };
-
 
 RC.current = RC.question;
 RC.current.get_first();
@@ -488,7 +495,6 @@ $(document).ready(function(){
 	$(RC.DOMnodes.try_now).click(function() {
 		$(RC.DOMnodes.expected).hide();
 		$(RC.DOMnodes.wrong).html('');
-		$(RC.DOMnodes.formula).html('');
     $(RC.DOMnodes.response_field).val('');
 		$(RC.DOMnodes.attempt).show();
 		$(RC.DOMnodes.response_submit).focus();
@@ -496,7 +502,8 @@ $(document).ready(function(){
 	});
 
 	$(RC.DOMnodes.try_again).click(function() {
-		$(RC.DOMnodes.wrong_answer).hide();
+		$(RC.DOMnodes.wrong).html('');
+		$(RC.DOMnodes.wrong_buttons).hide();
 		$(RC.DOMnodes.attempt).show();
 		$(RC.DOMnodes.response_field).select();
 	});
@@ -507,24 +514,19 @@ $(document).ready(function(){
 
 	$(RC.DOMnodes.response_field).keyup(function(key){
 		RC.augmentResponse(RC.DOMnodes.response_field);
-		if (RC.formula.is_formula(RC.current.data.exercise.response)) {
-			// move this into function: same 3 lines repeated below
-	    var response = $(RC.DOMnodes.response_field).val();
-			$(RC.DOMnodes.formula).html(RC.formula.translate(response));
-			RC.centre(RC.DOMnodes.maths, RC.DOMnodes.formula);
+		if (RC.question.is_formula(RC.current.data.exercise.response)) {
+			RC.formula.display(RC.DOMnodes.attempt_translated, $(RC.DOMnodes.response_field).val());
 		}
 		RC.timer.reset_timeout();
 	});
 
 	$(RC.DOMnodes.button).click(function () {
-		var insert = $(this).attr('value');
 		$(RC.DOMnodes.response_field).val($(RC.DOMnodes.response_field).val()+insert);
-		// move this into function: same 3 lines repeated above
-    var response = $(RC.DOMnodes.response_field).val();
-		$(RC.DOMnodes.formula).html(RC.formula.translate(response));
-		RC.centre(RC.DOMnodes.maths, RC.DOMnodes.formula);
+		if (RC.question.is_formula(RC.current.data.exercise.response)) {
+			RC.formula.display(RC.DOMnodes.attempt_translated, $(RC.DOMnodes.response_field).val());
+		}
 		$(RC.DOMnodes.response_field).focus();
-		false;
+		return false;
 	})
 
 	$(RC.DOMnodes.timeout).click(function(){

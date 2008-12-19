@@ -7,19 +7,20 @@
 	</h1>
 	<br clear="all">
 </div>
+
 <div id="main">
 	<table>
 		<tr>
 			<% form_for @course do |f| %>
-			<th>Index</th>
-			<th>Interval</th>
-			<th>Success rate*</th>
-			<td>
-				TARGET: 
+			<td>Revision</td>
+			<td align="right">Interval</td>
+			<td align="right">Accuracy*</td>
+			<td align="right">
+				Target: 
 				<%= f.text_field :target %>
 				%
 			</td>
-			<td>
+			<td align="right">
 				<%= f.submit "Change" %>
 				<% end %>
 			</td>
@@ -29,11 +30,11 @@
 		<% responses = @responses[interval.index_no] %>
 	  <tr>
 	    <td><%=h ordinal(interval.index_no) %></td>
-	    <td><%= interval_time interval.minutes %></td>
-			<td><%= success_rate(responses) %></td>
-			<td><%= formatted_date interval.updated_at %></td>
+	    <td align="right"><%= interval_time interval.minutes %></td>
+			<td align="right"><%= success_rate(responses) %></td>
+			<td align="right"><%= formatted_date interval.updated_at %></td>
 			<% if interval.index_no > 1 and responses[:correct] > 10 %>
-			<td>
+			<td align="right">
 				<% form_for interval do |f| %>
 					<%= hidden_field_tag 'correct', responses[:correct] %>
 					<%= hidden_field_tag 'incorrect', responses[:incorrect] %>
@@ -44,7 +45,30 @@
 	  </tr>
 	<% end %>
 	</table>
+	<div class="right">
+		<p>* since last reset</p>
+	</div>
+	<br clear="all">
 	<div>
-		* since last reset
+		<ul>
+			<li>Each time you respond to an exercise, the <strong>Interval</strong> of time until your next <strong>Revision</strong> increases.</li>
+			<li>The <strong>Accuracy</strong> of your responses at each interval gives you an indication of how close you are to your <strong>Target</strong>.</li>
+			<li>An interval can be <strong>Reset</strong> in order to more closely match your target.</li>
+			<li> You can also <strong>Change</strong> the default target (90%) at any time.</li>
+		  <li>In this way, you can make best use of your time, and learn as thoroughly or as quickly as you like.
+			</ul>
+	</div>
+
+</div>
+
+<div id="footer">
+	<div class="left">
+		<br/>
+		Logged in as: <%= current_user.login %>
+	</div>
+	<div class="right">
+		<br/>
+		<%= link_to "FAQ", "/about/faq" %> |
+		<%= link_to "logout", "/logout"%>
 	</div>
 </div>

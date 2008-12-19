@@ -17,6 +17,32 @@ class LessonsController < ApplicationController
   # GET /lessons/1
   # GET /lessons/1.xml
   
+  def show2
+    @lesson = Lesson.find(params[:id])
+    
+    respond_to do |format|
+      format.html # show.html.erb
+      format.xml  { render :xml => @question.exercise }
+      format.json  { 
+        if params[:ignore]
+          question = @lesson.next_question(params[:ignore])
+        else
+          question = @lesson.next_question
+        end
+        if question
+          if question.exercise.topic
+            topic = question.exercise.topic.name
+          else
+            topic = "question removed from course"
+          end
+          render :json => { 'ignored' => params[:ignore], 'status' => 'ok', 'exercise' => question.exercise, 'question' => question, 'topic' => topic }
+        else
+          render :json => { 'status' => 'end' }
+        end
+      }
+    end
+  end
+
   def show
     @lesson = Lesson.find(params[:id])
     
