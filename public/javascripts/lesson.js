@@ -389,8 +389,6 @@ RC.question = {
 			RC.formula.display(RC.DOMnodes.question, this.strip_prefix(this.data.exercise.phrase));
 		} else {
 			$(RC.DOMnodes.question).html(this.data.exercise.phrase);
-			$(RC.DOMnodes.phrase_maths).hide();
-			$(RC.DOMnodes.question).show();
 		}
 		$(RC.DOMnodes.exercise_response).html(this.display_response());
 		this.update_stats();
@@ -404,8 +402,6 @@ RC.question = {
 			$(RC.DOMnodes.response_field).focus();
 		}
 		if (this.is_formula(this.data.exercise.response)) {
-			//RC.formula.display(RC.DOMnodes.exercise_response, this.strip_prefix(this.data.exercise.response));
-		 	//$(RC.DOMnodes.exercise_response).hide();
 			$(RC.DOMnodes.maths_palette).show();
 		}
 		
