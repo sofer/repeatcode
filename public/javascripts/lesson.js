@@ -324,8 +324,6 @@ RC.question = {
 	hint: function(hint_text) {
 		var math_char = '#';
 		var split_char = '|';
-		$(RC.DOMnodes.response_field).val('');
-	 	$(RC.DOMnodes.graph).hide();
 		if (!hint_text) return;
 		if (hint_text.charAt(0) === math_char) {
 			var data = [];
@@ -383,16 +381,17 @@ RC.question = {
 		$(RC.DOMnodes.response_field).val('')
 		$(RC.DOMnodes.attempt_translated).html('');
 		$(RC.DOMnodes.start).hide();
+		$(RC.DOMnodes.graph).hide();
 		$(RC.DOMnodes.exercise_response).show();
 		$(RC.DOMnodes.topic).html(this.data.topic);
+		this.update_stats();
+		this.hint(this.data.exercise.hint);
 		if (this.is_formula(this.data.exercise.phrase)) {
 			RC.formula.display(RC.DOMnodes.question, this.strip_prefix(this.data.exercise.phrase));
 		} else {
 			$(RC.DOMnodes.question).html(this.data.exercise.phrase);
 		}
 		$(RC.DOMnodes.exercise_response).html(this.display_response());
-		this.update_stats();
-		this.hint(this.data.exercise.hint);
 		if (this.data.question.current_interval === 0) {
 		 	$(RC.DOMnodes.expected).show();
 			this.show_response(RC.DOMnodes.exercise_response, this.data.exercise.response);
