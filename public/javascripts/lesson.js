@@ -342,10 +342,9 @@ RC.question = {
 		}
 	},
 	
-	display_response: function () {
-		var response = this.strip_prefix(this.data.exercise.response)
+	both_versions: function (text) {
 		var re = /(.*)\(([^)]+)\)\s*\|\s*\(([^)]+)\)(.*)/;
-		return response.replace(re, '"$1$2$4" or "$1$3$4"')
+		return text.replace(re, '"$1$2$4" or "$1$3$4"')
 	},
 	
 	show_answer: function () {
@@ -355,7 +354,7 @@ RC.question = {
 		this.update_stats();
 		$(RC.DOMnodes.expected).show();
 		$(RC.DOMnodes.exercise_response).show();
-		this.show_response(RC.DOMnodes.exercise_response, this.data.exercise.response);
+		//this.show_response(RC.DOMnodes.exercise_response, this.both_versions(this.data.exercise.response));
 		$(RC.DOMnodes.try_now).focus();
 	},
 	
@@ -389,9 +388,11 @@ RC.question = {
 		if (this.is_formula(this.data.exercise.phrase)) {
 			RC.formula.display(RC.DOMnodes.question, this.strip_prefix(this.data.exercise.phrase));
 		} else {
-			$(RC.DOMnodes.question).html(this.data.exercise.phrase);
+			var phrase = this.both_versions(this.data.exercise.phrase)
+			$(RC.DOMnodes.question).html(phrase);
 		}
-		$(RC.DOMnodes.exercise_response).html(this.display_response());
+		var response = this.both_versions(this.strip_prefix(this.data.exercise.response));
+		$(RC.DOMnodes.exercise_response).html(response);
 		if (this.data.question.current_interval === 0) {
 		 	$(RC.DOMnodes.expected).show();
 			this.show_response(RC.DOMnodes.exercise_response, this.data.exercise.response);
