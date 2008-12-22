@@ -343,7 +343,7 @@ RC.question = {
 	},
 	
 	both_versions: function (text) {
-		var re = /(.*)\(([^)]+)\)\s*\|\s*\(([^)]+)\)(.*)/;
+		var re = /(.*)\(([^)]*)\)\s*\|\s*\(([^)]*)\)(.*)/;
 		return text.replace(re, '"$1$2$4" or "$1$3$4"')
 	},
 	
@@ -354,7 +354,6 @@ RC.question = {
 		this.update_stats();
 		$(RC.DOMnodes.expected).show();
 		$(RC.DOMnodes.exercise_response).show();
-		//this.show_response(RC.DOMnodes.exercise_response, this.both_versions(this.data.exercise.response));
 		$(RC.DOMnodes.try_now).focus();
 	},
 	
