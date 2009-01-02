@@ -28,7 +28,11 @@
 				Rate this course
 			</td>
 			<td class="half bold">
-				<%= course.subject.name %>
+				<% if course.subject %>
+					<%= course.subject.name %>
+				<% else %>
+					[ course removed ]
+				<% end %>
 			</td>
 			<td>
 				<%= link_to "delete", course_path(course), :confirm => 'WARNING: This will delete all record of your work. Are you absolutely sure you want to do this?',  :method => :delete %>

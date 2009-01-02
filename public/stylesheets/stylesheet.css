@@ -54,13 +54,14 @@ input:focus, textarea:focus	{ }
 
 /* maths */
 .sup	{ vertical-align: 50%; font-size: 16px; }
-.sub	{ vertical-align: -50%; font-size: 16px; }
+.sub	{ vertical-align: -20%; font-size: 16px; }
 .radical	{ border-top: 3px solid; padding-top: 4px; }
 .denominate	{ display: block; border-top: 3px solid; padding: 6px; vertical-align: -100%; }
 .term	{float: left; height: 60px; padding: 4px; }
 .n	{ display: block; font-size: 14px; margin-top: -10px; }
 .sigma	{ display: block; line-height: .8em;}
 .r	{ display: block; font-size: 14px; }
+.nospace { letter-spacing: -0.6em; }
 .button	{ display: inline; padding: 4px; border: 1px solid; margin: -1px; background: LightCyan; }
 
 /* topics */
@@ -89,5 +90,4 @@ input:focus, textarea:focus	{ }
 .q	{ font-weight: bold; margin-bottom: 4px; }
 .a	{ margin-bottom: 20px; }
 .a:first-letter	{ font-weight: bold; }
-
 

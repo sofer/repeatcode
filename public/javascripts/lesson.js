@@ -147,7 +147,8 @@ RC.formula = {
 	html_entity_start: '&',
 	denominator: '/',
 	space: ' ',
-	sum_start: '$',
+	sum: '$',
+	combination: 'C',
 
 	spancount: 0,
 	
@@ -169,11 +170,18 @@ RC.formula = {
 					return this.html_entity_start + result[1] + this.term(result[2]);
 				}
 			}
-			if (car === this.sum_start) { //special case for sums
+			if (car === this.sum) { //special case for sums
 				var pattern = /^\s(\S+)\$(\S+)\b/;
 				var result = cdr.match(pattern);
 				if (result) {
 					return '<span class="n">' + result[1] + '</span><span class="sigma">&Sigma;</span><span class="r">' + result[2] + '</span>'
+				}
+			}
+			if (car === this.combination) { //special case for combinations
+				var pattern = /^\s(\S+)C(\S+)\b/;
+				var result = cdr.match(pattern);
+				if (result) {
+					return '(<span class="sup nospace">' + result[1] + '</span><span class="sub">' + result[2] + '</span>)'
 				}
 			}
 			if (car === this.close_char) {
@@ -198,6 +206,7 @@ RC.formula = {
 
 	translate: function(str) {
 		str = str.replace(/\b\S+\$\S+\b/g, this.term_separator + '\$ $& ' + this.term_separator); // special case for Sigma
+		str = str.replace(/\b\S+C\S+\b/g, this.term_separator + 'C $&' + this.term_separator); // special case for combination
 		var arr = str.split(this.term_separator);
 		var phrase = '';
 		var i;
