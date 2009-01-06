@@ -149,6 +149,7 @@ RC.formula = {
 	space: ' ',
 	sum: '$',
 	combination: 'C',
+	integral: 'I',
 
 	spancount: 0,
 	
@@ -181,7 +182,14 @@ RC.formula = {
 				var pattern = /^\s(\S+)C(\S+)\b/;
 				var result = cdr.match(pattern);
 				if (result) {
-					return '(<span class="sup nospace">' + result[1] + '</span><span class="sub">' + result[2] + '</span>)'
+					return '(<span class="sub nospace">' + result[1] + '</span><span class="sup">' + result[2] + '</span>)'
+				}
+			}
+			if (car === this.integral) { //special case for integrals
+				var pattern = /^\s(\S+)I(\S+)\b/;
+				var result = cdr.match(pattern);
+				if (result) {
+					return '<span class="n">' + result[1] + '</span><span class="sigma">&int;</span><span class="r">' + result[2] + '</span>'
 				}
 			}
 			if (car === this.close_char) {
@@ -207,6 +215,7 @@ RC.formula = {
 	translate: function(str) {
 		str = str.replace(/\b\S+\$\S+\b/g, this.term_separator + '\$ $& ' + this.term_separator); // special case for Sigma
 		str = str.replace(/\b\S+C\S+\b/g, this.term_separator + 'C $&' + this.term_separator); // special case for combination
+		str = str.replace(/\b\S+I\S+\b/g, this.term_separator + 'I $&' + this.term_separator); // special case for integral
 		var arr = str.split(this.term_separator);
 		var phrase = '';
 		var i;
