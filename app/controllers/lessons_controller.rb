@@ -17,6 +17,7 @@ class LessonsController < ApplicationController
   # GET /lessons/1
   # GET /lessons/1.xml
   
+  # NOT SURE WHAT show2 IS FOR
   def show2
     @lesson = Lesson.find(params[:id])
     
@@ -61,9 +62,9 @@ class LessonsController < ApplicationController
           else
             topic = "question removed from course"
           end
-          render :json => { 'ignored' => params[:ignore], 'status' => 'ok', 'exercise' => question.exercise, 'question' => question, 'topic' => topic }
+          render :json => { 'ignored' => params[:ignore], 'status' => 'ok', 'exercise' => question.exercise, 'question' => question, 'topic' => topic, 'backlog' => @lesson.backlog }
         else
-          render :json => { 'status' => 'end' }
+          render :json => { 'status' => 'end', 'days_until_next' => @lesson.days_until_next }
         end
       }
     end
@@ -85,12 +86,21 @@ class LessonsController < ApplicationController
     @lesson = Lesson.find(params[:id])
   end
 
-  # POST /lessons
-  # POST /lessons.xml
+  # POST /courses/i/lessons
+  # POST /courses/i/lessons.xml
   def create
     @course = Course.find(params[:course_id])
     @lesson = @course.lessons.new(params[:lesson])
-
+        
+    new_material_count = @course.add_new_material
+    if new_material_count > 0
+      if new_material_count == 1
+        flash[:notice] = "Course updated with one recently added exercise in a topic that you have already covered"
+      else
+        flash[:notice] = "Course updated with #{new_material_count} recently added exercises in topics that you have already covered"
+      end
+    end
+    
     respond_to do |format|
       if @lesson.save
         format.html { redirect_to(@lesson) }

@@ -9,7 +9,13 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20080918130450) do
+ActiveRecord::Schema.define(:version => 20090121100140) do
+
+  create_table "areas", :force => true do |t|
+    t.string   "name"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "authorships", :force => true do |t|
     t.integer  "subject_id"
@@ -23,6 +29,8 @@ ActiveRecord::Schema.define(:version => 20080918130450) do
     t.integer  "target"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "last_question"
+    t.boolean  "archived"
   end
 
   create_table "exercises", :force => true do |t|
@@ -80,6 +88,8 @@ ActiveRecord::Schema.define(:version => 20080918130450) do
     t.boolean  "public"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.boolean  "archived"
+    t.integer  "area"
   end
 
   create_table "subscriptions", :force => true do |t|

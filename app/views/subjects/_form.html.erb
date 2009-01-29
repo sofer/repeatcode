@@ -1,3 +1,15 @@
+<p>
 <%= f.error_messages %>
+</p><p>
 <%= f.label :name %>
 <%= f.text_field :name %>
+</p><p>
+<%= f.label :area %>
+<%= f.select(:area, Subject::AREAS_FOR_FORM) %>
+</p><p>
+<%= f.label :archived %>
+<%= f.select :archived, ['False', 'True'] %>
+</p><p>
+<%= f.label "Non-standard characters" %>
+<%= f.text_field :extended_chars, :value => @extended  %>
+</p>

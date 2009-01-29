@@ -14,8 +14,25 @@ class Lesson < ActiveRecord::Base
   end
 
   def increment_correct
+    # change to update_attribute?
     self.correct_responses += 1
     save!
+  end
+  
+  def backlog
+    self.course.questions.count( :conditions => ['next_datetime <= ?', Time.now])
+  end
+  
+  def days_until_next
+    time = Time.now
+    day_count = 0
+    maxcount = self.course.questions.count
+    if maxcount > 20 then maxcount = 20 end
+    while self.course.questions.count( :conditions => ['next_datetime <= ?', time]) < maxcount and day_count < 30
+      day_count += 1
+      time += 60 * 60 * 24
+    end
+    return day_count
   end
 
   def next_question(exclude_question=0)
@@ -25,41 +42,41 @@ class Lesson < ActiveRecord::Base
                               ) or new_question
   end
 
-  def new_question    
+private
+
+  def new_question
+
     if self.course.questions.empty?
-      
+            
       # get first question
       if course.subject.topics.first
         return new_topic(course.subject.topics.first)
       end
+
     else
     
-      # get the last question added to the course
-      last_question = course.questions.find(:first, :order => 'id DESC')    
-    
       # get the next exercise within the current topic
-      next_exercise = last_question.exercise.lower_item
-        
+      next_exercise = course.last_question.exercise.lower_item
       if next_exercise
         return add_question(next_exercise)
       else
-        if last_question.exercise.topic
-          next_topic = last_question.exercise.topic.lower_item
-          if next_topic
-            return new_topic(next_topic)
-          end
+
+        # get the next topic
+        next_topic = course.last_question.exercise.topic.lower_item
+        if next_topic
+          return new_topic(next_topic)
         end
       end
 
     end
   end
   
-private
-
   def add_question(exercise)
-    new_question = course.questions.new( :exercise_id => exercise.id)
+    #new_question = course.questions.new(:exercise_id => exercise.id)
+    new_question = Question.new(:exercise_id => exercise.id, :course_id => course.id )
     if new_question.save
-      update_attribute(:total_questions_started, course.questions.count)
+      course.update_attribute :last_question, new_question.id
+      update_attribute :total_questions_started, course.questions.count
       return new_question
     end
   end

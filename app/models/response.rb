@@ -13,7 +13,7 @@ private
 
   def reset_question
     if self.result == RESULTS[:correct]
-      self.question.course.current_lesson.increment_correct
+      question.course.current_lesson.increment_correct
       question.reset_interval_and_datetime(self.interval)
     else
       question.reset_interval_and_datetime(0)

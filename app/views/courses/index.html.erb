@@ -14,9 +14,8 @@
 			<td>
 				<% form_for :lesson,
 		 								:url => course_lessons_path(course) do |f| %>
-			</td>
-			<td>
-				<%= f.submit "Learn now" %>
+					<%= f.submit "Learn now" %>
+				<% end %>
 			</td>
 			<td>
 				<%= link_to "Report", course_path(course) %>
@@ -25,7 +24,7 @@
 				<%= link_to "Intervals", course_intervals_path(course) %>
 			</td>
 			<td>
-				Rate this course
+				Rate
 			</td>
 			<td class="half bold">
 				<% if course.subject %>
@@ -37,7 +36,6 @@
 			<td>
 				<%= link_to "delete", course_path(course), :confirm => 'WARNING: This will delete all record of your work. Are you absolutely sure you want to do this?',  :method => :delete %>
 			</td>
-		<% end %>
 		</tr>
 	<% end %>
 	</table>
@@ -45,12 +43,15 @@
 
 <div id="footer">
 	<div class="left">
-		<%= link_to "Edit course materials", :controller => 'subjects', :action => 'index' %><br>
+		<br>
 		Logged in as: <%= current_user.login %>
 	</div>
 	<div class="right">
 		<br>
-		<%= link_to "FAQ", "/about/faq" %> |
-		<%= link_to "logout", "/logout"%>
+		<div class="right">
+			<%= link_to "Edit course materials", :controller => 'subjects', :action => 'index' %>
+			| <%= link_to "FAQ", "/about/faq" %>
+			| <%= link_to "logout", "/logout"%>
+		</div>
 	</div>
 </div>

@@ -2,13 +2,13 @@
 	<h1 class="left">
 		<%= link_to 'Courses', courses_path %> |
 		lessons |
-		<%= link_to 'intervals', course_intervals_path(@course) %> |
-		<%= @course.subject.name %> |
+		<%= link_to 'intervals', course_intervals_path(@course)  if @course %> |
+		<%= @course.subject.name if @course %> |
 		recent questions
 	</h1>
 	<div class="right">
-		<%= @course.questions.count %> / 
-		<%= @course.subject.exercise_count %>
+		<%= @course.questions.count  if @course %> / 
+		<%= @course.subject.exercise_count  if @course %>
 	</div>
 	<br clear="all">
 </div>

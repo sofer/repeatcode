@@ -7,6 +7,7 @@ ActionController::Routing::Routes.draw do |map|
   map.resources :questions do |question|
     question.resources :responses 
   end  
+  map.resources :questions
 
   map.resources :responses
 

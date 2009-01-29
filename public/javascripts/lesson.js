@@ -44,14 +44,15 @@ RC.DOMnodes = {
 	exercise_response: '#exercise-response',
 	exercise_no: '#exercise-no',
 	question_no: '#question-no',
-	current_interval: '#current_interval',
+	current_interval: '#current-interval',
+	backlog: '#backlog',
 	response_form: '#response-form',
 	response_field: '#response-field',
-	response_submit: '#response_submit',
 	attempt_translated: '#attempt-translated',
 	graph: '#graph',
 	maths_palette: '#maths-palette',
 	language_palette: '#language-palette',
+	days_til_next: '#days-til-next',
 	button: '.button'
 };
 
@@ -282,6 +283,11 @@ RC.question = {
 			$(RC.DOMnodes.question).hide();
 			$(RC.DOMnodes.response).hide();
     	$(RC.DOMnodes.completed).show();
+			if (data.days_until_next == 1) {
+				$(RC.DOMnodes.days_til_next).text('a day or so');
+			} else {
+				$(RC.DOMnodes.days_til_next).text('about ' + data.days_until_next + ' days');
+ 			}
 	    return false;
 	  } else {
 			return true;
@@ -386,9 +392,10 @@ RC.question = {
 	},
 	
 	update_stats: function() {
-		$(RC.DOMnodes.exercise_no).html(this.data.exercise.id);
-		$(RC.DOMnodes.question_no).html(this.data.question.id);
-		$(RC.DOMnodes.current_interval).html(this.data.question.current_interval.toString());
+		$(RC.DOMnodes.exercise_no).text(this.data.exercise.id);
+		$(RC.DOMnodes.question_no).text(this.data.question.id);
+		$(RC.DOMnodes.current_interval).text(this.data.question.current_interval.toString());
+		$(RC.DOMnodes.backlog).text(this.data.backlog);
 	},
 
   show: function() {
@@ -510,7 +517,6 @@ $(document).ready(function(){
 		$(RC.DOMnodes.wrong).html('');
     $(RC.DOMnodes.response_field).val('');
 		$(RC.DOMnodes.attempt).show();
-		$(RC.DOMnodes.response_submit).focus();
 		$(RC.DOMnodes.response_field).select();
 	});
 

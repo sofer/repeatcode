@@ -5,13 +5,20 @@ class QuestionsController < ApplicationController
   # GET /questions
   # GET /questions.xml
   def index
-    @course = Course.find(params[:course_id])
-    @questions =  @course.questions.paginate(
+    if params[:course_id]
+      @course = Course.find(params[:course_id])
+      @questions =  @course.questions.paginate(
                     :per_page => 15, 
                     :page => params[:page], 
                     :order => "id DESC"
-                  )
-
+                   )
+    else
+      @questions =  Question.paginate(
+                    :per_page => 15, 
+                    :page => params[:page], 
+                    :order => "id DESC"
+                   )
+    end
     # check the queue of pending questions
     if params[:version] and params[:version]=='pending' 
       @questions =  Question.paginate(

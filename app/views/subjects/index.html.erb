@@ -12,10 +12,12 @@
 	<table>
 	<% for subject in @subjects %>
 	  <tr>
-	    <td><%=h subject.name %></td>
+	    <td class="bold"><%=h subject.name %></td>
 	    <td><%=h subject.public %></td>
+	    <td><%= Subject::AREAS[subject.area] %></td>
 	    <td><%= link_to 'Show', subject %></td>
-	    <td><%= link_to 'Destroy', subject, :confirm => 'WARNING! This will destroy all course content. Do you really want to do this?', :method => :delete %></td>
+	    <td><%= 'Archived' if subject.archived %></td>
+	    <td><%= link_to 'Archive', subject, :confirm => 'WARNING! This will destroy all course content. Do you really want to do this?', :method => :delete %></td>
 	  </tr>
 	<% end %>
 	</table>

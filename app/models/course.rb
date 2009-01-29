@@ -29,6 +29,10 @@ class Course < ActiveRecord::Base
     8 => DAY * 224
   }
   
+  def last_question
+    @last_question ||= self[:last_question] ? Question.find(self[:last_question]) : false
+  end
+  
   def clear_all
     questions = Question.find(:all)
     count = 0
@@ -42,6 +46,26 @@ class Course < ActiveRecord::Base
       end
     end
     return count
+  end
+  
+  def add_new_material
+    question_count = 0
+    if last_question
+      if subject.exercises.last.created_at > last_question.created_at
+        for topic in subject.topics
+          for exercise in topic.exercises
+            return question_count if exercise.id == last_question.exercise.id
+            if not questions.find(:first, :conditions => ['exercise_id = ?', exercise.id])
+              question_count += 1
+              new_question = questions.new( :exercise_id => exercise.id )
+              new_question.first_interval
+              new_question.save!
+            end
+          end
+        end
+      end
+    end
+    return 0
   end
   
   def target

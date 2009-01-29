@@ -1,8 +1,9 @@
 <div id="header">
 	<h1 class="left">
-		<%= link_to 'Courses', courses_path %> | 
-		<%= link_to 'Materials', subjects_path %> | 
-	  <%=h @subject.name %>
+		<%= link_to 'Courses', courses_path %>
+		| <%= link_to 'Materials', subjects_path %>
+	  | <%=h @subject.name %>
+		| <%= link_to 'Edit', edit_subject_path(@subject) %>
 	</h1>
 	<h2 class="right">
 		<%= link_to 'New topic', new_subject_topic_path(@subject) %>
@@ -33,9 +34,12 @@
 		<%= will_paginate @topics %>
 	</div>
 	<div class="left">
+		Last updated: <%= @subject.days_since_last_update %> days ago
+		<br>
 		Logged in as: <%= current_user.login %>
 	</div>
 	<div class="right">
+		<br>
 		<%= link_to "logout", "/logout"%>
 	</div>
 </div>

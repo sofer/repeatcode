@@ -29,7 +29,7 @@
 
 		<div id="completed" class="hidden">
 			<div>
-				Course completed.<br><br>Come back again in a few days for a review.<br><br>
+				Course completed.<br><br>Come back again in <span id="days-til-next"></span> for a review.<br><br>
 			</div>
 			<div>
 				<%= link_to "Back to courses", courses_path %>
@@ -113,15 +113,17 @@
 
 	<div id="footer">
 		<div class="left">
-			Exercise no: <span id="exercise-no"></span> |
-			Question no: <span id="question-no"></span> | 
-			Repetition no: <span id="current_interval"></span> |
-			<span id="seconds">0</span> seconds<br>
-			Logged in as: <%= current_user.login %>
+			Exercise no: <span id="exercise-no"></span>
+			| Question no: <span id="question-no"></span>
+			| Repetition no: <span id="current-interval"></span>
+			| Backlog: <span id="backlog"></span>
+			| <span id="seconds">0</span> seconds
+			<br>Logged in as: <%= current_user.login %>
 		</div>
 		<div class="right">
-			<%= link_to 'End lesson', courses_path %>
 			<div id="loading" class="hidden"><img src="/images/furniture/loading.gif" width="16" height="16" alt="waiting..." align="right"></div>
+			<br>
+			<%= link_to 'End lesson', courses_path %>
 		</div>
 	</div>
 </div>
