@@ -20,10 +20,13 @@
 
 <div id="footer">
 	<div class="left">
-
+		<br>
+		Logged in as: <%= current_user.login %>
 	</div>
 	<div class="right">
 		<br>
-
+		<%= link_to 'Home', '/' %> | 
+		<%= link_to "logout", "/logout"%>
 	</div>
+	<div class="clear"></div>
 </div>

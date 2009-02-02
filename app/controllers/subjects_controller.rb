@@ -42,7 +42,7 @@ class SubjectsController < ApplicationController
   # GET /subjects/1/edit
   def edit
     @subject = Subject.find(params[:id])
-    @extended = @subject.extended_chars
+    @extended = @subject.search_extended_chars
   end
 
   # POST /subjects
