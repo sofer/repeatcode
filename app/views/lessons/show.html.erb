@@ -57,7 +57,7 @@
 					<%= text_field_tag "response-field", nil, :autocomplete => "off" %>
 				</form>
 				<div id="palette">
-						<%= palette @lesson.course.subject.extended_chars %>
+						<%= palette @lesson.course.subject.extended_chars if @lesson.course.subject.extended_chars %>
 				</div>
 				<div id="maths-palette" class="palette hidden">
 					<div class="button" value="%">&radic;</div>
