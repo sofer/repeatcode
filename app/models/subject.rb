@@ -34,7 +34,7 @@ class Subject < ActiveRecord::Base
   end
 
   def search_extended_chars
-    pattern = /à|á|â|ã|ä|å|ò|ó|ô|õ|ö|ø|è|é|ê|ë||ç|ì|í|î|ï|ù|ú|û|ü|ÿ|ñ/;
+    pattern = /à|á|â|ã|ä|å|ò|ó|ô|õ|ö|ø|è|é|ê|ë|ç|ì|í|î|ï|ù|ú|û|ü|ÿ|ñ/;
     matches = { }
     for exercise in exercises
       if pattern =~ exercise.response
