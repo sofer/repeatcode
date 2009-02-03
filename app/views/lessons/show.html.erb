@@ -56,7 +56,7 @@
 				<form id="response-form">
 					<%= text_field_tag "response-field", nil, :autocomplete => "off" %>
 				</form>
-				<div id="palette">
+				<div id="palette" class="palette">
 						<%= palette @lesson.course.subject.extended_chars if @lesson.course.subject.extended_chars %>
 				</div>
 				<div id="maths-palette" class="palette hidden">
