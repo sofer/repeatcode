@@ -41,12 +41,10 @@ module LessonsHelper
   
   def palette(str)
     pal = ''
-    0.upto(str.length) do |i|
-      ch = str.slice(i,1)
-      pal += "#{ch}, "
-#      pal += "#{ch}, "
+    str.each_char do |ch|
+      pal += ch + ', '
     end
-    return str.length, ' : ', str
+    return pal
   end
   
 end
