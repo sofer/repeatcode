@@ -20,7 +20,7 @@
 		<% row += 2 %>
 		<h3> <%= area.name %> </h3>
 		<% for subject in area.subjects %>
-			<% if row => limit %>
+			<% if row >= limit %>
 			</div><div class="col3">
 				<% row = 0 %>
 			<% end %>
