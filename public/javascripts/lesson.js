@@ -25,6 +25,7 @@ RC.DOMnodes = {
 	content: '#content',
 	seconds: '#seconds',
 	elapsed_time: '#elapsed-time',
+	correct_responses: '#correct-responses',
 	timeout: '#timeout',
 	start: '#start',
 	loading: '#loading',
@@ -395,6 +396,7 @@ RC.question = {
 		$(RC.DOMnodes.exercise_no).text(this.data.exercise.id);
 		$(RC.DOMnodes.question_no).text(this.data.question.id);
 		$(RC.DOMnodes.current_interval).text(this.data.question.current_interval.toString());
+		$(RC.DOMnodes.correct_responses).text(this.data.correct);
 		$(RC.DOMnodes.backlog).text(this.data.backlog);
 	},
 
