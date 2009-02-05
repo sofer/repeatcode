@@ -5,6 +5,7 @@ class Subject < ActiveRecord::Base
   has_many :courses
   has_many :authorships
   has_many :users, :through => :authorships
+  belongs_to :areas
   
   # little hack to get areas in memory. See Advanced Rails Recipes, p.206
   AREAS_FOR_FORM = Area.find(:all).map do |a|

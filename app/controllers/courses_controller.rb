@@ -46,6 +46,7 @@ class CoursesController < ApplicationController
   def new
     @course = Course.new
     @subjects = Subject.all
+    @areas = Area.find(:all)
 
     respond_to do |format|
       format.html # new.html.erb

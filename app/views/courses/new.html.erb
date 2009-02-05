@@ -8,6 +8,43 @@
 	<div class="clear"></div>
 </div>
 <div id="main">
+	<div class="col3">
+
+	<% row = 0; limit = 5 %>
+	<% for area in @areas %>
+		<% if row > limit - 2 %>
+			<% row = 0 %>
+			</div><div class="col3">
+		<% end %>
+		<% row += 1 %>
+		<h3> <%= area.name %> </h3>
+		<% for subject in area.subjects %>
+			<% if row == limit %>
+			</div><div class="col3">
+			<% end %>
+			<% row += 1 %>
+			<ul><li><%= link_to subject.name,  subject_courses_path(subject), :method => :post %></li></ul>
+		<% end %>
+		</ul>
+		<br/>
+	<% end %>
+
+	</div>
+</div>
+
+<div id="footer">
+	<div class="left">
+		<br>
+		Logged in as: <%= current_user.login %>
+	</div>
+	<div class="right">
+		<br>
+		<%= link_to "FAQ", "/about/faq" %> |
+		<%= link_to "logout", "/logout"%>
+	</div>
+</div>
+
+<!--
 	<table>
 	<% for subject in @subjects %>
 		<tr>
@@ -23,16 +60,4 @@
 		</tr>
 	<% end %>
 	</table>
-</div>
-
-<div id="footer">
-	<div class="left">
-		<br>
-		Logged in as: <%= current_user.login %>
-	</div>
-	<div class="right">
-		<br>
-		<%= link_to "FAQ", "/about/faq" %> |
-		<%= link_to "logout", "/logout"%>
-	</div>
-</div>
+-->

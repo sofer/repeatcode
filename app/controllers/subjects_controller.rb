@@ -6,7 +6,7 @@ class SubjectsController < ApplicationController
   # GET /subjects.xml
   def index
     @subjects = current_user.subjects
-
+    
     respond_to do |format|
       format.html # index.html.erb
       format.xml  { render :xml => @subjects }

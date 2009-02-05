@@ -26,7 +26,6 @@ label { float: left; width: 200px; }
 .fixed #footer	{ position: absolute; left: 0; right: 0; bottom: 0; margin: 4px; padding-top: 4px; border-top: 1px solid; }
 #main	{ margin: 4px; }
 .fixed #main	{ position: absolute; top: 24px; right: 0; bottom: 36px; left: 0; margin: 4px; }
-
 #signin	{ margin: 160px auto; width: 300px; }
 
 /* error id's - NOT SURE IF NEEDED */
@@ -70,6 +69,9 @@ label { float: left; width: 200px; }
 .item .response, .hint, .insert	{ width: 180px; }
 .item .phrase	{ width: 300px; }
 
+/*courses*/
+.col3 { float: left; width: 32%; }
+
 .palette	{ height: 30px; font-size: 14px; padding-top: 8px; }
 .border	{border: 1px dashed; }
 .hidden	{ display: none; } 
@@ -91,4 +93,3 @@ label { float: left; width: 200px; }
 .q	{ font-weight: bold; margin-bottom: 4px; }
 .a	{ margin-bottom: 20px; }
 .a:first-letter	{ font-weight: bold; }
-
