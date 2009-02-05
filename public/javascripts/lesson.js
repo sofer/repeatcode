@@ -340,6 +340,7 @@ RC.question = {
 				that.get_next();
 			},
 			success: function(json){
+				json.correct += 1
 				that.loaded(json);
 				that.next = json;
 			}
