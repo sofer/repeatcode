@@ -5,7 +5,7 @@ class SubjectsController < ApplicationController
   # GET /subjects
   # GET /subjects.xml
   def index
-    @subjects = current_user.subjects
+    @subjects = current_user.subjects.find(:all, :order => :area_id )
     
     respond_to do |format|
       format.html # index.html.erb
