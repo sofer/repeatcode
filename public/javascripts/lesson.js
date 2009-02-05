@@ -26,6 +26,8 @@ RC.DOMnodes = {
 	seconds: '#seconds',
 	elapsed_time: '#elapsed-time',
 	correct_responses: '#correct-responses',
+	details: '#details',
+	details_switch: '.details-switch',
 	timeout: '#timeout',
 	start: '#start',
 	loading: '#loading',
@@ -565,5 +567,10 @@ $(document).ready(function(){
 		}
 	});
 	
+	$(RC.DOMnodes.details_switch).click(function(){
+		$(RC.DOMnodes.details_switch).toggle()
+		$(RC.DOMnodes.details).toggle()
+	});
+
 });
 
