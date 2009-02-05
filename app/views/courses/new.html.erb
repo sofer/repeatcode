@@ -10,20 +10,22 @@
 <div id="main">
 	<div class="col3">
 
-	<% row = 0; limit = 18 %>
+	<% row = 0; limit = 20 %>
 	<% for area in @areas %>
-		<% if row > limit - 2 %>
+		<% if row >= limit - 4 %>
 			<% row = 0 %>
 			</div><div class="col3">
+			<% row = 0 %>
 		<% end %>
 		<% row += 2 %>
 		<h3> <%= area.name %> </h3>
 		<% for subject in area.subjects %>
-			<% if row == limit %>
+			<% if row => limit %>
 			</div><div class="col3">
+				<% row = 0 %>
 			<% end %>
 			<% row += 1 %>
-			<ul><li><%= link_to subject.name,  subject_courses_path(subject), :method => :post %> <%= row %></li></ul>
+			<ul><li><%= link_to subject.name,  subject_courses_path(subject), :method => :post %> </li></ul>
 		<% end %>
 		</ul>
 		<br/>
