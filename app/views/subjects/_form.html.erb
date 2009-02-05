@@ -4,8 +4,8 @@
 <%= f.label :name %>
 <%= f.text_field :name %>
 </p><p>
-<%= f.label :area %>
-<%= f.select(:area, Subject::AREAS_FOR_FORM) %>
+<%= f.label :area_id %>
+<%= f.select(:area_id, Subject::AREAS_FOR_FORM) %>
 </p><p>
 <%= f.label :archived %>
 <%= f.select :archived, ['False', 'True'] %>
