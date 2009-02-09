@@ -30,9 +30,6 @@
 </div>
 
 <div id="footer">
-	<div class="center">
-		<%= will_paginate @topics %>
-	</div>
 	<div class="left">
 		Last updated: <%= @subject.days_since_last_update %> days ago
 		<br>
@@ -41,5 +38,8 @@
 	<div class="right">
 		<br>
 		<%= link_to "logout", "/logout"%>
+	</div> 
+	<div class="center">
+		<%= will_paginate @topics %>
 	</div>
 </div>

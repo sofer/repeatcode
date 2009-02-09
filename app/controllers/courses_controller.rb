@@ -2,11 +2,36 @@ class CoursesController < ApplicationController
 
   before_filter :authorize
 
+  # GET /courses/archive
+  # GET /courses/archive.xml
+  def archive
+    @courses = current_user.courses.archived.paginate(
+                :per_page => 14, 
+                :page => params[:page]
+                )
+
+    respond_to do |format|
+      format.html # archive.html.erb
+    end
+  end
+
   # GET /courses
   # GET /courses.xml
   def index
-    @courses = current_user.courses
-
+    if params[:archived]
+      @action = 'Unarchive'
+      @courses = current_user.courses.archived.paginate(
+                :per_page => 14, 
+                :page => params[:page]
+                )
+    else
+      @action = 'Archive'
+      @courses = current_user.courses.active.paginate(
+                :per_page => 14, 
+                :page => params[:page]
+                )
+    end
+    
     # check the queue of pending questions
     if params[:version] and params[:version]=='clear' 
       message = @courses.first.clear_all
@@ -67,7 +92,8 @@ class CoursesController < ApplicationController
         format.html { redirect_to(courses_path) }
         format.xml  { render :xml => @course, :status => :created, :location => @course }
       else
-        format.html { render :action => "new" }
+        flash[:error] = 'Problem encountered.'
+        format.html { redirect_to(courses_path) }
         format.xml  { render :xml => @course.errors, :status => :unprocessable_entity }
       end
     end
@@ -75,18 +101,19 @@ class CoursesController < ApplicationController
 
   # PUT /courses/1
   # PUT /courses/1.xml
+  # Updates currently used for un/archiving only
   def update
     @course = Course.find(params[:id])
-
+    @course.archived = ! @course.archived
+    
     respond_to do |format|
       if @course.update_attributes(params[:course])
         flash[:notice] = 'Course was successfully updated.'
-        format.html { redirect_to course_intervals_path(@course) }
+        format.html { redirect_to courses_path }
         format.xml  { head :ok }
       else
-        flash[:notice] = 'Target needs to be between 0 and 99.'
-        format.html { render :action => "edit" }
-#        format.html { redirect_to course_intervals_path(@course) }
+        flash[:notice] = 'Course was NOT updated.'
+        format.html { redirect_to(:back) }
         format.xml  { render :xml => @course.errors, :status => :unprocessable_entity }
       end
     end
@@ -99,7 +126,7 @@ class CoursesController < ApplicationController
     @course.destroy
 
     respond_to do |format|
-      format.html { redirect_to(courses_url) }
+      format.html { redirect_to(:back) }
       format.xml  { head :ok }
     end
   end

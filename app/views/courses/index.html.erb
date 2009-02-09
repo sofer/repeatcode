@@ -17,6 +17,13 @@
 					<%= f.submit "Learn now" %>
 				<% end %>
 			</td>
+			<td class="half bold">
+				<% if course.subject %>
+					<%= course.subject.name %>
+				<% else %>
+					[ course removed ]
+				<% end %>
+			</td>
 			<td>
 				<%= link_to "Report", course_path(course) %>
 			</td>
@@ -26,15 +33,11 @@
 			<td>
 				Rate
 			</td>
-			<td class="half bold">
-				<% if course.subject %>
-					<%= course.subject.name %>
-				<% else %>
-					[ course removed ]
-				<% end %>
+			<td>
+				<%= link_to @action, course_path(course), :method => :put %>
 			</td>
 			<td>
-				<%= link_to "delete", course_path(course), :confirm => 'WARNING: This will delete all record of your work. Are you absolutely sure you want to do this?',  :method => :delete %>
+				<%= link_to 'Delete', course, :confirm => 'WARNING! This will destroy all course content. Do you really want to do this?', :method => :delete %>
 			</td>
 		</tr>
 	<% end %>
@@ -47,11 +50,15 @@
 		Logged in as: <%= current_user.login %>
 	</div>
 	<div class="right">
-		<br>
 		<div class="right">
-			<%= link_to "Edit course materials", :controller => 'subjects', :action => 'index' %>
+			<br>
+			<%= link_to "Course materials", :controller => 'subjects', :action => 'index' %>
+			| <%= link_to_unless_current "Archive", :controller => 'courses', :action => 'index', :archived => '' %>
 			| <%= link_to "FAQ", "/about/faq" %>
 			| <%= link_to "logout", "/logout"%>
 		</div>
+	</div>
+	<div class="center">
+		<%= will_paginate @courses %>
 	</div>
 </div>

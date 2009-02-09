@@ -5,7 +5,20 @@ class SubjectsController < ApplicationController
   # GET /subjects
   # GET /subjects.xml
   def index
-    @subjects = current_user.subjects.find(:all, :order => :area_id )
+    if params[:archived]
+      @action = 'Unarchive'
+      @subjects = current_user.subjects.archived.paginate(
+                :per_page => 16, 
+                :page => params[:page]
+                )
+    else
+      @action = 'Archive'
+      @subjects = current_user.subjects.active.paginate(
+                :per_page => 16, 
+                :page => params[:page]
+                )
+    end
+    
     
     respond_to do |format|
       format.html # index.html.erb
@@ -57,6 +70,7 @@ class SubjectsController < ApplicationController
         format.html { redirect_to(@subject) }
         format.xml  { render :xml => @subject, :status => :created, :location => @subject }
       else
+        flash[:error] = 'Problem encountered.'
         format.html { render :action => "new" }
         format.xml  { render :xml => @subject.errors, :status => :unprocessable_entity }
       end
@@ -71,7 +85,7 @@ class SubjectsController < ApplicationController
     respond_to do |format|
       if @subject.update_attributes(params[:subject])
         flash[:notice] = 'Subject was successfully updated.'
-        format.html { redirect_to(@subject) }
+        format.html { redirect_to(:back) }
         format.xml  { head :ok }
       else
         format.html { render :action => "edit" }
@@ -87,7 +101,7 @@ class SubjectsController < ApplicationController
     @subject.destroy
 
     respond_to do |format|
-      format.html { redirect_to(subjects_url) }
+      format.html { redirect_to(:back) }
       format.xml  { head :ok }
     end
   end

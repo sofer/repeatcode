@@ -5,8 +5,11 @@ class Course < ActiveRecord::Base
   has_many :users, :through => :subscriptions
   has_many :intervals
   has_many :questions
+  
+  named_scope :active, :conditions => {:archived => false}
+  named_scope :archived, :conditions => {:archived => true}
 
-  after_create :set_intervals
+  before_create :set_status, :set_intervals
   
   validates_numericality_of :target
   validates_inclusion_of :target, :in => 0..100, :message => "must between 0 and 100"
@@ -103,6 +106,11 @@ private
       new_interval = intervals.new( :index_no => index, :minutes => mins)
       new_interval.save
     end
+  end
+  
+  def set_status
+    self.archived = false
+    return true
   end
 
 end

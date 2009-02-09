@@ -3,7 +3,7 @@ require 'digest/sha1'
 class User < ActiveRecord::Base
 
   has_many :subscriptions
-  has_many :courses, :through => :subscriptions, :uniq => true
+  has_many :courses, :through => :subscriptions #, :uniq => true
   has_many :authorships
   has_many :subjects, :through => :authorships
 

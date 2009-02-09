@@ -12,12 +12,10 @@
 	<table>
 		<% for subject in @subjects %>
 	  <tr>
-	    <td class="bold"><%=h subject.name %></td>
+	    <td class="bold"><%= link_to subject.name, subject %></td>
 	    <td><%=h subject.public %></td>
 	    <td><%= Subject::AREAS[subject.area_id] %></td>
-	    <td><%= link_to 'Show', subject %></td>
-	    <td><%= 'Archived' if subject.archived %></td>
-	    <td><%= link_to 'Archive', subject, :confirm => 'WARNING! This will destroy all course content. Do you really want to do this?', :method => :delete %></td>
+	    <td><%= link_to 'Delete', subject, :confirm => 'WARNING! This will destroy all course content. Do you really want to do this?', :method => :delete %></td>
 	  </tr>
 		<% end %>
 	</table>
@@ -32,5 +30,8 @@
 		<br>
 		<%= link_to "FAQ", "/about/faq" %> |
 		<%= link_to "logout", "/logout"%>
+	</div>
+	<div class="center">
+		<%= will_paginate @subjects %>
 	</div>
 </div>

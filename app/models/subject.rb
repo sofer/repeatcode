@@ -7,6 +7,11 @@ class Subject < ActiveRecord::Base
   has_many :users, :through => :authorships
   belongs_to :areas
   
+  named_scope :active, :conditions => {:archived => false}
+  named_scope :archived, :conditions => {:archived => true}
+  
+  before_create :set_status
+  
   # little hack to get areas in memory. See Advanced Rails Recipes, p.206
   AREAS_FOR_FORM = Area.find(:all).map do |a|
     [a.name, a.id]
@@ -48,6 +53,13 @@ class Subject < ActiveRecord::Base
       str += key
     end
     return str
+  end
+  
+private
+
+  def set_status
+    self.archived = false
+    return true
   end
 
 end
