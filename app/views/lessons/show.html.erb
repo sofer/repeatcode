@@ -56,8 +56,16 @@
 				<form id="response-form">
 					<%= text_field_tag "response-field", nil, :autocomplete => "off" %>
 				</form>
-				<div id="palette" class="palette">
-						<%= palette @lesson.course.subject.extended_chars if @lesson.course.subject.extended_chars %>
+				<div class="palette">
+					<% if @lesson.course.subject.extended_chars %>
+					<div id="extended-chars">
+						<%= palette @lesson.course.subject.extended_chars %>
+					</div>
+					<div class="bottom-right">
+						ignore accents
+						<input type="checkbox" id="ignore-accents">
+					</div>
+					<% end %>
 				</div>
 				<div id="maths-palette" class="palette hidden">
 					<div class="button" value="%">&radic;</div>
@@ -67,19 +75,6 @@
 					<div class="button" value="/">x/y</div>
 					<div class="button" value="\">end</div> | 
 					<div class="button" value="n$r=1 ">&Sigma;</div>
-				</div>
-				<div id="language-palette" class="palette hidden">
-					<div class="button" value=à">&agrave;</div>
-					<div class="button" value="á">&aacute;</div>
-					<div class="button" value="â">&acirc;</div>
-					<div class="button" value="ç">&ccedil;</div>
-					<div class="button" value="è">&egrave;</div>
-					<div class="button" value="é">&eacute;</div>
-					<div class="button" value="ê">&ecirc;</div>
-					<div class="button" value="ì">&igrave;</div>
-					<div class="button" value="í">&iacute;</div>
-					<div class="button" value="î">&icirc;</div>
-					<div class="button" value="%">&ocirc;</div>
 				</div>
 			</div>
 			<div id="wrong-buttons" class="hidden">

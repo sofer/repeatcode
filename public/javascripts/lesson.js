@@ -4,7 +4,11 @@ var RC = {};
 
 String.prototype.simplify = function () {
 	var str=this;
-	// accent insensitive for now
+	return str.replace(/[\s,.!?-]/g, '').toLowerCase();
+};
+
+String.prototype.strip_accents = function () {
+	var str=this;
 	str=str.replace(/À|Á|Â|Ã|Ä|Å|à|á|â|ã|ä|å/ig,'a');
 	str=str.replace(/Ò|Ó|Ô|Õ|Ö|Ø|ò|ó|ô|õ|ö|ø/ig,'o');
 	str=str.replace(/È|É|Ê|Ë|è|é|ê|ë/ig,'e');
@@ -13,7 +17,7 @@ String.prototype.simplify = function () {
 	str=str.replace(/Ù|Ú|Û|Ü|ù|ú|û|ü/ig,'u');
 	str=str.replace(/ÿ/ig,'y');
 	str=str.replace(/Ñ|ñ/ig,'n');
-	return str.replace(/[\s,.!?-]/g, '').toLowerCase();
+	return str;
 };
 
 String.prototype.strip_spaces = function () {
@@ -28,6 +32,8 @@ RC.DOMnodes = {
 	correct_responses: '#correct-responses',
 	details: '#details',
 	details_switch: '.details-switch',
+	extended_chars: '#extended-chars',
+	ignore_accents_checkbox: '#ignore-accents',
 	timeout: '#timeout',
 	start: '#start',
 	loading: '#loading',
@@ -480,8 +486,14 @@ RC.question = {
 				match = true;
 			}
 		} else {
-			var pattern = new RegExp(expected.simplify());
-			if (pattern.test(response.simplify())) {
+			var expected_pattern = expected.simplify()
+			var response_pattern = response.simplify()
+			if ($(RC.DOMnodes.ignore_accents_checkbox).is(':checked')) {
+				expected_pattern = expected_pattern.strip_accents();
+				response_pattern = response_pattern.strip_accents();
+			}
+			var pattern = new RegExp(expected_pattern);
+			if (pattern.test(response_pattern)) {
 				match = true;
 			}
 		}
@@ -510,6 +522,8 @@ RC.current.get_first();
 RC.interval_timer = setInterval(RC.timer.tick, 1000);
 
 $(document).ready(function(){
+	
+	$(RC.DOMnodes.ignore_accents_checkbox).attr('checked', false);
 	
 	$(RC.DOMnodes.response_form).submit(function(){
     var response = $(RC.DOMnodes.response_field).val();
@@ -554,7 +568,7 @@ $(document).ready(function(){
 		return false;
 	})
 
-	$(RC.DOMnodes.timeout).click(function(){
+	$(RC.DOMnodes.timeout).click(function() {
 		$(this).hide();
 		$(RC.DOMnodes.content).removeClass('faded');
 		$(RC.DOMnodes.response_field).focus();
@@ -567,9 +581,13 @@ $(document).ready(function(){
 		}
 	});
 	
-	$(RC.DOMnodes.details_switch).click(function(){
+	$(RC.DOMnodes.details_switch).click(function() {
 		$(RC.DOMnodes.details_switch).toggle()
 		$(RC.DOMnodes.details).toggle()
+	});
+
+	$(RC.DOMnodes.ignore_accents_checkbox).click(function() {
+		$(RC.DOMnodes.extended_chars).toggle()
 	});
 
 });
