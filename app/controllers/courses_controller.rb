@@ -2,19 +2,6 @@ class CoursesController < ApplicationController
 
   before_filter :authorize
 
-  # GET /courses/archive
-  # GET /courses/archive.xml
-  def archive
-    @courses = current_user.courses.archived.paginate(
-                :per_page => 14, 
-                :page => params[:page]
-                )
-
-    respond_to do |format|
-      format.html # archive.html.erb
-    end
-  end
-
   # GET /courses
   # GET /courses.xml
   def index

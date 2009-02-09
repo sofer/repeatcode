@@ -9,7 +9,8 @@ class Course < ActiveRecord::Base
   named_scope :active, :conditions => {:archived => false}
   named_scope :archived, :conditions => {:archived => true}
 
-  before_create :set_status, :set_intervals
+  before_create :set_status
+  after_create :set_intervals
   
   validates_numericality_of :target
   validates_inclusion_of :target, :in => 0..100, :message => "must between 0 and 100"
@@ -97,8 +98,6 @@ class Course < ActiveRecord::Base
     end
     return results
   end
-
-private
 
   def set_intervals
     self.target = DEFAULT_TARGET

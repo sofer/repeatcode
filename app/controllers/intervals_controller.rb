@@ -7,6 +7,10 @@ class IntervalsController < ApplicationController
   def index
     @course = Course.find(params[:course_id])
     @intervals = @course.intervals.find(:all, :order => "index_no")
+    if @intervals.empty?
+      @course.set_intervals
+      @intervals = @course.intervals.find(:all, :order => "index_no")
+    end
     @responses = @course.responses
 
     respond_to do |format|
