@@ -12,18 +12,24 @@
 </div>
 <div id="main">
 	<table>
+		<tr>
+			<th> </th>
+			<th align="right">Last update</th>
+			<th align="right">Exercises</th>
+			<th> </th>
+		</tr>
 	<% for topic in @topics %>
 		<tr>
 			<td class="bold">
 				<%= link_to topic.name.slice(0..64), edit_topic_path(topic) %>
 			</td>
-			<td>
-				<% if topic.exercises.first %>
-				<%= topic.exercises.first.phrase.slice(0..40) %>...
-				<% else %>
-				No exercises yet
-				<% end %>
-			</td>
+			<% if topic.exercises.first %>
+	    <td align="right"><%= relative_date topic.last_update %></td>
+	    <td align="right"><%= topic.exercises.count %></td>
+			<td><%= topic.exercises.first.phrase.slice(0..20) %>...</td>
+			<% else %>
+			<td>No exercises yet</td>
+			<% end %>
 		</tr>
 	<% end %>
 	</table>

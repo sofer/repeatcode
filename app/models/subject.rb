@@ -55,6 +55,15 @@ class Subject < ActiveRecord::Base
     return str
   end
   
+  def last_update
+    last_exercise = exercises.find(:last)
+    if last_exercise
+      return last_exercise.updated_at
+    else
+      return self.updated_at
+    end
+  end
+  
 private
 
   def set_status

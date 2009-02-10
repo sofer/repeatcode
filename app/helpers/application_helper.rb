@@ -57,5 +57,19 @@ module ApplicationHelper
     minutes =  ((end_time - start_time) / 60).to_i
     return "#{minutes} mins"
   end
+  
+  def relative_date(time)
+    now = Time.now
+    frmt = "%Y%m%d"
+    date1 = time.strftime(frmt).to_i
+    date2 = now.strftime(frmt).to_i
+    day_diff = date2 - date1
+    display_date = case day_diff 
+    when 0 then "Today"
+    when 1 then "Yesterday"
+    else  time.strftime("%e %b")
+    end
+    return display_date  
+  end
 
 end

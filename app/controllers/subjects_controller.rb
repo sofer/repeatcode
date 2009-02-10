@@ -8,17 +8,17 @@ class SubjectsController < ApplicationController
     if params[:archived]
       @action = 'Unarchive'
       @subjects = current_user.subjects.archived.paginate(
-                :per_page => 16, 
+                :per_page => 15, 
                 :page => params[:page]
                 )
     else
       @action = 'Archive'
       @subjects = current_user.subjects.active.paginate(
-                :per_page => 16, 
-                :page => params[:page]
+                :per_page => 15, 
+                :page => params[:page],
+                :order => "area_id, name"
                 )
     end
-    
     
     respond_to do |format|
       format.html # index.html.erb

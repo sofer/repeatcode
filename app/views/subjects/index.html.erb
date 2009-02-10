@@ -10,12 +10,22 @@
 </div>
 <div id="main">
 	<table>
+		<tr>
+		<th> </th>
+		<th> </th>
+		<th align="right">Last update</th>
+		<th align="right">Exercises</th>
+		<th> </th>
+		<th> </th>
+		</tr>
 		<% for subject in @subjects %>
 	  <tr>
 	    <td class="bold"><%= link_to subject.name, subject %></td>
-	    <td><%=h subject.public %></td>
-	    <td><%= Subject::AREAS[subject.area_id] %></td>
-	    <td><%= link_to 'Delete', subject, :confirm => 'WARNING! This will destroy all course content. Do you really want to do this?', :method => :delete %></td>
+	    <td><%= h subject.public %></td>
+	    <td align="right"><%= relative_date subject.last_update %></td>
+	    <td align="right"><%= subject.exercises.count %></td>
+	    <td align="right"><%= Subject::AREAS[subject.area_id] %></td>
+	    <td align="right"><%= link_to 'Delete', subject, :confirm => 'WARNING! This will destroy all course content. Do you really want to do this?', :method => :delete %></td>
 	  </tr>
 		<% end %>
 	</table>

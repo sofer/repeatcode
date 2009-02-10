@@ -5,6 +5,9 @@
 		<%= link_to @topic.subject.name, @topic.subject %> | 
 		<%= @topic.name %>
 	</h1>
+	<div class="right">
+		Last updated: <%= relative_date @topic.last_update %>
+	</div>
 	<div class="clear"></div>
 </div>
 

@@ -25,6 +25,15 @@ class Topic < ActiveRecord::Base
       end
     end
   end
+  
+  def last_update
+    last_exercise = exercises.find(:last)
+    if last_exercise
+      return last_exercise.updated_at
+    else
+      return self.updated_at
+    end
+  end
 
 private
 
@@ -33,6 +42,5 @@ private
       exercise.save(false)
     end
   end
-
-
+  
 end
