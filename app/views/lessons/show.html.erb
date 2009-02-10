@@ -56,17 +56,17 @@
 				<form id="response-form">
 					<%= text_field_tag "response-field", nil, :autocomplete => "off" %>
 				</form>
-				<div class="palette">
-					<% if @lesson.course.subject.extended_chars %>
-					<div id="extended-chars">
-						<%= palette @lesson.course.subject.extended_chars %>
+				<% unless @lesson.course.subject.extended_chars.blank? %>
+					<div class="palette">
+						<div id="extended-chars">
+							<%= palette @lesson.course.subject.extended_chars %>
+						</div>
+						<div class="bottom-right">
+							ignore accents
+							<input type="checkbox" id="ignore-accents">
+						</div>
 					</div>
-					<div class="bottom-right">
-						ignore accents
-						<input type="checkbox" id="ignore-accents">
-					</div>
-					<% end %>
-				</div>
+				<% end %>
 				<div id="maths-palette" class="palette hidden">
 					<div class="button" value="%">&radic;</div>
 					<div class="button" value="^">x<sup>a</sup></div>
@@ -123,8 +123,8 @@
 		<div class="right">
 			<div id="loading"><img src="/images/furniture/loading.gif" width="16" height="16" alt="waiting..." align="right"></div>
 			<br>
-			<a href="#" class="details-switch">Show details</a> 
-			<a href="#" class="details-switch hidden">Hide details</a> 
+			<a href="" class="details-switch">Show details</a> 
+			<a href="" class="details-switch hidden">Hide details</a> 
 			| <%= link_to 'End lesson', courses_path %>
 		</div>
 	</div>

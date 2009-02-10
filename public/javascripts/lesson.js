@@ -295,6 +295,7 @@ RC.question = {
 			if (data.days_until_next == 1) {
 				$(RC.DOMnodes.days_til_next).text('a day or so');
 			} else {
+				$(RC.DOMnodes.loading).hide();
 				$(RC.DOMnodes.days_til_next).text('about ' + data.days_until_next + ' days');
  			}
 	    return false;
@@ -584,6 +585,7 @@ $(document).ready(function(){
 	$(RC.DOMnodes.details_switch).click(function() {
 		$(RC.DOMnodes.details_switch).toggle()
 		$(RC.DOMnodes.details).toggle()
+		return false;
 	});
 
 	$(RC.DOMnodes.ignore_accents_checkbox).click(function() {
