@@ -8,58 +8,55 @@
 	<div class="clear"></div>
 </div>
 <div id="main">
-	<table>
 	<% for course in @courses %>
-		<tr>
-			<td>
+		<div class="row">
+			<div class="cell tenth">
 				<% form_for :lesson,
 		 								:url => course_lessons_path(course) do |f| %>
 					<%= f.submit "Learn now" %>
 				<% end %>
-			</td>
-			<td class="half bold">
+			</div>
+			<div class="cell third">
 				<% if course.subject %>
 					<%= course.subject.name %>
 				<% else %>
 					[ course removed ]
 				<% end %>
-			</td>
-			<td> <%= relative_date course.updated_at %></td>
-			<td>
+			</div>
+			<div class="cell tenth"> <%= relative_date course.updated_at %></div>
+			<div class="cell tenth">
 				<%= link_to "Report", course_path(course) %>
-			</td>
-			<td>
+			</div>
+			<div class="cell tenth">
 				<%= link_to "Intervals", course_intervals_path(course) %>
-			</td>
-			<td>
+			</div>
+			<div class="cell tenth">
 				Rate
-			</td>
-			<td>
+			</div>
+			<div class="cell tenth">
 				<%= link_to @action, course_path(course), :method => :put %>
-			</td>
-			<td>
+			</div>
+			<div class="cell tenth">
 				<%= link_to 'Delete', course, :confirm => 'WARNING! This will destroy all course content. Do you really want to do this?', :method => :delete %>
-			</td>
-		</tr>
+			</div>
+		</div>
 	<% end %>
-	</table>
+
+	<div class="center">
+		<%= will_paginate @courses %>
+	</div>
+
 </div>
 
 <div id="footer">
-	<div class="left">
+	<div class="bottom-left">
 		<br>
 		Logged in as: <%= current_user.login %>
 	</div>
-	<div class="right">
-		<div class="right">
-			<br>
+	<div class="bottom-right">
 			<%= link_to "Course materials", :controller => 'subjects', :action => 'index' %>
 			| <%= link_to_unless_current "Archive", :controller => 'courses', :action => 'index', :archived => '' %>
 			| <%= link_to "FAQ", "/about/faq" %>
 			| <%= link_to "logout", "/logout"%>
-		</div>
-	</div>
-	<div class="center">
-		<%= will_paginate @courses %>
 	</div>
 </div>

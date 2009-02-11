@@ -6,26 +6,20 @@ li { margin: 4px 0; }
 li:before { content: "\00BB \0020"; }
 style	{ display: block; }
 body	{ background: #e8e8e8; font-family: helvetica, arial, sans-serif; margin: 0;}
-table	{ width: 100%; border-collapse: collapse; }
-tr	{ border-bottom: solid 1px DodgerBlue; }
-td	{ padding: 4px; }
 hr	{ height: 1px; border: 0; color: DodgerBlue; background-color: DodgerBlue; }
-input[type=text]	{ width<: 96%; }
 textarea	{ width: 100%; height: 300px; }
 input:focus, textarea:focus	{ }
-label { float: left; width: 200px; }
 
 #envelope	{ position: relative; margin: 0 auto; width: 900px; background: white; border: 4px DodgerBlue solid; -moz-border-radius-bottomright: 10px; -moz-border-radius-bottomleft: 10px; -webkit-border-bottom-right-radius: 10px; -webkit-border-bottom-left-radius: 10px; }
 .fixed	{ height: 500px; }
-#message-envelope	{ margin: 4px auto; width: 892px; top: border: 1px dashed; }
+#message-envelope	{ margin: 4px auto; width: 892px; }
 #timeout	{ position: absolute; border: 1px solid DimGray; left: 40px; right: 40px; top: 40px; bottom: 40px; background: LightYellow; padding-top: 200px; text-align: center; display: none; }
 #timeout h2	{ font-size: 18px; }
-#header	{ padding: 4px; padding-bottom: 2px; background: DodgerBlue; }
+#header	{ position: absolute; height: 20px; top: 0; right: 0; left: 0; padding: 4px; padding-bottom: 2px; background: DodgerBlue; }
 #header a	{ color: MidnightBlue; }
-#footer	{ margin: 4px; padding-top: 4px; border-top: 1px solid black; }
-.fixed #footer	{ position: absolute; left: 0; right: 0; bottom: 0; margin: 4px; padding-top: 4px; border-top: 1px solid; }
-#main	{ margin: 4px; }
-.fixed #main	{ position: absolute; top: 24px; right: 0; bottom: 36px; left: 0; margin: 4px; }
+#footer	{ position: absolute; height: 40px; left: 0; right: 0; bottom: 0; margin: 4px; padding-top: 4px; border-top: 1px solid; }
+#main	{ margin: 28px 4px 52px 4px; }
+.fixed #main	{ position: absolute; top: 28px; right: 0; bottom: 36px; left: 0; margin: 4px; }
 #signin	{ margin: 160px auto; width: 300px; }
 
 /* error id's - NOT SURE IF NEEDED */
@@ -72,15 +66,41 @@ label { float: left; width: 200px; }
 /*courses*/
 .col3 { float: left; width: 32%; }
 
+/* tables */
+table	{ width: 100%; border-collapse: collapse; }
+tr	{ border-bottom: solid 1px DodgerBlue; }
+td	{ padding: 4px; }
+.row { height: 24px; border-bottom: solid 1px DodgerBlue; clear: both; }
+.cell { float: left; margin: 2px 1px; }
+.half { width: 49%;}
+.third { width: 33%;}
+.quarter { width: 24%; }
+.fifth { width: 19%; }
+.eighth { width: 12%; }
+.tenth { width: 9%; }
+.twelfth { width: 8%; }
+
+/* form classes */
+.checkbox input { width: 40px; margin: 2px; }
+.checkbox label { }
+xlabel { float: left; width: 200px; }
+xinput[type=text]	{ width: 96%; }
+
+/* deal with left and right slightly differently, partly because of IE oddity */
+/* avoid floats inside absolutely positioned elements because of IE oddity */
+.left	{ float: left; }
+.right	{ text-align: right; } 
+.bottom-left { position: absolute; bottom: 0; left: 0; }
+.bottom-right { position: absolute; bottom: 0; right: 0; }
+.top-left { position: absolute; top: 0; left: 0; }
+.top-right { position: absolute; top: 0; right: 0; }
+.pad { padding: 4px; }
+
 .palette	{ height: 30px; font-size: 14px; padding-top: 8px; }
 .border	{border: 1px dashed; }
 .hidden	{ display: none; } 
 .notice	{ color: green; }
 .error	{ color: red; }
-.left	{ float: left; }
-.right	{ float: right; }
-.bottom-left { position: absolute; bottom: 0; left: 0; }
-.bottom-right { position: absolute; bottom: 0; right: 0; }
 .center	{ text-align: center; }
 .half	{ width: 50%; }
 .bold	{ font-weight: bold; }
@@ -95,3 +115,6 @@ label { float: left; width: 200px; }
 .q	{ font-weight: bold; margin-bottom: 4px; }
 .a	{ margin-bottom: 20px; }
 .a:first-letter	{ font-weight: bold; }
+
+
+

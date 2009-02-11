@@ -1,15 +1,15 @@
 <div id="content">
 
 	<div id="header">
-	
+			
 		<h1 class="left">
 	  	<div id="subject"><%= h @lesson.course.subject.name %></div>
 		</h1>
+		
 		<h2 class="right">
 			<div id="topic"></div>
 		</h2>
 		<div class="clear"></div>
-	
 	</div>
 
 	<div id="main">
@@ -61,8 +61,8 @@
 						<div id="extended-chars">
 							<%= palette @lesson.course.subject.extended_chars %>
 						</div>
-						<div class="bottom-right">
-							ignore accents
+						<div class="bottom-right checkbox">
+							<label>ignore accents</label>
 							<input type="checkbox" id="ignore-accents">
 						</div>
 					</div>
@@ -110,7 +110,7 @@
 	</div>
 
 	<div id="footer">
-		<div class="left">
+		<div class="bottom-left">
 			<span id="details" class="hidden">
 				Exercise no: <span id="exercise-no"></span>
 				| Question no: <span id="question-no"></span>
@@ -120,9 +120,8 @@
 			</span>
 			<br>Logged in as: <%= current_user.login %>
 		</div>
-		<div class="right">
-			<div id="loading"><img src="/images/furniture/loading.gif" width="16" height="16" alt="waiting..." align="right"></div>
-			<br>
+		<div id="loading"><img src="/images/furniture/loading.gif" width="16" height="16" alt="waiting..." align="right"></div>
+		<div class="bottom-right">
 			<a href="" class="details-switch">Show details</a> 
 			<a href="" class="details-switch hidden">Hide details</a> 
 			| <%= link_to 'End lesson', courses_path %>

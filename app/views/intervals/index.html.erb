@@ -1,5 +1,5 @@
 <div id="header">
-	<h1 class="left">
+	<h1 class="top-left pad">
 		<%= link_to 'Courses', courses_path %> |
 		<%= @course.subject.name %> |
 		<%= link_to 'lessons', course_path(@course) %> &amp;
@@ -9,50 +9,49 @@
 </div>
 
 <div id="main">
-	<table>
-		<tr>
+		<div class="row">
 			<% form_for @course do |f| %>
-			<td>Revision</td>
-			<td align="right">Interval</td>
-			<td align="right">Accuracy*</td>
-			<td align="right">
+			<div class="bold cell fifth">Revision</div>
+			<div class="bold cell fifth right">Interval</div>
+			<div class="bold cell fifth right">Accuracy *</div>
+			<div class="bold cell fifth right">
 				Target: 
 				<%= f.text_field :target %>
 				%
-			</td>
-			<td align="right">
+			</div>
+			<div class="cell right">
 				<%= f.submit "Change" %>
 				<% end %>
-			</td>
-	  </tr>
+			</div>
+	  </div>
 
 	<% for interval in @intervals %>
 		<% responses = @responses[interval.index_no] %>
-	  <tr>
-	    <td><%=h ordinal(interval.index_no) %></td>
-	    <td align="right"><%= interval_time interval.minutes %></td>
-			<td align="right"><%= success_rate(responses) %></td>
-			<td align="right"><%= formatted_date interval.updated_at %></td>
+		<div class="row">
+	    <div class="cell fifth"><%=h ordinal(interval.index_no) %></div>
+	    <div class="cell fifth right"><%= interval_time interval.minutes %></div>
+			<div class="cell fifth right"><%= success_rate(responses) %></div>
+			<div class="cell fifth right"><%= formatted_date interval.updated_at %></div>
 			<% if interval.index_no > 1 and responses[:correct] > 10 %>
-			<td align="right">
+			<div class="cell right">
 				<% form_for interval do |f| %>
 					<%= hidden_field_tag 'correct', responses[:correct] %>
 					<%= hidden_field_tag 'incorrect', responses[:incorrect] %>
 					<%= f.submit "Reset" %>
 				<% end %>
-			</td>
+			</div>
 			<% end %>
-	  </tr>
+	  </div>
 	<% end %>
-	</table>
-	<div class="right">
-		<p>* since last reset</p>
-	</div>
+	<div class="cell fifth"> </div>
+	<div class="cell fifth"> </div>
+	<div class="cell fifth"> </div>
+	<div class="cell fifth">* since last reset</div>
 	<br clear="all">
 	<div>
 		<ul>
 			<li>Each time you respond to an exercise, the <strong>Interval</strong> of time until your next <strong>Revision</strong> increases.</li>
-			<li>The <strong>Accuracy</strong> of your responses at each interval gives you an indication of how close you are to your <strong>Target</strong>.</li>
+			<li>The <strong>Accuracy</strong> of your responses gives you an indication of how close you are to your <strong>Target</strong>.</li>
 			<li>An interval can be <strong>Reset</strong> in order to more closely match your target.</li>
 			<li> You can also <strong>Change</strong> the default target (90%) at any time.</li>
 		  <li>In this way, you can make best use of your time, and learn as thoroughly or as quickly as you like.
@@ -62,11 +61,11 @@
 </div>
 
 <div id="footer">
-	<div class="left">
+	<div class="bottom-left">
 		<br/>
 		Logged in as: <%= current_user.login %>
 	</div>
-	<div class="right">
+	<div class="bottom-right">
 		<br/>
 		<%= link_to "FAQ", "/about/faq" %> |
 		<%= link_to "logout", "/logout"%>

@@ -1,47 +1,45 @@
 <div id="header">
-	<h1 class="left">
+	<h1 class="top-left">
 		<%= link_to 'Courses', courses_path %>
 		| <%= link_to 'Materials', subjects_path %>
 	  | <%=h @subject.name %>
 		| <%= link_to 'Edit', edit_subject_path(@subject) %>
 	</h1>
-	<h2 class="right">
+	<h2 class="top-right">
 		<%= link_to 'New topic', new_subject_topic_path(@subject) %>
 	</h2>
 	<div class="clear"></div>
 </div>
 <div id="main">
-	<table>
-		<tr>
-			<th> </th>
-			<th align="right">Last update</th>
-			<th align="right">Exercises</th>
-			<th> </th>
-		</tr>
+	<div class="row">
+			<div class="cell third"> </div>
+			<div class="bold cell fifth">Updated</div>
+			<div class="bold cell fifth">Exercises</div>
+			<div class="bold cell fifth"> </div>
+		</div>
 	<% for topic in @topics %>
-		<tr>
-			<td class="bold">
+	<div class="row">
+			<div class="bold cell third">
 				<%= link_to topic.name.slice(0..64), edit_topic_path(topic) %>
-			</td>
+			</div>
 			<% if topic.exercises.first %>
-	    <td align="right"><%= relative_date topic.last_update %></td>
-	    <td align="right"><%= topic.exercises.count %></td>
-			<td><%= topic.exercises.first.phrase.slice(0..20) %>...</td>
+	    <div class="cell fifth"><%= relative_date topic.last_update %></div>
+	    <div class="cell fifth"><%= topic.exercises.count %></div>
+			<div class="cell fifth"><%= topic.exercises.first.phrase.slice(0..16) %>...</div>
 			<% else %>
-			<td>No exercises yet</td>
+			<div class="cell fifth">No exercises yet</div>
 			<% end %>
-		</tr>
+		</div>
 	<% end %>
-	</table>
 </div>
 
 <div id="footer">
-	<div class="left">
+	<div class="bottom-left">
 		Last updated: <%= @subject.days_since_last_update %> days ago
 		<br>
 		Logged in as: <%= current_user.login %>
 	</div>
-	<div class="right">
+	<div class="bottom-right">
 		<br>
 		<%= link_to "logout", "/logout"%>
 	</div> 
