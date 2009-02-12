@@ -53,6 +53,14 @@ module ApplicationHelper
     end
   end
   
+  def short_date(date)
+    if date
+      return date.strftime("%e %b")
+    else
+      return 'n/a'
+    end
+  end
+  
   def elapsed_time(start_time, end_time)
     minutes =  ((end_time - start_time) / 60).to_i
     return "#{minutes} mins"
@@ -67,7 +75,7 @@ module ApplicationHelper
     display_date = case day_diff 
     when 0 then "Today"
     when 1 then "Yesterday"
-    else  time.strftime("%e %b")
+    else  short_date(time)
     end
     return display_date  
   end

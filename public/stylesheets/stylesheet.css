@@ -15,9 +15,9 @@ input:focus, textarea:focus	{ }
 #message-envelope	{ margin: 4px auto; width: 892px; }
 #timeout	{ position: absolute; border: 1px solid DimGray; left: 40px; right: 40px; top: 40px; bottom: 40px; background: LightYellow; padding-top: 200px; text-align: center; display: none; }
 #timeout h2	{ font-size: 18px; }
-#header	{ position: absolute; height: 20px; top: 0; right: 0; left: 0; padding: 4px; padding-bottom: 2px; background: DodgerBlue; }
+#header	{ position: absolute; height: 28px; top: 0; right: 0; left: 0; background: DodgerBlue; }
 #header a	{ color: MidnightBlue; }
-#footer	{ position: absolute; height: 40px; left: 0; right: 0; bottom: 0; margin: 4px; padding-top: 4px; border-top: 1px solid; }
+#footer	{ position: absolute; height: 40px; left: 0; right: 0; bottom: 0; margin: 4px; border-top: 1px solid; }
 #main	{ margin: 28px 4px 52px 4px; }
 .fixed #main	{ position: absolute; top: 28px; right: 0; bottom: 36px; left: 0; margin: 4px; }
 #signin	{ margin: 160px auto; width: 300px; }
@@ -52,7 +52,6 @@ input:focus, textarea:focus	{ }
 .sigma	{ display: block; line-height: .8em;}
 .r	{ display: block; font-size: 14px; }
 .nospace { letter-spacing: -0.6em; }
-.button	{ display: inline; padding: 4px; border: 1px solid; margin: -1px; background: LightCyan; }
 
 /* topics */
 .item .phrase, .response, .hint, .insert, .remove	{ float: left; }
@@ -78,8 +77,8 @@ td	{ padding: 4px; }
 .twelfth { width: 8%; }
 
 /* form classes */
-.checkbox input { width: 40px; margin: 2px; }
-.checkbox label { }
+.checkbox label	{ float: left; }
+.checkbox input[type=checkbox]	{ width: 20px; margin: 0 0 0 4px; }
 #signin label	{ float: left; width: 120px; height: 14px; margin: 4px; padding-top: 4px; text-align: right; }
 #signin input[type=text], input[type=password], input[type=checkbox]	{ width: 120px; height: 14px; margin: 4px; }
 #signin input[type=checkbox]	{ margin: 8px 2px; }
@@ -97,7 +96,8 @@ xinput[type=text]	{ width: 96%; }
 .top-right { position: absolute; top: 0; right: 0; }
 .pad { padding: 4px; }
 
-.palette	{ height: 30px; font-size: 14px; padding-top: 8px; }
+.palette	{ height: 24px; font-size: 14px; padding: 8px 0 0 0; }
+.button	{ display: inline; padding: 4px; border: 1px solid; margin: 0 -1px; background: LightCyan; cursor: pointer; }
 .border	{border: 1px dashed; }
 .hidden	{ display: none; } 
 .notice	{ color: green; }

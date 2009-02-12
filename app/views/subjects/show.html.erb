@@ -1,9 +1,9 @@
 <div id="header">
 	<h1 class="top-left">
 		<%= link_to 'Courses', courses_path %>
-		| <%= link_to 'Materials', subjects_path %>
-	  | <%=h @subject.name %>
-		| <%= link_to 'Edit', edit_subject_path(@subject) %>
+		&raquo; <%= link_to 'Materials', subjects_path %>
+	  &raquo; <%=h @subject.name %>
+		&raquo; <%= link_to 'Edit', edit_subject_path(@subject) %>
 	</h1>
 	<h2 class="top-right">
 		<%= link_to 'New topic', new_subject_topic_path(@subject) %>

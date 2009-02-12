@@ -1,11 +1,10 @@
 <div id="header">
-	<h1 class="left">
+	<h1 class="top-left pad">
 		<%= link_to "Courses", courses_path %> |
 		New
 	</h1>
-	<h2 class="right">
+	<h2 class="top-right pad">
 	</h2>
-	<div class="clear"></div>
 </div>
 <div id="main">
 	<div class="col3">
@@ -35,31 +34,12 @@
 </div>
 
 <div id="footer">
-	<div class="left">
-		<br>
+	<div class="bottom-left">
 		Logged in as: <%= current_user.login %>
 	</div>
-	<div class="right">
+	<div class="bottom-right">
 		<br>
 		<%= link_to "FAQ", "/about/faq" %> |
 		<%= link_to "logout", "/logout"%>
 	</div>
 </div>
-
-<!--
-	<table>
-	<% for subject in @subjects %>
-		<tr>
-			<td>
-				<% form_for :course,
-				 						:url => subject_courses_path(subject) do |f| %>
-					<%= f.submit "Add course" %>
-			</td>
-			<td class="bold">
-				<%= subject.name %>
-			</td>
-		<% end %>
-		</tr>
-	<% end %>
-	</table>
--->

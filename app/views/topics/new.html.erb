@@ -1,11 +1,10 @@
 <div id="header">
-	<h1 class="left">
+	<h1 class="top-left pad">
 		<%= link_to 'Courses', courses_path %> | 
 		<%= link_to 'Materials', subjects_path %> | 
 		<%= link_to @subject.name, @subject %> | 
 		New
 	</h1>
-	<div class="clear"></div>
 </div>
 
 <div id="main">
@@ -20,12 +19,10 @@
 </div>
 
 <div id="footer">
-	<div class="left">
-		<br>
+	<div class="bottom-left">
 		Logged in as: <%= current_user.login %>
 	</div>
-	<div class="right">
-		<br>
+	<div class="bottom-right">
 		<%= link_to "logout", "/logout"%>
 	</div>
 	<div class="clear"></div>

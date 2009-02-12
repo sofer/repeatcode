@@ -1,33 +1,48 @@
-<div>
-	Course: <%=h @question.course_id %> |
-	Exercise: <%=h @question.exercise_id %> |
-	Interval: <%=h @question.current_interval %> |
-	Next: <%= formatted_date @question.next_datetime %>
+<div id="header">
+	<h1 class="top-left pad">
+		<%= link_to 'Courses', courses_path %>
+		&raquo; <%= link_to @question.course.subject.name, course_questions_path(@question.course) %>
+		&raquo; <%= link_to "Exercise: #{h @question.id}", :back %> 
+		&raquo; Responses
+	</h1>
+	<h2 class="top-right pad">
+		Next repetition: <%= short_date @question.next_datetime %>
+	<h2>
 </div>
 
-<div>
-	<%= @question.exercise.phrase %>
+<div id="main">
+	<div class="row">
+    <div class="bold cell quarter">Date</div>
+    <div class="bold cell quarter right">Elapsed time</div>
+		<div class="bold cell quarter right">Interval</div>
+		<div class="bold cell quarter right">Result</div>
+	</div>
+
+	<% for response in @question.responses %>
+		<div class="row">
+			<div class="cell quarter">
+				<%= formatted_date response.updated_at %>
+			</div>
+			<div class="cell quarter right">
+				<%=h response.seconds_taken %>
+			</div>
+			<div class="cell quarter right">
+				<%=h response.interval %>
+			</div>
+			<div class="cell quarter right">
+				<%=h response.result %>
+			</div>
+		</div>	
+	<% end %>
+
 </div>
 
-<table>
-  <tr>
-		<th>Id</th>
-    <th>Question</th>
-    <th>Time</th>
-    <th>Interval</th>
-    <th>Result</th>
-		<th>Updated at</th>
-  </tr>
-<% for response in @question.responses %>
-  <tr>
-    <td><%=h response.id %></td>
-    <td><%=h response.question_id %></td>
-    <td><%=h response.seconds_taken %></td>
-    <td><%=h response.interval %></td>
-    <td><%=h response.result %></td>
-		<td><%= formatted_date response.updated_at %>
-  </tr>
-<% end %>
-</table>
-
-<%= link_to 'Back', questions_path %>
+<div id="footer">
+	<div class="bottom-left">
+		Logged in as: <%= current_user.login %>
+	</div>
+	<div class="bottom-right">
+		<%= link_to "FAQ", "/about/faq" %> |
+		<%= link_to "logout", "/logout"%>
+	</div>
+</div>

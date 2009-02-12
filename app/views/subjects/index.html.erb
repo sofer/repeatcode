@@ -1,9 +1,9 @@
 <div id="header">
-	<h1 class="left">
+	<h1 class="top-left pad">
 		<%= link_to 'Courses', courses_path %> | 
 		Materials
 	</h1>
-	<h2 class="right">
+	<h2 class="top-right pad">
 		<%= link_to 'New subject', new_subject_path %>
 	</h2>
 </div>
@@ -27,13 +27,13 @@
 	  </div>
 		<% end %>
 
-	<div class="center space">
-		<%= will_paginate @subjects %>
-	</div>
-
 </div>
 
 <div id="footer">
+	<div class="center pad">
+		<%= will_paginate @subjects %>
+	</div>
+
 	<div class="bottom-left">
 		Logged in as: <%= current_user.login %>
 	</div>

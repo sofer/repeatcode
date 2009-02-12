@@ -1,14 +1,13 @@
 <div id="header">
-	<h1 class="left">
-		<%= link_to 'Courses', courses_path %> | 
-		<%= link_to 'Learning materials', subjects_path %> | 
-		<%= link_to @subject.name, @subject %> |
-		Edit
+	<h1 class="top-left pad">
+		<%= link_to 'Courses', courses_path %>
+		&raquo; <%= link_to 'Learning materials', subjects_path %>
+		&raquo; <%= link_to @subject.name, @subject %>
+		&raquo; Edit
 	</h1>
-	<h2 class="right">
+	<h2 class="top-right pad">
 		<%= link_to 'Edit subject', edit_subject_path(@subject) %>
 	</h2>
-	<div class="clear"></div>
 </div>
 <div id="main">
 	<% form_for(@subject) do |f| %>
@@ -28,12 +27,10 @@
 </div>
 
 <div id="footer">
-	<div class="left">
-		<br>
+	<div class="bottom-left">
 		Logged in as: <%= current_user.login %>
 	</div>
-	<div class="right">
-		<br>
+	<div class="bottom-right">
 		<%= link_to "logout", "/logout"%>
 	</div>
 </div>

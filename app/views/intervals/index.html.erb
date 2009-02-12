@@ -1,11 +1,15 @@
 <div id="header">
 	<h1 class="top-left pad">
-		<%= link_to 'Courses', courses_path %> |
-		<%= @course.subject.name %> |
-		<%= link_to 'lessons', course_path(@course) %> &amp;
-		intervals
+		<%= link_to 'Courses', courses_path %>
+		&raquo; <%= @course.subject.name if @course %>
+		&raquo; <%= link_to 'lessons', course_path(@course) %>
+		| intervals
+		| <%= link_to 'questions', course_questions_path(@course) %>
 	</h1>
-	<br clear="all">
+	<div class="top-right pad">
+		<%= @course.questions.count %> / 
+		<%= @course.subject.exercise_count %>
+	</div>
 </div>
 
 <div id="main">
