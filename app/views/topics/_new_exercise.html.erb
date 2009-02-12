@@ -1,17 +1,16 @@
-<div class="item">
+<div class="row exercise">
   <% fields_for_exercise(new_exercise) do |exercise_form| %>
-		<div class="phrase">
+		<div class="phrase cell quarter">
 			<%= exercise_form.text_field :phrase %>
 		</div>
-		<div class="response">
+		<div class="response cell quarter">
 			<%= exercise_form.text_field :response %>
 		</div>
-		<div class="hint">
+		<div class="hint cell fifth">
 			<%= exercise_form.text_field :hint %>
 		</div>
-		<div class="insert">
+		<div class="insert cell fifth">
 			<%= exercise_form.text_field :insert %>
 		</div>
-		<div class="clear"> </div>
 	<% end %>
 </div>

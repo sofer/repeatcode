@@ -11,20 +11,19 @@
 <hr>
 
 <div id="list-frame">
-	<div class="item">
-		<div class="phrase">
+	<div class="row exercise">
+		<div class="cell quarter">
 			Question/phrase
 		</div>
-		<div class="response">
+		<div class="cell quarter">
 			Response
 		</div>
-		<div class="hint">
+		<div class="cell fifth">
 			Hint (or '#' for graph)
 		</div>
-		<div class="insert">
+		<div class="cell">
 			Insertion point (for code)
 		</div>
-		<div class="clear"> </div>	
 	</div>
 	<div id="list">
 		<%= render :partial => "exercise", :collection => @topic.exercises %>

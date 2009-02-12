@@ -7,8 +7,6 @@ li:before { content: "\00BB \0020"; }
 style	{ display: block; }
 body	{ background: #e8e8e8; font-family: helvetica, arial, sans-serif; margin: 0;}
 hr	{ height: 1px; border: 0; color: DodgerBlue; background-color: DodgerBlue; }
-textarea	{ width: 100%; height: 300px; }
-input:focus, textarea:focus	{ }
 
 #envelope	{ position: relative; margin: 0 auto; width: 900px; background: white; border: 4px DodgerBlue solid; -moz-border-radius-bottomright: 10px; -moz-border-radius-bottomleft: 10px; -webkit-border-bottom-right-radius: 10px; -webkit-border-bottom-left-radius: 10px; }
 .fixed	{ height: 500px; }
@@ -62,9 +60,6 @@ input:focus, textarea:focus	{ }
 .col3 { float: left; width: 32%; }
 
 /* tables */
-table	{ width: 100%; border-collapse: collapse; }
-tr	{ border-bottom: solid 1px DodgerBlue; }
-td	{ padding: 4px; }
 .row { height: 24px; border-bottom: solid 1px DodgerBlue; clear: both; }
 .cell { float: left; margin: 2px 1px; }
 .half { width: 49%;}
@@ -82,6 +77,10 @@ td	{ padding: 4px; }
 #signin label	{ float: left; width: 120px; height: 14px; margin: 4px; padding-top: 4px; text-align: right; }
 #signin input[type=text], input[type=password], input[type=checkbox]	{ width: 120px; height: 14px; margin: 4px; }
 #signin input[type=checkbox]	{ margin: 8px 2px; }
+.exercise input { width: 95%; }
+textarea	{ width: 100%; height: 300px; }
+
+xinput:focus, textarea:focus	{ }
 
 xlabel { float: left; width: 200px; }
 xinput[type=text]	{ width: 96%; }
