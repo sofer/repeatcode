@@ -42,10 +42,6 @@ input:focus, textarea:focus	{ }
 
 #course_target	{ text-align: right; width: 30px; height: 13px; font-size: 12px; }
 
-#signin label	{ float: left; width: 120px; height: 14px; margin: 4px; padding-top: 4px; text-align: right; }
-#signin input[type=text], input[type=password], input[type=checkbox]	{ width: 120px; height: 14px; margin: 4px; }
-#signin input[type=checkbox]	{ margin: 8px 2px; }
-
 /* maths */
 .sup	{ vertical-align: 50%; font-size: 16px; }
 .sub	{ vertical-align: -20%; font-size: 16px; }
@@ -76,6 +72,7 @@ td	{ padding: 4px; }
 .third { width: 33%;}
 .quarter { width: 24%; }
 .fifth { width: 19%; }
+.sixth { width: 16%; }
 .eighth { width: 12%; }
 .tenth { width: 9%; }
 .twelfth { width: 8%; }
@@ -83,6 +80,10 @@ td	{ padding: 4px; }
 /* form classes */
 .checkbox input { width: 40px; margin: 2px; }
 .checkbox label { }
+#signin label	{ float: left; width: 120px; height: 14px; margin: 4px; padding-top: 4px; text-align: right; }
+#signin input[type=text], input[type=password], input[type=checkbox]	{ width: 120px; height: 14px; margin: 4px; }
+#signin input[type=checkbox]	{ margin: 8px 2px; }
+
 xlabel { float: left; width: 200px; }
 xinput[type=text]	{ width: 96%; }
 

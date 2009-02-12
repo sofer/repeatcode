@@ -1,42 +1,42 @@
 <div id="header">
-	<h1 class="left">
+	<h1 class="top-left">
 		Courses
 	</h1>
-	<h2 class="right">
+	<h2 class="top-right">
 		<%= link_to 'Choose a new course', new_course_path %>
 	</h2>
-	<div class="clear"></div>
 </div>
+
 <div id="main">
 	<% for course in @courses %>
 		<div class="row">
-			<div class="cell tenth">
+			<div class="cell eighth">
 				<% form_for :lesson,
 		 								:url => course_lessons_path(course) do |f| %>
 					<%= f.submit "Learn now" %>
 				<% end %>
 			</div>
-			<div class="cell third">
+			<div class="bold cell third">
 				<% if course.subject %>
 					<%= course.subject.name %>
 				<% else %>
 					[ course removed ]
 				<% end %>
 			</div>
-			<div class="cell tenth"> <%= relative_date course.updated_at %></div>
-			<div class="cell tenth">
+			<div class="cell eighth"> <%= relative_date course.updated_at %></div>
+			<div class="cell twelfth">
 				<%= link_to "Report", course_path(course) %>
 			</div>
-			<div class="cell tenth">
+			<div class="cell twelfth">
 				<%= link_to "Intervals", course_intervals_path(course) %>
 			</div>
-			<div class="cell tenth">
+			<div class="cell twelfth">
 				Rate
 			</div>
-			<div class="cell tenth">
+			<div class="cell twelfth">
 				<%= link_to @action, course_path(course), :method => :put %>
 			</div>
-			<div class="cell tenth">
+			<div class="cell twelfth">
 				<%= link_to 'Delete', course, :confirm => 'WARNING! This will destroy all course content. Do you really want to do this?', :method => :delete %>
 			</div>
 		</div>
