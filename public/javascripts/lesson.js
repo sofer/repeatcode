@@ -4,7 +4,7 @@ var RC = {};
 
 String.prototype.simplify = function () {
 	var str=this;
-	return str.replace(/[\s,.!?-]/g, '').toLowerCase();
+	return str.replace(/[\s,.!?-\\']/g, '').toLowerCase();
 };
 
 String.prototype.strip_accents = function () {
@@ -431,7 +431,7 @@ RC.question = {
 		$(RC.DOMnodes.exercise_response).html(response);
 		if (this.data.question.current_interval === 0) {
 		 	$(RC.DOMnodes.expected).show();
-			this.show_response(RC.DOMnodes.exercise_response, this.data.exercise.response);
+			this.show_response(RC.DOMnodes.exercise_response, response);
 			$(RC.DOMnodes.try_now).focus();
 		} else {
 		  $(RC.DOMnodes.attempt).show();
