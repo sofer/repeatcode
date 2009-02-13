@@ -12,23 +12,18 @@
 </div>
 <div id="main">
 	<div class="row">
-			<div class="cell third"> </div>
-			<div class="bold cell fifth">Updated</div>
-			<div class="bold cell fifth">Exercises</div>
-			<div class="bold cell fifth"> </div>
+			<div class="cell half"> </div>
+			<div class="bold cell quarter right">Updated</div>
+			<div class="bold cell quarter right">Exercises</div>
 		</div>
 	<% for topic in @topics %>
 	<div class="row">
-			<div class="bold cell third">
-				<%= link_to topic.name.slice(0..64), edit_topic_path(topic) %>
+			<div class="bold cell half">
+				<% name = topic.name.length > 52 ? topic.name.slice(0..52) + '...' : topic.name %>
+				<%= link_to name, edit_topic_path(topic) %>
 			</div>
-			<% if topic.exercises.first %>
-	    <div class="cell fifth"><%= relative_date topic.last_update %></div>
-	    <div class="cell fifth"><%= topic.exercises.count %></div>
-			<div class="cell fifth"><%= topic.exercises.first.phrase.slice(0..16) %>...</div>
-			<% else %>
-			<div class="cell fifth">No exercises yet</div>
-			<% end %>
+	    <div class="cell quarter right"><%= relative_date topic.last_update %></div>
+	    <div class="cell quarter right"><%= topic.exercises.count %></div>
 		</div>
 	<% end %>
 </div>
