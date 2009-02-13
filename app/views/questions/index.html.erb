@@ -18,8 +18,7 @@
 		<div class="bold cell half">Question</div>
 		<div class="bold cell sixth right">Interval</div>
 		<div class="bold cell sixth right">Next repetition</div>
-		<div class="bold cell sixth right">
-		</div>
+		<div class="bold cell sixth right">Responses</div>
   </div>
 
 	<% for question in @questions %>
@@ -27,7 +26,7 @@
     <div class="cell half"><%= question.exercise.response.length > 50 ? question.exercise.response.slice(0..50) + '...' : question.exercise.response %></div>
     <div class="cell sixth right"><%= question.current_interval %></div>
 		<div class="cell sixth right"><%= formatted_date question.next_datetime %></div>
-		<div class="cell sixth right"><%= link_to 'Responses', question %></div>
+		<div class="cell sixth right"><%= link_to question.responses.count, question %></div>
   </div>
 	<% end %>
 
