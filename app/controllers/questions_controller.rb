@@ -10,7 +10,7 @@ class QuestionsController < ApplicationController
       @questions =  @course.questions.paginate(
                     :per_page => 15, 
                     :page => params[:page], 
-                    :order => "id DESC"
+                    :order => "next_datetime"
                    )
     else
       @questions =  Question.paginate(
