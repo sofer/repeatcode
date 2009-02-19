@@ -33,7 +33,7 @@ hr	{ height: 1px; border: 0; color: DodgerBlue; background-color: DodgerBlue; }
 #tabs	{ position: absolute; bottom: 0; left: 0; right: 0; padding-top: 0px; border-top: 1px solid DodgerBlue; }
 #start, #completed	{ margin: 150px; text-align: center; font-size: 18px; }
 #response-field	{ width: 442px; font-size: 14px; }
-#response-message	{ position: absolute; bottom: 100px; left: 0; right: 0; font: LimeGreen; }
+#response-message	{ position: absolute; bottom: 100px; left: 0; right: 0; color: LimeGreen; }
 .formula	{ float: left; height: 60px; }
 .maths	{ height: 80px; }
 #graph	{ margin: 0 auto; width: 200px; height: 200px; }
