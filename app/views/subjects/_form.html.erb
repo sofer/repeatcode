@@ -8,10 +8,10 @@
 <%= f.select(:area_id, Subject::AREAS_FOR_FORM) %>
 </p><p>
 <%= f.label :phrase_speech %>
-<%= f.select(:phrase_speech, Subject::LANGUAGES_FOR_FORM) %>
+<%= f.select(:phrase_speech, Subject::LANGUAGES_FOR_FORM, { :include_blank => true } ) %>
 </p><p>
-<%= f.label :area_id %>
-<%= f.select(:response_speech, Subject::LANGUAGES_FOR_FORM) %>
+<%= f.label :response_speech %>
+<%= f.select(:response_speech, Subject::LANGUAGES_FOR_FORM, { :include_blank => true } ) %>
 </p><p>
 <%= f.label :public %>
 <%= f.check_box :public %>
