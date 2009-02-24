@@ -24,7 +24,6 @@ String.prototype.strip_spaces = function () {
 	return this.replace(/\s/g, '').toLowerCase();
 };
 
-
 RC.DOMnodes = {
 	content: '#content',
 	seconds: '#seconds',
@@ -62,8 +61,69 @@ RC.DOMnodes = {
 	maths_palette: '#maths-palette',
 	language_palette: '#language-palette',
 	days_til_next: '#days-til-next',
-	button: '.button'
+	button: '.button',
+	speak_phrases: '#speak-phrases',
+	speak_responses: '#speak-responses',
+	message_envelope: '#message-envelope'
 };
+	
+RC.voices = {
+	
+	voice_server_url: 'http://localhost:2000/',
+
+	speaking: false,
+	pending: [],
+	phrase_language: '',
+	response_language: '',	
+	speak_phrase: false,
+	speak_response: false,
+
+	speak: function(phrase, lang) {
+		var that = this;
+		$(RC.DOMnodes.message_envelope).html('speaking...');
+		this.speaking = true;
+		$.ajax({
+			//async: false,
+			url: that.voice_server_url,
+			data: { 'lang': lang, 'phrase': phrase },
+			dataType: 'jsonp',
+			error: function () {
+				$(RC.DOMnodes.message_envelope).html('Failed to access voices on your computer.');
+			},
+			success: function () {
+				$(RC.DOMnodes.message_envelope).html('');
+			},
+			complete: function() {
+				that.speaking = false;
+				if (that.pending.length > 0) {
+					var next = that.pending.shift();
+					that.speak(next[0], next[1]);
+				}
+			}
+		});
+	},
+	
+	queue: function(phrase, which) {
+		$(RC.DOMnodes.message_envelope).html('here...');
+		if (which === 'phrase' && this.speak_phrase ||
+				which === 'response' && this.speak_response) {
+			if (which === 'phrase') {
+				var lang = this.phrase_language;
+			} else {
+				var lang = this.response_language;
+			}
+			if (this.speaking) {
+				this.pending.push([phrase,lang])
+				$(RC.DOMnodes.message_envelope).html('queuing speech...');
+			} else {
+				this.speak(phrase,lang)
+			}
+		}
+	}
+	
+
+}
+
 
 RC.centre = function(outer, inner) {
 	var offset = $(outer).width()/2 - $(inner).width()/2;
@@ -75,7 +135,7 @@ RC.parens = {
 	'(': ')',
 	'[': ']',
 	'{': '}'
-}
+};
 
 $.fn.shiftCaret = function (pos) {
 	return this.each(function(){
@@ -319,7 +379,7 @@ RC.question = {
 	
 	get_first: function () {
 		this.loading();
-		that = this;
+		var that = this;
 	  $.ajax({
 			url: this.json_url,
 			dataType: 'json',
@@ -340,7 +400,7 @@ RC.question = {
 	get_next: function () {
 		this.loading(true);
 		this.ignore = true;
-		that = this;
+		var that = this;
 	  $.ajax({
 			url: this.json_url,
 			data: this.ignored_data(),
@@ -426,10 +486,12 @@ RC.question = {
 		} else {
 			var phrase = this.both_versions(this.data.exercise.phrase)
 			$(RC.DOMnodes.question).html(phrase);
+			RC.voices.queue(phrase, 'phrase');
 		}
 		var response = this.both_versions(this.strip_prefix(this.data.exercise.response));
 		$(RC.DOMnodes.exercise_response).html(response);
 		if (this.data.question.current_interval === 0) {
+			RC.voices.queue(response, 'response');
 		 	$(RC.DOMnodes.expected).show();
 			this.show_response(RC.DOMnodes.exercise_response, response);
 			$(RC.DOMnodes.try_now).focus();
@@ -500,12 +562,14 @@ RC.question = {
 		}
 		$(RC.DOMnodes.attempt).hide();
 		if (match) {
+			RC.voices.queue(this.both_versions(expected), 'response');
 			this.previously_incorrect = false;
 			this.post_response('correct');
 			$(RC.DOMnodes.correct).show().fadeOut(1000);
 		} else {
 			this.show_response(RC.DOMnodes.wrong, response);
 			if (this.previously_incorrect) {
+				RC.voices.queue(this.both_versions(expected), 'response');
 				this.update_stats();
 				this.show_answer();
 			} else {
@@ -524,7 +588,25 @@ RC.interval_timer = setInterval(RC.timer.tick, 1000);
 
 $(document).ready(function(){
 	
+	if ($(RC.DOMnodes.speak_responses).length > 0) {
+		RC.voices.speak_response = true;
+		RC.voices.response_language = $(RC.DOMnodes.speak_responses).attr("language");
+	}
+	
+	if ($(RC.DOMnodes.speak_phrases).length > 0) {
+		RC.voices.speak_phrase = true;
+		RC.voices.phrase_language = $(RC.DOMnodes.speak_phrases).attr("language");
+	}
+	
 	$(RC.DOMnodes.ignore_accents_checkbox).attr('checked', false);
+
+	$(RC.DOMnodes.speak_phrases).click(function(){
+		RC.voices.speak_phrase = !RC.voices.speak_phrase;
+	});
+	
+	$(RC.DOMnodes.speak_responses).click(function(){
+		RC.voices.speak_response = !RC.voices.speak_response;
+	});
 	
 	$(RC.DOMnodes.response_form).submit(function(){
     var response = $(RC.DOMnodes.response_field).val();

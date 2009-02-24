@@ -58,7 +58,17 @@
 						<div id="extended-chars">
 							<%= palette @lesson.course.subject.extended_chars %>
 						</div>
-						<div class="bottom-right checkbox">
+						<div class="bottom-right right checkbox">
+							<% unless @lesson.course.subject.phrase_speech.empty? %>
+								<label>speak questions</label>
+								<input type="checkbox" id="speak-phrases" language="<%= @lesson.course.subject.phrase_speech %>">
+							<% end %>
+							<% unless @lesson.course.subject.response_speech.empty? %>
+								<br/>
+								<label>speak answers</label>
+								<input type="checkbox" id="speak-responses" language="<%= @lesson.course.subject.response_speech %>">
+							<% end %>
+							<br/>
 							<label>ignore accents</label>
 							<input type="checkbox" id="ignore-accents">
 						</div>

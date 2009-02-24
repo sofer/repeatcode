@@ -23,6 +23,14 @@ class Subject < ActiveRecord::Base
     AREAS[a.id] = a.name
   end
 
+  LANGUAGES_FOR_FORM = [
+    ['English', 'EN'],
+    ['Deutsch', 'DE'],
+    ['Español', 'ES'],
+    ['Français', 'FR'],
+    ['Italiano', 'IT']
+  ]
+
   def exercise_count
     count = 0
     for topic in topics

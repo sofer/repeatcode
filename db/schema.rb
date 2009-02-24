@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20090206084434) do
+ActiveRecord::Schema.define(:version => 20090224104649) do
 
   create_table "areas", :force => true do |t|
     t.string   "name"
@@ -31,6 +31,7 @@ ActiveRecord::Schema.define(:version => 20090206084434) do
     t.datetime "updated_at"
     t.integer  "last_question"
     t.boolean  "archived"
+    t.integer  "lesson_target"
   end
 
   create_table "exercises", :force => true do |t|
@@ -63,6 +64,22 @@ ActiveRecord::Schema.define(:version => 20090206084434) do
     t.integer  "total_questions_started"
   end
 
+  create_table "memberships", :force => true do |t|
+    t.integer  "organization_id"
+    t.integer  "user_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "organizations", :force => true do |t|
+    t.string   "name"
+    t.integer  "default_target"
+    t.integer  "default_lesson_target"
+    t.integer  "super_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
   create_table "questions", :force => true do |t|
     t.integer  "course_id"
     t.integer  "exercise_id"
@@ -91,6 +108,8 @@ ActiveRecord::Schema.define(:version => 20090206084434) do
     t.boolean  "archived"
     t.integer  "area_id"
     t.string   "extended_chars"
+    t.string   "phrase_speech"
+    t.string   "response_speech"
   end
 
   create_table "subscriptions", :force => true do |t|

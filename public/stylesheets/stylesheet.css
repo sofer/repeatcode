@@ -72,6 +72,7 @@ hr	{ height: 1px; border: 0; color: DodgerBlue; background-color: DodgerBlue; }
 .twelfth { width: 8%; }
 
 /* form classes */
+label	{ float: left; text-align: right; padding: 4px 4px 0 0; }
 .checkbox label	{ float: left; }
 .checkbox input[type=checkbox]	{ width: 20px; margin: 0 0 0 4px; }
 #signin label	{ float: left; width: 120px; height: 14px; margin: 4px; padding-top: 4px; text-align: right; }
@@ -79,6 +80,8 @@ hr	{ height: 1px; border: 0; color: DodgerBlue; background-color: DodgerBlue; }
 #signin input[type=checkbox]	{ margin: 8px 2px; }
 .exercise input { width: 95%; }
 textarea	{ width: 100%; height: 300px; }
+.edit_subject label	{ width: 200px; }
+
 
 xinput:focus, textarea:focus	{ }
 
