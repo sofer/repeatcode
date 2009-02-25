@@ -33,6 +33,8 @@ RC.DOMnodes = {
 	details_switch: '.details-switch',
 	extended_chars: '#extended-chars',
 	ignore_accents_checkbox: '#ignore-accents',
+	speak_phrases_checkbox: '#speak-phrases',
+	speak_responses_checkbox: '#speak-responses',
 	timeout: '#timeout',
 	start: '#start',
 	loading: '#loading',
@@ -62,8 +64,6 @@ RC.DOMnodes = {
 	language_palette: '#language-palette',
 	days_til_next: '#days-til-next',
 	button: '.button',
-	speak_phrases: '#speak-phrases',
-	speak_responses: '#speak-responses',
 	message_envelope: '#message-envelope'
 };
 	
@@ -104,7 +104,6 @@ RC.voices = {
 	},
 	
 	queue: function(phrase, which) {
-		$(RC.DOMnodes.message_envelope).html('here...');
 		if (which === 'phrase' && this.speak_phrase ||
 				which === 'response' && this.speak_response) {
 			if (which === 'phrase') {
@@ -588,23 +587,23 @@ RC.interval_timer = setInterval(RC.timer.tick, 1000);
 
 $(document).ready(function(){
 	
-	if ($(RC.DOMnodes.speak_responses).length > 0) {
-		RC.voices.speak_response = true;
-		RC.voices.response_language = $(RC.DOMnodes.speak_responses).attr("language");
+	if ($(RC.DOMnodes.speak_phrases_checkbox).length > 0) {
+		$(RC.DOMnodes.speak_phrases_checkbox).attr('checked', false);
+		RC.voices.phrase_language = $(RC.DOMnodes.speak_phrases_checkbox).attr("language");
 	}
 	
-	if ($(RC.DOMnodes.speak_phrases).length > 0) {
-		RC.voices.speak_phrase = true;
-		RC.voices.phrase_language = $(RC.DOMnodes.speak_phrases).attr("language");
+	if ($(RC.DOMnodes.speak_responses_checkbox).length > 0) {
+		$(RC.DOMnodes.speak_responses_checkbox).attr('checked', false);
+		RC.voices.response_language = $(RC.DOMnodes.speak_responses_checkbox).attr("language");
 	}
 	
 	$(RC.DOMnodes.ignore_accents_checkbox).attr('checked', false);
 
-	$(RC.DOMnodes.speak_phrases).click(function(){
+	$(RC.DOMnodes.speak_phrases_checkbox).click(function(){
 		RC.voices.speak_phrase = !RC.voices.speak_phrase;
 	});
 	
-	$(RC.DOMnodes.speak_responses).click(function(){
+	$(RC.DOMnodes.speak_responses_checkbox).click(function(){
 		RC.voices.speak_response = !RC.voices.speak_response;
 	});
 	

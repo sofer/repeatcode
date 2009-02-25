@@ -72,7 +72,7 @@ hr	{ height: 1px; border: 0; color: DodgerBlue; background-color: DodgerBlue; }
 .twelfth { width: 8%; }
 
 /* form classes */
-label	{ float: left; text-align: right; padding: 4px 4px 0 0; }
+label	{ float: left; text-align: right; margin: 0px 4px 0 0; }
 .checkbox label	{ float: left; }
 .checkbox input[type=checkbox]	{ width: 20px; margin: 0 0 0 4px; }
 #signin label	{ float: left; width: 120px; height: 14px; margin: 4px; padding-top: 4px; text-align: right; }
@@ -81,6 +81,8 @@ label	{ float: left; text-align: right; padding: 4px 4px 0 0; }
 .exercise input { width: 95%; }
 textarea	{ width: 100%; height: 300px; }
 .edit_subject label	{ width: 200px; }
+.checkbox label { float: left; width: 150px; }
+.checkbox input[type=checkbox]	{ float: left; }
 
 
 xinput:focus, textarea:focus	{ }
@@ -92,8 +94,10 @@ xinput[type=text]	{ width: 96%; }
 /* avoid floats inside absolutely positioned elements because of IE oddity */
 .left	{ float: left; }
 .right	{ text-align: right; } 
+.centre	{ margin: 0 auto; } 
 .bottom-left { position: absolute; bottom: 0; left: 0; }
 .bottom-right { position: absolute; bottom: 0; right: 0; }
+.bottom-centre { position: absolute; bottom: 0; left: 0; right: 0; text-align: center; } 
 .top-left { position: absolute; top: 0; left: 0; }
 .top-right { position: absolute; top: 0; right: 0; }
 .pad { padding: 4px; }
