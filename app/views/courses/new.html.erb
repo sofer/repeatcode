@@ -24,13 +24,19 @@
 				<% row = 0 %>
 			<% end %>
 			<% row += 1 %>
-			<ul><li><%= link_to subject.name,  subject_courses_path(subject), :method => :post %> </li></ul>
+			<ul><li><%= link_to subject.name,  subject_courses_path(subject), :method => :post %> (<%= subject.exercises.count %>)</li></ul>
 		<% end %>
 		</ul>
 		<br/>
 	<% end %>
 
 	</div>
+
+	<div class="bottom-left clear">
+		(The total number of exercises in each course is given in brackets)
+	</div>
+
+
 </div>
 
 <div id="footer">

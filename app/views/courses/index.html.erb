@@ -24,19 +24,19 @@
 				<% end %>
 			</div>
 			<div class="cell eighth"> <%= relative_date course.updated_at %></div>
-			<div class="cell twelfth">
+			<div class="cell twelfth right">
+				<%= course.questions.count %>/<%= course.subject.exercise_count %>
+			</div>
+			<div class="cell twelfth right">
 				<%= link_to "Report", course_path(course) %>
 			</div>
-			<div class="cell twelfth">
-				<%= link_to "Intervals", course_intervals_path(course) %>
-			</div>
-			<div class="cell twelfth">
+			<div class="cell twelfth right">
 				Rate
 			</div>
-			<div class="cell twelfth">
+			<div class="cell twelfth right">
 				<%= link_to @action, course_path(course), :method => :put %>
 			</div>
-			<div class="cell twelfth">
+			<div class="cell twelfth right">
 				<%= link_to 'Delete', course, :confirm => 'WARNING! This will destroy all course content. Do you really want to do this?', :method => :delete %>
 			</div>
 		</div>

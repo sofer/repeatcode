@@ -88,10 +88,12 @@ class LessonsController < ApplicationController
 
   # POST /courses/i/lessons
   # POST /courses/i/lessons.xml
+  # if the most recent lesson has been updated in the last 10 minutes then reload it
   def create
     @course = Course.find(params[:course_id])
-    @lesson = @course.lessons.new(params[:lesson])
-        
+    @lesson = @course.lessons.last
+    @lesson = @course.lessons.new(params[:lesson]) unless @lesson and Time.now.to_i - @lesson.updated_at.to_i < 600
+    flash[:notice] = "Returned to current lesson." 
     new_material_count = @course.add_new_material
     if new_material_count > 0
       if new_material_count == 1

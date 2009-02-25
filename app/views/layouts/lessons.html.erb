@@ -7,7 +7,7 @@
 	<script src="http://ie7-js.googlecode.com/svn/version/2.0(beta3)/IE8.js" type="text/javascript"></script>
 	<![endif]-->
 	<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.2.6/jquery.min.js"></script>
-	<%= javascript_include_tag 'jquery.flot', 'lesson' %>
+	<%= javascript_include_tag 'jquery.flot', 'json2', 'outfox', 'lesson' %>
 	<%= javascript_tag "var AUTH_TOKEN = #{form_authenticity_token.inspect};" if protect_against_forgery? %>
 </head>
 <body>

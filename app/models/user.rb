@@ -6,6 +6,8 @@ class User < ActiveRecord::Base
   has_many :courses, :through => :subscriptions #, :uniq => true
   has_many :authorships
   has_many :subjects, :through => :authorships
+  has_one :membership
+  has_one :organization, :through => :memberships
 
   include Authentication
   include Authentication::ByPassword

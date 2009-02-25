@@ -66,11 +66,18 @@ RC.DOMnodes = {
 	button: '.button',
 	message_envelope: '#message-envelope'
 };
-	
+
+// 25 Feb 2009: not yet using outfox yet, because of problem with non-ASCII characters
 RC.voices = {
 	
 	voice_server_url: 'http://localhost:2000/',
 
+	languages: {
+		'FR': 'com.acapela.iVox.voice.iVoxJulie22k',
+		'IT': 'com.acapela.iVox.voice.iVoxChiara22k',
+		'EN': 'com.apple.speech.synthesis.voice.Alex'
+	},
+	
 	speaking: false,
 	pending: [],
 	phrase_language: '',
@@ -78,6 +85,37 @@ RC.voices = {
 	speak_phrase: false,
 	speak_response: false,
 
+	outfox_init: function() {
+		outfox.init("outfox", JSON.stringify, JSON.parse);
+    outfox.startService("audio").addCallback(this.onStart).addErrback(this.onFail);
+	},
+	
+	onStart: function () {
+		$(RC.DOMnodes.message_envelope).html('outfox OK');
+	},
+
+	onFail: function (cmd) {
+		$(RC.DOMnodes.message_envelope).html(cmd.description);
+	},
+
+	outfox_queue: function (phrase, which) {
+		if (which === 'phrase' && this.speak_phrase ||
+				which === 'response' && this.speak_response) {
+			if (which === 'phrase') {
+				var lang = this.phrase_language;
+			} else {
+				var lang = this.response_language;
+			}
+			if (outfox.audio) {
+				outfox.audio.setProperty('voice', this.languages[lang]);
+				outfox.audio.say('bonjour');
+			} else {
+				$(RC.DOMnodes.message_envelope).html('outfox: something went wrong...');
+			}
+		}
+	},
+
+	
 	speak: function(phrase, lang) {
 		var that = this;
 		$(RC.DOMnodes.message_envelope).html('speaking...');
@@ -587,6 +625,8 @@ RC.interval_timer = setInterval(RC.timer.tick, 1000);
 
 $(document).ready(function(){
 	
+	//RC.voices.outfox_init();
+	
 	if ($(RC.DOMnodes.speak_phrases_checkbox).length > 0) {
 		$(RC.DOMnodes.speak_phrases_checkbox).attr('checked', false);
 		RC.voices.phrase_language = $(RC.DOMnodes.speak_phrases_checkbox).attr("language");
@@ -601,16 +641,22 @@ $(document).ready(function(){
 
 	$(RC.DOMnodes.speak_phrases_checkbox).click(function(){
 		RC.voices.speak_phrase = !RC.voices.speak_phrase;
+		$(RC.DOMnodes.response_field).focus();
 	});
 	
 	$(RC.DOMnodes.speak_responses_checkbox).click(function(){
 		RC.voices.speak_response = !RC.voices.speak_response;
+		$(RC.DOMnodes.response_field).focus();
 	});
 	
 	$(RC.DOMnodes.response_form).submit(function(){
     var response = $(RC.DOMnodes.response_field).val();
 		RC.current.check_response(response);
 		return false;
+	});
+
+	$(RC.DOMnodes.ignore_accents_checkbox).click(function(){
+		$(RC.DOMnodes.response_field).focus();
 	});
 
 	$(RC.DOMnodes.try_now).click(function() {
