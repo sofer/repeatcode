@@ -1,6 +1,6 @@
 class AdministratorsController < ApplicationController
 
-  #before_filter :admin_authorize
+  before_filter :admin_authorize
 
   # GET /administrators
   # GET /administrators.xml
