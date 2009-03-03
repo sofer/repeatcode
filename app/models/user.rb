@@ -6,12 +6,19 @@ class User < ActiveRecord::Base
   has_many :courses, :through => :subscriptions #, :uniq => true
   has_many :authorships
   has_many :subjects, :through => :authorships
-  has_one :membership
-  has_one :organization, :through => :memberships
+  belongs_to :organization
+  has_many :enrolments
+  has_many :groups, :through => :enrolments
+  has_many :tuitions # should be 'tutelages'
+  has_many :tutor_groups, :through => :tuitions, :source => :group
+  has_one :manager # slightly odd nomenclature here.
+  has_one :administrator # and here. It could have been a boolean field instead of a foreign key
 
   include Authentication
   include Authentication::ByPassword
   include Authentication::ByCookieToken
+
+  validates_presence_of     :organization_id
 
   validates_presence_of     :login
   validates_length_of       :login,    :within => 3..40
@@ -22,14 +29,14 @@ class User < ActiveRecord::Base
   #validates_format_of       :name,     :with => RE_NAME_OK,  :message => MSG_NAME_BAD, :allow_nil => true
   validates_format_of       :name,     :with => Authentication.name_regex, :message => Authentication.bad_name_message, :allow_nil => true
 
-
   validates_length_of       :name,     :maximum => 100
 
-  validates_presence_of     :email
-  validates_length_of       :email,    :within => 6..100 #r@a.wk
-  validates_uniqueness_of   :email,    :case_sensitive => false
-  #validates_format_of       :email,    :with => RE_EMAIL_OK, :message => MSG_EMAIL_BAD
-  validates_format_of       :email,    :with => Authentication.email_regex, :message => Authentication.bad_email_message
+  # DS: made email voluntary for now
+  #validates_presence_of     :email
+  #validates_length_of       :email,    :within => 6..100 #r@a.wk
+  #validates_uniqueness_of   :email,    :case_sensitive => false
+  ##validates_format_of       :email,    :with => RE_EMAIL_OK, :message => MSG_EMAIL_BAD
+  #validates_format_of       :email,    :with => Authentication.email_regex, :message => Authentication.bad_email_message
 
   # HACK HACK HACK -- how to do attr_accessible from here?
   # prevents a user from submitting a crafted form that bypasses activation
@@ -48,7 +55,7 @@ class User < ActiveRecord::Base
     u = find_by_login(login) # need to get the salt
     u && u.authenticated?(password) ? u : nil
   end
-
+  
   protected
     
 

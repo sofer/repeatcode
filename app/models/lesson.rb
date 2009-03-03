@@ -2,7 +2,18 @@ class Lesson < ActiveRecord::Base
 
   belongs_to :course
   
+  named_scope :last_days, lambda { |days|
+    days_ago = Time.now - days * 24 * 60 * 60
+   { :conditions => [ 'created_at > ?', days_ago ] } 
+  }
+  
   before_create :set_progress
+
+  def days_ago(days)
+    day = 60 * 60 * 24
+    now = Time.now
+    return now - days * day
+  end
 
   # set default value of 0
   def correct_responses

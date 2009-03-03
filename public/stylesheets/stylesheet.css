@@ -18,14 +18,14 @@ hr	{ height: 1px; border: 0; color: DodgerBlue; background-color: DodgerBlue; }
 #footer	{ position: absolute; height: 40px; left: 0; right: 0; bottom: 0; margin: 4px; border-top: 1px solid; }
 #main	{ margin: 28px 4px 52px 4px; }
 .fixed #main	{ position: absolute; top: 28px; right: 0; bottom: 42px; left: 0; margin: 4px; }
-#signin	{ margin: 160px auto; width: 300px; }
+.signin	{ margin: 40px auto; width: 400px; }
 
-/* error id's - NOT SURE IF NEEDED */
+/* error id's */
 .fieldWithErrors	{ padding: 2px; background-color: red; display: table; }
 #errorExplanation	{ width: 400px; border: 2px solid red; padding: 7px; padding-bottom: 12px; margin-bottom: 20px; background-color: #f0f0f0; }
 #errorExplanation h2	{ text-align: left; font-weight: bold; padding: 5px 5px 5px 15px; font-size: 12px; margin: -7px; background-color: #c00; color: #fff; }
 #errorExplanation p	{ color: #333; margin-bottom: 0; padding: 5px; }
-#errorExplanation ul li	{ font-size: 12px; list-style: square; }
+#errorExplanation ul li	{ font-size: 12px; }
 
 /* lesson id's */
 #question	{ margin-top: 30px; text-align: center; line-height: 1.2;  font-size: 24px; }
@@ -61,7 +61,7 @@ hr	{ height: 1px; border: 0; color: DodgerBlue; background-color: DodgerBlue; }
 
 /* tables */
 .row { height: 24px; border-bottom: solid 1px DodgerBlue; clear: both; }
-.cell { float: left; margin: 2px 1px; }
+.cell { float: left; margin: 5px 1px 0px 1px; }
 .half { width: 49%;}
 .third { width: 33%;}
 .quarter { width: 24%; }
@@ -73,22 +73,20 @@ hr	{ height: 1px; border: 0; color: DodgerBlue; background-color: DodgerBlue; }
 
 /* form classes */
 label	{ float: left; text-align: right; margin: 0px 4px 0 0; }
+input[type=text]	{ margin: 0; }
 .checkbox label	{ float: left; }
-.checkbox input[type=checkbox]	{ width: 20px; margin: 0 0 0 4px; }
-#signin label	{ float: left; width: 120px; height: 14px; margin: 4px; padding-top: 4px; text-align: right; }
-#signin input[type=text], input[type=password], input[type=checkbox]	{ width: 120px; height: 14px; margin: 4px; }
-#signin input[type=checkbox]	{ margin: 8px 2px; }
+.checkbox input[type=checkbox]	{ float: left; width: 20px; margin: 0 0 0 4px; }
+.signin label	{ float: left; width: 160px; height: 14px; margin: 6px; padding-top: 4px; text-align: right; }
+.signin input[type=text], input[type=password], input[type=checkbox], select	{ width: 140px; height: 14px; margin: 6px; margin-right: 70px; }
+.signin input[type=checkbox]	{ margin: 10px 4px; }
+.signin input[type=submit]	{ margin: 12px 4px; }
+.cell input[type=submit]	{ margin: -3px 0 0 0; }
+
 .exercise input { width: 95%; }
 textarea	{ width: 100%; height: 300px; }
 .edit_subject label	{ width: 200px; }
 .checkbox label { float: left; width: 150px; }
-.checkbox input[type=checkbox]	{ float: left; }
-
-
-xinput:focus, textarea:focus	{ }
-
-xlabel { float: left; width: 200px; }
-xinput[type=text]	{ width: 96%; }
+#header input[type=text]	{ margin: -2px 0 0 0; }
 
 /* deal with left and right slightly differently, partly because of IE oddity */
 /* avoid floats inside absolutely positioned elements because of IE oddity */
@@ -107,12 +105,13 @@ xinput[type=text]	{ width: 96%; }
 .border	{border: 1px dashed; }
 .hidden	{ display: none; } 
 .notice	{ color: green; }
-.error	{ color: red; }
+.error	{ color: #f00; }
 .center	{ text-align: center; }
 .half	{ width: 50%; }
 .bold	{ font-weight: bold; }
 .incorrect	{ text-decoration: line-through; color: red; }
 .space	{ margin: 10px; }
+.big-space { margin: 160px; }
 .clear	{ clear: both; }
 .tab	{ float: left; width: 33%; height: 300px; }
 .data, .code	{ white-space: pre; font-family: monospace; overflow: auto; }

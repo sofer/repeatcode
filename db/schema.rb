@@ -9,7 +9,13 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20090224104649) do
+ActiveRecord::Schema.define(:version => 20090302130323) do
+
+  create_table "administrators", :force => true do |t|
+    t.integer  "user_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "areas", :force => true do |t|
     t.string   "name"
@@ -34,6 +40,13 @@ ActiveRecord::Schema.define(:version => 20090224104649) do
     t.integer  "lesson_target"
   end
 
+  create_table "enrolments", :force => true do |t|
+    t.integer  "user_id"
+    t.integer  "group_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
   create_table "exercises", :force => true do |t|
     t.integer  "topic_id"
     t.integer  "position"
@@ -46,6 +59,13 @@ ActiveRecord::Schema.define(:version => 20090224104649) do
     t.datetime "updated_at"
     t.string   "hint"
     t.string   "insert"
+  end
+
+  create_table "groups", :force => true do |t|
+    t.string   "name"
+    t.integer  "organization_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   create_table "intervals", :force => true do |t|
@@ -62,6 +82,13 @@ ActiveRecord::Schema.define(:version => 20090224104649) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "total_questions_started"
+  end
+
+  create_table "managers", :force => true do |t|
+    t.integer  "user_id"
+    t.integer  "organization_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   create_table "memberships", :force => true do |t|
@@ -130,6 +157,18 @@ ActiveRecord::Schema.define(:version => 20090224104649) do
     t.boolean  "add_together"
   end
 
+  create_table "tuitions", :force => true do |t|
+    t.integer  "user_id"
+    t.integer  "group_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "tutors", :force => true do |t|
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
   create_table "users", :force => true do |t|
     t.string   "login",                     :limit => 40
     t.string   "name",                      :limit => 100, :default => ""
@@ -140,6 +179,7 @@ ActiveRecord::Schema.define(:version => 20090224104649) do
     t.datetime "updated_at"
     t.string   "remember_token",            :limit => 40
     t.datetime "remember_token_expires_at"
+    t.integer  "organization_id"
   end
 
   add_index "users", ["login"], :name => "index_users_on_login", :unique => true

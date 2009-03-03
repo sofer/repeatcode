@@ -5,7 +5,9 @@
 </div>
 <div id="main">
 
-	<div id="signin">
+	<div class="signin">
+
+		<div class="big-space"> </div>
 		
 		<% form_tag session_path do -%>
 		<label for="login">Login</label>
@@ -18,16 +20,19 @@
 
 		<br class="clear">
 
-		<div class="checkbox">
-			<label for="remember_me">Remember me</label>
-			<%= check_box_tag 'remember_me', '1', @remember_me %>
-		</div>
+		<label for="remember_me">Remember me</label>
+		<%= check_box_tag 'remember_me', '1', @remember_me %>
 		
 		<br class="clear">
 
 		<label> </label>
 		<%= submit_tag 'Log in' %>
+		
 		<% end -%>
 	</div>
 
+</div>
+
+<div id="footer">
+<%= render :partial => 'users/user_bar' %>
 </div>

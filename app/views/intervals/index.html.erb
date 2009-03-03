@@ -15,18 +15,18 @@
 <div id="main">
 		<div class="row">
 			<% form_for @course do |f| %>
-			<div class="bold cell fifth">Revision</div>
-			<div class="bold cell fifth right">Interval</div>
-			<div class="bold cell fifth right">Accuracy *</div>
-			<div class="bold cell fifth right">
-				Target: 
-				<%= f.text_field :target %>
-				%
-			</div>
-			<div class="cell right">
-				<%= f.submit "Change" %>
-				<% end %>
-			</div>
+				<div class="bold cell fifth">Revision</div>
+				<div class="bold cell fifth right">Interval</div>
+				<div class="bold cell fifth right">Accuracy *</div>
+				<div class="bold cell fifth right">
+					Target: 
+					<%= f.text_field :target %>
+					%
+				</div>
+				<div class="cell right">
+					<%= f.submit "Change" %>
+				</div>
+			<% end %>
 	  </div>
 
 	<% for interval in @intervals %>

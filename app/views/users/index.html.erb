@@ -1,0 +1,47 @@
+<div id="header">
+	<h1 class="top-left pad">
+		<%= @group.organization.name %>
+		&raquo; <%=link_to @group.name, @group %>
+		&raquo; Add students
+	</h1>
+	<h2 class="top-right pad">
+
+	</h2>
+</div>
+
+<div id="main">
+	<% for student in @students %>
+		<div class="row">
+			<div class="bold cell third">
+					<%= student.login %>
+			</div>
+			<div class="bold cell third">
+				
+			</div>
+			<div class="cell third right">
+				<% if @group.students.include? student %>
+					Already in group
+				<% else %>
+					<% form_for(@group)  do |f| %>
+						<%= f.hidden_field :user_id, :value => student.id %>
+						<%= f.submit "Add to group" %>
+					<% end %>
+				<% end %>
+			</div>
+		</div>
+	<% end %>
+
+	<div class="center">
+		<%= will_paginate @students %>
+	</div>
+
+</div>
+
+<div id="footer">
+	<div class="bottom-left">
+		Logged in as: <%= current_user.login %>
+	</div>
+	<div class="bottom-right">
+			<%= link_to "logout", "/logout"%>
+	</div>
+</div>

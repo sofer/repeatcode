@@ -1,4 +1,3 @@
 class Membership < ActiveRecord::Base
-  belongs_to :organization
-  belongs_to :user
+  #not currently being used
 end

@@ -1,5 +1,23 @@
 ActionController::Routing::Routes.draw do |map|
 
+  map.resources :organizations
+  map.resources :organizations do |organization|
+    organization.resources :users 
+    organization.resources :managers
+  end  
+
+  map.resources :groups
+  map.resources :groups do |group|
+    group.resources :users 
+  end  
+
+  map.resources :tutors
+
+  map.resources :managers
+
+  map.resources :administrators
+
+
   map.resources :exercises
   map.resources :subscriptions
   map.resources :authorships

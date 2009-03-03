@@ -4,7 +4,7 @@ var RC = {};
 
 String.prototype.simplify = function () {
 	var str=this;
-	return str.replace(/[\s,.!?-\\']/g, '').toLowerCase();
+	return str.replace(/[\s,.!?\-\\']/g, '').toLowerCase();
 };
 
 String.prototype.strip_accents = function () {

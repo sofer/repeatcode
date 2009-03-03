@@ -79,5 +79,5 @@ module ApplicationHelper
     end
     return display_date  
   end
-
+  
 end

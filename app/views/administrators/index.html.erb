@@ -1,0 +1,58 @@
+<div id="header">
+	<h1 class="top-left pad">
+		Administrators
+	</h1>
+	<h2 class="top-right pad">
+		<%= link_to 'Manage organizations', :controller => :organizations %>
+	</h2>
+</div>
+
+<div id="main">
+	<h2>Administrators</h2>
+	<% for admin in @administrators %>
+	<% unless admin.user_id == current_user.id %>
+		<div class="row">
+			<div class="cell third">
+					<%= link_to 'Remove admin responsibilities', admin, :confirm => 'Are you sure?', :method => :delete %>
+			</div>
+			<div class="bold cell third">
+					<%= admin.user.login %>
+			</div>
+		</div>
+		<% end %>
+	<% end %>
+	<br>
+	<h2>Users</h2>
+	<% for user in @users %>
+		<div class="row">
+			<div class="bold cell third">
+					<%= user.id %>:
+					<%= user.login %>
+			</div>
+			<div class="bold cell third">
+					<%= user.organization.name if user.organization %>
+			</div>
+			<div class="cell third right">
+				<% form_for :administrator, :url => { :action => "create" } do |f| %>
+					<%= f.hidden_field(:user_id, :value => user.id ) %>
+					<%= f.submit "Make administrator" %>
+				<% end %>
+			</div>
+		</div>
+	<% end %>
+
+	<div class="center">
+		<%= will_paginate @users %>
+	</div>
+
+</div>
+
+<div id="footer">
+	<div class="bottom-left">
+		Logged in as: <%= current_user.login %>
+	</div>
+	<div class="bottom-right">
+		<%= render :partial => 'users/admin_links' %>
+			<%= link_to "logout", "/logout"%>
+	</div>
+</div>

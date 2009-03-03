@@ -33,6 +33,19 @@ class Course < ActiveRecord::Base
     8 => DAY * 224
   }
   
+  def responses_in_last_days(days)
+    recent_lessons = lessons.last_days(days)
+    return response_count(recent_lessons)
+  end
+  
+  def response_count(recent_lessons)
+    count = 0
+    for lesson in recent_lessons
+      count += lesson.correct_responses
+    end
+    return count
+  end
+  
   def last_question
     @last_question ||= self[:last_question] ? Question.find(self[:last_question]) : false
   end

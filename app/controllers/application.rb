@@ -20,5 +20,13 @@ private
     end 
   end 
 
+  def admin_authorize 
+    unless logged_in? && current_user.administrator
+      session[:original_uri] = request.request_uri
+      flash[:notice] = "Please log in" 
+      redirect_to("/login") 
+    end 
+  end 
+
 
 end

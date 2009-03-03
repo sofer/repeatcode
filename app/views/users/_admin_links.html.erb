@@ -1,0 +1,9 @@
+<% if current_user.administrator %>
+	<%= link_to_unless_current 'Admin', administrators_path %> |
+<% end %>
+<% if current_user.manager %>
+	<%= link_to_unless_current 'Manage', managers_path %> |
+<% end %>
+<% if current_user.tutor_groups %>
+	<%= link_to_unless_current 'Groups', groups_path %> |
+<% end %>

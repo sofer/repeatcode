@@ -2,48 +2,6 @@ class LessonsController < ApplicationController
 
   before_filter :authorize
 
-  # GET /lessons
-  # GET /lessons.xml
-  # use as a report
-  def index
-    @lessons = Lesson.all
-
-    respond_to do |format|
-      format.html # index.html.erb
-      format.xml  { render :xml => @lessons }
-    end
-  end
-
-  # GET /lessons/1
-  # GET /lessons/1.xml
-  
-  # NOT SURE WHAT show2 IS FOR
-  def show2
-    @lesson = Lesson.find(params[:id])
-    
-    respond_to do |format|
-      format.html # show.html.erb
-      format.xml  { render :xml => @question.exercise }
-      format.json  { 
-        if params[:ignore]
-          question = @lesson.next_question(params[:ignore])
-        else
-          question = @lesson.next_question
-        end
-        if question
-          if question.exercise.topic
-            topic = question.exercise.topic.name
-          else
-            topic = "question removed from course"
-          end
-          render :json => { 'ignored' => params[:ignore], 'status' => 'ok', 'exercise' => question.exercise, 'question' => question, 'topic' => topic }
-        else
-          render :json => { 'status' => 'end' }
-        end
-      }
-    end
-  end
-
   def show
     @lesson = Lesson.find(params[:id])
     
@@ -68,22 +26,6 @@ class LessonsController < ApplicationController
         end
       }
     end
-  end
-
-  # GET /lessons/new
-  # GET /lessons/new.xml
-  def new
-    @lesson = Lesson.new
-
-    respond_to do |format|
-      format.html # new.html.erb
-      format.xml  { render :xml => @lesson }
-    end
-  end
-
-  # GET /lessons/1/edit
-  def edit
-    @lesson = Lesson.find(params[:id])
   end
 
   # POST /courses/i/lessons

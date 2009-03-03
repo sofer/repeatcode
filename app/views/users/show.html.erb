@@ -1,0 +1,74 @@
+<div id="header">
+	<h1 class="top-left pad">
+		<%= @student.organization.name %>
+		&raquo; Students
+		&raquo; <%= @student.login %>
+	</h1>
+	<div class="top-right pad">
+		<%= link_to 'back', :back %>
+	</div>
+</div>
+
+<div id="main">
+	<div class="row">
+		<div class="cell half">
+		</div>
+		<div class="cell tenth right bold">
+			24 hours
+		</div>
+		<div class="cell tenth right bold">
+			1 week
+		</div>
+		<div class="cell tenth right bold">
+			4 weeks
+		</div>
+		<div class="cell tenth right bold">
+			16 weeks
+		</div>
+		<div class="cell tenth right bold">
+			All time
+		</div>
+	</div>
+
+	<% for course in @courses %>
+		<div class="row">
+			<div class="bold cell half">
+				<% if course.subject %>
+					<%= course.subject.name %>
+				<% else %>
+					[ course removed ]
+				<% end %>
+			</div>
+			<div class="cell tenth right">
+				<%= course.responses_in_last_days(1) %>
+			</div>
+			<div class="cell tenth right">
+				<%= course.responses_in_last_days(7) %>
+			</div>
+			<div class="cell tenth right">
+				<%= course.responses_in_last_days(28) %>
+			</div>
+			<div class="cell tenth right">
+				<%= course.responses_in_last_days(112) %>
+			</div>
+			<div class="cell tenth right">
+				<%= course.response_count(course.lessons) %>
+			</div>
+		</div>
+	<% end %>
+
+	<div class="center">
+		<%= will_paginate @courses %>
+	</div>
+
+</div>
+
+<div id="footer">
+	<div class="bottom-left">
+		Logged in as: <%= current_user.login %>
+	</div>
+	<div class="bottom-right">
+		<%= render :partial => 'users/admin_links' %>
+		<%= link_to "logout", "/logout"%>
+	</div>
+</div>

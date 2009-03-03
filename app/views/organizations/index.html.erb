@@ -1,0 +1,45 @@
+<div id="header">
+	<h1 class="top-left pad">
+		Organizations
+	</h1>
+	<h2 class="top-right pad">
+		<% form_for(@organization) do |f| %>
+			<%= f.text_field :name %>
+	 		<%= f.submit "Create new" %>
+			<% end %>
+	</h2>
+</div>
+
+<div id="main">
+	<div class="xright">
+		<br/>
+	</div>
+
+	<% for org in @organizations %>
+	<div class="row">
+		<div class="bold cell half">
+				<%= org.name %>
+		</div>
+		<div class="bold cell quarter right">
+				<%= link_to 'Add manager', organization_managers_path(org) %>
+		</div>
+		<div class="bold cell quarter right">
+			<%= link_to 'Delete', org, :confirm => "WARNING! This will remove #{org.name} from the system. Do you really want to do this?", :method => :delete %>		</div>
+	</div>
+	<% end %>
+
+	<div class="bottom-centre">
+		<%= will_paginate @organizations %>
+	</div>
+
+</div>
+
+<div id="footer">
+	<div class="bottom-left">
+		Logged in as: <%= current_user.login %>
+	</div>
+	<div class="bottom-right">
+		<%= render :partial => 'users/admin_links' %>
+			<%= link_to "logout", "/logout"%>
+	</div>
+</div>
