@@ -1,6 +1,6 @@
 class ManagersController < ApplicationController
 
-  before_filter :manager_authorize
+  before_filter :manager_authorize || :admin_authorize
 
   # GET /managers
   # GET /managers.xml

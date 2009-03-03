@@ -29,7 +29,7 @@ private
   end 
 
   def manager_authorize 
-    unless logged_in? && (current_user.manager || current_user.administrator)
+    unless logged_in? && current_user.manager
       session[:original_uri] = request.request_uri
       flash[:notice] = "Please log in" 
       redirect_to("/login") 

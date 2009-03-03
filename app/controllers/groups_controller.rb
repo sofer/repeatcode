@@ -1,6 +1,6 @@
 class GroupsController < ApplicationController
 
-  before_filter :authorize
+  before_filter :manager_authorize
 
   # GET /groups
   # GET /groups.xml
