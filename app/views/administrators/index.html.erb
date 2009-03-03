@@ -10,16 +10,18 @@
 <div id="main">
 	<h2>Administrators</h2>
 	<% for admin in @administrators %>
-	<% unless admin.user_id == current_user.id %>
 		<div class="row">
-			<div class="cell third">
-					<%= link_to 'Remove admin responsibilities', admin, :confirm => 'Are you sure?', :method => :delete %>
-			</div>
 			<div class="bold cell third">
 					<%= admin.user.login %>
 			</div>
+			<div class="cell third right">
+			</div>
+			<div class="cell third right">
+				<% unless admin.user_id == current_user.id %>
+					<%= link_to 'Remove admin responsibilities', admin, :confirm => 'Are you sure?', :method => :delete %>
+				<% end %>
+			</div>
 		</div>
-		<% end %>
 	<% end %>
 	<br>
 	<h2>Users</h2>

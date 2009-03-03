@@ -1,4 +1,7 @@
 class OrganizationsController < ApplicationController
+  
+  before_filter :admin_authorize
+  
   # GET /organizations
   # GET /organizations.xml
   def index
