@@ -1,8 +1,15 @@
 class ManagersController < ApplicationController
+
+  before_filter :manager_authorize
+
   # GET /managers
   # GET /managers.xml
   def index
-    @organization = current_user.organization
+    if params[:id] and current_user.administrator
+      @organization = Organization.find(params[:id])
+    else
+      @organization = current_user.organization
+    end
     @managers = @organization.managers.find(:all)
     @users = @organization.users.paginate(
               :per_page => 12, 
