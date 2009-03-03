@@ -11,7 +11,10 @@ class AdministratorsController < ApplicationController
               :page => params[:page]
               )
     
-
+    for user in @users
+      user.update_attribute(:organization_id, '2') unless user.organization # temporary fix
+    end
+    
     respond_to do |format|
       format.html # index.html.erb
       format.xml  { render :xml => @administrators }

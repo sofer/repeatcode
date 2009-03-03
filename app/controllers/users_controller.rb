@@ -20,7 +20,6 @@ class UsersController < ApplicationController
               :per_page => 14, 
               :page => params[:page]
               )
-    @student.update_attribute(:organization_id, '2') unless @student.organization # temporary fix
   end
  
   # render new.rhtml
