@@ -5,8 +5,8 @@ class ManagersController < ApplicationController
   # GET /managers
   # GET /managers.xml
   def index
-    if params[:id] and current_user.administrator
-      @organization = Organization.find(params[:id])
+    if params[:organization_id] and current_user.administrator
+      @organization = Organization.find(params[:organization_id])
     else
       @organization = current_user.organization
     end
