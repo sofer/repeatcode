@@ -22,12 +22,12 @@
 	</div>
 
 	<div class="row">
-		<div class="cell third">
+		<div class="cell quarter">
 		</div>
-		<div class="cell twelfth right bold">
+		<div class="cell eighth right bold">
 			Started
 		</div>
-		<div class="cell twelfth right bold">
+		<div class="cell eighth right bold">
 			Backlog
 		</div>
 		<div class="cell eighth right bold vertical-bar">
@@ -47,13 +47,13 @@
 	<% for course in @courses %>
 		<% if course.subject %>
 			<div class="row">
-				<div class="bold cell third">
+				<div class="bold cell quarter">
 						<%= course.subject.name %>
 				</div>
-				<div class="cell twelfth right">
+				<div class="cell eighth right">
 					<%= course.questions.count %> of <%= course.subject.exercise_count if course.subject %>
 				</div>
-				<div class="cell twelfth right">
+				<div class="cell eighth right">
 					<%= course.backlog_count %>
 				</div>
 				<div class="cell eighth right vertical-bar">

@@ -44,8 +44,16 @@ class Course < ActiveRecord::Base
   end
   
   def all_time_responses
+    correct_so_far = 0
+    self.questions.each { |q| correct_so_far += q.responses.correct.count }
+    total_needed = self.subject.exercises.count * DEFAULT_INTERVALS.size
+    percent = 100 * correct_so_far / total_needed
+    return "#{correct_so_far} (#{percent}%)"
+  end
+  
+  def xall_time_responses
     so_far = response_count(lessons)
-    total = self.subject.exercises.count * DEFAULT_INTERVALS.size * 100 / self.accuracy_target 
+    total = self.subject.exercises.count * DEFAULT_INTERVALS.size
     return so_far if total == 0
     percent = 100 * so_far / total
     return "#{so_far} (#{percent}%)"
