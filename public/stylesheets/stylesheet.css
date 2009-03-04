@@ -112,7 +112,7 @@ textarea	{ width: 100%; height: 300px; }
 .hidden	{ display: none; } 
 .notice	{ color: green; }
 .error	{ color: #f00; }
-.center	{ text-align: center; }
+.centre	{ text-align: center; }
 .half	{ width: 50%; }
 .bold	{ font-weight: bold; }
 .incorrect	{ text-decoration: line-through; color: red; }

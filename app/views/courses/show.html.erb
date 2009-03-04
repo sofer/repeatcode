@@ -44,7 +44,6 @@
 		Logged in as: <%= current_user.login %>
 	</div>
 	<div class="bottom-right">
-		<%= link_to "FAQ", "/about/faq" %> |
-		<%= link_to "logout", "/logout"%>
+		<%= render :partial => 'global/toplevel_links' %>
 	</div>
 </div>

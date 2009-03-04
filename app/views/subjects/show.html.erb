@@ -26,6 +26,11 @@
 	    <div class="cell quarter right"><%= topic.exercises.count %></div>
 		</div>
 	<% end %>
+
+	<div class="bottom-centre">
+		<%= will_paginate @topics %>
+	</div>
+
 </div>
 
 <div id="footer">
@@ -36,9 +41,6 @@
 	</div>
 	<div class="bottom-right">
 		<br>
-		<%= link_to "logout", "/logout"%>
+		<%= render :partial => 'global/toplevel_links' %>
 	</div> 
-	<div class="center">
-		<%= will_paginate @topics %>
-	</div>
 </div>

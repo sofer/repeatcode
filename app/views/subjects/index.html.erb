@@ -27,18 +27,17 @@
 	  </div>
 		<% end %>
 
+		<div class="bottom-centre">
+			<%= will_paginate @subjects %>
+		</div>
+
 </div>
 
 <div id="footer">
-	<div class="center pad">
-		<%= will_paginate @subjects %>
-	</div>
-
 	<div class="bottom-left">
 		Logged in as: <%= current_user.login %>
 	</div>
 	<div class="bottom-right">
-		<%= link_to "FAQ", "/about/faq" %> |
-		<%= link_to "logout", "/logout"%>
+		<%= render :partial => 'global/toplevel_links' %>
 	</div>
 </div>

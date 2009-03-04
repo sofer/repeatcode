@@ -19,8 +19,6 @@
 		Logged in as: <%= current_user.login %>
 	</div>
 	<div class="bottom-right">
-		<%= link_to 'Home', '/' %> | 
-		<%= link_to "logout", "/logout"%>
+		<%= render :partial => 'global/toplevel_links' %>
 	</div>
-	<div class="clear"></div>
 </div>
