@@ -39,12 +39,6 @@ class Course < ActiveRecord::Base
     8 => DAY * 224
   }
   
-  def percent_complete
-    DEFAULT_INTERVALS.size
-    # <%= course.questions.count %>/<%= course.subject.exercise_count if course.subject %>
-		
-  end
-  
   def backlog_count
     questions.count(:conditions => ['next_datetime < ?', Time.now])
   end

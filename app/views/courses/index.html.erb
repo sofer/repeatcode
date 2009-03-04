@@ -25,7 +25,6 @@
 			</div>
 			<div class="cell eighth"> <%= relative_date course.updated_at %></div>
 			<div class="cell twelfth right">
-				<%= course.percent_complete %>
 				<%= course.questions.count %>/<%= course.subject.exercise_count if course.subject %>
 			</div>
 			<div class="cell twelfth right">
