@@ -1,6 +1,6 @@
 class GroupsController < ApplicationController
 
-  before_filter :manager_authorize
+  before_filter :admin_manager_tutor_authorize
 
   # GET /groups
   # GET /groups.xml
@@ -29,8 +29,9 @@ class GroupsController < ApplicationController
   def show
     @organization = current_user.organization
     @group = Group.find(params[:id])
+    @tutors = @group.tutors
     @students = @group.students.paginate(
-              :per_page => 14, 
+              :per_page => 14 - @tutors.size, 
               :page => params[:page]
               )
 

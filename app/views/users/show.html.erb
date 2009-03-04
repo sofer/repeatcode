@@ -11,50 +11,65 @@
 
 <div id="main">
 	<div class="row">
-		<div class="cell half">
+		<div class="cell third">
 		</div>
-		<div class="cell tenth right bold">
+		<div class="cell sixth">
+			
+		</div>
+		<div class="cell half bold">
+			Correct responses (% of target)
+		</div>
+	</div>
+
+	<div class="row">
+		<div class="cell third">
+		</div>
+		<div class="cell twelfth right bold">
+			Started
+		</div>
+		<div class="cell twelfth right bold">
+			Backlog
+		</div>
+		<div class="cell eighth right bold vertical-bar">
 			24 hours
 		</div>
-		<div class="cell tenth right bold">
+		<div class="cell eighth right bold">
 			1 week
 		</div>
-		<div class="cell tenth right bold">
+		<div class="cell eighth right bold">
 			4 weeks
 		</div>
-		<div class="cell tenth right bold">
-			16 weeks
-		</div>
-		<div class="cell tenth right bold">
+		<div class="cell eighth right bold">
 			All time
 		</div>
 	</div>
 
 	<% for course in @courses %>
-		<div class="row">
-			<div class="bold cell half">
-				<% if course.subject %>
-					<%= course.subject.name %>
-				<% else %>
-					[ course removed ]
-				<% end %>
+		<% if course.subject %>
+			<div class="row">
+				<div class="bold cell third">
+						<%= course.subject.name %>
+				</div>
+				<div class="cell twelfth right">
+					<%= course.questions.count %> of <%= course.subject.exercise_count if course.subject %>
+				</div>
+				<div class="cell twelfth right">
+					<%= course.backlog_count %>
+				</div>
+				<div class="cell eighth right vertical-bar">
+					<%= course.responses_in_last_days(1) %>
+				</div>
+				<div class="cell eighth right">
+					<%= course.responses_in_last_days(7) %>
+				</div>
+				<div class="cell eighth right">
+					<%= course.responses_in_last_days(28) %>
+				</div>
+				<div class="cell eighth right">
+					<%= course.all_time_responses %>
+				</div>
 			</div>
-			<div class="cell tenth right">
-				<%= course.responses_in_last_days(1) %>
-			</div>
-			<div class="cell tenth right">
-				<%= course.responses_in_last_days(7) %>
-			</div>
-			<div class="cell tenth right">
-				<%= course.responses_in_last_days(28) %>
-			</div>
-			<div class="cell tenth right">
-				<%= course.responses_in_last_days(112) %>
-			</div>
-			<div class="cell tenth right">
-				<%= course.response_count(course.lessons) %>
-			</div>
-		</div>
+		<% end %>
 	<% end %>
 
 	<div class="center">
@@ -68,7 +83,7 @@
 		Logged in as: <%= current_user.login %>
 	</div>
 	<div class="bottom-right">
-		<%= render :partial => 'users/admin_links' %>
+		<%= render :partial => 'global/toplevel_links' %>
 		<%= link_to "logout", "/logout"%>
 	</div>
 </div>

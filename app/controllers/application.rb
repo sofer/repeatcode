@@ -44,5 +44,13 @@ private
     end 
   end 
 
+  def admin_manager_tutor_authorize 
+    unless logged_in? && (current_user.tutor_groups || current_user.manager || current_user.administrator)
+      session[:original_uri] = request.request_uri
+      flash[:notice] = "Please log in" 
+      redirect_to("/login") 
+    end 
+  end 
+
 
 end

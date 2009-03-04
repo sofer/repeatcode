@@ -80,7 +80,7 @@ class CoursesController < ApplicationController
         format.xml  { render :xml => @course, :status => :created, :location => @course }
       else
         flash[:error] = 'Problem encountered.'
-        format.html { redirect_to(courses_path) }
+        format.html { redirect_to(:back) }
         format.xml  { render :xml => @course.errors, :status => :unprocessable_entity }
       end
     end
@@ -88,15 +88,15 @@ class CoursesController < ApplicationController
 
   # PUT /courses/1
   # PUT /courses/1.xml
-  # Updates currently used for un/archiving only
+  # Updates NOT JUST USED for un/archiving. NEED TO CHANGE THIS
   def update
     @course = Course.find(params[:id])
-    @course.archived = ! @course.archived
+    # @course.archived = ! @course.archived
     
     respond_to do |format|
       if @course.update_attributes(params[:course])
         flash[:notice] = 'Course was successfully updated.'
-        format.html { redirect_to courses_path }
+        format.html { redirect_to(:back) }
         format.xml  { head :ok }
       else
         flash[:notice] = 'Course was NOT updated.'

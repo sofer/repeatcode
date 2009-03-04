@@ -1,10 +1,6 @@
 <div id="header">
 	<h1 class="top-left pad">
-		<%= link_to 'Courses', courses_path %>
-		&raquo; <%= @course.subject.name if @course %>
-		&raquo; <%= link_to 'lessons', course_path(@course) %>
-		| intervals
-		| <%= link_to 'questions', course_questions_path(@course) %>
+		<%= render :partial => 'global/course_links' %>
 	</h1>
 	<div class="top-right pad">
 		<%= @course.questions.count %> / 
@@ -14,19 +10,15 @@
 
 <div id="main">
 		<div class="row">
-			<% form_for @course do |f| %>
-				<div class="bold cell fifth">Revision</div>
-				<div class="bold cell fifth right">Interval</div>
-				<div class="bold cell fifth right">Accuracy *</div>
-				<div class="bold cell fifth right">
-					Target: 
-					<%= f.text_field :target %>
-					%
-				</div>
-				<div class="cell right">
-					<%= f.submit "Change" %>
-				</div>
-			<% end %>
+			<div class="bold cell fifth">Revision</div>
+			<div class="bold cell fifth right">Interval</div>
+			<div class="bold cell fifth right">Accuracy *</div>
+			<div class="bold cell fifth right">Last interval reset</div>
+			<div class="bold cell fifth right">
+				Target: 
+				<%= @course.accuracy_target %>
+				%
+			</div>
 	  </div>
 
 	<% for interval in @intervals %>
@@ -37,7 +29,7 @@
 			<div class="cell fifth right"><%= success_rate(responses) %></div>
 			<div class="cell fifth right"><%= formatted_date interval.updated_at %></div>
 			<% if interval.index_no > 1 and responses[:correct] > 10 %>
-			<div class="cell right">
+			<div class="cell fifth right">
 				<% form_for interval do |f| %>
 					<%= hidden_field_tag 'correct', responses[:correct] %>
 					<%= hidden_field_tag 'incorrect', responses[:incorrect] %>
@@ -52,12 +44,12 @@
 	<div class="cell fifth"> </div>
 	<div class="cell fifth">* since last reset</div>
 	<br clear="all">
-	<div>
+	<div class="bottom-left">
 		<ul>
 			<li>Each time you respond to an exercise, the <strong>Interval</strong> of time until your next <strong>Revision</strong> increases.</li>
 			<li>The <strong>Accuracy</strong> of your responses gives you an indication of how close you are to your <strong>Target</strong>.</li>
 			<li>An interval can be <strong>Reset</strong> in order to more closely match your target.</li>
-			<li> You can also <strong>Change</strong> the default target (90%) at any time.</li>
+			<li> You can also <%= link_to 'change', edit_course_path(@course) %> the default target (90%) at any time.</li>
 		  <li>In this way, you can make best use of your time, and learn as thoroughly or as quickly as you like.
 			</ul>
 	</div>

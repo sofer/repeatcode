@@ -6,7 +6,7 @@ class UsersController < ApplicationController
   # For show users to groups
   def index
     @group =  Group.find(params[:group_id])
-    @students = @group.organization.users.paginate(
+    @users = @group.organization.users.paginate(
               :per_page => 14, 
               :page => params[:page]
               )

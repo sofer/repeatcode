@@ -29,6 +29,7 @@ RC.DOMnodes = {
 	seconds: '#seconds',
 	elapsed_time: '#elapsed-time',
 	correct_responses: '#correct-responses',
+	target: '#target',
 	details: '#details',
 	details_switch: '.details-switch',
 	extended_chars: '#extended-chars',
@@ -357,6 +358,7 @@ RC.question = {
 	ignore: false,
 	next: { status: 'waiting' },
 	previously_incorrect: false,
+	target: $(RC.DOMnodes.correct).text(),
 	formula_prefix: '=',
 	
 	ignored_data: function() {
@@ -506,6 +508,18 @@ RC.question = {
 		$(RC.DOMnodes.correct_responses).text(this.data.correct);
 		$(RC.DOMnodes.backlog).text(this.data.backlog);
 	},
+	
+	show_response_message: function() {
+		if (this.data.correct === this.target) {
+			$(RC.DOMnodes.correct).text("today's target reached");
+		} else if (this.data.correct % 10 == 0) {
+			$(RC.DOMnodes.correct).text(this.data.correct + ' correct answers');
+		} else {
+			$(RC.DOMnodes.correct).text("Correct");
+		}
+		$(RC.DOMnodes.correct).show().fadeOut(1000);
+	},
+	
 
   show: function() {
 		RC.timer.reset_seconds();
@@ -602,7 +616,7 @@ RC.question = {
 			RC.voices.queue(this.both_versions(expected), 'response');
 			this.previously_incorrect = false;
 			this.post_response('correct');
-			$(RC.DOMnodes.correct).show().fadeOut(1000);
+			this.show_response_message();
 		} else {
 			this.show_response(RC.DOMnodes.wrong, response);
 			if (this.previously_incorrect) {

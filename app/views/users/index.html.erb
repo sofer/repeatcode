@@ -2,7 +2,7 @@
 	<h1 class="top-left pad">
 		<%= @group.organization.name %>
 		&raquo; <%=link_to @group.name, @group %>
-		&raquo; Add students
+		&raquo; Add users
 	</h1>
 	<h2 class="top-right pad">
 
@@ -10,20 +10,30 @@
 </div>
 
 <div id="main">
-	<% for student in @students %>
+	<% for user in @users %>
 		<div class="row">
 			<div class="bold cell third">
-					<%= student.login %>
+					<%= user.login %>
 			</div>
 			<div class="bold cell third">
 				
 			</div>
-			<div class="cell third right">
-				<% if @group.students.include? student %>
+			<div class="cell sixth right">
+				<% if @group.tutors.include? user %>
+					TUTOR
+				<% else %>
+					<% form_for(@group)  do |f| %>
+						<%= f.hidden_field :tutor_id, :value => user.id %>
+						<%= f.submit "Make tutor" %>
+					<% end %>
+				<% end %>
+			</div>
+			<div class="cell sixth right">
+				<% if @group.students.include? user %>
 					Already in group
 				<% else %>
 					<% form_for(@group)  do |f| %>
-						<%= f.hidden_field :user_id, :value => student.id %>
+						<%= f.hidden_field :student_id, :value => user.id %>
 						<%= f.submit "Add to group" %>
 					<% end %>
 				<% end %>
@@ -32,7 +42,7 @@
 	<% end %>
 
 	<div class="center">
-		<%= will_paginate @students %>
+		<%= will_paginate @users %>
 	</div>
 
 </div>

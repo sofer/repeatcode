@@ -1,16 +1,6 @@
 <div id="header">
 	<h1 class="top-left pad">
-		<%= link_to 'Courses', courses_path %>
-		&raquo; <%= @course.subject.name if @course %>
-		&raquo; <%= link_to 'lessons', course_path(@course) %>
-		| <%= link_to 'intervals', course_intervals_path(@course)  if @course %>
-		<% if params[:version] %>
-			| <%= link_to 'questions', course_questions_path(@course) %>
-			- pending
-		<% else %>
-			| questions
-			- <%= link_to 'pending', course_questions_path(@course, :version => 'pending')  if @course %>
-		<% end %>
+		<%= render :partial => 'global/course_links' %>
 	</h1>
 	<div class="top-right pad">
 		<%= @course.questions.count  if @course %> / 

@@ -25,7 +25,8 @@
 			</div>
 			<div class="cell eighth"> <%= relative_date course.updated_at %></div>
 			<div class="cell twelfth right">
-				<%= course.questions.count %>/<%= course.subject.exercise_count %>
+				<%= course.percent_complete %>
+				<%= course.questions.count %>/<%= course.subject.exercise_count if course.subject %>
 			</div>
 			<div class="cell twelfth right">
 				<%= link_to "Report", course_path(course) %>
@@ -53,7 +54,7 @@
 		Logged in as: <%= current_user.login %>
 	</div>
 	<div class="bottom-right">
-			<%= render :partial => 'users/admin_links' %>
+			<%= render :partial => 'global/toplevel_links' %>
 			<%= link_to "Course materials", :controller => 'subjects', :action => 'index' %>
 			| <%= link_to_unless_current "Archive", :controller => 'courses', :action => 'index', :archived => '' %>
 			| <%= link_to "FAQ", "/about/faq" %>

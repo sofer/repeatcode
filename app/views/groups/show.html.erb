@@ -5,11 +5,33 @@
 		&raquo; <%= @group.name %>
 	</h1>
 	<h2 class="top-right pad">
-		<%= link_to 'Add students', group_users_path(@group) %>
+		Add courses
+		| <%= link_to 'Add students', group_users_path(@group) %>
 	</h2>
 </div>
 
 <div id="main">
+	<h2>TUTORS</h2>
+	<% for tutor in @tutors %>
+		<div class="row">
+			<div class="bold cell third">
+					<%= tutor.login %>
+			</div>
+			<div class="cell third right">
+
+			</div>
+			<div class="cell third right">
+				<% unless tutor == current_user %>
+					<% form_for(@group)  do |f| %>
+						<%= f.hidden_field :tutor_id, :value => tutor.id %>
+						<%= f.submit "Remove" %>
+					<% end %>
+				<% end %>
+			</div>
+		</div>
+	<% end %>
+	<br>
+	<h2>STUDENTS</h2>
 	<% for student in @students %>
 		<div class="row">
 			<div class="bold cell third">
@@ -20,7 +42,7 @@
 			</div>
 			<div class="cell third right">
 				<% form_for(@group)  do |f| %>
-					<%= f.hidden_field :user_id, :value => student.id %>
+					<%= f.hidden_field :student_id, :value => student.id %>
 					<%= f.submit "Remove" %>
 				<% end %>
 			</div>
@@ -38,6 +60,7 @@
 		Logged in as: <%= current_user.login %>
 	</div>
 	<div class="bottom-right">
-			<%= link_to "logout", "/logout"%>
+		<%= render :partial => 'global/toplevel_links' %>
+		<%= link_to "logout", "/logout"%>
 	</div>
 </div>
