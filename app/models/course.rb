@@ -43,6 +43,18 @@ class Course < ActiveRecord::Base
     questions.count(:conditions => ['next_datetime < ?', Time.now])
   end
   
+  def on_target?(days=7)
+    recent_lessons = lessons.recent(days)
+    recent_responses = response_count(recent_lessons)
+    target = days * self.lesson_target * self.weekly_target / 7
+    if recent_responses > target
+      return true
+    else
+      return false
+    end 
+  end
+  
+  
   def days_to_go
     correct_so_far = 0
     self.questions.each { |q| correct_so_far += q.responses.correct.count }
@@ -73,7 +85,7 @@ class Course < ActiveRecord::Base
   end
   
   def responses_in_last_days(days)
-    recent_lessons = lessons.last_days(days)
+    recent_lessons = lessons.recent(days)
     count = response_count(recent_lessons)
     return 0 if count == 0
     if days == 1

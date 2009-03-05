@@ -115,6 +115,7 @@ textarea	{ width: 100%; height: 300px; }
 .centre	{ text-align: center; }
 .half	{ width: 50%; }
 .bold	{ font-weight: bold; }
+.correct { color: green; }
 .incorrect	{ text-decoration: line-through; color: red; }
 .space	{ margin: 10px; }
 .big-space { margin: 160px; }

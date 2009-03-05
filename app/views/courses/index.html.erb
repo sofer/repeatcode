@@ -23,7 +23,7 @@
 					[ course removed ]
 				<% end %>
 			</div>
-			<div class="cell eighth"> <%= relative_date course.updated_at %></div>
+			<div class="cell eighth correct"><% if course.on_target? %>On target<% end %></div>
 			<div class="cell twelfth right">
 				<%= course.questions.count %>/<%= course.subject.exercise_count if course.subject %>
 			</div>
