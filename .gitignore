@@ -1,3 +1,8 @@
 log/
 db/development.sqlite3
 temp-*
+tmp/
+config/environment.rb
+public/images/tuneup/
+public/javascripts/tuneup/
+public/stylesheets/tuneup/

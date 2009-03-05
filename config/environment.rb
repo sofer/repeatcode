@@ -57,7 +57,10 @@ Rails::Initializer.run do |config|
   # Make Active Record use UTC-base instead of local time
   # config.active_record.default_timezone = :utc
 
-# removed by DS cos will_paginate gem not workin. cloned to plugins instead
+# removed by DS cos will_paginate gem not working. cloned to plugins instead
 #  config.gem 'mislav-will_paginate', :version => '~> 2.3.2', :lib => 'will_paginate', :source => 'http://gems.github.com'
+
+  # fiveruns_tuneup added 5/3/09
+  config.gem 'fiveruns_tuneup'
 
 end
