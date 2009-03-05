@@ -43,12 +43,25 @@ class Course < ActiveRecord::Base
     questions.count(:conditions => ['next_datetime < ?', Time.now])
   end
   
+  def days_to_go
+    correct_so_far = 0
+    self.questions.each { |q| correct_so_far += q.responses.correct.count }
+    total_needed = self.subject.exercises.count * (DEFAULT_INTERVALS.size - 1)
+    total_to_go = total_needed - correct_so_far
+    target_daily_rate = self.lesson_target * self.weekly_target / 7
+    return total_to_go /target_daily_rate
+  end
+  
   def all_time_responses
     correct_so_far = 0
     self.questions.each { |q| correct_so_far += q.responses.correct.count }
-    total_needed = self.subject.exercises.count * DEFAULT_INTERVALS.size
-    percent = 100 * correct_so_far / total_needed
-    return "#{correct_so_far} (#{percent}%)"
+    total_needed = self.subject.exercises.count * (DEFAULT_INTERVALS.size - 1)
+    if correct_so_far > 0
+      percent = 100 * correct_so_far / total_needed
+      return "#{correct_so_far} (#{percent}%)"
+    else
+      return "0"
+    end
   end
   
   def xall_time_responses

@@ -25,7 +25,7 @@
 		<div class="cell quarter">
 		</div>
 		<div class="cell eighth right bold">
-			Started
+			Days to go
 		</div>
 		<div class="cell eighth right bold">
 			Backlog
@@ -51,7 +51,7 @@
 						<%= course.subject.name %>
 				</div>
 				<div class="cell eighth right">
-					<%= course.questions.count %> of <%= course.subject.exercise_count if course.subject %>
+					<%= course.days_to_go %>
 				</div>
 				<div class="cell eighth right">
 					<%= course.backlog_count %>
@@ -72,7 +72,7 @@
 		<% end %>
 	<% end %>
 
-	<div class="center">
+	<div class="centre">
 		<%= will_paginate @courses %>
 	</div>
 
