@@ -31,7 +31,7 @@
 				Topics
 			</div>
 			<div class="cell tenth right">
-				<%= link_to @action, course_path(course), :method => :put %>
+				<%= link_to @action, course_path(course), :confirm => 'WARNING! This course will no longer be available to you. Do you really want to do this?', :method => :put %>
 			</div		
 			<!--
 			<div class="cell tenth right">

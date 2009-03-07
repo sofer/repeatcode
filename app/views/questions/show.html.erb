@@ -21,7 +21,7 @@
 	<% for response in @question.responses %>
 		<div class="row">
 			<div class="cell quarter">
-				<%= formatted_date response.updated_at %>
+				<%= formatted_date_time response.updated_at %>
 			</div>
 			<div class="cell quarter right">
 				<%=h response.seconds_taken %>
