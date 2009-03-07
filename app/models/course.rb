@@ -44,38 +44,34 @@ class Course < ActiveRecord::Base
   end
   
   def on_target?(days=7)
-    recent_lessons = lessons.recent(days)
-    recent_responses = response_count(recent_lessons)
-    target = days * self.lesson_target * self.weekly_target / 7
-    if recent_responses > target
-      return true
-    else
-      return false
-    end 
+    if self.lesson_target and self.weekly_target
+      recent_lessons = lessons.recent(days)
+      recent_responses = response_count(recent_lessons)
+      target = days * self.lesson_target * self.weekly_target / 7
+      if recent_responses > target
+        return true
+      end
+    end
+    return false
   end
   
-  
-  def days_to_go
-    correct_so_far = 0
-    self.questions.each { |q| correct_so_far += q.responses.correct.count }
-    total_needed = self.subject.exercises.count * (DEFAULT_INTERVALS.size - 1)
-    total_to_go = total_needed - correct_so_far
-    target_daily_rate = self.lesson_target * self.weekly_target / 7
-    return total_to_go /target_daily_rate
-  end
-  
-  def all_time_responses
-    correct_so_far = 0
-    self.questions.each { |q| correct_so_far += q.responses.correct.count }
-    total_needed = self.subject.exercises.count * (DEFAULT_INTERVALS.size - 1)
-    if correct_so_far > 0
-      percent = 100 * correct_so_far / total_needed
-      return "#{correct_so_far} (#{percent}%)"
-    else
-      return "0"
+  def end_date
+    if self.lesson_target and self.weekly_target
+      correct_so_far = 0
+      self.questions.each { |q| correct_so_far += q.responses.correct.count }
+      total_needed = self.subject.exercises.count * (DEFAULT_INTERVALS.size - 1)
+      total_to_go = total_needed - correct_so_far
+      target_daily_rate = self.lesson_target * self.weekly_target / 7
+      target_daily_rate = 1 if target_daily_rate == 0
+      days_to_go = total_to_go / target_daily_rate
+      return Time.now + days_to_go * 24 * 60 * 60 
     end
   end
   
+  def all_time_responses
+    return self.subject.exercises.count * (DEFAULT_INTERVALS.size - 1)
+  end
+
   def xall_time_responses
     so_far = response_count(lessons)
     total = self.subject.exercises.count * DEFAULT_INTERVALS.size
@@ -84,17 +80,52 @@ class Course < ActiveRecord::Base
     return "#{so_far} (#{percent}%)"
   end
   
-  def responses_in_last_days(days)
+  def progress_for_period(days)
     recent_lessons = lessons.recent(days)
     count = response_count(recent_lessons)
-    return 0 if count == 0
-    if days == 1
-      percent = 100 * count / self.lesson_target
-    else
-      daily_target = self.lesson_target * self.weekly_target / 7
-      percent = 100 * count / (daily_target * days)
+    result = ['0','']
+    return result if count == 0
+    result[0] = "#{count}"
+    if self.lesson_target and self.weekly_target
+      if days == 1
+        percent = 100 * count / self.lesson_target
+      else
+        daily_target = self.lesson_target * self.weekly_target / 7
+        percent = 100 * count / (daily_target * days)
+      end
+      result[0] += " (#{percent}%)"      
+      result[1] = 'ON TARGET' if percent > 100
     end
-    return "#{count} (#{percent}%)"
+    return result
+  end
+
+  def responses_in_last_days(days)
+    recent_lessons = lessons.recent(days)
+    return response_count(recent_lessons)
+  end
+
+  def target_for_last_days(days)
+    if self.lesson_target and self.weekly_target
+      daily_target = self.lesson_target * self.weekly_target / 7
+      return daily_target * days
+    end
+  end
+  
+  def response_report(days_arr)
+    results = []
+    days_arr.each do |days|
+      target = percent = status = ''
+      recent_lessons = lessons.recent(days)
+      responses = response_count(recent_lessons)
+      if self.lesson_target and self.weekly_target
+        daily_target = self.lesson_target * self.weekly_target / 7
+        target = daily_target * days
+        percent = 100 * responses / target
+        status = 'ON TARGET' if percent >= 100
+      end
+      results << { 'days' => days, 'responses' => responses, 'target' => target, 'percent' => percent, 'status' => status }
+    end
+    return results
   end
   
   def response_count(recent_lessons)
@@ -145,13 +176,13 @@ class Course < ActiveRecord::Base
   end
   
   # remove these
-  def accuracy_target
+  def xaccuracy_target
     self[:accuracy_target] or DEFAULT_TARGETS['ACCURACY']
   end
-  def lesson_target
+  def xlesson_target
     self[:lesson_target] or DEFAULT_TARGETS['LESSON']
   end
-  def weekly_target
+  def xweekly_target
     self[:weekly_target] or DEFAULT_TARGETS['WEEKLY']
   end # END REMOVE
 

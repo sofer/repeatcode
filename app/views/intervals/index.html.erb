@@ -1,10 +1,10 @@
 <div id="header">
 	<h1 class="top-left pad">
-		<%= render :partial => 'global/course_links' %>
+		<%= link_to 'Courses', courses_path %>
+		&raquo; <%= @course.subject.name if @course %>
 	</h1>
 	<div class="top-right pad">
-		<%= @course.questions.count %> / 
-		<%= @course.subject.exercise_count %>
+		<%= render :partial => 'global/course_links' %>
 	</div>
 </div>
 
@@ -13,11 +13,14 @@
 			<div class="bold cell fifth">Revision</div>
 			<div class="bold cell fifth right">Interval</div>
 			<div class="bold cell fifth right">Accuracy *</div>
-			<div class="bold cell fifth right">Last interval reset</div>
-			<div class="bold cell fifth right">
+			<div class="bold cell fifth right">Last reset</div>
+			<div class="bold cell fifth right targets">
+				<% form_for @course do |f| %>
 				Target: 
-				<%= @course.accuracy_target %>
+				<%= f.text_field :accuracy_target %>
 				%
+				<%= f.submit "Change" %>
+				<% end %>
 			</div>
 	  </div>
 
@@ -49,7 +52,7 @@
 			<li>Each time you respond to an exercise, the <strong>Interval</strong> of time until your next <strong>Revision</strong> increases.</li>
 			<li>The <strong>Accuracy</strong> of your responses gives you an indication of how close you are to your <strong>Target</strong>.</li>
 			<li>An interval can be <strong>Reset</strong> in order to more closely match your target.</li>
-			<li> You can also <%= link_to 'change', edit_course_path(@course) %> the default target (90%) at any time.</li>
+			<li> You can also <strong>Change</strong> the default target (90%) at any time.</li>
 		  <li>In this way, you can make best use of your time, and learn as thoroughly or as quickly as you like.
 			</ul>
 	</div>
@@ -62,7 +65,6 @@
 		Logged in as: <%= current_user.login %>
 	</div>
 	<div class="bottom-right">
-		<br/>
 		<%= render :partial => 'global/toplevel_links' %>
 	</div>
 </div>

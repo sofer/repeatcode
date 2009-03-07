@@ -2,6 +2,23 @@ class LessonsController < ApplicationController
 
   before_filter :authorize
 
+  # GET /courses/1/lessons
+  # GET /courses/1/lessons.xml
+  def index
+    @course = Course.find(params[:course_id])
+    @lessons =  @course.lessons.paginate(
+                  :per_page => 15, 
+                  :page => params[:page], 
+                  :order => "id DESC",
+                  :conditions => "updated_at > created_at"
+                )
+
+    respond_to do |format|
+      format.html # show.html.erb
+      format.xml  { render :xml => @course }
+    end
+  end
+
   def show
     @lesson = Lesson.find(params[:id])
     

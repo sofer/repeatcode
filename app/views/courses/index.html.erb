@@ -24,21 +24,23 @@
 				<% end %>
 			</div>
 			<div class="cell eighth correct"><% if course.on_target? %>On target<% end %></div>
-			<div class="cell twelfth right">
+			<div class="cell tenth right">
 				<%= course.questions.count %>/<%= course.subject.exercise_count if course.subject %>
 			</div>
-			<div class="cell twelfth right">
-				<%= link_to "Report", course_path(course) %>
+			<div class="cell tenth right">
+				<%= link_to "Targets", course_path(course) %>
 			</div>
-			<div class="cell twelfth right">
-				Rate
+			<div class="cell tenth right">
+				Topics
 			</div>
-			<div class="cell twelfth right">
+			<div class="cell tenth right">
 				<%= link_to @action, course_path(course), :method => :put %>
-			</div>
-			<div class="cell twelfth right">
+			</div		
+			<!--
+			<div class="cell tenth right">
 				<%= link_to 'Delete', course, :confirm => 'WARNING! This will destroy all course content. Do you really want to do this?', :method => :delete %>
 			</div>
+			-->
 		</div>
 	<% end %>
 

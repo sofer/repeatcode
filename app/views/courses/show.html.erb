@@ -1,45 +1,128 @@
 <div id="header">
 	<h1 class="top-left pad">
-		<%= render :partial => 'global/course_links' %>
+		<%= link_to 'Courses', courses_path %>
+		&raquo; <%= @course.subject.name if @course %>
 	</h1>
 	<div class="top-right pad">
-		<%= @course.questions.count %> / 
-		<%= @course.subject.exercise_count %>
+		<%= render :partial => 'global/course_links' %>
 	</div>
 </div>
 
 <div id="main">
 	
-	<%= @course.all_time_responses %>
-	
-	<div class="row">
-	    <div class="bold cell quarter">Started at</div>
-	    <div class="bold cell quarter right">Elapsed time</div>
-			<div class="bold cell quarter right">Correct this time</div>
-			<div class="bold cell quarter right">Progress</div>
-	  </div>
-	<% for lesson in @lessons %>
-	<div class="row">
-			<div class="cell quarter">
-				<%= formatted_date lesson.created_at %>
+
+	<div class="row pad">
+		<div class="cell half">
+			Start date:
+		</div>
+		<div class="cell half right">
+ <%= formatted_date @course.created_at %>
+		</div>
+	</div>
+
+	<div class="row pad">
+		<div class="cell half">
+			Estimated end date: 
+		</div>
+		<div class="cell half right">
+			<%= formatted_date @course.end_date %>
+		</div>
+	</div>
+
+	<div class="row pad">
+		<div class="cell half">
+			Number of questions awaiting a response
+		</div>
+		<div class="cell half right">
+			<%= @course.backlog_count %>
+		</div>
+	</div>
+
+	<div class="row pad">
+		<div class="cell half">
+			Number of exercises begun
+		</div>
+		<div class="cell half right">
+			<% questions = @course.questions.count; exercises = @course.subject.exercise_count %>
+			<%=  questions %> out of 
+			<%=  exercises %>
+			(<%=  100 * questions / exercises %>%)
+		</div>
+	</div>
+
+	<div class="row pad">
+		<div class="cell half">
+			Number of correct responses
+		</div>
+		<div class="cell half right">
+			<% responses = @course.response_count(@course.lessons); all_time = @course.all_time_responses %>
+			<%= responses %> out of 
+			<%= all_time %>
+			(<%=  100 * responses / all_time %>%)
+		</div>
+	</div>
+
+	<br>
+
+	<div class="row pad">
+		<div class="cell half"> </div>
+		<div class="cell eighth right">
+			24 hours
+		</div>
+		<div class="cell eighth right">
+			1 week
+		</div>
+		<div class="cell eighth right">
+			4 weeks
+		</div>
+		<div class="cell eighth right">
+			16 weeks
+		</div>
+	</div>
+
+	<div class="double-row row pad">
+		<div class="cell half">
+			Correct responses (% of target)
+		</div>
+		<% [1,7,28, 126].each do |days| %>
+			<% progress = @course.progress_for_period(days) %>
+			<div class="double-cell cell eighth right">
+				<%= progress[0] %>
+				<div class="pad correct">
+					<%= progress[1] %>
+				</div>
 			</div>
-			<div class="cell quarter right">
-				<%= elapsed_time lesson.created_at, lesson.updated_at %>
+		<% end %>
+	</div>
+
+	<br>
+
+	<% form_for @course do |f| %>
+		<div class="targets">
+			<div class="row pad">
+				<div class="cell sixth bold">
+					Targets 
+				</div>
+				<div class="cell third right">
+					Correct responses each lesson:  
+					<%= f.text_field :lesson_target %> 
+				</div>
+				<div class="cell third right">
+					Lessons per week: 
+					<%= f.text_field :weekly_target %> 
+				</div>
+				<div class="cell sixth right">
+					<%= f.submit "Update targets" %>
+				</div>
 			</div>
-			<div class="cell quarter right">
-				<%= lesson.correct_responses %>
-			</div>
-			<div class="cell quarter right">
-				<%= lesson.total_questions_started %>
-			</div>
-		</div>	
+		</div>
 	<% end %>
+
+
+
 </div>
 
 <div id="footer">
-	<div class="centre pad">
-		<%= will_paginate @lessons %>
-	</div>
 	<div class="bottom-left">
 		Logged in as: <%= current_user.login %>
 	</div>

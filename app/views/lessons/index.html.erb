@@ -1,0 +1,48 @@
+<div id="header">
+	<h1 class="top-left pad">
+		<%= render :partial => 'global/course_links' %>
+		&raquo; Lessons
+	</h1>
+	<div class="top-right pad">
+		<%= @course.questions.count %> / 
+		<%= @course.subject.exercise_count %>
+	</div>
+</div>
+
+<div id="main">
+		
+	<div class="row">
+	    <div class="bold cell quarter">Started at</div>
+	    <div class="bold cell quarter right">Elapsed time</div>
+			<div class="bold cell quarter right">Correct this time</div>
+			<div class="bold cell quarter right">Progress</div>
+	  </div>
+	<% for lesson in @lessons %>
+	<div class="row">
+			<div class="cell quarter">
+				<%= formatted_date lesson.created_at %>
+			</div>
+			<div class="cell quarter right">
+				<%= elapsed_time lesson.created_at, lesson.updated_at %>
+			</div>
+			<div class="cell quarter right">
+				<%= lesson.correct_responses %>
+			</div>
+			<div class="cell quarter right">
+				<%= lesson.total_questions_started %>
+			</div>
+		</div>	
+	<% end %>
+</div>
+
+<div id="footer">
+	<div class="centre pad">
+		<%= will_paginate @lessons %>
+	</div>
+	<div class="bottom-left">
+		Logged in as: <%= current_user.login %>
+	</div>
+	<div class="bottom-right">
+		<%= render :partial => 'global/toplevel_links' %>
+	</div>
+</div>

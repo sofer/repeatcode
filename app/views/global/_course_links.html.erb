@@ -1,7 +1,2 @@
-<%= link_to 'Courses', courses_path %>
-&raquo; <%= @course.subject.name if @course %>
-&raquo; <%= link_to_unless_current 'lessons', @course %>
-| <%= link_to_unless_current 'targets', edit_course_path(@course) %>
-| <%= link_to_unless_current 'intervals', course_intervals_path(@course)  if @course %>
-| <%= link_to_unless_current 'questions', course_questions_path(@course) %>
-- <%= link_to_unless_current 'pending', course_questions_path(@course, :version => 'pending')  if @course %>
+<%= link_to_unless_current 'Targets', @course %>
+| <%= link_to_unless_current 'Intervals', course_intervals_path(@course) %>
