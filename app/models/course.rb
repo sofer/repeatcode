@@ -43,7 +43,7 @@ class Course < ActiveRecord::Base
     questions.count(:conditions => ['next_datetime < ?', Time.now])
   end
   
-  def on_target?(days=7)
+  def on_target?(days=1)
     if self.lesson_target and self.weekly_target
       recent_lessons = lessons.recent(days)
       recent_responses = response_count(recent_lessons)
