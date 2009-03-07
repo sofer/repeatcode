@@ -68,7 +68,7 @@ class Course < ActiveRecord::Base
     end
   end
   
-  def all_time_responses
+  def responses_on_completion
     return self.subject.exercises.count * (DEFAULT_INTERVALS.size - 1)
   end
 
@@ -132,6 +132,14 @@ class Course < ActiveRecord::Base
     count = 0
     for lesson in recent_lessons
       count += lesson.correct_responses
+    end
+    return count
+  end
+
+  def response_count_check
+    count = 0
+    for question in questions
+      count += question.responses.correct.count 
     end
     return count
   end

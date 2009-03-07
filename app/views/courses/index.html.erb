@@ -10,23 +10,20 @@
 <div id="main">
 	<% for course in @courses %>
 		<div class="row">
-			<div class="cell eighth">
+			<div class="cell tenth">
 				<% form_for :lesson,
 		 								:url => course_lessons_path(course) do |f| %>
 					<%= f.submit "Learn now" %>
 				<% end %>
 			</div>
-			<div class="bold cell third">
+			<div class="bold cell half">
 				<% if course.subject %>
 					<%= course.subject.name %>
 				<% else %>
 					[ course removed ]
 				<% end %>
 			</div>
-			<div class="cell eighth correct"><% if course.on_target? %>On target<% end %></div>
-			<div class="cell tenth right">
-				<%= course.questions.count %>/<%= course.subject.exercise_count if course.subject %>
-			</div>
+			<div class="cell tenth correct"><% if course.on_target? %>On target<% end %></div>
 			<div class="cell tenth right">
 				<%= link_to "Targets", course_path(course) %>
 			</div>

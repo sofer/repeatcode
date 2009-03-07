@@ -16,7 +16,7 @@
 			Start date:
 		</div>
 		<div class="cell half right">
- <%= formatted_date @course.created_at %>
+ 			<%= formatted_date @course.created_at %>
 		</div>
 	</div>
 
@@ -55,10 +55,11 @@
 			Number of correct responses
 		</div>
 		<div class="cell half right">
-			<% responses = @course.response_count(@course.lessons); all_time = @course.all_time_responses %>
+			<% responses = @course.response_count(@course.lessons); all_time = @course.responses_on_completion %>
 			<%= responses %> out of 
 			<%= all_time %>
 			(<%=  100 * responses / all_time %>%)
+			-check: <%= @course.response_count_check %>
 		</div>
 	</div>
 
