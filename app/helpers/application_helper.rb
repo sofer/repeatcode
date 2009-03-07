@@ -47,7 +47,7 @@ module ApplicationHelper
   
   def formatted_date(date)
     if date
-      return date.strftime("%e % %b %Y")
+      return date.strftime("%e %b %Y")
     else
       return 'n/a'
     end
