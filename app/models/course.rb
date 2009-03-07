@@ -94,7 +94,7 @@ class Course < ActiveRecord::Base
         percent = 100 * count / (daily_target * days)
       end
       result[0] += " (#{percent}%)"      
-      result[1] = 'ON TARGET' if percent > 100
+      result[1] = 'ON TARGET' if percent >= 100
     end
     return result
   end
