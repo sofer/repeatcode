@@ -358,7 +358,6 @@ RC.question = {
 	ignore: false,
 	next: { status: 'waiting' },
 	previously_incorrect: false,
-	target: $(RC.DOMnodes.correct).text(),
 	formula_prefix: '=',
 	
 	ignored_data: function() {
@@ -510,8 +509,8 @@ RC.question = {
 	},
 	
 	show_response_message: function() {
-		if (this.data.correct === this.target) {
-			$(RC.DOMnodes.correct).text("today's target reached");
+		if (this.data.correct === parseInt($(RC.DOMnodes.target).text())) {
+			$(RC.DOMnodes.correct).text("CONGRATULATIONS! Today's target reached");
 		} else if (this.data.correct % 10 == 0) {
 			$(RC.DOMnodes.correct).text(this.data.correct + ' correct answers');
 		} else {
