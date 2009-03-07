@@ -31,14 +31,27 @@
 		</div>
 	<% end %>
 	<br>
-	<h2>STUDENTS</h2>
+
+	<h2></h2>
+
+	<div class="row">
+		<div class="cell third bold">
+			STUDENTS
+		</div>
+		<div class="cell third right bold">
+			Courses
+		</div>
+		<div class="cell third right">
+		</div>
+	</div>
+	
 	<% for student in @students %>
 		<div class="row">
 			<div class="bold cell third">
 					<%= student.login %>
 			</div>
 			<div class="cell third right">
-				<%= link_to 'Report', student %>
+				<%= student.courses.count %>
 			</div>
 			<div class="cell third right">
 				<% form_for(@group)  do |f| %>
