@@ -1,7 +1,11 @@
 class Topic < ActiveRecord::Base
+  
   belongs_to :subject
-  acts_as_list :scope => :subject
   has_many :exercises, :dependent => :destroy
+
+  named_scope :recent, :conditions => [ 'created_at > ?', 3.hours.ago ]
+
+  acts_as_list :scope => :subject
   
   after_update :save_exercises
 

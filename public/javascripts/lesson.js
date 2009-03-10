@@ -390,10 +390,10 @@ RC.question = {
 			$(RC.DOMnodes.question).hide();
 			$(RC.DOMnodes.response).hide();
     	$(RC.DOMnodes.completed).show();
+			$(RC.DOMnodes.loading).hide();
 			if (data.days_until_next == 1) {
 				$(RC.DOMnodes.days_til_next).text('a day or so');
 			} else {
-				$(RC.DOMnodes.loading).hide();
 				$(RC.DOMnodes.days_til_next).text('about ' + data.days_until_next + ' days');
  			}
 	    return false;

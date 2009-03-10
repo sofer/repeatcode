@@ -5,31 +5,12 @@ class QuestionsController < ApplicationController
   # GET /questions
   # GET /questions.xml
   def index
-    if params[:course_id]
-      @course = Course.find(params[:course_id])
-      # check the queue of pending questions
-
-      if params[:version] and params[:version]=='pending' 
-        @questions =  @course.questions.paginate(
-                        :per_page => 15, 
-                        :page => params[:page], 
-                        :order => "current_interval",
-                        :conditions => ['next_datetime <= ? and course_id = ?', Time.now, @course.id]
-                      )
-      else
-        @questions =  @course.questions.paginate(
-                      :per_page => 15, 
-                      :page => params[:page], 
-                      :order => "id DESC"
-                     )
-      end
-    else
-      @questions =  Question.paginate(
-                    :per_page => 15, 
-                    :page => params[:page], 
-                    :order => "id DESC"
-                   )
-    end
+    @course = Course.find(params[:course_id])
+    @questions =  @course.questions.paginate(
+                  :per_page => 15, 
+                  :page => params[:page], 
+                  :order => "next_datetime"
+                 )
 
     respond_to do |format|
       format.html # index.html.erb
@@ -41,6 +22,11 @@ class QuestionsController < ApplicationController
   # GET /questions/1.xml
   def show
     @question = Question.find(params[:id])
+    @course = @question.course
+    @responses =  @question.responses.paginate(
+                  :per_page => 15, 
+                  :page => params[:page]
+                 )
 
     respond_to do |format|
       format.html # show.html.erb

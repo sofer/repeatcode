@@ -163,24 +163,23 @@ class Course < ActiveRecord::Base
     return count
   end
   
+  # Add any exercises added since the last question, if they are from topics already covered
   def add_new_material
     question_count = 0
     if last_question
       if subject.exercises.last.created_at > last_question.created_at
-        for topic in subject.topics
-          for exercise in topic.exercises
-            return question_count if exercise.id == last_question.exercise.id
-            if not questions.find(:first, :conditions => ['exercise_id = ?', exercise.id])
-              question_count += 1
-              new_question = questions.new( :exercise_id => exercise.id )
-              new_question.first_interval
-              new_question.save!
-            end
+        new_exercises = subject.exercises.since(last_question.created_at)
+        for exercise in new_exercises
+          if exercise.topic.position < last_question.exercise.topic.position ||
+            exercise.topic.position == last_question.exercise.topic.position &&
+            exercise.position < last_question.exercise.position
+            add_question(exercise)
+            question_count += 1
           end
         end
       end
     end
-    return 0
+    return question_count
   end
   
   # remove these
@@ -216,9 +215,53 @@ class Course < ActiveRecord::Base
     end
     return results
   end
+  
+  def next_question
+    if questions.empty?
+      # get first question
+      if self.subject.topics.first
+        return new_topic(self.subject.topics.first)
+      end
+    else
+      # get next exercise within the current topic
+      next_exercise = self.last_question.exercise.lower_item
+      if next_exercise
+        return add_question(next_exercise)
+      else
+        # get next topic
+        next_topic = self.last_question.exercise.topic.lower_item
+        if next_topic
+          return new_topic(next_topic)
+        end
+      end
+    end
+  end
+  
+  def add_question(exercise)
+    next_question = Question.new(:exercise_id => exercise.id)
+    self.questions << next_question
+    self.update_attribute :last_question, next_question.id
+    return next_question
+  end
+
+  def new_topic(topic)
+    next_exercise = topic.exercises.first
+    if next_exercise
+      next_question = add_question(next_exercise)
+      if topic.add_together
+        next_exercise = next_exercise.lower_item
+        while next_exercise
+          add_question(next_exercise)
+          next_exercise = next_exercise.lower_item
+        end
+      end
+      return next_question
+    end
+  end
+
+private
 
   def set_intervals
-    #self.accuracy_target = DEFAULT_TARGETS['ACCURACY']
     DEFAULT_INTERVALS.each do |index, mins|
       new_interval = intervals.new( :index_no => index, :minutes => mins)
       new_interval.save

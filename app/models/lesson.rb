@@ -47,65 +47,13 @@ class Lesson < ActiveRecord::Base
   end
 
   def next_question(exclude_question=0)
-    self.course.questions.find( :first,
-                                :conditions => ['next_datetime <= ? and id != ?', Time.now, exclude_question], 
-                                :order => 'current_interval'
-                              ) or new_question
+    course.questions.find(  :first,
+                            :conditions => ['next_datetime <= ? and id != ?', Time.now, exclude_question], 
+                            :order => 'current_interval'
+                          ) or course.next_question
   end
 
 private
-
-  def new_question
-
-    if self.course.questions.empty?
-            
-      # get first question
-      if course.subject.topics.first
-        return new_topic(course.subject.topics.first)
-      end
-
-    else
-    
-      # get the next exercise within the current topic
-      next_exercise = course.last_question.exercise.lower_item
-      if next_exercise
-        return add_question(next_exercise)
-      else
-
-        # get the next topic
-        next_topic = course.last_question.exercise.topic.lower_item
-        if next_topic
-          return new_topic(next_topic)
-        end
-      end
-
-    end
-  end
-  
-  def add_question(exercise)
-    #new_question = course.questions.new(:exercise_id => exercise.id)
-    new_question = Question.new(:exercise_id => exercise.id, :course_id => course.id )
-    if new_question.save
-      course.update_attribute :last_question, new_question.id
-      update_attribute :total_questions_started, course.questions.count
-      return new_question
-    end
-  end
-
-  def new_topic(topic)
-    next_exercise = topic.exercises.first
-    if next_exercise
-      next_question = add_question(next_exercise)
-      if topic.add_together
-        next_exercise = next_exercise.lower_item
-        while next_exercise
-          add_question(next_exercise)
-          next_exercise = next_exercise.lower_item
-        end
-      end
-      return next_question
-    end
-  end
 
   def set_progress
     self.total_questions_started = course.questions.count

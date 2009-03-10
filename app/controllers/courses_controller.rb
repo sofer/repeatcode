@@ -51,6 +51,10 @@ class CoursesController < ApplicationController
   # GET /courses/1/edit
   def edit
     @course = Course.find(params[:id])
+    @topics = @course.subject.topics.paginate(
+              :per_page => 15, 
+              :page => params[:page]
+              )
   end
 
   # GET /courses/new

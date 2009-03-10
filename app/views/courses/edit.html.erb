@@ -1,29 +1,31 @@
 <div id="header">
 	<h1 class="top-left pad">
-		<%= render :partial => 'global/course_links' %>
+		<%= link_to 'Courses', courses_path %>
+		&raquo; <%= @course.subject.name if @course %>
 	</h1>
 	<div class="top-right pad">
-		<%= @course.questions.count %> / 
-		<%= @course.subject.exercise_count %>
+		<%= render :partial => 'global/course_links' %>
 	</div>
 </div>
 
 <div id="main">
+	
 
-	<div class="targets">
-		<% form_for @course do |f| %>
-		  <%= f.error_messages %>
-			<br>
-			<%= f.text_field :accuracy_target %> % accuracy rate for responses
-			<br>
-			<%= f.text_field :lesson_target %> correct responses each lesson 
-			<br>
-			<%= f.text_field :weekly_target %> lesson per week
-			<br>
-			<%= f.submit "Update targets" %>
-		<% end %>
+
+	<% for topic in @topics %>
+		<div class="row">
+			<div class="cell half">
+				<%= topic.name %>
+			</div>
+			<div class="cell half right">
+			</div>
+		</div>
+
+	<% end %>
+
+	<div class="bottom-centre">
+		<%= will_paginate @topics %>
 	</div>
-
 
 </div>
 

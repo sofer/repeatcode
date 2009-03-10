@@ -1,30 +1,31 @@
 <div id="header">
-	<h1 class="top-left pad">
-		<%= link_to 'Courses', courses_path %>
-		&raquo; <%= link_to @question.course.subject.name, course_questions_path(@question.course) %>
-		&raquo; <%= link_to "Exercise: #{h @question.id}", :back %> 
-		&raquo; Responses
-	</h1>
-	<h2 class="top-right pad">
-		Next repetition: <%= short_date @question.next_datetime %>
-	<h2>
+	<div id="header">
+		<h1 class="top-left pad">
+			<%= link_to 'Courses', courses_path %>
+			&raquo; <%= @course.subject.name if @course %>
+			&raquo; <%= truncate @question.exercise.phrase, 40 %>
+		</h1>
+		<div class="top-right pad">
+			<%= render :partial => 'global/course_links' %>
+		</div>
+	</div>
 </div>
 
 <div id="main">
 	<div class="row">
     <div class="bold cell quarter">Date</div>
-    <div class="bold cell quarter right">Elapsed time</div>
+    <div class="bold cell quarter right">Time taken</div>
 		<div class="bold cell quarter right">Interval</div>
 		<div class="bold cell quarter right">Result</div>
 	</div>
 
-	<% for response in @question.responses %>
+	<% for response in @responses %>
 		<div class="row">
 			<div class="cell quarter">
 				<%= formatted_date_time response.updated_at %>
 			</div>
 			<div class="cell quarter right">
-				<%=h response.seconds_taken %>
+				<%=h response.seconds_taken %> secs
 			</div>
 			<div class="cell quarter right">
 				<%=h response.interval %>
@@ -34,6 +35,11 @@
 			</div>
 		</div>	
 	<% end %>
+	
+	<div class="centre pad">
+		<%= will_paginate @responses %>
+	</div>
+	
 
 </div>
 

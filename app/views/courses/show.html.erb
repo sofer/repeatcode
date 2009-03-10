@@ -43,7 +43,7 @@
 			Number of exercises begun
 		</div>
 		<div class="cell half right">
-			<% questions = @course.questions.count; exercises = @course.subject.exercise_count %>
+			<% questions = @course.questions.count; exercises = @course.subject.exercises.count %>
 			<%=  questions %> out of 
 			<%=  exercises %>
 			(<%=  100 * questions / exercises %>%)
@@ -52,7 +52,7 @@
 
 	<div class="row pad">
 		<div class="cell half">
-			Number of correct responses
+			Number of correct responses [inaccurate]
 		</div>
 		<div class="cell half right">
 			<% responses = @course.response_count(@course.lessons); all_time = @course.responses_on_completion %>

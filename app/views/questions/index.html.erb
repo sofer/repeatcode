@@ -1,37 +1,42 @@
 <div id="header">
 	<h1 class="top-left pad">
-		<%= render :partial => 'global/course_links' %>
+		<%= link_to 'Courses', courses_path %>
+		&raquo; <%= @course.subject.name if @course %>
 	</h1>
 	<div class="top-right pad">
-		<%= @course.questions.count  if @course %> / 
-		<%= @course.subject.exercise_count  if @course %>
+		<%= render :partial => 'global/course_links' %>
 	</div>
 </div>
 
 <div id="main">
 
 	<div class="row">
-		<div class="bold cell half">Question</div>
-		<div class="bold cell sixth right">Interval</div>
-		<div class="bold cell sixth right">Next repetition</div>
-		<div class="bold cell sixth right">Responses</div>
+		<div class="bold cell third">Question</div>
+		<div class="bold cell sixth">Topic</div>
+		<div class="bold cell eighth right"> </div>
+		<div class="bold cell eighth right">Due date</div>
+		<div class="bold cell eighth right">Interval</div>
+		<div class="bold cell eighth right">Responses</div>
   </div>
 
 	<% for question in @questions %>
 	<div class="row">
-    <div class="cell half"><%= question.exercise.response.length > 50 ? question.exercise.response.slice(0..50) + '...' : question.exercise.response %></div>
-    <div class="cell sixth right"><%= question.current_interval %></div>
-		<div class="cell sixth right"><%= formatted_date question.next_datetime %></div>
-		<div class="cell sixth right"><%= link_to question.responses.count, question %></div>
+    <div class="cell third"><%= truncate question.exercise.response, 40 %></div>
+    <div class="cell sixth"><%= truncate question.exercise.topic.name, 20 %></div>
+		<div class="cell eighth right error"><%= 'DUE' if question.next_datetime < Time.now %></div>
+		<div class="cell eighth right"><%= short_date question.next_datetime %></div>
+    <div class="cell eighth right"><%= question.current_interval %></div>
+		<div class="cell eighth right"><%= link_to question.responses.count, question %></div>
   </div>
 	<% end %>
+
+	<div class="centre pad">
+		<%= will_paginate @questions %>
+	</div>
 
 </div>
 
 <div id="footer">
-	<div class="centre pad">
-		<%= will_paginate @questions %>
-	</div>
 
 	<div class="bottom-left">
 		Logged in as: <%= current_user.login %>

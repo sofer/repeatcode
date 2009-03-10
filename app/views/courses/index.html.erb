@@ -8,6 +8,16 @@
 </div>
 
 <div id="main">
+
+	<div class="row">
+		<div class="cell tenth">
+		</div>
+		<div class="cell half">
+		</div>
+		<div class="cell twelfth bold centre">Today</div>
+		<div class="cell twelfth bold">Backlog</div>
+	</div>
+
 	<% for course in @courses %>
 		<div class="row">
 			<div class="cell tenth">
@@ -23,25 +33,24 @@
 					[ course removed ]
 				<% end %>
 			</div>
-			<div class="cell tenth correct"><% if course.on_target? %>On target<% end %></div>
-			<div class="cell tenth right">
+			<div class="cell twelfth correct"><% if course.on_target? %>On target<% end %></div>
+			<div class="cell twelfth centre"> <%= course.backlog_count %> </div>
+			<div class="cell twelfth right">
 				<%= link_to "Targets", course_path(course) %>
 			</div>
-			<div class="cell tenth right">
-				Topics
+			<div class="cell twelfth right">
+				<%= link_to 'Topics', edit_course_path(course) %>
 			</div>
-			<div class="cell tenth right">
-				<%= link_to @action, course_path(course), :confirm => 'WARNING! This course will no longer be available to you. Do you really want to do this?', :method => :put %>
-			</div		
-			<!--
-			<div class="cell tenth right">
-				<%= link_to 'Delete', course, :confirm => 'WARNING! This will destroy all course content. Do you really want to do this?', :method => :delete %>
+			<div class="cell twelfth right">
+				<% form_for course do |f| %>
+				<%= f.hidden_field :archived, :value => true %>
+				<%= f.submit "Remove" %>
+				<% end %>
 			</div>
-			-->
 		</div>
 	<% end %>
 
-	<div class="centre">
+	<div class="bottom-centre">
 		<%= will_paginate @courses %>
 	</div>
 

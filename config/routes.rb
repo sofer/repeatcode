@@ -1,4 +1,6 @@
 ActionController::Routing::Routes.draw do |map|
+  map.resources :backlogs
+
 
   map.resources :organizations
   map.resources :organizations do |organization|
