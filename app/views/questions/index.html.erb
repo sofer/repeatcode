@@ -12,21 +12,21 @@
 
 	<div class="row">
 		<div class="bold cell third">Question</div>
-		<div class="bold cell sixth">Topic</div>
-		<div class="bold cell eighth right"> </div>
-		<div class="bold cell eighth right">Due date</div>
-		<div class="bold cell eighth right">Interval</div>
-		<div class="bold cell eighth right">Responses</div>
+		<div class="bold cell third">Topic</div>
+		<div class="bold cell twelfth"> </div>
+		<div class="bold cell twelfth centre">Due date</div>
+		<div class="bold cell twelfth centre">Interval</div>
+		<div class="bold cell twelfth">Progress</div>
   </div>
 
 	<% for question in @questions %>
 	<div class="row">
     <div class="cell third"><%= truncate question.exercise.response, 40 %></div>
-    <div class="cell sixth"><%= truncate question.exercise.topic.name, 20 %></div>
-		<div class="cell eighth right error"><%= 'DUE' if question.next_datetime < Time.now %></div>
-		<div class="cell eighth right"><%= short_date question.next_datetime %></div>
-    <div class="cell eighth right"><%= question.current_interval %></div>
-		<div class="cell eighth right"><%= link_to question.responses.count, question %></div>
+    <div class="cell third"><%= truncate question.exercise.topic.name, 40 %></div>
+		<div class="cell twelfth centre error"><%= 'DUE' if question.next_datetime < Time.now %></div>
+		<div class="cell twelfth centre"><%= short_date question.next_datetime %></div>
+    <div class="cell twelfth centre"><%= question.current_interval %></div>
+		<div class="cell twelfth centre"><%= link_to question.responses.count, question %></div>
   </div>
 	<% end %>
 
