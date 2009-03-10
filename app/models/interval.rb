@@ -17,7 +17,7 @@ class Interval < ActiveRecord::Base
     correct = correct.to_i
     incorrect = incorrect.to_i
     f = 100 * (incorrect) / (correct + incorrect)
-    t = 100 - course.target.target # a rather strange bug. should be course.target
+    t = 100 - course.accuracy_target
     
     case
     when f > t
