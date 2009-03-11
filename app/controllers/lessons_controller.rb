@@ -51,7 +51,7 @@ class LessonsController < ApplicationController
   def create
     @course = Course.find(params[:course_id])
     @lesson = @course.lessons.last
-    if @lesson and Time.now.to_i - @lesson.updated_at.to_i > 600 # 10 minutes rule for creating new lessons
+    unless @lesson and Time.now.to_i - @lesson.updated_at.to_i < 600 # 10 minutes rule for creating new lessons
       @lesson = @course.lessons.new(params[:lesson]) 
     else
       flash[:notice] = "Returned to current lesson." 
