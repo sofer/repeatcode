@@ -6,8 +6,8 @@ class Course < ActiveRecord::Base
   has_many :intervals
   has_many :questions
   
-  named_scope :active, :conditions => {:archived => false }
-  named_scope :archived, :conditions => {:archived => true }
+  named_scope :active, :conditions => { :archived => false }
+  named_scope :inactive, :conditions => { :archived => true }
 
   before_validation_on_create :set_status_and_targets
   after_create :set_intervals
@@ -182,14 +182,13 @@ class Course < ActiveRecord::Base
     return question_count
   end
   
-  # remove these
-  def xaccuracy_target
+  def accuracy_target
     self[:accuracy_target] or DEFAULT_TARGETS['ACCURACY']
   end
-  def xlesson_target
+  def lesson_target
     self[:lesson_target] or DEFAULT_TARGETS['LESSON']
   end
-  def xweekly_target
+  def weekly_target
     self[:weekly_target] or DEFAULT_TARGETS['WEEKLY']
   end # END REMOVE
 

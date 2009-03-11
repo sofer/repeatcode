@@ -7,7 +7,7 @@ class SubjectsController < ApplicationController
   def index
     if params[:archived]
       @action = 'Unarchive'
-      @subjects = current_user.subjects.archived.paginate(
+      @subjects = current_user.subjects.inactive.paginate(
                 :per_page => 15, 
                 :page => params[:page]
                 )

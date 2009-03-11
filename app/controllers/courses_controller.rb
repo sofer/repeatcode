@@ -7,7 +7,7 @@ class CoursesController < ApplicationController
   def index
     if params[:archived]
       @action = 'Unarchive'
-      @courses = current_user.courses.archived.paginate(
+      @courses = current_user.courses.inactive.paginate(
                 :per_page => 14, 
                 :page => params[:page]
                 )
@@ -95,11 +95,10 @@ class CoursesController < ApplicationController
   # Updates NOT JUST USED for un/archiving. NEED TO CHANGE THIS
   def update
     @course = Course.find(params[:id])
-    # @course.archived = ! @course.archived
     
     respond_to do |format|
       if @course.update_attributes(params[:course])
-        flash[:notice] = 'Course information was successfully updated.'
+        flash[:notice] = 'Course was successfully updated.'
         format.html { redirect_to(:back) }
         format.xml  { head :ok }
       else

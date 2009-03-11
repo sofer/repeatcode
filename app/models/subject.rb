@@ -8,7 +8,7 @@ class Subject < ActiveRecord::Base
   belongs_to :areas
   
   named_scope :active, :conditions => {:archived => false}
-  named_scope :archived, :conditions => {:archived => true}
+  named_scope :inactive, :conditions => {:archived => true}
   
   before_create :set_status
   
