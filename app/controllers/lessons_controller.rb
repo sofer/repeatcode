@@ -33,7 +33,7 @@ class LessonsController < ApplicationController
         end
         if question
           if question.exercise.topic
-            topic = question.exercise.topic.name
+            topic = question.exercise.topic
           else
             topic = "question removed from course"
           end

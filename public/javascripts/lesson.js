@@ -65,7 +65,11 @@ RC.DOMnodes = {
 	language_palette: '#language-palette',
 	days_til_next: '#days-til-next',
 	button: '.button',
-	message_envelope: '#message-envelope'
+	message_envelope: '#message-envelope',
+	tabs: '#tabs',
+	data_tab: '#data-tab',
+	code_tab: '#code-tab',
+	output_tab: '#output-tab'	
 };
 
 // 25 Feb 2009: not yet using outfox yet, because of problem with non-ASCII characters
@@ -519,22 +523,32 @@ RC.question = {
 		$(RC.DOMnodes.correct).show().fadeOut(1000);
 	},
 	
+	show_code: function() {
+		if (false) { // WORK IN PROGRESS
+			$(RC.DOMnodes.code_tab).html(this.data.topic.code);
+			$(RC.DOMnodes.data_tab).html(this.data.topic.data);
+			$(RC.DOMnodes.output_tab).html(this.data.topic.code);
+			$(RC.DOMnodes.tabs).show();
+		}
+	},
 
-  show: function() {
+	show: function() {
 		RC.timer.reset_seconds();
 		$(RC.DOMnodes.wrong).html('');
 		$(RC.DOMnodes.response_field).val('')
 		$(RC.DOMnodes.attempt_translated).html('');
 		$(RC.DOMnodes.start).hide();
 		$(RC.DOMnodes.graph).hide();
+		$(RC.DOMnodes.tabs).hide();
 		$(RC.DOMnodes.exercise_response).show();
-		$(RC.DOMnodes.topic).html(this.data.topic);
+		$(RC.DOMnodes.topic).html(this.data.topic.name);
 		this.update_stats();
 		this.hint(this.data.exercise.hint);
 		if (this.is_formula(this.data.exercise.phrase)) {
 			RC.formula.display(RC.DOMnodes.question, this.strip_prefix(this.data.exercise.phrase));
 		} else {
-			var phrase = this.both_versions(this.data.exercise.phrase)
+			this.show_code();
+			var phrase = this.both_versions(this.data.exercise.phrase);
 			$(RC.DOMnodes.question).html(phrase);
 			RC.voices.queue(phrase, 'phrase');
 		}

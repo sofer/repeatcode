@@ -2,20 +2,20 @@
 
 $(document).ready(function(){	
 
-	$("#import-list a").click(function(){
+	$("#import-list").click(function(){
 		$("#list-frame").hide();
 		$("#import-frame").show();
 		return false;
 	});
 
-	$("#cancel-import a").click(function(){
+	$("#cancel-import").click(function(){
 		$("#import-frame").hide();
 		$("#list-frame").show();
 		return false;
 	});
 
 	// click inside append-to-list to add list-item to list
-	$("#add-item a").click(function(){
+	$("#add-item").click(function(){
 		$("#list-template").children().clone().appendTo("#list");
 		return false;
 	});

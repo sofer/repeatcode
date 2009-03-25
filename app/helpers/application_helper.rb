@@ -86,6 +86,7 @@ module ApplicationHelper
     date2 = now.strftime(frmt).to_i
     day_diff = date2 - date1
     display_date = case day_diff 
+    when -1 then "Tomorrow"    
     when 0 then "Today"
     when 1 then "Yesterday"
     else  short_date(time)

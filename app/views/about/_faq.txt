@@ -2,13 +2,22 @@ q|Q. What can I use this site for?
 a|A. For learning and revising a variety of material, including programming languages and various academic subjects.
 
 q|Q. How does it work?
-a|A. It uses the principles of spaced repetition and active recall.
+a|A. A course of study is presented through a series of questions and answers, which are introduced gradually and repeated regularly until the material is mastered.
+
+q|Q. What are the key principles involved?
+a|A. Spaced repetition and active recall.
 
 q|Q. What is spaced repetition?
 a|A. It is a learning technique where material is reviewed at increasing intervals of time. It was first suggested in 1932 by Cecil Mace in his book Psychology of Study, adopted by Pimsleur (and called "graduated interval recall") for his language learning courses and by Sebastian Leitner for his flashcard-based system. It has also been recommended by Tony Buzan. The idea draws on Hermann Ebbinghous' study in 1885 of the exponential nature of forgetting. See |http://en.wikipedia.org/wiki/Spaced_repetition|Wikipedia|.
 
+q|Q. How is spaced repetition used on this site?
+a|A. Exercises in any one course of study are introduced one at a time and then reintroduced at increasing intervals of time. New exercises are introduced alongside previously-answered material. Incorrectly-answered exercises will continue to be presented until responses are consistently correct. The intervals of time between each subsequent presentation of an exercise can be adjusted to suit the needs of the student.
+
 q|Q. What is active recall?
 a|A. It is where information has to be actively recalled--for example by typing a response to a question--rather than just recited or re-read. Pimsleur referred to this as "anticipation". See |http://en.wikipedia.org/wiki/Active_recall|Wikipedia|.
+
+q|Q. How is active recall used on this site?
+a|A. All exercises are presented as a phrase or question that requires a response. Then each response is checked for its accuracy.
 
 q|Q. How do I start?
 a|A. After you <%= link_to 'register', '/signup' %>, you can select a <%= link_to 'new course', new_course_path %> from the several that are available.

@@ -11,6 +11,12 @@
 <hr>
 
 <div id="list-frame">
+	<div class="left">
+		<input id="add-item" type="submit" value="Add item"/>
+	</div>
+	<div class="right">
+		<input id="import-list" type="submit" value="Import a list"/>
+	</div>
 	<div class="row exercise">
 		<div class="cell quarter">
 			Question/phrase
@@ -29,36 +35,32 @@
 		<%= render :partial => "exercise", :collection => @topic.exercises %>
 	</div>
 	<br>
-	<div id="add-item" class="left">
-		<%= link_to "Add item",  "#" %>
-	</div>
-	<div id="import-list" class="right">
-		<%= link_to "Import a list", "#" %>
-	</div>
 	<div class="clear"> </div>
-	<br>
 	<div class="centre">
 		<%= f.submit "Update" %>
 	</div>
 </div>
 
 <div id="import-frame" style="display:none">
-	<%= text_area_tag "import" %>
-	<div id="import-now" class="left">
-		<%= link_to "Import items now", "#" %>
+	<div class="left">
+		<input id="import-now" type="submit" value="Import items now"/>		
 	</div>
-	<div id="cancel-import" class="right">
-		<%= link_to "Cancel import", "#" %>
-	</div> 
+	<div class="right">
+		<input id="cancel-import" type="submit" value="Cancel import"/>
+	</div>
+	<%= text_area_tag "import" %>
 	<div class="clear"> </div>
-	<br>
 </div>
 
-<div id="data" class="hidden">
-	<%= f.label :data %><br />
-	<%= f.text_area :data %><br>
-</div>
-<div id="code" class="hidden">
- 	<%= f.label :code %><br />
-	<%= f.text_area :code %><br>
-</div>
+<% if @topic.show_data %>
+	<div id="data">
+		<%= f.label :data %><br />
+		<%= f.text_area :data %><br>
+	</div>
+<% end %>
+<% if @topic.show_code %>
+	<div id="code">
+	 	<%= f.label :code %><br />
+		<%= f.text_area :code %><br>
+	</div>
+<% end %>

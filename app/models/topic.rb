@@ -11,6 +11,14 @@ class Topic < ActiveRecord::Base
 
   validates_presence_of :name
 
+  # temp
+  def show_data
+    true
+  end
+  def show_code
+    true
+  end
+
   def new_exercise_attributes=(exercise_attributes)
     exercise_attributes.each do |attributes|
       unless attributes['phrase'].empty?

@@ -24,7 +24,7 @@
     <div class="cell third"><%= truncate question.exercise.response, 40 %></div>
     <div class="cell third"><%= truncate question.exercise.topic.name, 40 %></div>
 		<div class="cell twelfth centre error"><%= 'DUE' if question.next_datetime < Time.now %></div>
-		<div class="cell twelfth centre"><%= short_date question.next_datetime %></div>
+		<div class="cell twelfth centre"><%= relative_date question.next_datetime %></div>
     <div class="cell twelfth centre"><%= question.current_interval %></div>
 		<div class="cell twelfth centre"><%= link_to question.responses.count, question %></div>
   </div>

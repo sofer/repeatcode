@@ -39,6 +39,16 @@
 		
 		<div id="graph" class="hidden"> </div>
 	
+		<div id="tabs" class="hidden">
+			<div id="data-tab" class="data tab border">
+			</div>
+			<div id="code-tab" class="code tab border">
+			</div>
+			<div id="output-tab" class="output tab border">
+			</div>
+			<div class="clear"></div>
+		</div>
+
 		<div id="response">
 		
 			<div id="response-message" class="hidden">Correct</div>
@@ -86,26 +96,7 @@
 			</div>
 
 		</div>
-	 
-		<% if 1==0 %> <!-- leave this for now. it's going to be a  bit different -->
-		<div id="tabs">
-			<div class="data tab">
-	 h @question.exercise.topic.data %>
-			</div>
-			<div class="code tab">
-	 if @question.current_interval %>
-	%= @question.exercise.code %>
-	% else %>
-	%= @question.exercise.code(@question.exercise.simplified(@question.exercise.response)) %>
-	% end %>
-			</div>
-			<div class="output tab">
-	%= @question.exercise.topic.data %>
-			</div>
-			<div class="clear"></div>
-		</div>
-		<% end %>
-	
+	 	
 	</div>
 
 	<div id="footer">

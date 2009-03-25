@@ -10,12 +10,10 @@
 <div id="main">
 
 	<div class="row">
-		<div class="cell tenth">
-		</div>
-		<div class="cell half">
-		</div>
+		<div class="cell half"> </div>
 		<div class="cell twelfth bold centre">Today</div>
 		<div class="cell twelfth bold">Backlog</div>
+		<div class="cell sixth bold">Last lesson</div>
 	</div>
 
 	<% for course in @courses %>
@@ -26,7 +24,7 @@
 					<%= f.submit "Learn now" %>
 				<% end %>
 			</div>
-			<div class="bold cell half">
+			<div class="bold cell two-fifths">
 				<% if course.subject %>
 					<%= course.subject.name %>
 				<% else %>
@@ -35,6 +33,7 @@
 			</div>
 			<div class="cell twelfth correct"><% if course.on_target? %>On target<% end %></div>
 			<div class="cell twelfth centre"> <%= course.backlog_count %> </div>
+			<div class="cell twelfth centre"> <%= relative_date course.lessons.last.updated_at if course.lessons.last %> </div>
 			<div class="cell twelfth right">
 				<%= link_to "Targets", course_path(course) %>
 			</div>
@@ -43,8 +42,8 @@
 			</div>
 			<div class="cell twelfth right">
 				<% form_for course do |f| %>
-				<%= f.hidden_field :archived, :value => true %>
-				<%= f.submit "Remove" %>
+				<%= f.hidden_field :archived, :value => @make_archived  %>
+				<%= f.submit @action %>
 				<% end %>
 			</div>
 		</div>
