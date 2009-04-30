@@ -4,8 +4,7 @@
 			Logged in as: <%= current_user.login %>
 			&raquo; <%= link_to_unless_current "autologin", "/about/autologin" %>
 		<% else %>
-			User ID: <%= link_to current_user.uid, "/about/autologin" %> |
-			
+			User ID: <%= link_to current_user.uid, "/about/autologin" %>
 		<% end %>
 	</div>
 	<div class="bottom-right">
