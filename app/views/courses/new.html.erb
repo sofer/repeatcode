@@ -37,23 +37,23 @@
 				</div>
 				<% end %>
 		<% end %>
-		<% if @private_subjects and @private_subjects.count > 0 %>
-		<h3 class="centre">Not public</h3>
-			<% for subject in @private_subjects %>
-				<% if row >= limit %>
-				</div><div class="col3">
-					<% row = 0 %>
-				<% end %>
-				<% row += 1 %>
-				<% form_for :course, :url => subject_courses_path(subject) do |f| %>
-					<div class="new-course centre">
-						<%= f.submit "#{subject.name} (#{subject.exercises.count})" %>
-					</div>
-					<% end %>
-			<% end %>
-		<% end %>
 		</ul>
 		<br/>
+	<% end %>
+	<% if @private_subjects and @private_subjects.count > 0 %>
+	<h3 class="centre">Not public</h3>
+		<% for subject in @private_subjects %>
+			<% if row >= limit %>
+			</div><div class="col3">
+				<% row = 0 %>
+			<% end %>
+			<% row += 1 %>
+			<% form_for :course, :url => subject_courses_path(subject) do |f| %>
+				<div class="new-course centre">
+					<%= f.submit "#{subject.name} (#{subject.exercises.count})" %>
+				</div>
+				<% end %>
+		<% end %>
 	<% end %>
 
 	</div>
