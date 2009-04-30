@@ -1,45 +1,35 @@
-THIS WILL NEED EDITING: IT IS THE OLD 'new' TEMPLATE
-
 <div id="header">
 	<h1 class="top-left pad">
-		RepeatCode registration
+		Account details
 		<%= '&raquo; ' + @user.organization.name if @user.organization %>
+		<%= '&raquo; ' + @user.login if @user.login %>
 	</h1>
 </div>
 
 <div class="signin">
 
-	<% if @user.organization %>
-
-		<% if (error_messages_for :user).blank? %>
-			<div class="big-space"> </div>
-		<% else %>
-			<%= error_messages_for :user %>
-		<% end %>
-		<% form_for :user, :url => organization_users_path(@user.organization) do |f| -%>
-			<% @user.password = @user.password_confirmation = nil %>
-			<label for="login">Login</label>
-			<%= f.text_field :login %>
-			<label for="email">Email</label>
-			<%= f.text_field :email %>
-			<label for="password">Password</label>
-			<%= f.password_field :password %>
-			<label for="password_confirmation">Confirm Password</label>
-			<%= f.password_field :password_confirmation %>
-			<label> </label>
-			<%= submit_tag 'Sign up' %>
-		<% end -%>
-
-	<% else %>
-
+	<% if (error_messages_for :user).blank? %>
 		<div class="big-space"> </div>
-		<label for="organization" class="bold">Organization</label>
-		<%= select_tag :org, "<option selected>select one:</option>" + options_for_select(Organization::LIST_FOR_FORM)  %>
-
+	<% else %>
+		<%= error_messages_for :user %>
 	<% end %>
+	<% form_for @user do |f| -%>
+	<!--
+		<label for="organization" class="bold">Organization</label>
+		<%= select_tag 'user[organization_id]',  options_for_select(Organization::LIST_FOR_FORM), { :prompt => 'Select Person'}  %>
+		<br>
+		<%= select_tag 'test', options_from_collection_for_select(@organizations, 'id', 'name') %>
+-->
+		<label for="login">Login</label>
+		<%= f.text_field :login %>
+		<label for="email">Email</label>
+		<%= f.text_field :email %>
+		<label> </label>
+		<%= submit_tag 'Update' %>
+	<% end -%>
 
 </div>
 
 <div id="footer">
-<%= render :partial => 'user_bar' %>
+	<%= render :partial => 'global/toplevel_links' %>
 </div>

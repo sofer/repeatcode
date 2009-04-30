@@ -9,14 +9,16 @@
 <div id="main" class="main-height">
 	<div class="big-notice">
 		<% if current_user %>
-			<p>In order to login automatically next time, drag this link: <%= link_to "RepeatCode login", '/u/' + current_user.uid %> to your browser's bookmark bar.</p>
-			<br>
 			<p class="space">Your unique ID is: <code><%= current_user.uid %></code></p>
 			<p>Make a note of it and keep it safe.</p>
-			</div>
+			<br>
+			<p>In order to login automatically next time, drag this link: <%= link_to "RepeatCode login", '/u/' + current_user.uid %> to your browser's bookmark bar.</p>
+			<br>
+			<p><%= link_to 'Edit your details',  '/account' %></p>
 		<% else %>
 			You are not currently logged in.
 		<% end %>
+	</div>
 </div>
 
 <div id="footer">

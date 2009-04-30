@@ -2,8 +2,10 @@
 	<div class="bottom-left">
 		<% if current_user.login %>
 			Logged in as: <%= current_user.login %>
+			&raquo; <%= link_to_unless_current "autologin", "/about/autologin" %>
 		<% else %>
-			User ID: <%= current_user.uid %>
+			User ID: <%= link_to current_user.uid, "/about/autologin" %> |
+			
 		<% end %>
 	</div>
 	<div class="bottom-right">
@@ -18,7 +20,6 @@
 		<% end %>
 		<%= link_to_unless_current "Courses", :controller => 'courses', :action => 'index' %> |
 		<%= link_to_unless_current "Course materials", :controller => 'subjects', :action => 'index' %> | 
-		<%= link_to_unless_current "Autologin", "/about/autologin" %> |
 		<%= link_to_unless_current "FAQ", "/about/faq" %> |
 		<%= link_to_unless_current "logout", "/logout"%>
 	</div>

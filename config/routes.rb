@@ -53,6 +53,7 @@ ActionController::Routing::Routes.draw do |map|
 
   map.logout '/logout', :controller => 'sessions', :action => 'destroy'
   map.login '/login', :controller => 'sessions', :action => 'new'
+  map.account '/account', :controller => 'users', :action => 'edit'
 
   # login in by uid
   map.uid '/u/:uid', :controller => 'sessions', :action => 'create' , :uid => /[0-9a-zA-Z]{8,8}/

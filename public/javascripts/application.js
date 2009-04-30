@@ -9,7 +9,7 @@ $(document).ready(function(){
 		$('.display-changed').text(txt);
 	});
 	
-	$('#org').change(function() {
+	$('#NOTINUSEorg').change(function() {
 		document.location = '/organizations/' + $(this).val() + '/users/new';
 	});
 	

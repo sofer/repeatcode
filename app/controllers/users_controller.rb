@@ -1,8 +1,5 @@
 class UsersController < ApplicationController
-  # Be sure to include AuthenticationSystem in Application Controller instead
-  include AuthenticatedSystem
   
-
   # For show users to groups
   def index
     @group =  Group.find(params[:group_id])
@@ -10,7 +7,6 @@ class UsersController < ApplicationController
               :per_page => 14, 
               :page => params[:page]
               )
-
 
   end
 
@@ -29,16 +25,28 @@ class UsersController < ApplicationController
     @params = params[:organization_id]
   end
   
-  def REMOVEcreate_without_authentication
-    @user = User.new
-    if @user.save && @user.errors.empty?
-      self.current_user = @user # !! now logged in
-      redirect_back_or_default('/')
-      flash[:notice] = "It worked!"
-    else
-      flash[:error]  = "I am sorry. the system could not create a new account for you."
-      redirect_back_or_default('/')
-    end    
+  # GET /account
+  def edit
+    @user = current_user
+    @organizations = Organization.find(:all)
+  end
+  
+  # PUT /account
+  # PUT /account
+  def update
+    @user = current_user
+    
+    respond_to do |format|
+      if @user.update_attributes(params[:user])
+        flash[:notice] = 'Your details were successfully updated.'
+        format.html { redirect_to(:back) }
+        format.xml  { head :ok }
+      else
+        flash[:notice] = 'Your details were NOT updated.'
+        format.html { redirect_to(:back) }
+        format.xml  { render :xml => @course.errors, :status => :unprocessable_entity }
+      end
+    end
   end
   
   def create
