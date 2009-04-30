@@ -40,7 +40,7 @@ class Course < ActiveRecord::Base
   }
   
   def backlog_count
-    questions.count(:conditions => ['next_datetime < ?', Time.now])
+    questions.count(:conditions => ['next_datetime < ? AND current_interval > 0', Time.now])
   end
   
   def on_target?(days=1)

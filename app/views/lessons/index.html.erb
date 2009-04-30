@@ -39,10 +39,5 @@
 	<div class="centre pad">
 		<%= will_paginate @lessons %>
 	</div>
-	<div class="bottom-left">
-		Logged in as: <%= current_user.login %>
-	</div>
-	<div class="bottom-right">
-		<%= render :partial => 'global/toplevel_links' %>
-	</div>
+	<%= render :partial => 'global/toplevel_links' %>
 </div>

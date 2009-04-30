@@ -28,7 +28,7 @@ class OrganizationsController < ApplicationController
         format.html { redirect_to( :back ) }
         format.xml  { render :xml => @organization, :status => :created, :location => @organization }
       else
-        format.html { render :action => ":back" }
+        format.html { render :action => :back }
         format.xml  { render :xml => @organization.errors, :status => :unprocessable_entity }
       end
     end

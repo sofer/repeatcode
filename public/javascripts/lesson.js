@@ -72,10 +72,15 @@ RC.DOMnodes = {
 	output_tab: '#output-tab'	
 };
 
+RC.unicode_to_html_entity = function(phrase) {
+	return phrase.replace(/\\u(\d\d\d\d)/g, '&#x$1;');
+};
+
 // 25 Feb 2009: not yet using outfox yet, because of problem with non-ASCII characters
+// 5 Apr 2009: outfox 0.3.2 fixes the bug with non-ASCII. Switched to outfox.
 RC.voices = {
 	
-	voice_server_url: 'http://localhost:2000/',
+	//voice_server_url: 'http://localhost:2000/' no longer using this
 
 	languages: {
 		'FR': 'com.acapela.iVox.voice.iVoxJulie22k',
@@ -113,7 +118,10 @@ RC.voices = {
 			}
 			if (outfox.audio) {
 				outfox.audio.setProperty('voice', this.languages[lang]);
-				outfox.audio.say('bonjour');
+				outfox.audio.say('poù dirmi dov\'è');
+				if (which === 'response') {
+					$(RC.DOMnodes.message_envelope).html(phrase);
+				}
 			} else {
 				$(RC.DOMnodes.message_envelope).html('outfox: something went wrong...');
 			}
@@ -121,6 +129,7 @@ RC.voices = {
 	},
 
 	
+	// old-style. No longer in use.
 	speak: function(phrase, lang) {
 		var that = this;
 		$(RC.DOMnodes.message_envelope).html('speaking...');
@@ -146,6 +155,7 @@ RC.voices = {
 		});
 	},
 	
+	// old-style. No longer in use.
 	queue: function(phrase, which) {
 		if (which === 'phrase' && this.speak_phrase ||
 				which === 'response' && this.speak_response) {
@@ -550,12 +560,13 @@ RC.question = {
 			this.show_code();
 			var phrase = this.both_versions(this.data.exercise.phrase);
 			$(RC.DOMnodes.question).html(phrase);
-			RC.voices.queue(phrase, 'phrase');
+			RC.voices.outfox_queue(phrase, 'phrase');
 		}
 		var response = this.both_versions(this.strip_prefix(this.data.exercise.response));
+		response = RC.unicode_to_html_entity(response); //convert to HTML entities 
 		$(RC.DOMnodes.exercise_response).html(response);
 		if (this.data.question.current_interval === 0) {
-			RC.voices.queue(response, 'response');
+			RC.voices.outfox_queue(response, 'response');
 		 	$(RC.DOMnodes.expected).show();
 			this.show_response(RC.DOMnodes.exercise_response, response);
 			$(RC.DOMnodes.try_now).focus();
@@ -626,14 +637,14 @@ RC.question = {
 		}
 		$(RC.DOMnodes.attempt).hide();
 		if (match) {
-			RC.voices.queue(this.both_versions(expected), 'response');
+			RC.voices.outfox_queue(this.both_versions(expected), 'response');
 			this.previously_incorrect = false;
 			this.post_response('correct');
 			this.show_response_message();
 		} else {
 			this.show_response(RC.DOMnodes.wrong, response);
 			if (this.previously_incorrect) {
-				RC.voices.queue(this.both_versions(expected), 'response');
+				RC.voices.outfox_queue(this.both_versions(expected), 'response');
 				this.update_stats();
 				this.show_answer();
 			} else {
@@ -652,7 +663,7 @@ RC.interval_timer = setInterval(RC.timer.tick, 1000);
 
 $(document).ready(function(){
 	
-	//RC.voices.outfox_init();
+	RC.voices.outfox_init();
 	
 	if ($(RC.DOMnodes.speak_phrases_checkbox).length > 0) {
 		$(RC.DOMnodes.speak_phrases_checkbox).attr('checked', false);

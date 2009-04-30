@@ -15,21 +15,21 @@ class User < ActiveRecord::Base
   has_one :administrator # and here. It could have been a boolean field instead of a foreign key
 
   include Authentication
-  include Authentication::ByPassword
   include Authentication::ByCookieToken
+  include Authentication::ByPassword
 
-  validates_presence_of     :organization_id
+  before_create :assign_uid
 
-  validates_presence_of     :login
-  validates_length_of       :login,    :within => 3..40
-  validates_uniqueness_of   :login,    :case_sensitive => false
-  #validates_format_of       :login,    :with => RE_LOGIN_OK, :message => MSG_LOGIN_BAD
-  validates_format_of       :login,    :with => Authentication.login_regex, :message => Authentication.bad_login_message
-
-  #validates_format_of       :name,     :with => RE_NAME_OK,  :message => MSG_NAME_BAD, :allow_nil => true
-  validates_format_of       :name,     :with => Authentication.name_regex, :message => Authentication.bad_name_message, :allow_nil => true
-
-  validates_length_of       :name,     :maximum => 100
+  # REMOVED THESE FOR NOW BECAUSE OF AUTO REGISTRATION - 2009-04-28
+  #validates_presence_of     :organization_id
+  #validates_presence_of     :login
+  #validates_length_of       :login,    :within => 3..40
+  #validates_uniqueness_of   :login,    :case_sensitive => false
+  ##validates_format_of       :login,    :with => RE_LOGIN_OK, :message => MSG_LOGIN_BAD
+  #validates_format_of       :login,    :with => Authentication.login_regex, :message => Authentication.bad_login_message
+  ##validates_format_of       :name,     :with => RE_NAME_OK,  :message => MSG_NAME_BAD, :allow_nil => true
+  #validates_format_of       :name,     :with => Authentication.name_regex, :message => Authentication.bad_name_message, :allow_nil => true
+  #validates_length_of       :name,     :maximum => 100
 
   # DS: made email voluntary for now
   #validates_presence_of     :email
@@ -56,8 +56,18 @@ class User < ActiveRecord::Base
     u && u.authenticated?(password) ? u : nil
   end
   
-  protected
-    
-
-
+private
+  
+  # a unique 8-digit id for new accounts
+  def assign_uid
+    chars = ('a'..'z').to_a + ('A'..'Z').to_a + ('0'..'9').to_a
+    uid = ''
+    1.upto(8) {
+      i = rand(62)
+      uid += chars[i]
+    }
+    self.uid = uid
+    logger.error("Just created UID: #{self.uid}")
+  end
+  
 end

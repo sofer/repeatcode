@@ -1,0 +1,45 @@
+THIS WILL NEED EDITING: IT IS THE OLD 'new' TEMPLATE
+
+<div id="header">
+	<h1 class="top-left pad">
+		RepeatCode registration
+		<%= '&raquo; ' + @user.organization.name if @user.organization %>
+	</h1>
+</div>
+
+<div class="signin">
+
+	<% if @user.organization %>
+
+		<% if (error_messages_for :user).blank? %>
+			<div class="big-space"> </div>
+		<% else %>
+			<%= error_messages_for :user %>
+		<% end %>
+		<% form_for :user, :url => organization_users_path(@user.organization) do |f| -%>
+			<% @user.password = @user.password_confirmation = nil %>
+			<label for="login">Login</label>
+			<%= f.text_field :login %>
+			<label for="email">Email</label>
+			<%= f.text_field :email %>
+			<label for="password">Password</label>
+			<%= f.password_field :password %>
+			<label for="password_confirmation">Confirm Password</label>
+			<%= f.password_field :password_confirmation %>
+			<label> </label>
+			<%= submit_tag 'Sign up' %>
+		<% end -%>
+
+	<% else %>
+
+		<div class="big-space"> </div>
+		<label for="organization" class="bold">Organization</label>
+		<%= select_tag :org, "<option selected>select one:</option>" + options_for_select(Organization::LIST_FOR_FORM)  %>
+
+	<% end %>
+
+</div>
+
+<div id="footer">
+<%= render :partial => 'user_bar' %>
+</div>

@@ -1,31 +1,56 @@
 <div id="header">
 	<h1 class="top-left pad">
-		<%= link_to "Courses", courses_path %>
-		&raquo; New
+		RepeatCode
+		<span class="italic white">pre-beta</span>
 	</h1>
 	<h2 class="top-right pad">
+		<% unless current_user %>
+			Already registered? <%= link_to "Login now", "/login" %>
+		<% end %>
 	</h2>
 </div>
 <div id="main">
+
+	<br>
 
 	<div class="col3">
 
 	<% row = 0; limit = 20 %>
 	<% for area in @areas %>
+		<% next if area.subjects.public.count == 0 %>
 		<% if row >= limit - 4 %>
 			<% row = 0 %>
 			</div><div class="col3">
 			<% row = 0 %>
 		<% end %>
 		<% row += 2 %>
-		<h3> <%= area.name %> </h3>
-		<% for subject in area.subjects %>
+		<h3 class="centre"> <%= area.name %> </h3>
+		<% for subject in area.subjects.public %>
 			<% if row >= limit %>
 			</div><div class="col3">
 				<% row = 0 %>
 			<% end %>
 			<% row += 1 %>
-			<ul><li><%= link_to subject.name,  subject_courses_path(subject), :method => :post %> (<%= subject.exercises.count %>)</li></ul>
+			<% form_for :course, :url => subject_courses_path(subject) do |f| %>
+				<div class="new-course centre">
+					<%= f.submit "#{subject.name} (#{subject.exercises.count})" %>
+				</div>
+				<% end %>
+		<% end %>
+		<% if @private_subjects and @private_subjects.count > 0 %>
+		<h3 class="centre">Not public</h3>
+			<% for subject in @private_subjects %>
+				<% if row >= limit %>
+				</div><div class="col3">
+					<% row = 0 %>
+				<% end %>
+				<% row += 1 %>
+				<% form_for :course, :url => subject_courses_path(subject) do |f| %>
+					<div class="new-course centre">
+						<%= f.submit "#{subject.name} (#{subject.exercises.count})" %>
+					</div>
+					<% end %>
+			<% end %>
 		<% end %>
 		</ul>
 		<br/>
@@ -34,18 +59,12 @@
 	</div>
 
 	<div class="bottom-left clear">
-		(The total number of exercises in each course is given in brackets)
+		Welcome to the RepeatCode! To start learning, just select a course from the list above.
 	</div>
 
 
 </div>
 
 <div id="footer">
-	<div class="bottom-left">
-		Logged in as: <%= current_user.login %>
-	</div>
-	<div class="bottom-right">
-		<br>
 		<%= render :partial => 'global/toplevel_links' %>
-	</div>
 </div>

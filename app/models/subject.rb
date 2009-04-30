@@ -9,6 +9,8 @@ class Subject < ActiveRecord::Base
   
   named_scope :active, :conditions => {:archived => false}
   named_scope :inactive, :conditions => {:archived => true}
+  named_scope :public, :conditions => { :public => true }
+  named_scope :private, :conditions => { :public => false }
   
   before_create :set_status
   

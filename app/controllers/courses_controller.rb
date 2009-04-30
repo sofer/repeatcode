@@ -1,10 +1,28 @@
 class CoursesController < ApplicationController
 
-  before_filter :authorize
+  before_filter :login_required, :except => :new
+
+  # over-ride login_required in AuthenticatedSystem to allow new users to be created ad hoc
+  def login_required
+     if params[:create_user] # hidden field in posted form. Create the user.
+       user = User.new
+       if user.save && user.errors.empty?
+         self.current_user = user # !! now logged in
+       else
+         flash[:error]  = "I am sorry. the system could not create a new account for you."
+         access_denied
+       end
+    elsif authorized?
+      return true
+    else
+      access_denied
+    end
+  end
 
   # GET /courses
   # GET /courses.xml
   def index
+    
     if params[:archived]
       @action = 'Unarchive'
       @make_archived = "false"
@@ -62,10 +80,9 @@ class CoursesController < ApplicationController
   # GET /courses/new
   # GET /courses/new.xml
   def new
-    @course = Course.new
-    @subjects = Subject.all
     @areas = Area.find(:all)
-
+    @private_subjects = current_user.subjects.private if current_user
+    
     respond_to do |format|
       format.html # new.html.erb
       format.xml  { render :xml => @course }
@@ -74,21 +91,28 @@ class CoursesController < ApplicationController
 
   # POST /courses
   # POST /courses.xml
-  def create
+  def create    
     @subject = Subject.find(params[:subject_id])
     @course = @subject.courses.new(params[:course])
 
     respond_to do |format|
-      if @course.save
-        current_user.courses << @course
-        flash[:notice] = 'Course was successfully created.'
-        format.html { redirect_to(courses_path) }
-        format.xml  { render :xml => @course, :status => :created, :location => @course }
-      else
-        flash[:error] = 'Problem encountered.'
-        format.html { redirect_to(:back) }
-        format.xml  { render :xml => @course.errors, :status => :unprocessable_entity }
-      end
+      #if current_user
+        if @course.save
+          current_user.courses << @course
+          lesson = @course.lessons.new
+          @course.lessons << lesson
+          flash[:notice] = 'Start learning'
+          format.html { redirect_to :controller => 'lessons', :action => 'show', :id => lesson.id }
+          format.xml  { render :xml => @course, :status => :created, :location => @course }
+        else
+          flash[:error] = 'Problem encountered.'
+          format.html { redirect_to(:back) }
+          format.xml  { render :xml => @course.errors, :status => :unprocessable_entity }
+        end
+      #else
+        #flash[:notice] = 'Login first?'
+        #format.html { redirect_to :controller => 'users', :action => 'new', }
+      #end
     end
   end
 

@@ -3,7 +3,7 @@ class Lesson < ActiveRecord::Base
   belongs_to :course
   
   named_scope :recent, lambda { |days|
-    days_ago = Time.now - days * 24 * 60 * 60
+    days_ago = Time.now - (days * 24 - 1) * 3600 # 'days' ago - 1 hour
    { :conditions => [ 'created_at > ?', days_ago ] } 
   }
   

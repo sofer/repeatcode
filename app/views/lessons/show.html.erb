@@ -108,7 +108,12 @@
 				| Backlog: <span id="backlog"></span>
 				| <span id="seconds">0</span> seconds
 			</span>
-			<br>Logged in as: <%= current_user.login %>
+			<br>
+			<% if current_user.login %>
+				Logged in as: <%= current_user.login %>
+			<% else %>
+				User ID: <%= current_user.uid %>
+			<% end %>
 		</div>
 		<div id="loading"><img src="/images/furniture/loading.gif" width="16" height="16" alt="waiting..." align="right"></div>
 		<div class="bottom-centre">

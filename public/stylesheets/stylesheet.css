@@ -2,7 +2,7 @@ html, div, h1, h2, h3, h4, h5, h6, ul, ol, dl, li, dt, dd, p, blockquote, pre, f
 h1, h2, h3, h4, h5, h6	{ font-size: 16px; }
 p { margin: 4px ; }
 ul { list-style: none; }
-li { margin: 4px 0; }
+li { list-style: none; margin: 4px 0; }
 li:before { content: "\00BB \0020"; }
 style	{ display: block; }
 body	{ background: #e8e8e8; font-family: helvetica, arial, sans-serif; margin: 0;}
@@ -19,6 +19,7 @@ hr	{ height: 1px; border: 0; color: DodgerBlue; background-color: DodgerBlue; }
 #main	{ margin: 28px 4px 52px 4px; }
 .fixed #main	{ position: absolute; top: 28px; right: 0; bottom: 42px; left: 0; margin: 4px; }
 .signin	{ margin: 40px auto; width: 400px; }
+.main-height { height: 420px; }
 
 /* error id's */
 .fieldWithErrors	{ padding: 2px; background-color: red; display: table; }
@@ -30,7 +31,7 @@ hr	{ height: 1px; border: 0; color: DodgerBlue; background-color: DodgerBlue; }
 /* lesson id's */
 #question	{ margin-top: 30px; text-align: center; line-height: 1.2;  font-size: 24px; }
 #response	{ position: absolute; bottom: 20px; left: 0; right: 0; text-align: center; font-size: 28px; line-height: 1.2; }
-#start, #completed	{ margin: 150px; text-align: center; font-size: 18px; }
+#start, #completed, .big-notice	{ padding: 150px; text-align: center; font-size: 18px; }
 #response-field	{ width: 442px; font-size: 14px; }
 #response-message	{ position: absolute; bottom: 100px; left: 0; right: 0; color: LimeGreen; }
 .formula	{ float: left; height: 60px; }
@@ -99,6 +100,7 @@ textarea	{ width: 100%; height: 300px; }
 .checkbox label { float: left; width: 150px; }
 #header input[type=text]	{ margin: -2px 0 0 0; }
 .targets input[type=text] { width: 20px; height: 11px; margin: -2px 0; text-align: right; }
+.new-course input[type=submit]	{ width: 240px; margin: 2px; }
 
 /* deal with left and right slightly differently, partly because of IE oddity */
 /* avoid floats inside absolutely positioned elements because of IE oddity */
@@ -116,11 +118,13 @@ textarea	{ width: 100%; height: 300px; }
 .border	{border: 1px dashed; }
 .hidden	{ display: none; } 
 .notice	{ color: green; }
-.error	{ color: #f00; }
+.error, .warning	{ color: #f00; }
 .centre	{ text-align: center; }
 .bold	{ font-weight: bold; }
 .correct { color: green; }
 .incorrect	{ text-decoration: line-through; color: red; }
+.white { color: white; }
+.italic { font-style: italic; }
 .space	{ margin: 10px; }
 .big-space { margin: 160px; }
 .small-gap-above { margin-top: 4px; }

@@ -1,15 +1,33 @@
 <div id="header">
 	<h1 class="top-left pad">
-		RepeatCode | Log in
+		<%= link_to 'Home', '/' %>
+		&raquo; Log in
 	</h1>
 </div>
 <div id="main">
 
 	<div class="signin">
 
-		<div class="big-space"> </div>
-		
+		<div class="space"> </div>
+
+		<% if session[:return_to] %>
+		<div class="centre space">
+			<% form_tag session[:return_to] do -%>
+				<%= hidden_field_tag 'create_user' %>
+				<%= submit_tag 'Continue without signing in' %>
+			<% end -%>
+		</div>
+		<% end %>
+
+		<div class="bold space">I already have a login:</div>
+
+
 		<% form_tag session_path do -%>
+		<label for="login">Unique ID</label>
+		<%= text_field_tag 'uid', @uid %>
+
+		<div class="bold centre space">OR</div>
+
 		<label for="login">Login</label>
 		<%= text_field_tag 'login', @login %>
 
@@ -23,10 +41,7 @@
 		<label for="remember_me">Remember me</label>
 		<%= check_box_tag 'remember_me', '1', @remember_me %>
 		
-		<br class="clear">
-
-		<label> </label>
-		<%= submit_tag 'Log in' %>
+		<div class="centre space"><%= submit_tag 'Log me in' %></div>
 		
 		<% end -%>
 	</div>
@@ -34,5 +49,5 @@
 </div>
 
 <div id="footer">
-
+	<%= render :partial => 'global/toplevel_links' %>
 </div>

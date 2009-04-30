@@ -1,3 +1,5 @@
+NO LONGER IN USE
+
 <div id="header">
 	<h1 class="top-left pad">
 		RepeatCode registration
@@ -5,39 +7,20 @@
 	</h1>
 </div>
 
-<div class="signin">
+<div id="main">
 
-	<% if @user.organization %>
-
-		<% if (error_messages_for :user).blank? %>
-			<div class="big-space"> </div>
-		<% else %>
-			<%= error_messages_for :user %>
-		<% end %>
-		<% form_for :user, :url => organization_users_path(@user.organization) do |f| -%>
-			<% @user.password = @user.password_confirmation = nil %>
-			<label for="login">Login</label>
-			<%= f.text_field :login %>
-			<label for="email">Email</label>
-			<%= f.text_field :email %>
-			<label for="password">Password</label>
-			<%= f.password_field :password %>
-			<label for="password_confirmation">Confirm Password</label>
-			<%= f.password_field :password_confirmation %>
-			<label> </label>
-			<%= submit_tag 'Sign up' %>
+	<div class="centre big-space">
+		<% form_tag 'users/create_without_authentication' do -%>
+			<%= submit_tag 'Start learning' %>
 		<% end -%>
+		<br>
+		<div class="space">I already have a login: <%= link_to "Log me in first", '/login'%></div>
 
-	<% else %>
+	</div>
 
-		<div class="big-space"> </div>
-		<label for="organization" class="bold">Organization</label>
-		<%= select_tag :org, "<option selected>select one:</option>" + options_for_select(Organization::LIST_FOR_FORM)  %>
-
-	<% end %>
 
 </div>
 
 <div id="footer">
-<%= render :partial => 'user_bar' %>
+	<%= render :partial => 'global/toplevel_links' %>
 </div>

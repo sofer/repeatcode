@@ -1,13 +1,33 @@
-<% if current_user.administrator %>
-	<%= link_to_unless_current 'Admin', administrators_path %> |
+<% if current_user %>
+	<div class="bottom-left">
+		<% if current_user.login %>
+			Logged in as: <%= current_user.login %>
+		<% else %>
+			User ID: <%= current_user.uid %>
+		<% end %>
+	</div>
+	<div class="bottom-right">
+		<% if current_user.administrator %>
+			<%= link_to_unless_current 'Admin', administrators_path %> |
+		<% end %>
+		<% if current_user.manager %>
+			<%= link_to_unless_current 'Manage', managers_path %> |
+		<% end %>
+		<% if current_user.tutor_groups %>
+			<%= link_to_unless_current 'Groups', groups_path %> |
+		<% end %>
+		<%= link_to_unless_current "Courses", :controller => 'courses', :action => 'index' %> |
+		<%= link_to_unless_current "Course materials", :controller => 'subjects', :action => 'index' %> | 
+		<%= link_to_unless_current "Autologin", "/about/autologin" %> |
+		<%= link_to_unless_current "FAQ", "/about/faq" %> |
+		<%= link_to_unless_current "logout", "/logout"%>
+	</div>
+<% else %>
+	<div class="bottom-left">
+		Not logged in
+	</div>
+	<div class="bottom-right">
+		<%= link_to_unless_current "FAQ", "/about/faq" %> | 
+		<%= link_to_unless_current "login", "/login"%>
+	</div>
 <% end %>
-<% if current_user.manager %>
-	<%= link_to_unless_current 'Manage', managers_path %> |
-<% end %>
-<% if current_user.tutor_groups %>
-	<%= link_to_unless_current 'Groups', groups_path %> |
-<% end %>
-<%= link_to_unless_current "Courses", :controller => 'courses', :action => 'index' %> |
-<%= link_to_unless_current "Course materials", :controller => 'subjects', :action => 'index' %> | 
-<%= link_to_unless_current "FAQ", "/about/faq" %> |
-<%= link_to_unless_current "logout", "/logout"%>
