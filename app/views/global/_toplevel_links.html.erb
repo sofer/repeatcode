@@ -1,10 +1,11 @@
 <% if current_user %>
 	<div class="bottom-left">
-		<% if current_user.login %>
+		<% if current_user.login.empty? %>
+			Logged in: 
+			<%= link_to_unless_current "Save your details", "/about/autologin" %>
+		<% else %>
 			Logged in as: <%= current_user.login %>
 			&raquo; <%= link_to_unless_current "autologin", "/about/autologin" %>
-		<% else %>
-			User ID: <%= link_to current_user.uid, "/about/autologin" %>
 		<% end %>
 	</div>
 	<div class="bottom-right">
@@ -14,11 +15,13 @@
 		<% if current_user.manager %>
 			<%= link_to_unless_current 'Manage', managers_path %> |
 		<% end %>
-		<% if current_user.tutor_groups %>
+		<% if not current_user.tutor_groups.empty? %>
 			<%= link_to_unless_current 'Groups', groups_path %> |
 		<% end %>
 		<%= link_to_unless_current "Courses", :controller => 'courses', :action => 'index' %> |
-		<%= link_to_unless_current "Course materials", :controller => 'subjects', :action => 'index' %> | 
+		<% if not current_user.login.empty? %>
+			<%= link_to_unless_current "Course materials", :controller => 'subjects', :action => 'index' %> | 
+		<% end %>
 		<%= link_to_unless_current "FAQ", "/about/faq" %> |
 		<%= link_to_unless_current "logout", "/logout"%>
 	</div>

@@ -56,7 +56,7 @@ q|Q. Who maintains this site.
 a|A. It is owned and managed by |http://www.sofer.com/|Danny Sofer|. Thanks are also due to Izaak for his help in developing and testing the learning materials.
 
 q|Q. What is the technology behind this site?
-a|A. It is developed in |http://www.rubyonrails.com|Rails| with significant use of JavaScript and |http://www.jquery.com|JQuery|. It is source controlled at |http://www.github.com|GitHub| and hosted at |http://www.slicehost.com|SliceHost|. I am unboundedly grateful to the developers and maintainers of all of the software and services that I use.
+a|A. It is developed in |http://www.rubyonrails.com|Rails| with significant use of JavaScript and |http://www.jquery.com|JQuery|. Graphing is provided by |http://code.google.com/p/flot/|Flot|. Text-to-speech is achieved using the |http://code.google.com/p/outfox/|Outfox| Firefox extension combined with infovox voices from |http://www.acapela-group.com/|Acapela|. The code is source controlled at |http://www.github.com|GitHub| and hosted at |http://www.slicehost.com|SliceHost|.
 
 
 
