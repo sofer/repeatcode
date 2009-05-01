@@ -8,35 +8,21 @@
 
 	<div class="signin">
 
-		<div class="space"> </div>
+		<div class="big-space"> </div>
 
 		<% if session[:return_to] %>
-		<div class="centre space">
-			<% form_tag session[:return_to] do -%>
-				<%= hidden_field_tag 'create_user' %>
-				<%= submit_tag 'Continue without signing in' %>
-			<% end -%>
-		</div>
+			<div class="centre space">
+				<% form_tag session[:return_to] do -%>
+					<%= hidden_field_tag 'create_user' %>
+					<%= submit_tag 'Continue without signing in' %>
+				<% end -%>
+			</div>
+			<div class="bold centre space">OR</div>
 		<% end %>
 
-		<div class="bold space">I already have a login:</div>
-
-
 		<% form_tag session_path do -%>
-		<label for="login">Unique ID</label>
-		<%= text_field_tag 'uid', @uid %>
-
-		<div class="bold centre space">OR</div>
-
-		<label for="login">Login</label>
-		<%= text_field_tag 'login', @login %>
-
-		<br class="clear">
-
-		<label for="password">Password</label>
-		<%= password_field_tag 'password', nil %>
-
-		<br class="clear">
+		<label for="login">I already have a login</label>
+		<%= text_field_tag 'uid', @uid, :autocomplete => "off" %>
 
 		<label for="remember_me">Remember me</label>
 		<%= check_box_tag 'remember_me', '1', @remember_me %>

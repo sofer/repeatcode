@@ -16,7 +16,7 @@ class User < ActiveRecord::Base
 
   include Authentication
   include Authentication::ByCookieToken
-  include Authentication::ByPassword
+  #include Authentication::ByPassword
 
   before_create :assign_uid
 
