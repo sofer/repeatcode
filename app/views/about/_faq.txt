@@ -1,62 +1,62 @@
-q|Q. What can I use this site for?
-a|A. For learning and revising a variety of material, including programming languages and various academic subjects.
+*Q. What can I use this site for?*
+*A.* For learning and revising a variety of material, including programming languages and various academic subjects.
 
-q|Q. How does it work?
-a|A. A course of study is presented through a series of questions and answers, which are introduced gradually and repeated regularly until the material is mastered.
+*Q. How does it work?*
+*A.* A course of study is presented through a series of questions and answers, which are introduced gradually and repeated regularly until the material is mastered.
 
-q|Q. What are the key principles involved?
-a|A. Spaced repetition and active recall.
+*Q. What are the key principles involved?*
+*A.* Spaced repetition and active recall.
 
-q|Q. What is spaced repetition?
-a|A. It is a learning technique where material is reviewed at increasing intervals of time. It was first suggested in 1932 by Cecil Mace in his book Psychology of Study, adopted by Pimsleur (and called "graduated interval recall") for his language learning courses and by Sebastian Leitner for his flashcard-based system. It has also been recommended by Tony Buzan. The idea draws on Hermann Ebbinghous' study in 1885 of the exponential nature of forgetting. See |http://en.wikipedia.org/wiki/Spaced_repetition|Wikipedia|.
+*Q. What is spaced repetition?*
+*A.* It is a learning technique where material is reviewed at increasing intervals of time. It was first suggested in 1932 by Cecil Mace in his book Psychology of Study, adopted by Pimsleur (and called "graduated interval recall") for his language learning courses and by Sebastian Leitner for his flashcard-based system. It has also been recommended by Tony Buzan. The idea draws on Hermann Ebbinghous' study in 1885 of the exponential nature of forgetting. See "Wikipedia":http://en.wikipedia.org/wiki/Spaced_repetition.
 
-q|Q. How is spaced repetition used on this site?
-a|A. Exercises in any one course of study are introduced one at a time and then reintroduced at increasing intervals of time. New exercises are introduced alongside previously-answered material. Incorrectly-answered exercises will continue to be presented until responses are consistently correct. The intervals of time between each subsequent presentation of an exercise can be adjusted to suit the needs of the student.
+*Q. How is spaced repetition used on this site?*
+*A.* Exercises in any one course of study are introduced one at a time and then reintroduced at increasing intervals of time. New exercises are introduced alongside previously-answered material. Incorrectly-answered exercises will continue to be presented until responses are consistently correct. The intervals of time between each subsequent presentation of an exercise can be adjusted to suit the needs of the student.
 
-q|Q. What is active recall?
-a|A. It is where information has to be actively recalled--for example by typing a response to a question--rather than just recited or re-read. Pimsleur referred to this as "anticipation". See |http://en.wikipedia.org/wiki/Active_recall|Wikipedia|.
+*Q. What is active recall?*
+*A.* It is where information has to be actively recalled--for example by typing a response to a question--rather than just recited or re-read. Pimsleur referred to this as "anticipation". See "Wikipedia":http://en.wikipedia.org/wiki/Active_recall.
 
-q|Q. How is active recall used on this site?
-a|A. All exercises are presented as a phrase or question that requires a response. Then each response is checked for its accuracy.
+*Q. How is active recall used on this site?*
+*A.* All exercises are presented as a phrase or question that requires a response. Then each response is checked for its accuracy.
 
-q|Q. How do I start?
-a|A. Just select a <%= link_to 'new course', new_course_path %> from the several that are available.
+*Q. How do I start?*
+*A.* Just select a <%= link_to 'new course', new_course_path %> from the several that are available.
 
-q|Q. How do I return to a course that I have already started?
-a|A. When you select a course for the first time, a new account is created automatically for you. If you want to continue to use this account, you should follow the <%= link_to "Autologin", "/about/autologin" %> link.
+*Q. How do I return to a course that I have already started?*
+*A.* When you select a course for the first time, a new account is created automatically for you. If you want to continue to use this account, you should follow the <%= link_to "Autologin", "/about/autologin" %> link.
 
-q|Q. Once I have started a course, how often should I learn?
-a|A. you can study as often and as long as you like, but you are likely to get most benefit from studying each course for twenty minutes or so daily. If you are not in a hurry, or if you are studying several courses simultaneously, you may want to study each course less frequently or for shorter periods of time. You can also study more intensively, although some of the benefits of combining the gradual introduction of new material with the spaced revision of old material will be lost if you attempt to cover too much material in too short a period of time.
+*Q. Once I have started a course, how often should I learn?*
+*A.* you can study as often and as long as you like, but you are likely to get most benefit from studying each course for twenty minutes or so daily. If you are not in a hurry, or if you are studying several courses simultaneously, you may want to study each course less frequently or for shorter periods of time. You can also study more intensively, although some of the benefits of combining the gradual introduction of new material with the spaced revision of old material will be lost if you attempt to cover too much material in too short a period of time.
 
-q|Q. What should I do once I have reached the end of a course?
-a|A. It is recommended that you return to the course once or twice a week initially and then once or twice a month for several months to commit the material you have learned to long-term memory.
+*Q. What should I do once I have reached the end of a course?*
+*A.* It is recommended that you return to the course once or twice a week initially and then once or twice a month for several months to commit the material you have learned to long-term memory.
 
-q|Q. The intervals between each repetition feel too short or too long for me. How can I change them?
-a|A. The intervals have a default setting, which can be changed quite easily by following the "Intervals" link for any course on your home page. From there, you can reset each of the default intervals. The new interval will be calculated based on the success rate of your previous answers. 
+*Q. The intervals between each repetition feel too short or too long for me. How can I change them?*
+*A.* The intervals have a default setting, which can be changed quite easily by following the "Intervals" link for any course on your home page. From there, you can reset each of the default intervals. The new interval will be calculated based on the success rate of your previous answers. 
 
-q|Q. I have attempted to "Reset" The intervals between each repetition, but it is not making much difference. What else can I do?
-a|A. You can change the target success rate for a course, which by default is set at 90%. If you make the target rate higher, intervals will tend to become shorter; if you make the target lower, intervals will eventually lengthen. In this way, you will get a learning experience better matched to your needs.
+*Q. I have attempted to "Reset" The intervals between each repetition, but it is not making much difference. What else can I do?*
+*A.* You can change the target success rate for a course, which by default is set at 90%. If you make the target rate higher, intervals will tend to become shorter; if you make the target lower, intervals will eventually lengthen. In this way, you will get a learning experience better matched to your needs.
 
-q|Q. What can I do if I spot errors or omissions in some of the course materials? 
-a|A. Please follow the "Report an error" link on the lesson page. <span class="error">COMING SOON</span>
+*Q. What can I do if I spot errors or omissions in some of the course materials? *
+*A.* Please follow the "Report an error" link on the lesson page. <span class="error">COMING SOON</span>
 
-q|Q. Can I edit existing materials?
-a|A. You cannot edit materials that have not been created by you.
+*Q. Can I edit existing materials?*
+*A.* You cannot edit materials that have not been created by you.
 
-q|Q. How do I create my own course materials? 
-a|A. Just follow the <%= link_to 'Edit course materials', subjects_path %> link on your home page and select "New subject". Creating course materials is a bit more complicated than following an existing course. You will probably want to read the instructions first. <span class="error">COMING SOON</span>
+*Q. How do I create my own course materials? *
+*A.* Just follow the <%= link_to 'Edit course materials', subjects_path %> link on your home page and select "New subject". Creating course materials is a bit more complicated than following an existing course. You will probably want to read the instructions first. <span class="error">COMING SOON</span>
 
-q|Q. How can I share my own course materials with other people? 
-a|A. You can keep your course materials private, in which case they are only available to you, or you can make them public, in which case all other users will have access to them.
+*Q. How can I share my own course materials with other people? *
+*A.* You can keep your course materials private, in which case they are only available to you, or you can make them public, in which case all other users will have access to them.
 
-q|Q. What is the status of this site?
-a|A. As of May 2009, it is in public pre-beta. The emphasis in the first few weeks will be on building up and testing a variety of different sorts of learning materials, but we hope to make it easier for other people to start creating and sharing their own materials before the end of the summer.
+*Q. What is the status of this site?*
+*A.* As of May 2009, it is in public pre-beta. The emphasis in the first few weeks will be on building up and testing a variety of different sorts of learning materials, but we hope to make it easier for other people to start creating and sharing their own materials before the end of the summer.
 
-q|Q. Who maintains this site.
-a|A. It is owned and managed by |http://www.sofer.com/|Danny Sofer|. Thanks are also due to Izaak for his help in developing and testing the learning materials.
+*Q. Who maintains this site.*
+*A.* It is owned and managed by "Danny Sofer":http://www.sofer.com/. Thanks are also due to Izaak for his help in developing and testing the learning materials.
 
-q|Q. What is the technology behind this site?
-a|A. It is developed in |http://www.rubyonrails.com|Rails| with significant use of JavaScript and |http://www.jquery.com|JQuery|. Graphing is provided by |http://code.google.com/p/flot/|Flot|. Text-to-speech is achieved using the |http://code.google.com/p/outfox/|Outfox| Firefox extension combined with infovox voices from |http://www.acapela-group.com/|Acapela|. The code is source controlled at |http://www.github.com|GitHub| and hosted at |http://www.slicehost.com|SliceHost|.
+*Q. What is the technology behind this site?*
+*A.* It is developed in "Rails":http://www.rubyonrails.com with significant use of JavaScript and "JQuery":http://www.jquery.com. Graphing is provided by "Flot":http://code.google.com/p/flot/. Text-to-speech is achieved using the "Outfox":http://code.google.com/p/outfox/ Firefox extension combined with infovox voices from "Acapela":http://www.acapela-group.com/. The code is source controlled at "GitHub":http://www.github.com and hosted at "SliceHost":http://www.slicehost.com.
 
 
 

@@ -8,6 +8,10 @@ module ApplicationHelper
     return text
   end
 
+  def textilize(text)
+    RedCloth.new(text).to_html
+  end
+
   def interval_time(minutes)
     case
     when minutes == 0

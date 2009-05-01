@@ -6,4 +6,10 @@ class AboutController < ApplicationController
     end
   end
 
+  def voice
+    respond_to do |format|
+      format.html # voice.html.erb
+    end
+  end
+
 end

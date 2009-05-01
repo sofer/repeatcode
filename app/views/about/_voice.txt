@@ -1,0 +1,7 @@
+*Some courses* can make use of the text-to-voice capabilities of modern computers.
+
+Before enabling text-to-voice, you will need to install the relevant foreign language voices from "Acapela":http://www.acapela-group.com/. Trial versions are available for free download, but if you want to continue to use text-to-voice, you will need to pay Acapela's licence fee.
+
+You will also need to use the "Firefox":www.mozilla.com/firefox/ web browser and the  "outfox":https://addons.mozilla.org/en-US/firefox/addon/8283/ Add-on for Firefox. Outfox is still experimental and has not yet been tested by the Firefox editorial team. So, proceed with caution.
+
+If you are not sure about any of this, keep _Text to voice_ unchecked when editing your <%= link_to 'account details', '/account' %>.

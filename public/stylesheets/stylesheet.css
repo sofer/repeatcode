@@ -19,7 +19,7 @@ hr	{ height: 1px; border: 0; color: DodgerBlue; background-color: DodgerBlue; }
 #main	{ margin: 28px 4px 52px 4px; }
 .fixed #main	{ position: absolute; top: 28px; right: 0; bottom: 42px; left: 0; margin: 4px; }
 .signin	{ margin: 40px auto; width: 400px; }
-.main-height { height: 420px; }
+.fixed-height { height: 420px; }
 
 /* error id's */
 .fieldWithErrors	{ padding: 2px; background-color: red; display: table; }
@@ -131,8 +131,9 @@ textarea	{ width: 100%; height: 300px; }
 .clear	{ clear: both; }
 .faded	{ opacity: 0.2; }
 .copy	{ margin: 20px 80px; }
-.q	{ font-weight: bold; margin-bottom: 4px; }
-.a	{ margin-bottom: 20px; }
+.copy p { margin: 1em; }
+.q	{ font-weight: bold; margin: 0; }
+.a	{ margin: 0; }
 .a:first-letter	{ font-weight: bold; }
 
 
