@@ -35,7 +35,7 @@
 					<%= user.login %>
 			</div>
 			<div class="bold cell third">
-
+					<%= relative_date user.courses.last.updated_at if user.courses.last %>
 			</div>
 			<div class="cell third right">
 				<% form_for :manager, :url => organization_managers_path(@organization) do |f| %>

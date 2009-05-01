@@ -27,10 +27,16 @@
 	<h2>Users</h2>
 	<% for user in @users %>
 		<div class="row">
-			<div class="bold cell third">
+			<div class="bold cell sixth">
 					<%= user.login %>
 			</div>
-			<div class="bold cell third">
+			<div class="cell sixth">
+					(<%= user.uid %>)
+			</div>
+			<div class="cell sixth">
+					<%= relative_date user.courses.find(:last, :order => "updated_at").updated_at if user.courses.last %>
+			</div>
+			<div class="bold cell sixth">
 					<%= user.organization.name if user.organization %>
 			</div>
 			<div class="cell third right">
