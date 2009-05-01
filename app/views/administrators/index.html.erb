@@ -36,10 +36,10 @@
 			<div class="cell sixth">
 					<%= relative_date user.courses.find(:last, :order => "updated_at").updated_at if user.courses.last %>
 			</div>
-			<div class="bold cell sixth">
+			<div class="bold cell third">
 					<%= user.organization.name if user.organization %>
 			</div>
-			<div class="cell third right">
+			<div class="cell third sixth">
 				<% form_for :administrator, :url => { :action => "create" } do |f| %>
 					<%= f.hidden_field(:user_id, :value => user.id ) %>
 					<%= f.submit "Make administrator" %>
