@@ -27,14 +27,17 @@
 	<h2>Users</h2>
 	<% for user in @users %>
 		<div class="row">
-			<div class="bold cell sixth">
+			<div class="bold cell eighth">
 					<%= user.login %>
 			</div>
-			<div class="cell sixth">
+			<div class="cell eighth">
 					(<%= user.uid %>)
 			</div>
-			<div class="cell sixth">
-					<%= relative_date user.courses.find(:last, :order => "updated_at").updated_at if user.courses.last %>
+			<div class="cell eighth">
+					<%= relative_date user.updated_at %>
+			</div>
+			<div class="cell eighth">
+					<%= user.last_login %>
 			</div>
 			<div class="bold cell third">
 					<%= user.organization.name if user.organization %>
@@ -48,7 +51,7 @@
 		</div>
 	<% end %>
 
-	<div class="centre">
+	<div class="bottom-centre">
 		<%= will_paginate @users %>
 	</div>
 

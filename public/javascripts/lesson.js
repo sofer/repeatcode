@@ -69,15 +69,17 @@ RC.DOMnodes = {
 	tabs: '#tabs',
 	data_tab: '#data-tab',
 	code_tab: '#code-tab',
-	output_tab: '#output-tab'	
+	output_tab: '#output-tab',
+	outfox: '#outfox'	
 };
 
 RC.unicode_to_html_entity = function(phrase) {
 	return phrase.replace(/\\u(\d\d\d\d)/g, '&#x$1;');
 };
 
-// 25 Feb 2009: not yet using outfox yet, because of problem with non-ASCII characters
+// 25 Feb 2009: not using outfox yet, because of problem with non-ASCII characters
 // 5 Apr 2009: outfox 0.3.2 fixes the bug with non-ASCII. Switched to outfox.
+// 1 May 2009: Still got problems with non-ASCII. Added checking code for users
 RC.voices = {
 	
 	//voice_server_url: 'http://localhost:2000/' no longer using this
@@ -96,8 +98,10 @@ RC.voices = {
 	speak_response: false,
 
 	outfox_init: function() {
-		outfox.init("outfox", JSON.stringify, JSON.parse);
-    outfox.startService("audio").addCallback(this.onStart).addErrback(this.onFail);
+		if (RC.DOMnodes.outfox.length > 0) { //outfox 
+			outfox.init("outfox", JSON.stringify, JSON.parse);
+	    outfox.startService("audio").addCallback(this.onStart).addErrback(this.onFail);
+		}
 	},
 	
 	onStart: function () {
@@ -118,7 +122,7 @@ RC.voices = {
 			}
 			if (outfox.audio) {
 				outfox.audio.setProperty('voice', this.languages[lang]);
-				outfox.audio.say('poù dirmi dov\'è');
+				outfox.audio.say(phrase);
 				if (which === 'response') {
 					$(RC.DOMnodes.message_envelope).html(phrase);
 				}

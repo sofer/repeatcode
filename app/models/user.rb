@@ -41,7 +41,8 @@ class User < ActiveRecord::Base
   # HACK HACK HACK -- how to do attr_accessible from here?
   # prevents a user from submitting a crafted form that bypasses activation
   # anything else you want your user to change should be added here.
-  attr_accessible :login, :email, :name, :password, :password_confirmation
+  # Note added 1/5/09: OK. Just spotted this. And added :voice
+  attr_accessible :login, :email, :name, :password, :password_confirmation, :voice
 
 
 
@@ -57,7 +58,7 @@ class User < ActiveRecord::Base
   end
   
 private
-  
+
   # a unique 8-digit id for new accounts
   def assign_uid
     chars = ('a'..'z').to_a + ('A'..'Z').to_a + ('0'..'9').to_a
@@ -67,7 +68,6 @@ private
       uid += chars[i]
     }
     self.uid = uid
-    logger.error("Just created UID: #{self.uid}")
   end
   
 end

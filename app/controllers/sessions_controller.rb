@@ -19,10 +19,8 @@ class SessionsController < ApplicationController
       user = User.authenticate(params[:login], params[:password])
     end
     if user
-      # Protects against session fixation attacks, causes request forgery
-      # protection if user resubmits an earlier form using back
-      # button. Uncomment if you understand the tradeoffs.
-      # reset_session
+      user.last_login = request.remote_ip
+      user.save!
       self.current_user = user
       new_cookie_flag = (params[:remember_me] == "1")
       handle_remember_cookie! new_cookie_flag

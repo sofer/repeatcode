@@ -51,7 +51,7 @@
 					<%= student.login %>
 			</div>
 			<div class="cell sixth right">
-				<%= relative_date student.courses.find(:last, :order => "updated_at").updated_at if student.courses.last %>
+				<%= relative_date student.updated_at %>
 			</div>
 			<div class="cell sixth right">
 				<%= student.courses.count %>

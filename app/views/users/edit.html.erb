@@ -1,19 +1,39 @@
 <div id="header">
 	<h1 class="top-left pad">
-		Account details
-		<%= '&raquo; ' + @user.organization.name if @user.organization %>
+		<%= link_to 'Home', '/courses' %>
 		<%= '&raquo; ' + @user.login if @user.login %>
+		&raquo; Account details
 	</h1>
 </div>
 
 <div class="signin">
 
-	<% if (error_messages_for :user).blank? %>
-		<div class="big-space"> </div>
-	<% else %>
-		<%= error_messages_for :user %>
-	<% end %>
+	<br><br>
+
+	<div class="centre double-height">
+		Drag this link to your bookmark bar:
+		<br>
+		<%= link_to "RepeatCode login", '/u/' + current_user.uid , :class => 'box-text bold' %>
+		<br>
+		In order to login automatically next time.
+	</div>
+
+	<label>Your ID</label>
+	<div class="text"> <code><%= current_user.uid %></code> </div>
+	<div class="small centre clear">(Make a note of it and keep it safe.)</div>
+
+	<label>Logged in from</label>
+	<div class="text"> <code><%= current_user.last_login %></code> </div>
+	<div class="clear"> </div>
+
+	<label>Logged in at</label>
+	<div class="text"> <%= formatted_date_time current_user.updated_at %> </div>
+	<div class="clear"> </div>
+
+	<%= error_messages_for :user %>
+
 	<% form_for @user do |f| -%>
+
 	<!--
 		<label for="organization" class="bold">Organization</label>
 		<%= select_tag 'user[organization_id]',  options_for_select(Organization::LIST_FOR_FORM), { :prompt => 'Select Person'}  %>

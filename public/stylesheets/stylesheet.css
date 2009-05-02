@@ -93,6 +93,7 @@ input[type=text]	{ margin: 0; }
 .signin input[type=text], input[type=password], input[type=checkbox], select	{ width: 140px; height: 14px; margin: 6px; margin-right: 70px; }
 .signin input[type=checkbox]	{ margin: 10px 4px; }
 .signin input[type=submit]	{ margin: 12px 4px; }
+.signin .text	{ float: left; height: 14px; margin: 6px; padding-top: 4px; }
 .cell input[type=submit]	{ margin: -3px 0 0 0; }
 .exercise input { width: 95%; }
 textarea	{ width: 100%; height: 300px; }
@@ -132,9 +133,8 @@ textarea	{ width: 100%; height: 300px; }
 .faded	{ opacity: 0.2; }
 .copy	{ margin: 20px 80px; }
 .copy p { margin: 1em; }
-.q	{ font-weight: bold; margin: 0; }
-.a	{ margin: 0; }
-.a:first-letter	{ font-weight: bold; }
-
+.small { font-size: 13px; }
+.box-text { background-color: #ccc; color: Blue; text-decoration: none; padding: 4px; margin: 4px; border: 2px DodgerBlue solid; -moz-border-radius: 4px; -webkit-radius: 4px; }
+.double-height { line-height: 2em; }
 
 

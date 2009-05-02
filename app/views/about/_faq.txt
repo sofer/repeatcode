@@ -23,7 +23,7 @@
 *A.* Just select a <%= link_to 'new course', new_course_path %> from the several that are available.
 
 *Q. How do I return to a course that I have already started?*
-*A.* When you select a course for the first time, a new account is created automatically for you. If you want to continue to use this account, you should follow the <%= link_to "Autologin", "/about/autologin" %> link.
+*A.* When you select a course for the first time, a new account is created automatically for you. If you want to continue to use this account, you should follow the _save your details_ link.
 
 *Q. Once I have started a course, how often should I learn?*
 *A.* you can study as often and as long as you like, but you are likely to get most benefit from studying each course for twenty minutes or so daily. If you are not in a hurry, or if you are studying several courses simultaneously, you may want to study each course less frequently or for shorter periods of time. You can also study more intensively, although some of the benefits of combining the gradual introduction of new material with the spaced revision of old material will be lost if you attempt to cover too much material in too short a period of time.

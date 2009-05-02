@@ -6,6 +6,7 @@ class CoursesController < ApplicationController
   def login_required
      if params[:create_user] # hidden field in posted form. Create the user.
        user = User.new
+       user.last_login = request.remote_ip
        if user.save && user.errors.empty?
          self.current_user = user # !! now logged in
        else
