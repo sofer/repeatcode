@@ -2,7 +2,7 @@
 	<div class="bottom-left">
 		<% if current_user.login and not current_user.login.empty? %>
 			Logged in as: <%= current_user.login %>
-			&raquo; <%= link_to_unless_current "edit", '/account' %>
+			&raquo; <%= link_to_unless_current "Edit", '/account' %>
 		<% else %>
 			Logged in: 
 			<%= link_to_unless_current 'Save your details', '/account' %>
@@ -23,14 +23,14 @@
 			<%= link_to_unless_current 'Create', :controller => 'subjects', :action => 'index' %> | 
 		<% end %>
 		<%= link_to_unless_current 'About', :controller => 'about', :action => 'faq' %> |
-		<%= link_to_unless_current 'logout', '/logout'%>
+		<%= link_to_unless_current 'Logout', '/logout'%>
 	</div>
 <% else %>
 	<div class="bottom-left">
 		Not logged in
 	</div>
 	<div class="bottom-right">
-		<%= link_to_unless_current 'FAQ', '/about/faq' %> | 
-		<%= link_to_unless_current 'login', '/login' %>
+		<%= link_to_unless_current 'About', '/about/faq' %> | 
+		<%= link_to_unless_current 'Login', '/login' %>
 	</div>
 <% end %>

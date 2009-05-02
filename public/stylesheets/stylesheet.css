@@ -32,7 +32,10 @@ hr	{ height: 1px; border: 0; color: DodgerBlue; background-color: DodgerBlue; }
 #question	{ margin-top: 30px; text-align: center; line-height: 1.2;  font-size: 24px; }
 #response	{ position: absolute; bottom: 20px; left: 0; right: 0; text-align: center; font-size: 28px; line-height: 1.2; }
 #start, #completed, .big-notice	{ padding: 150px; text-align: center; font-size: 18px; }
-#response-field	{ width: 442px; font-size: 14px; }
+
+input#response-field, #xwrong	{ width: 442px; font-size: 24px; padding: 4px; border: 1px solid; xbackground-color: #c00; font-family: monospace; -moz-border-radius: 4px; -webkit-border-radius: 4px; }
+input#response-field:focus	{ background-color: LightYellow; }
+
 #response-message	{ position: absolute; bottom: 100px; left: 0; right: 0; color: LimeGreen; }
 .formula	{ float: left; height: 60px; }
 .maths	{ height: 80px; }
@@ -134,7 +137,7 @@ textarea	{ width: 100%; height: 300px; }
 .copy	{ margin: 20px 80px; }
 .copy p { margin: 1em; }
 .small { font-size: 13px; }
-.box-text { background-color: #ccc; color: Blue; text-decoration: none; padding: 4px; margin: 4px; border: 2px DodgerBlue solid; -moz-border-radius: 4px; -webkit-radius: 4px; }
+.box-text { background-color: #ccc; color: Blue; text-decoration: none; padding: 4px; margin: 4px; border: 2px DodgerBlue solid; -moz-border-radius: 4px; -webkit-border-radius: 4px; }
 .double-height { line-height: 2em; }
 
 
