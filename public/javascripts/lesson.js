@@ -90,6 +90,7 @@ RC.voices = {
 		'EN': 'com.apple.speech.synthesis.voice.Alex'
 	},
 	
+	installed: false,
 	speaking: false,
 	pending: [],
 	phrase_language: '',
@@ -98,14 +99,15 @@ RC.voices = {
 	speak_response: false,
 
 	outfox_init: function() {
-		if (RC.DOMnodes.outfox.length > 0) { //outfox 
+		if (typeof outfox === 'object') { // check to see if outfox file has been loaded
+			this.installed = true; 
 			outfox.init("outfox", JSON.stringify, JSON.parse);
 	    outfox.startService("audio").addCallback(this.onStart).addErrback(this.onFail);
 		}
 	},
 	
 	onStart: function () {
-		$(RC.DOMnodes.message_envelope).html('outfox OK');
+		$(RC.DOMnodes.message_envelope).html('Outfox is installed. You can use text-to-speech.');
 	},
 
 	onFail: function (cmd) {
@@ -113,7 +115,7 @@ RC.voices = {
 	},
 
 	outfox_queue: function (phrase, which) {
-		if (which === 'phrase' && this.speak_phrase ||
+		if (this.installed && which === 'phrase' && this.speak_phrase ||
 				which === 'response' && this.speak_response) {
 			if (which === 'phrase') {
 				var lang = this.phrase_language;

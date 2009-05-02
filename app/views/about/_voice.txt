@@ -1,3 +1,5 @@
+p(warning). *PLEASE NOTE:* there is a bug in outfox which means text-to-voice is unlikely to work properly.
+
 *Some courses* can make use of the text-to-voice capabilities of modern computers.
 
 Before enabling text-to-voice, you will need to install the relevant foreign language voices from "Acapela":http://www.acapela-group.com/. Trial versions are available for free download, but if you want to continue to use text-to-voice, you will need to pay Acapela's licence fee.

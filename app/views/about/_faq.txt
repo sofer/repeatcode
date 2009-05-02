@@ -44,7 +44,7 @@
 *A.* You cannot edit materials that have not been created by you.
 
 *Q. How do I create my own course materials? *
-*A.* Just follow the <%= link_to 'Edit course materials', subjects_path %> link on your home page and select "New subject". Creating course materials is a bit more complicated than following an existing course. You will probably want to read the instructions first. <span class="error">COMING SOON</span>
+*A.* Just follow the _Create_ link and select "New subject". Creating course materials is a bit more complicated than following an existing course. You will probably want to read the instructions first.
 
 *Q. How can I share my own course materials with other people? *
 *A.* You can keep your course materials private, in which case they are only available to you, or you can make them public, in which case all other users will have access to them.
