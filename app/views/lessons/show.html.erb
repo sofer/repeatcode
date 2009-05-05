@@ -49,50 +49,45 @@
 			<div class="clear"></div>
 		</div>
 
-		<div id="response">
-		
-			<div id="response-message" class="hidden">Correct</div>
+		<div id="response" class="hidden">
 
-			<div class="incorrect" id="wrong"></div>
+			<div id="response-message" class="hidden"> </div>
 
-			<div id="expected" class="hidden">
-				<div id="exercise-response"> </div>
+			<div id="translated"> </div>
 
-				<%= submit_tag "OK", :id => "try-now", :class => "space"%>
-			</div>
-		
-			<div id="attempt" class="hidden">
-				<div id="attempt-translated"> </div>
-				<form id="response-form">
-					<%= text_field_tag "response-field", nil, :autocomplete => "off" %>
-				</form>
-				<% unless @lesson.course.subject.extended_chars.blank? %>
-					<div class="palette" class="border">
-						<div id="extended-chars">
-							<%= palette @lesson.course.subject.extended_chars %>
-						</div>
-						<div class="bottom-right right checkbox">
-							<label>ignore accents</label>
-							<input type="checkbox" id="ignore-accents">
+			<div class="centre half">
+				<div id="attempt">
+					<form id="response-form">
+						<%= text_field_tag "response-field", nil, :autocomplete => "off" %> 
+					</form>
+					<div class="clear"> </div>
+				</div>
+				<div id="toolbar">
+					<%= submit_tag "OK", :id => "submit-button" %>
+					<div id="palettes">
+						<% unless @lesson.course.subject.extended_chars.blank? %>
+							<div id="language-palette" class="palette">
+								<div class="float-right checkbox">
+									<label>ignore accents</label>
+									<input type="checkbox" id="ignore-accents">
+								</div>
+								<div id="extended-chars">
+									<%= palette @lesson.course.subject.extended_chars %>
+								</div>
+							</div>
+						<% end %>
+						<div id="maths-palette" class="palette hidden">
+							<div class="symbol" value="^">x<sup>a</sup></div>
+							<div class="symbol" value="_">x<sub>a</sub></div>
+							<div class="symbol" value=";">end</div>
+							<div class="left">&nbsp;|&nbsp;</div> 
+							<div class="symbol" value="/">x/y</div>
+							<div class="symbol" value="\">end</div>
+							<div class="left">&nbsp;|&nbsp;</div> 
+							<div class="symbol" value="n$r=1 ">&Sigma;</div>
+							</div>
 						</div>
 					</div>
-				<% end %>
-				<div id="maths-palette" class="palette hidden">
-					<div class="button" value="%">&radic;</div>
-					<div class="button" value="^">x<sup>a</sup></div>
-					<div class="button" value="_">x<sub>a</sub></div>
-					<div class="button" value=";">end</div> | 
-					<div class="button" value="/">x/y</div>
-					<div class="button" value="\">end</div> | 
-					<div class="button" value="n$r=1 ">&Sigma;</div>
-				</div>
-			</div>
-			<div id="wrong-buttons" class="hidden">
-				<div class="left">
-					<%= submit_tag "Try again", :id => "try-again" %>
-				</div>
-				<div class="right">
-					<%= submit_tag "Show answer", :id => "show-answer" %>
 				</div>
 			</div>
 
@@ -139,7 +134,6 @@
 			<a href="" class="details-switch">Show details</a> 
 			<a href="" class="details-switch hidden">Hide details</a> 
 			| <%= link_to 'End lesson', courses_path %>
-			</div>
 		</div>
 	</div>
 

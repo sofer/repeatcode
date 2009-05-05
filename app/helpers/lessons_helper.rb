@@ -43,7 +43,7 @@ module LessonsHelper
   def palette(str)
     pal = ''
     str.each_char do |ch|
-      pal += "<div class=\"button\" value=\"#{ch}\">#{HTML_encode(ch)}</div>"
+      pal += "<div class=\"symbol\" value=\"#{ch}\">#{HTML_encode(ch)}</div>\n"
     end
     return pal
   end

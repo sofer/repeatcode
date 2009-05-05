@@ -28,20 +28,23 @@ hr	{ height: 1px; border: 0; color: DodgerBlue; background-color: DodgerBlue; }
 #errorExplanation p	{ color: #333; margin-bottom: 0; padding: 5px; }
 #errorExplanation ul li	{ font-size: 12px; }
 
-/* lesson id's */
+/* lesson id's and classes */
 #question	{ margin-top: 30px; text-align: center; line-height: 1.2;  font-size: 24px; }
-#response	{ position: absolute; bottom: 20px; left: 0; right: 0; text-align: center; font-size: 28px; line-height: 1.2; }
+#response	{ position: absolute; bottom: 0; left: 0; right: 0; text-align: center; font-size: 28px; line-height: 1.2; }
 #start, #completed, .big-notice	{ padding: 150px; text-align: center; font-size: 18px; }
-
-input#response-field, #xwrong	{ width: 442px; font-size: 24px; padding: 4px; border: 1px solid; xbackground-color: #c00; font-family: monospace; -moz-border-radius: 4px; -webkit-border-radius: 4px; }
+#toolbar { height: 32px; }
+input#response-field	{ width: 98%; height: 32px; font-size: 24px; padding-top: 8px; margin: 0 auto; }
+.response-mode	{ margin: 0 auto; font-family: monospace; border: 1px solid black; -moz-border-radius: 4px; -webkit-border-radius: 4px; }
+.answer-mode { border: none; text-align: center; padding-bottom: 10px; }
 input#response-field:focus	{ background-color: LightYellow; }
-
 #response-message	{ position: absolute; bottom: 100px; left: 0; right: 0; color: LimeGreen; }
 .formula	{ float: left; height: 60px; }
 .maths	{ height: 80px; }
 #graph	{ margin: 0 auto; width: 200px; height: 200px; }
-
 #course_target	{ text-align: right; width: 30px; height: 13px; font-size: 12px; }
+.palette	{ font-size: 14px; margin: 3px 0 0 8px; }
+.symbol	{ float: left; height: 20px; padding: 4px 6px 0 6px; border: 1px solid; margin: -4px -1px; background: LightCyan; cursor: pointer; }
+
 
 /* code */
 #tabs	{ position: absolute; left: 0; right: 0; padding-top: 0px; border-top: 1px solid DodgerBlue; }
@@ -109,6 +112,7 @@ textarea	{ width: 100%; height: 300px; }
 /* deal with left and right slightly differently, partly because of IE oddity */
 /* avoid floats inside absolutely positioned elements because of IE oddity */
 .left	{ float: left; }
+.float-right	{ float: right; }
 .right	{ text-align: right; } 
 .centre	{ margin: 0 auto; } 
 .bottom-left { position: absolute; bottom: 0; left: 0; }
@@ -117,8 +121,6 @@ textarea	{ width: 100%; height: 300px; }
 .top-left { position: absolute; top: 0; left: 0; }
 .top-right { position: absolute; top: 0; right: 0; }
 .pad { padding: 4px; }
-.palette	{ height: 24px; font-size: 14px; padding: 8px 0 0 0; }
-.button	{ display: inline; padding: 4px; border: 1px solid; margin: 0 -1px; background: LightCyan; cursor: pointer; }
 .border	{border: 1px dashed; }
 .hidden	{ display: none; } 
 .notice	{ color: green; }
