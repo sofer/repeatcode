@@ -19,6 +19,9 @@
 <%= f.label :archived %>
 <%= f.check_box :archived %>
 </p><p>
+<%= f.label :ignore_punctuation %>
+<%= f.check_box :ignore_punctuation %> [ , . ! ? - ]
+</p><p>
 <%= f.label "Non-standard characters" %>
 <%= f.text_field :extended_chars  %>
 </p>

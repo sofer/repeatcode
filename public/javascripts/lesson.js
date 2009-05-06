@@ -8,7 +8,7 @@ String.prototype.simplify = function () {
 };
 
 String.prototype.strip_accents = function () {
-	var str=this;
+	var str = this;
 	str=str.replace(/À|Á|Â|Ã|Ä|Å|à|á|â|ã|ä|å/ig,'a');
 	str=str.replace(/Ò|Ó|Ô|Õ|Ö|Ø|ò|ó|ô|õ|ö|ø/ig,'o');
 	str=str.replace(/È|É|Ê|Ë|è|é|ê|ë/ig,'e');
@@ -22,6 +22,13 @@ String.prototype.strip_accents = function () {
 
 String.prototype.strip_spaces = function () {
 	return this.replace(/\s/g, '').toLowerCase();
+};
+
+String.prototype.escape_brackets = function () {
+	var str = this;
+	str = str.replace(/</g, '&lt;');
+	str = str.replace(/>/g, '&gt;');
+	return str;
 };
 
 RC.centre = function(outer, inner) {
@@ -53,6 +60,7 @@ RC.augmentResponse = function(response_field) {
 };
 
 RC.DOMnodes = {
+	completed: '#completed',
 	content: '#content',
 	seconds: '#seconds',
 	elapsed_time: '#elapsed-time',
@@ -70,21 +78,20 @@ RC.DOMnodes = {
 	topic: '#topic',
 	question: '#question',
 	response: '#response',
-	completed: '#completed',
-	attempt: '#attempt',
-	unexpected: '#unexpected',
-	expected: '#expected',
-	correct: '#response-message',
-	submit_button: "#submit-button",
+	response_box: '#response-box',
+	expected_response_box: '#expected-response-box',
+	expected_response: '#expected-response',
+	submit_button: "#ok",
+	response_form: '#response-form',
+	response_field: '#response-field',
+	translated: '#translated',
+	response_message: '#response-message',
 	exercise_no: '#exercise-no',
 	question_no: '#question-no',
 	current_interval: '#current-interval',
 	backlog: '#backlog',
-	response_form: '#response-form',
-	response_field: '#response-field',
-	translated: '#translated',
 	graph: '#graph',
-	palettes: '#palettes',
+	//palettes: '#palettes',
 	maths_palette: '#maths-palette',
 	language_palette: '#language-palette',
 	days_til_next: '#days-til-next',
@@ -336,6 +343,7 @@ RC.formula = {
 
 
 	translate: function(str) {
+		str = str.escape_brackets();
 		str = str.replace(/\b\S+\$\S+\b/g, this.term_separator + '\$ $& ' + this.term_separator); // special case for Sigma
 		str = str.replace(/\b\S+C\S+\b/g, this.term_separator + 'C $&' + this.term_separator); // special case for combination
 		str = str.replace(/\b\S+I\S+\b/g, this.term_separator + 'I $&' + this.term_separator); // special case for integral
@@ -515,15 +523,15 @@ RC.question = {
 	
 	show_response_message: function(message) {
 		if (message) {
-			$(RC.DOMnodes.correct).text(message);
+			$(RC.DOMnodes.response_message).text(message);
 		} else if (this.data.correct === parseInt($(RC.DOMnodes.target).text())) {
-			$(RC.DOMnodes.correct).text("CONGRATULATIONS! Today's target reached");
+			$(RC.DOMnodes.response_message).text("CONGRATULATIONS! Today's target reached");
 		} else if (this.data.correct % 10 == 0) {
-			$(RC.DOMnodes.correct).text(this.data.correct + ' correct answers');
+			$(RC.DOMnodes.response_message).text(this.data.correct + ' correct answers');
 		} else {
-			$(RC.DOMnodes.correct).text("Correct");
+			$(RC.DOMnodes.response_message).text("Correct");
 		}
-		$(RC.DOMnodes.correct).show().fadeOut(1000);
+		$(RC.DOMnodes.response_message).show().fadeOut(1000);
 	},
 	
 	show_code: function() {
@@ -536,29 +544,26 @@ RC.question = {
 	},
 	
 	show_answer: function() {
-		$(RC.DOMnodes.palettes).hide();
-		$(RC.DOMnodes.response_field).removeClass('response-mode');
-		$(RC.DOMnodes.response_field).addClass('answer-mode');
+		$(RC.DOMnodes.response_box).hide();
+		$(RC.DOMnodes.expected_response_box).show();
+		$(RC.DOMnodes.response).val('');
 		if (this.is_formula(this.data.exercise.response)) {
 			var formula = this.strip_prefix(this.data.exercise.response);
-			$(RC.DOMnodes.response_field).val('( '+formula+' )');
+			$(RC.DOMnodes.expected_response).text('( '+formula+' )');
 			RC.formula.display(RC.DOMnodes.translated, formula);
 		} else {
-			$(RC.DOMnodes.response_field).val(this.data.exercise.response);
+			var response = this.both_versions(this.data.exercise.response);
+			$(RC.DOMnodes.expected_response).text(response);
 		}
-		$(RC.DOMnodes.response_field).attr("readonly", "readonly");
-		$(RC.DOMnodes.submit_button).show();
 		$(RC.DOMnodes.submit_button).focus();
 	},
 	
 	await_response: function() {
+		$(RC.DOMnodes.expected_response_box).hide();
+		$(RC.DOMnodes.response_box).show();
 		$(RC.DOMnodes.response_field).val('')
-		$(RC.DOMnodes.response_field).removeClass('answer-mode');
-		$(RC.DOMnodes.response_field).addClass('response-mode');
+		$(RC.DOMnodes.translated).val('');
 		$(RC.DOMnodes.response_field).focus();
-		$(RC.DOMnodes.response_field).removeAttr("readonly");
-		$(RC.DOMnodes.submit_button).hide();
-		$(RC.DOMnodes.palettes).show();
 	},
 	
 	try_again: function () {
@@ -583,7 +588,6 @@ RC.question = {
 		$(RC.DOMnodes.response).show();
 		$(RC.DOMnodes.graph).hide();
 		$(RC.DOMnodes.tabs).hide();
-		//$(RC.DOMnodes.response_field).val(this.strip_prefix(this.data.exercise.response)); //NEW
 		$(RC.DOMnodes.topic).html(this.data.topic.name);
 		this.update_stats();
 		this.hint(this.data.exercise.hint);
@@ -653,8 +657,13 @@ RC.question = {
 				match = true;
 			}
 		} else {
-			var expected_pattern = expected.simplify()
-			var response_pattern = response.simplify()
+			if (this.data.ignore_punctuation === true) {
+				var expected_pattern = expected.simplify();
+				var response_pattern = response.simplify();
+			} else {
+				var expected_pattern = expected.strip_spaces();
+				var response_pattern = response.strip_spaces();
+			}
 			if ($(RC.DOMnodes.ignore_accents_checkbox).is(':checked')) {
 				expected_pattern = expected_pattern.strip_accents();
 				response_pattern = response_pattern.strip_accents();

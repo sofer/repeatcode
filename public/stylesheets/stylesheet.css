@@ -33,14 +33,13 @@ hr	{ height: 1px; border: 0; color: DodgerBlue; background-color: DodgerBlue; }
 #response	{ position: absolute; bottom: 0; left: 0; right: 0; text-align: center; font-size: 28px; line-height: 1.2; }
 #start, #completed, .big-notice	{ padding: 150px; text-align: center; font-size: 18px; }
 #toolbar { height: 32px; }
-input#response-field	{ width: 98%; height: 32px; font-size: 24px; padding-top: 8px; margin: 0 auto; }
+input#response-field	{ width: 98%; height: 32px; font-size: 24px; padding-top: 8px; margin: 0 auto; font-family: monospace; border: 1px solid black; -moz-border-radius: 4px; -webkit-border-radius: 4px; }
 .response-mode	{ margin: 0 auto; font-family: monospace; border: 1px solid black; -moz-border-radius: 4px; -webkit-border-radius: 4px; }
-.answer-mode { border: none; text-align: center; padding-bottom: 10px; }
 input#response-field:focus	{ background-color: LightYellow; }
 #response-message	{ position: absolute; bottom: 100px; left: 0; right: 0; color: LimeGreen; }
 .formula	{ float: left; height: 60px; }
 .maths	{ height: 80px; }
-#graph	{ margin: 0 auto; width: 200px; height: 200px; }
+#graph	{ margin: 0 auto; width: 180px; height: 180px; }
 #course_target	{ text-align: right; width: 30px; height: 13px; font-size: 12px; }
 .palette	{ font-size: 14px; margin: 3px 0 0 8px; }
 .symbol	{ float: left; height: 20px; padding: 4px 6px 0 6px; border: 1px solid; margin: -4px -1px; background: LightCyan; cursor: pointer; }

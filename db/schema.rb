@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20090502104757) do
+ActiveRecord::Schema.define(:version => 20090506111842) do
 
   create_table "administrators", :force => true do |t|
     t.integer  "user_id"
@@ -139,6 +139,7 @@ ActiveRecord::Schema.define(:version => 20090502104757) do
     t.string   "extended_chars"
     t.string   "phrase_speech"
     t.string   "response_speech"
+    t.boolean  "ignore_punctuation", :default => true
   end
 
   create_table "subscriptions", :force => true do |t|

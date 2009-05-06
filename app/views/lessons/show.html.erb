@@ -51,42 +51,34 @@
 
 		<div id="response" class="hidden">
 
-			<div id="response-message" class="hidden"> </div>
+			<div id="response-message"> </div>
 
 			<div id="translated"> </div>
 
-			<div class="centre half">
-				<div id="attempt">
-					<form id="response-form">
-						<%= text_field_tag "response-field", nil, :autocomplete => "off" %> 
-					</form>
-					<div class="clear"> </div>
-				</div>
+			<div id="expected-response-box">
+				<div id="expected-response"> </div>
+				<%= submit_tag "OK", :id => "ok", :class => "space" %>
+			</div>
+
+			<div id="response-box" class="centre half">
+				<form id="response-form">
+					<%= text_field_tag "response-field", nil, :autocomplete => "off" %> 
+				</form>
+				<div class="clear"> </div>
 				<div id="toolbar">
-					<%= submit_tag "OK", :id => "submit-button" %>
 					<div id="palettes">
 						<% unless @lesson.course.subject.extended_chars.blank? %>
-							<div id="language-palette" class="palette">
-								<div class="float-right checkbox">
-									<label>ignore accents</label>
-									<input type="checkbox" id="ignore-accents">
-								</div>
-								<div id="extended-chars">
-									<%= palette @lesson.course.subject.extended_chars %>
-								</div>
+						<div id="language-palette" class="palette">
+							<div class="float-right checkbox">
+								<label>ignore accents</label>
+								<input type="checkbox" id="ignore-accents">
 							</div>
-						<% end %>
-						<div id="maths-palette" class="palette hidden">
-							<div class="symbol" value="^">x<sup>a</sup></div>
-							<div class="symbol" value="_">x<sub>a</sub></div>
-							<div class="symbol" value=";">end</div>
-							<div class="left">&nbsp;|&nbsp;</div> 
-							<div class="symbol" value="/">x/y</div>
-							<div class="symbol" value="\">end</div>
-							<div class="left">&nbsp;|&nbsp;</div> 
-							<div class="symbol" value="n$r=1 ">&Sigma;</div>
+							<div id="extended-chars">
+								<%= palette @lesson.course.subject.extended_chars %>
 							</div>
 						</div>
+						<% end %>
+						<%= render :partial => 'maths_palette' %>
 					</div>
 				</div>
 			</div>
