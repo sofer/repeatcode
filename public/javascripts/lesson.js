@@ -794,13 +794,14 @@ $(document).ready(function(){
 	});
 	
 	$(RC.DOMnodes.details_switch).click(function() {
-		$(RC.DOMnodes.details_switch).toggle()
-		$(RC.DOMnodes.details).toggle()
+		$(RC.DOMnodes.details_switch).toggle();
+		$(RC.DOMnodes.details).toggle();
+		$(RC.DOMnodes.response_field).focus();
 		return false;
 	});
 
 	$(RC.DOMnodes.ignore_accents_checkbox).click(function() {
-		$(RC.DOMnodes.extended_chars).toggle()
+		$(RC.DOMnodes.extended_chars).toggle();
 	});
 
 });
