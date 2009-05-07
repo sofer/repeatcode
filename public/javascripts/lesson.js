@@ -664,7 +664,7 @@ RC.question = {
 				match = true;
 			}
 		} else {
-			if (this.data.ignore_punctuation === true) {
+			if (this.data.topic.ignore_punctuation === true) {
 				var expected_pattern = expected.simplify();
 				var response_pattern = response.simplify();
 			} else {
