@@ -4,7 +4,7 @@
 	</h1>
 	<h2 class="top-right pad">
 		<% form_for(@organization) do |f| %>
-			<%= f.text_field :name %>
+			<%= f.text_field :name, :autocomplete => "off"  %>
 	 		<%= f.submit "Create new" %>
 			<% end %>
 	</h2>

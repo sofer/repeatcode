@@ -2,7 +2,7 @@
 <%= f.error_messages %>
 </p><p>
 <%= f.label :name %>
-<%= f.text_field :name %>
+<%= f.text_field :name, :autocomplete => "off"  %>
 </p><p>
 <%= f.label :area_id %>
 <%= f.select(:area_id, Subject::AREAS_FOR_FORM) %>
@@ -23,5 +23,5 @@
 <%= f.check_box :ignore_punctuation %> [ , . ! ? - ]
 </p><p>
 <%= f.label "Non-standard characters" %>
-<%= f.text_field :extended_chars  %>
+<%= f.text_field :extended_chars, :autocomplete => "off"   %>
 </p>

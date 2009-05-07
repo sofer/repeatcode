@@ -105,11 +105,11 @@
 				</div>
 				<div class="cell third right">
 					Correct responses each lesson:  
-					<%= f.text_field :lesson_target %> 
+					<%= f.text_field :lesson_target, :autocomplete => "off"  %> 
 				</div>
 				<div class="cell third right">
 					Lessons per week: 
-					<%= f.text_field :weekly_target %> 
+					<%= f.text_field :weekly_target, :autocomplete => "off"  %> 
 				</div>
 				<div class="cell sixth right">
 					<%= f.submit "Update targets" %>

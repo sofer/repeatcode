@@ -1,16 +1,16 @@
 <div class="row exercise">
   <% fields_for_exercise(new_exercise) do |exercise_form| %>
 		<div class="phrase cell quarter">
-			<%= exercise_form.text_field :phrase %>
+			<%= exercise_form.text_field :phrase, :autocomplete => "off"  %>
 		</div>
 		<div class="response cell quarter">
-			<%= exercise_form.text_field :response %>
+			<%= exercise_form.text_field :response, :autocomplete => "off"  %>
 		</div>
 		<div class="hint cell fifth">
-			<%= exercise_form.text_field :hint %>
+			<%= exercise_form.text_field :hint, :autocomplete => "off"  %>
 		</div>
 		<div class="insert cell fifth">
-			<%= exercise_form.text_field :insert %>
+			<%= exercise_form.text_field :insert, :autocomplete => "off"  %>
 		</div>
 	<% end %>
 </div>

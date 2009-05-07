@@ -17,7 +17,7 @@
 			<div class="bold cell fifth right targets">
 				<% form_for @course do |f| %>
 				Target: 
-				<%= f.text_field :accuracy_target %>
+				<%= f.text_field :accuracy_target, :autocomplete => "off"  %>
 				%
 				<%= f.submit "Change" %>
 				<% end %>
