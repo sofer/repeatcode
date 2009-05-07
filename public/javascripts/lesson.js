@@ -32,9 +32,9 @@ String.prototype.escape_brackets = function () {
 
 String.prototype.markup = function () {
 	var str=this;
-	str  = str.replace(/@(\S[^@]+\S)@/g, '<code>$1</code>');
-	str  = str.replace(/\*(\S[^*]+\S)\*/g, '<strong>$1</strong>');
-	str  = str.replace(/_(\S[^_]+\S)_/g, '<emphasis>$1</emphasis>');
+	str  = str.replace(/@\b([^@]+)\b@/g, '<code>$1</code>');
+	str  = str.replace(/\*\b([^*]+)\b\*/g, '<strong>$1</strong>');
+	str  = str.replace(/\b_([^_]+)_\b/g, '<em>$1</em>');
 	return str;
 };
 
