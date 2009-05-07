@@ -39,7 +39,7 @@
 		
 		<div id="graph" class="hidden"> </div>
 	
-		<div id="tabs" class="hidden">
+		<div id="code-block" class="hidden">
 			<div id="data-tab" class="data tab border">
 			</div>
 			<div id="code-tab" class="code tab border">
@@ -55,12 +55,12 @@
 
 			<div id="translated"> </div>
 
-			<div id="expected-response-box">
+			<div id="expected-response-block">
 				<div id="expected-response"> </div>
 				<%= submit_tag "OK", :id => "ok", :class => "space" %>
 			</div>
 
-			<div id="response-box" class="centre half">
+			<div id="response-block" class="centre half">
 				<form id="response-form">
 					<%= text_field_tag "response-field", nil, :autocomplete => "off" %> 
 				</form>

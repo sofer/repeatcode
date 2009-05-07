@@ -37,20 +37,18 @@ input#response-field	{ width: 98%; height: 32px; font-size: 24px; padding-top: 8
 .response-mode	{ margin: 0 auto; font-family: monospace; border: 1px solid black; -moz-border-radius: 4px; -webkit-border-radius: 4px; }
 input#response-field:focus	{ background-color: LightYellow; }
 #response-message	{ position: absolute; bottom: 100px; left: 0; right: 0; color: LimeGreen; }
-.formula	{ float: left; height: 60px; }
-.maths	{ height: 80px; }
 #graph	{ margin: 0 auto; width: 180px; height: 180px; }
 #course_target	{ text-align: right; width: 30px; height: 13px; font-size: 12px; }
+.formula	{ float: left; height: 60px; }
+.maths	{ height: 80px; }
 .palette	{ font-size: 14px; margin: 3px 0 0 8px; }
 .symbol	{ float: left; height: 20px; padding: 4px 6px 0 6px; border: 1px solid; margin: -4px -1px; background: LightCyan; cursor: pointer; }
 
-
 /* code */
-#tabs	{ position: absolute; left: 0; right: 0; padding-top: 0px; border-top: 1px solid DodgerBlue; }
+#code-block	{ position: absolute; left: 0; right: 0; padding-top: 0px; border-top: 1px solid DodgerBlue; }
 .tab	{ float: left; width: 33%; height: 240px; }
 .data, .code	{ white-space: pre; font-family: monospace; overflow: auto; }
 .output	{  }
-
 
 /* maths */
 .sup	{ vertical-align: 50%; font-size: 16px; }

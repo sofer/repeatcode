@@ -3,8 +3,7 @@
 var RC = {};
 
 String.prototype.simplify = function () {
-	var str=this;
-	return str.replace(/[\s,.!?\-\\']/g, '').toLowerCase();
+	return this.replace(/[\s,.!?\-\\']/g, '').toLowerCase();
 };
 
 String.prototype.strip_accents = function () {
@@ -28,6 +27,14 @@ String.prototype.escape_brackets = function () {
 	var str = this;
 	str = str.replace(/</g, '&lt;');
 	str = str.replace(/>/g, '&gt;');
+	return str;
+};
+
+String.prototype.markup = function () {
+	var str=this;
+	str  = str.replace(/@(\S[^@]+\S)@/g, '<code>$1</code>');
+	str  = str.replace(/\*(\S[^*]+\S)\*/g, '<strong>$1</strong>');
+	str  = str.replace(/_(\S[^_]+\S)_/g, '<emphasis>$1</emphasis>');
 	return str;
 };
 
@@ -78,8 +85,8 @@ RC.DOMnodes = {
 	topic: '#topic',
 	question: '#question',
 	response: '#response',
-	response_box: '#response-box',
-	expected_response_box: '#expected-response-box',
+	response_block: '#response-block',
+	expected_response_block: '#expected-response-block',
 	expected_response: '#expected-response',
 	submit_button: "#ok",
 	response_form: '#response-form',
@@ -544,8 +551,8 @@ RC.question = {
 	},
 	
 	show_answer: function() {
-		$(RC.DOMnodes.response_box).hide();
-		$(RC.DOMnodes.expected_response_box).show();
+		$(RC.DOMnodes.response_block).hide();
+		$(RC.DOMnodes.expected_response_block).show();
 		$(RC.DOMnodes.response).val('');
 		if (this.is_formula(this.data.exercise.response)) {
 			var formula = this.strip_prefix(this.data.exercise.response);
@@ -559,8 +566,8 @@ RC.question = {
 	},
 	
 	await_response: function() {
-		$(RC.DOMnodes.expected_response_box).hide();
-		$(RC.DOMnodes.response_box).show();
+		$(RC.DOMnodes.expected_response_block).hide();
+		$(RC.DOMnodes.response_block).show();
 		$(RC.DOMnodes.response_field).val('')
 		$(RC.DOMnodes.translated).val('');
 		$(RC.DOMnodes.response_field).focus();
@@ -595,7 +602,7 @@ RC.question = {
 			RC.formula.display(RC.DOMnodes.question, this.strip_prefix(this.data.exercise.phrase));
 		} else {
 			this.show_code();
-			var phrase = this.both_versions(this.data.exercise.phrase);
+			var phrase = this.both_versions(this.data.exercise.phrase).markup();
 			$(RC.DOMnodes.question).html(phrase);
 			RC.voices.outfox_queue(phrase, 'phrase');
 		}
