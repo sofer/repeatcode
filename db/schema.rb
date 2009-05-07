@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20090506111842) do
+ActiveRecord::Schema.define(:version => 20090507121954) do
 
   create_table "administrators", :force => true do |t|
     t.integer  "user_id"
@@ -158,6 +158,7 @@ ActiveRecord::Schema.define(:version => 20090506111842) do
     t.text     "code"
     t.text     "data"
     t.boolean  "add_together"
+    t.boolean  "ignore_punctuation", :default => true
   end
 
   create_table "tuitions", :force => true do |t|

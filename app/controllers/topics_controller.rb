@@ -29,6 +29,7 @@ class TopicsController < ApplicationController
   # GET /topics/new.xml
   def new
     @topic = Topic.new
+    @topic.ignore_punctuation = @subject.ignore_punctuation
 
     respond_to do |format|
       format.html # new.html.erb
