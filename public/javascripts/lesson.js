@@ -137,7 +137,8 @@ RC.voices = {
 	speak_response: false,
 
 	outfox_init: function() {
-		if (typeof outfox === 'object') { // check to see if outfox file has been loaded
+		var isFirefox = ( navigator.userAgent != null &&  navigator.userAgent.indexOf( "Firefox/" ) != -1 );
+		if (isFirefox && typeof outfox === 'object') { // check to see if outfox file has been loaded
 			this.installed = true; 
 			outfox.init("outfox", JSON.stringify, JSON.parse);
 	    outfox.startService("audio").addCallback(this.onStart).addErrback(this.onFail);

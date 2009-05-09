@@ -11,10 +11,13 @@
 </div>
 
 <div id="main">
+	<div class="pad">
 	<% form_for	@topic,
 							:html => { :method => :put } do |f| %>
 		<%= render :partial => "form", :locals => {:f => f } %>
 	<% end %>
+	</div>
+
 	<div id="list-template" style="display:none">
 		<%= render :partial => "new_exercise", :object => Exercise.new %>
 	</div>

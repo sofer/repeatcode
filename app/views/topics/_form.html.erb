@@ -1,14 +1,17 @@
 
 <%= f.error_messages %>
 
-<br>
-
 <%= f.label :name %>
 <%= f.text_field :name, :class => 'focus', :autocomplete => "off"  %><br>
 <%= f.label :ignore_punctuation %>
 <%= f.check_box :ignore_punctuation %><br>
 <%= f.label :add_together %>
 <%= f.check_box :add_together %><br>
+
+<div class="pad">
+	<%= content_tag 'div', h(flash[:notice]), :class => 'notice', :id => 'notice' if flash[:notice] %>
+	<%= content_tag 'div', h(flash[:error]), :class => 'error', :id => 'error' if flash[:error] %>
+</div>
 
 <hr>
 
