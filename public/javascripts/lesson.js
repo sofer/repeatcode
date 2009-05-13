@@ -6,7 +6,7 @@ String.prototype.simplify = function () {
 	return this.replace(/[\s,.!?\-\\']/g, '').toLowerCase();
 };
 
-String.prototype.strip_accents = function () {
+String.prototype.stripAccents = function () {
 	var str = this;
 	str=str.replace(/À|Á|Â|Ã|Ä|Å|à|á|â|ã|ä|å/ig,'a');
 	str=str.replace(/Ò|Ó|Ô|Õ|Ö|Ø|ò|ó|ô|õ|ö|ø/ig,'o');
@@ -19,11 +19,18 @@ String.prototype.strip_accents = function () {
 	return str;
 };
 
-String.prototype.strip_spaces = function () {
+String.prototype.stripSpaces = function () {
 	return this.replace(/\s/g, '').toLowerCase();
 };
 
-String.prototype.escape_brackets = function () {
+String.prototype.replaceSymbols = function () {
+	var str = this;
+	str = str.replace(/(\d)\s*x\s*(\d)/g, '$1 &times; $2');
+	return str;
+};
+
+
+String.prototype.escapeBrackets = function () {
 	var str = this;
 	str = str.replace(/</g, '&lt;');
 	str = str.replace(/>/g, '&gt;');
@@ -32,11 +39,15 @@ String.prototype.escape_brackets = function () {
 
 String.prototype.markup = function () {
 	var str=this;
-	str  = str.replace(/@\b([^@]+)\b@/g, '<code>$1</code>');
-	str  = str.replace(/\*\b([^*]+)\b\*/g, '<strong>$1</strong>');
-	str  = str.replace(/\b_([^_]+)_\b/g, '<em>$1</em>');
+	str  = str.replace(/@([^@]+)@/g, '<code>$1</code>');
+	str  = str.replace(/\*([^*]+)\*/g, '<strong>$1</strong>');
+	str  = str.replace(/_([^_]+)_/g, '<em>$1</em>');
 	return str;
 };
+
+String.prototype.reverse = function () {
+	return this.split('').reverse().join('')
+}; 
 
 RC.centre = function(outer, inner) {
 	var offset = $(outer).width()/2 - $(inner).width()/2;
@@ -58,60 +69,52 @@ $.fn.shiftCaret = function (pos) {
 	});
 };
 
-RC.augmentResponse = function(response_field) {
-	var last_char = $(response_field).val().slice(-1);
-	if (RC.parens[last_char]) {
-		$(response_field).val($(response_field).val()+RC.parens[last_char]);
-		$(response_field).shiftCaret(-1);
-	}
-};
-
 RC.DOMnodes = {
 	completed: '#completed',
 	content: '#content',
 	seconds: '#seconds',
-	elapsed_time: '#elapsed-time',
-	correct_responses: '#correct-responses',
+	elapsedTime: '#elapsed-time',
+	correctResponses: '#correct-responses',
 	target: '#target',
 	details: '#details',
-	details_switch: '.details-switch',
-	extended_chars: '#extended-chars',
-	ignore_accents_checkbox: '#ignore-accents',
-	speak_phrases_checkbox: '#speak-phrases',
-	speak_responses_checkbox: '#speak-responses',
+	detailsSwitch: '.details-switch',
+	extendedChars: '#extended-chars',
+	ignoreAccentsCheckbox: '#ignore-accents',
+	speakPhrasesCheckbox: '#speak-phrases',
+	speakResponsesCheckbox: '#speak-responses',
 	timeout: '#timeout',
 	start: '#start',
 	loading: '#loading',
 	topic: '#topic',
 	question: '#question',
 	response: '#response',
-	response_block: '#response-block',
-	expected_response_block: '#expected-response-block',
-	expected_response: '#expected-response',
-	submit_button: "#ok",
-	response_form: '#response-form',
-	response_field: '#response-field',
+	responseBlock: '#response-block',
+	expectedResponseBlock: '#expected-response-block',
+	expectedResponse: '#expected-response',
+	submitButton: "#ok",
+	responseForm: '#response-form',
+	responseField: '#response-field',
 	translated: '#translated',
-	response_message: '#response-message',
-	exercise_no: '#exercise-no',
-	question_no: '#question-no',
-	current_interval: '#current-interval',
+	responseMessage: '#response-message',
+	exerciseNo: '#exercise-no',
+	questionNo: '#question-no',
+	currentInterval: '#current-interval',
 	backlog: '#backlog',
 	graph: '#graph',
 	//palettes: '#palettes',
-	maths_palette: '#maths-palette',
-	language_palette: '#language-palette',
-	days_til_next: '#days-til-next',
+	mathsPalette: '#maths-palette',
+	languagePalette: '#language-palette',
+	daysTilNext: '#days-til-next',
 	symbol: '.symbol',
-	message_envelope: '#message-envelope',
+	messageEnvelope: '#message-envelope',
 	tabs: '#tabs',
-	data_tab: '#data-tab',
-	code_tab: '#code-tab',
-	output_tab: '#output-tab',
+	dataTab: '#data-tab',
+	codeTab: '#code-tab',
+	outputTab: '#output-tab',
 	outfox: '#outfox'	
 };
 
-RC.unicode_to_html_entity = function(phrase) {
+RC.unicodeToHtmlEntity = function(phrase) {
 	return phrase.replace(/\\u(\d\d\d\d)/g, '&#x$1;');
 };
 
@@ -120,7 +123,7 @@ RC.unicode_to_html_entity = function(phrase) {
 // 1 May 2009: Still got problems with non-ASCII. Added checking code for users
 RC.voices = {
 	
-	//voice_server_url: 'http://localhost:2000/' no longer using this
+	//voiceServerUrl: 'http://localhost:2000/' no longer using this
 
 	languages: {
 		'FR': 'com.acapela.iVox.voice.iVoxJulie22k',
@@ -131,12 +134,12 @@ RC.voices = {
 	installed: false,
 	speaking: false,
 	pending: [],
-	phrase_language: '',
-	response_language: '',	
-	speak_phrase: false,
-	speak_response: false,
+	phraseLanguage: '',
+	responseLanguage: '',	
+	speakPhrase: false,
+	speakResponse: false,
 
-	outfox_init: function() {
+	outfoxInit: function() {
 		var isFirefox = ( navigator.userAgent != null &&  navigator.userAgent.indexOf( "Firefox/" ) != -1 );
 		if (isFirefox && typeof outfox === 'object') { // check to see if outfox file has been loaded
 			this.installed = true; 
@@ -146,29 +149,29 @@ RC.voices = {
 	},
 	
 	onStart: function () {
-		$(RC.DOMnodes.message_envelope).html('Outfox is installed. You can use text-to-speech.');
+		$(RC.DOMnodes.messageEnvelope).html('Outfox is installed. You can use text-to-speech.');
 	},
 
 	onFail: function (cmd) {
-		$(RC.DOMnodes.message_envelope).html(cmd.description);
+		$(RC.DOMnodes.messageEnvelope).html(cmd.description);
 	},
 
-	outfox_queue: function (phrase, which) {
-		if (this.installed && which === 'phrase' && this.speak_phrase ||
-				which === 'response' && this.speak_response) {
+	outfoxQueue: function (phrase, which) {
+		if (this.installed && which === 'phrase' && this.speakPhrase ||
+				which === 'response' && this.speakResponse) {
 			if (which === 'phrase') {
-				var lang = this.phrase_language;
+				var lang = this.phraseLanguage;
 			} else {
-				var lang = this.response_language;
+				var lang = this.responseLanguage;
 			}
 			if (outfox.audio) {
 				outfox.audio.setProperty('voice', this.languages[lang]);
 				outfox.audio.say(phrase);
 				if (which === 'response') {
-					$(RC.DOMnodes.message_envelope).html(phrase);
+					$(RC.DOMnodes.messageEnvelope).html(phrase);
 				}
 			} else {
-				$(RC.DOMnodes.message_envelope).html('outfox: something went wrong...');
+				$(RC.DOMnodes.messageEnvelope).html('outfox: something went wrong...');
 			}
 		}
 	},
@@ -177,18 +180,18 @@ RC.voices = {
 	// old-style. No longer in use.
 	speak: function(phrase, lang) {
 		var that = this;
-		$(RC.DOMnodes.message_envelope).html('speaking...');
+		$(RC.DOMnodes.messageEnvelope).html('speaking...');
 		this.speaking = true;
 		$.ajax({
 			//async: false,
-			url: that.voice_server_url,
+			url: that.voiceServerUrl,
 			data: { 'lang': lang, 'phrase': phrase },
 			dataType: 'jsonp',
 			error: function () {
-				$(RC.DOMnodes.message_envelope).html('Failed to access voices on your computer.');
+				$(RC.DOMnodes.messageEnvelope).html('Failed to access voices on your computer.');
 			},
 			success: function () {
-				$(RC.DOMnodes.message_envelope).html('');
+				$(RC.DOMnodes.messageEnvelope).html('');
 			},
 			complete: function() {
 				that.speaking = false;
@@ -202,16 +205,16 @@ RC.voices = {
 	
 	// old-style. No longer in use.
 	queue: function(phrase, which) {
-		if (which === 'phrase' && this.speak_phrase ||
-				which === 'response' && this.speak_response) {
+		if (which === 'phrase' && this.speakPhrase ||
+				which === 'response' && this.speakResponse) {
 			if (which === 'phrase') {
-				var lang = this.phrase_language;
+				var lang = this.phraseLanguage;
 			} else {
-				var lang = this.response_language;
+				var lang = this.responseLanguage;
 			}
 			if (this.speaking) {
 				this.pending.push([phrase,lang])
-				$(RC.DOMnodes.message_envelope).html('queuing speech...');
+				$(RC.DOMnodes.messageEnvelope).html('queuing speech...');
 			} else {
 				this.speak(phrase,lang)
 			}
@@ -224,65 +227,65 @@ RC.voices = {
 RC.timer = {
 
 	timeout: 120,
-	seconds_to_timeout: 120,
-	question_seconds: 0,
-	lesson_seconds: 0,
-	timed_out: false,
+	secondsToTimeout: 120,
+	questionSeconds: 0,
+	lessonSeconds: 0,
+	timedOut: false,
 	
 	tick: function () {
-		RC.timer.increment_seconds(); //apparently, 'this' won't work from inside a setInterval call
+		RC.timer.incrementSeconds(); //apparently, 'this' won't work from inside a setInterval call
 	},  
 	
-	update_question_seconds: function () {
-		$(RC.DOMnodes.seconds).text(this.question_seconds);
+	updateQuestionSeconds: function () {
+		$(RC.DOMnodes.seconds).text(this.questionSeconds);
 	},
 	
-	update_lesson_minutes: function () {
-		var minutes =(this.lesson_seconds - this.lesson_seconds % 60) / 60;
-		$(RC.DOMnodes.elapsed_time).text(minutes);
+	updateLessonMinutes: function () {
+		var minutes =(this.lessonSeconds - this.lessonSeconds % 60) / 60;
+		$(RC.DOMnodes.elapsedTime).text(minutes);
 	},
 
-	increment_seconds: function () {
-		if (!this.timed_out) {
-		  this.lesson_seconds += 1;
-		  this.question_seconds += 1;
-			this.seconds_to_timeout -= 1;
-			if (this.seconds_to_timeout === 0) {
-				this.question_seconds = this.question_seconds - this.timeout;
-				this.timeout_box();
+	incrementSeconds: function () {
+		if (!this.timedOut) {
+		  this.lessonSeconds += 1;
+		  this.questionSeconds += 1;
+			this.secondsToTimeout -= 1;
+			if (this.secondsToTimeout === 0) {
+				this.questionSeconds = this.questionSeconds - this.timeout;
+				this.timeoutBox();
 			}
-			this.update_question_seconds();
-			this.update_lesson_minutes();
+			this.updateQuestionSeconds();
+			this.updateLessonMinutes();
 		}
 	},
 
-	reset_timeout: function () {
-		this.seconds_to_timeout = this.timeout;
+	resetTimeout: function () {
+		this.secondsToTimeout = this.timeout;
 	},
 	
-	reset_seconds: function () {
-		this.question_seconds = 0;
+	resetSeconds: function () {
+		this.questionSeconds = 0;
 	},
 
-	timeout_box: function () {
+	timeoutBox: function () {
 			$(RC.DOMnodes.timeout).slideDown('slow');
 			$(RC.DOMnodes.content).addClass('faded');
 			$(RC.DOMnodes.timeout).focus();
-			this.seconds_to_timeout = this.timeout;
-			this.timed_out = true;
+			this.secondsToTimeout = this.timeout;
+			this.timedOut = true;
 	},
 	
-	end_timeout: function () {
-		this.timed_out = false;
+	endTimeout: function () {
+		this.timedOut = false;
 	}
 
 };
 
 RC.formula = {
 	
-	close_char: ';',
-	term_separator: '\\',
-	html_entity_start: '&',
+	closeChar: ';',
+	termSeparator: '\\',
+	htmlEntityStart: '&',
 	denominator: '/',
 	space: ' ',
 	sum: '$',
@@ -292,21 +295,21 @@ RC.formula = {
 	spancount: 0,
 	
 	keys: {
-		'^' : { char: '', css_class: 'sup' },
-		'_' : { char: '', css_class: 'sub' },
-		'√' : { char: '&radic;', css_class: 'radical' },
-		'%' : { char: '&radic;', css_class: 'radical' }
+		'^' : { char: '', cssClass: 'sup' },
+		'_' : { char: '', cssClass: 'sub' },
+		'√' : { char: '&radic;', cssClass: 'radical' },
+		'%' : { char: '&radic;', cssClass: 'radical' }
 	},
 	
 	term: function(str) {
 		if (str) {
 			var car = str.charAt(0);
 			var cdr = str.slice(1);
-			if (car === this.html_entity_start) { //special case for HTML entities
+			if (car === this.htmlEntityStart) { //special case for HTML entities
 				var pattern = /^([^\s;]+;)(.*)/;
 				var result = cdr.match(pattern);
 				if (result) {
-					return this.html_entity_start + result[1] + this.term(result[2]);
+					return this.htmlEntityStart + result[1] + this.term(result[2]);
 				}
 			}
 			if (car === this.sum) { //special case for sums
@@ -330,7 +333,7 @@ RC.formula = {
 					return '<span class="n">' + result[1] + '</span><span class="sigma">&int;</span><span class="r">' + result[2] + '</span>'
 				}
 			}
-			if (car === this.close_char) {
+			if (car === this.closeChar) {
 				this.spancount -= 1;
 				return '</span>' + this.term(cdr);
 			}
@@ -341,7 +344,7 @@ RC.formula = {
 			}
 			if (this.keys[car]) {
 					this.spancount += 1;
-					return this.keys[car].char + '<span class="'+this.keys[car].css_class + '">' + this.term(cdr);
+					return this.keys[car].char + '<span class="'+this.keys[car].cssClass + '">' + this.term(cdr);
 			}
 			return car + this.term(cdr);
 		} else {
@@ -351,21 +354,21 @@ RC.formula = {
 
 
 	translate: function(str) {
-		str = str.escape_brackets();
-		str = str.replace(/\b\S+\$\S+\b/g, this.term_separator + '\$ $& ' + this.term_separator); // special case for Sigma
-		str = str.replace(/\b\S+C\S+\b/g, this.term_separator + 'C $&' + this.term_separator); // special case for combination
-		str = str.replace(/\b\S+I\S+\b/g, this.term_separator + 'I $&' + this.term_separator); // special case for integral
-		var arr = str.split(this.term_separator);
+		str = str.escapeBrackets();
+		str = str.replace(/\b\S+\$\S+\b/g, this.termSeparator + '\$ $& ' + this.termSeparator); // special case for Sigma
+		str = str.replace(/\b\S+C\S+\b/g, this.termSeparator + 'C $&' + this.termSeparator); // special case for combination
+		str = str.replace(/\b\S+I\S+\b/g, this.termSeparator + 'I $&' + this.termSeparator); // special case for integral
+		var arr = str.split(this.termSeparator);
 		var phrase = '';
 		var i;
 		for (i=0; i<arr.length; i+=1) {
 			this.spancount = 0;
 			phrase += '<div class="term">' + this.term(arr[i]) + '</div>';
 		}
-		// substitute close_char for space
+		// substitute closeChar for space
 		if (str.slice(-1) === this.space && this.spancount > 0) {
-			str = str.slice(0,str.length-1) + this.close_char;
-			$(RC.DOMnodes.response_field).val(str);
+			str = str.slice(0,str.length-1) + this.closeChar;
+			$(RC.DOMnodes.responseField).val(str);
 		}
 		return phrase;
 	},
@@ -382,16 +385,16 @@ RC.formula = {
 
 RC.question = {
 
-	json_url: document.location + '.json',
+	jsonUrl: document.location + '.json',
 	waiter: null,
 	waiting: true,
 	data: { status: 'waiting' },
 	ignore: false,
 	next: { status: 'waiting' },
-	previously_incorrect: false,
-	formula_prefix: '=',
+	previouslyIncorrect: false,
+	formulaPrefix: '=',
 	
-	ignored_data: function() {
+	ignoredData: function() {
 		if (this.ignore) {
 			return 'ignore=' + this.data.question.id
 		} else {
@@ -400,7 +403,7 @@ RC.question = {
 	},
 
 	stripPrefix: function(str) {
-		if (str && str.charAt(0) === this.formula_prefix) {
+		if (str && str.charAt(0) === this.formulaPrefix) {
 			return str.slice(1);
 		} else {
 			return str;
@@ -408,7 +411,7 @@ RC.question = {
 	},
 
 	isFormula: function(str) {
-		if (str && str.charAt(0) === this.formula_prefix) {
+		if (str && str.charAt(0) === this.formulaPrefix) {
 			return true;
 		} else {
 			return false;
@@ -416,23 +419,23 @@ RC.question = {
 	},
 	
 	isBoolean: function(str) {
-		str = str.strip_spaces();
+		str = str.stripSpaces();
 		if (str === 'true' || str === 'false' || str === 'yes' || str === 'no' ) {
 			return true
 		}
 	},
 	
-	not_finished: function (data) {
+	notFinished: function (data) {
 	  if (data.status === 'end') {
 			$(RC.DOMnodes.start).hide();
 			$(RC.DOMnodes.question).hide();
 			$(RC.DOMnodes.response).hide();
     	$(RC.DOMnodes.completed).show();
 			$(RC.DOMnodes.loading).hide();
-			if (data.days_until_next == 1) {
-				$(RC.DOMnodes.days_til_next).text('a day or so');
+			if (data.daysUntilNext == 1) {
+				$(RC.DOMnodes.daysTilNext).text('a day or so');
 			} else {
-				$(RC.DOMnodes.days_til_next).text('about ' + data.days_until_next + ' days');
+				$(RC.DOMnodes.daysTilNext).text('about ' + data.days_until_next + ' days');
  			}
 	    return false;
 	  } else {
@@ -448,41 +451,41 @@ RC.question = {
 	loaded: function (json) {
 		$(RC.DOMnodes.loading).hide();
 		this.waiting = false;
-		if (json.question && json.question.current_interval == null) {
-			json.question.current_interval = 0;
+		if (json.question && json.question.currentInterval == null) {
+			json.question.currentInterval = 0;
 		}
 	},
 	
-	get_first: function () {
+	getFirst: function () {
 		this.loading();
 		var that = this;
 	  $.ajax({
-			url: this.json_url,
+			url: this.jsonUrl,
 			dataType: 'json',
 			error: function () {
-				that.get_first();
+				that.getFirst();
 			},
 			success: function (json) {
 				that.data = json;
-				if (that.not_finished(that.data)) {
+				if (that.notFinished(that.data)) {
 					that.loaded(json);
 					that.show();
-					that.get_next();
+					that.getNext();
 				}
 			}
 	  });
 	},
 
-	get_next: function () {
+	getNext: function () {
 		this.loading(true);
 		this.ignore = true;
 		var that = this;
 	  $.ajax({
-			url: this.json_url,
-			data: this.ignored_data(),
+			url: this.jsonUrl,
+			data: this.ignoredData(),
 			dataType: 'json',
 			error: function () {
-				that.get_next();
+				that.getNext();
 			},
 			success: function(json){
 				json.correct += 1
@@ -492,33 +495,74 @@ RC.question = {
 	  });
 	},
 
-	hint: function(hint_text) {
-		var math_char = '#';
-		var split_char = '|';
-		if (!hint_text) return;
-		if (hint_text.charAt(0) === math_char) {
+	hint: function(hintText) {
+		var mathChar = '#';
+		var splitChar = '|';
+		if (!hintText) return;
+		if (hintText.charAt(0) === mathChar) {
 			var data = [];
-			var functs = hint_text.slice(1);
-			var fx_array = functs.split(split_char);
-			for (var fx=0; fx<fx_array.length; fx+=1) {
+			var functs = hintText.slice(1);
+			var fxArray = functs.split(splitChar);
+			for (var fx=0; fx<fxArray.length; fx+=1) {
 				data.push([]);
 				for (var x=-4; x<=4.1; x+=.1) {
-		      data[fx].push([x, eval(fx_array[fx])]); //Need another way of doing this?
+		      data[fx].push([x, eval(fxArray[fx])]); //Need another way of doing this?
 				}
 			}
 			$.plot($($(RC.DOMnodes.graph)), data, { xaxis: { ticks: [-4,0,4] }, yaxis: { min: -5, max: 10, ticks: [0,10], labelWidth: '10px' }, shadowSize: 0 } );
 		 	$(RC.DOMnodes.graph).show();
 		} else {
-			$(RC.DOMnodes.response_field).val(hint_text);
+			$(RC.DOMnodes.responseField).val(hintText);
 		}
 	},
 	
-	both_versions: function (text) {
+	bothVersions: function (text) {
 		var re = /(.*)\(([^)]*)\)\s*\|\s*\(([^)]*)\)(.*)/;
 		return text.replace(re, '"$1$2$4" or "$1$3$4"')
 	},
 	
-	show_response: function (node, response) {
+	// use for arithmetic operations
+	reverseOrder: function() {
+		var val = $(RC.DOMnodes.responseField).val();
+		$(RC.DOMnodes.responseField).val($(RC.DOMnodes.responseField).val()+' ');
+	},
+	
+	augmentResponse: function(key) {
+		var lastChar = $(RC.DOMnodes.responseField).val().slice(-1);
+		if (RC.parens[lastChar]) {
+			$(RC.DOMnodes.responseField).val($(RC.DOMnodes.responseField).val()+RC.parens[lastChar]);
+			$(RC.DOMnodes.responseField).shiftCaret(-1);
+		}
+		if (this.isFormula(this.data.exercise.response)) {
+			RC.formula.display(RC.DOMnodes.translated, $(RC.DOMnodes.responseField).val());
+		}
+		if (this.data.topic.rtl) {
+			var fieldValue = $(RC.DOMnodes.responseField).val();
+			// use key.keyCode.fromCharCode();
+			if (key.keyCode === 8) { // delete key
+				fieldValue = fieldValue.slice(0,fieldValue.length-1)
+			} else {
+				fieldValue = fieldValue + ' '
+			}
+			$(RC.DOMnodes.responseField).val(fieldValue);
+		}
+	},
+	
+	showPhrase: function () {
+		var phrase = this.data.exercise.phrase;
+		if (this.data.question.current_interval > 0) {
+			phrase = phrase.replace(/\(\(.*?\)\)/g, '');
+		} else {
+			phrase = phrase.replace(/\(\((.*?)\)\)/g, '$1');
+		}
+		phrase = this.bothVersions(phrase);
+		phrase = phrase.markup();
+		phrase = phrase.replaceSymbols();
+		$(RC.DOMnodes.question).html(phrase);
+		RC.voices.outfoxQueue(phrase, 'phrase');
+	},
+
+	showResponse: function (node, response) {
 		$(node).show();
 		if (this.isFormula(this.data.exercise.response)) {
 			response = this.stripPrefix(response);
@@ -528,181 +572,187 @@ RC.question = {
 		}
 	},
 	
-	update_stats: function() {
-		$(RC.DOMnodes.exercise_no).text(this.data.exercise.id);
-		$(RC.DOMnodes.question_no).text(this.data.question.id);
-		$(RC.DOMnodes.current_interval).text(this.data.question.current_interval.toString());
-		$(RC.DOMnodes.correct_responses).text(this.data.correct);
+	updateStats: function() {
+		$(RC.DOMnodes.exerciseNo).text(this.data.exercise.id);
+		$(RC.DOMnodes.questionNo).text(this.data.question.id);
+		$(RC.DOMnodes.currentInterval).text(this.data.question.current_interval.toString());
+		$(RC.DOMnodes.correctResponses).text(this.data.correct);
 		$(RC.DOMnodes.backlog).text(this.data.backlog);
 	},
 	
-	show_response_message: function(message) {
+	showResponseMessage: function(message) {
 		if (message) {
-			$(RC.DOMnodes.response_message).text(message);
+			$(RC.DOMnodes.responseMessage).text(message);
 		} else if (this.data.correct === parseInt($(RC.DOMnodes.target).text())) {
-			$(RC.DOMnodes.response_message).text("CONGRATULATIONS! Today's target reached");
+			$(RC.DOMnodes.responseMessage).text("CONGRATULATIONS! Today's target reached");
 		} else if (this.data.correct % 10 == 0) {
-			$(RC.DOMnodes.response_message).text(this.data.correct + ' correct answers');
+			$(RC.DOMnodes.responseMessage).text(this.data.correct + ' correct answers');
 		} else {
-			$(RC.DOMnodes.response_message).text("Correct");
+			$(RC.DOMnodes.responseMessage).text("Correct");
 		}
-		$(RC.DOMnodes.response_message).show().fadeOut(1000);
+		$(RC.DOMnodes.responseMessage).show().fadeOut(1000);
 	},
 	
-	show_code: function() {
+	showCode: function() {
 		if (false) { // WORK IN PROGRESS
-			$(RC.DOMnodes.code_tab).html(this.data.topic.code);
-			$(RC.DOMnodes.data_tab).html(this.data.topic.data);
-			$(RC.DOMnodes.output_tab).html(this.data.topic.code);
+			$(RC.DOMnodes.codeTab).html(this.data.topic.code);
+			$(RC.DOMnodes.dataTab).html(this.data.topic.data);
+			$(RC.DOMnodes.outputTab).html(this.data.topic.code);
 			$(RC.DOMnodes.tabs).show();
 		}
 	},
 	
-	show_answer: function() {
-		$(RC.DOMnodes.response_block).hide();
-		$(RC.DOMnodes.expected_response_block).show();
+	showAnswer: function() {
+		$(RC.DOMnodes.responseBlock).hide();
+		$(RC.DOMnodes.expectedResponseBlock).show();
 		$(RC.DOMnodes.response).val('');
 		if (this.isFormula(this.data.exercise.response)) {
 			var formula = this.stripPrefix(this.data.exercise.response);
-			$(RC.DOMnodes.expected_response).text('( '+formula+' )');
+			$(RC.DOMnodes.expectedResponse).text('( '+formula+' )');
 			RC.formula.display(RC.DOMnodes.translated, formula);
 		} else {
-			var response = this.both_versions(this.data.exercise.response);
-			$(RC.DOMnodes.expected_response).text(response);
+			var response = this.bothVersions(this.data.exercise.response);
+			$(RC.DOMnodes.expectedResponse).text(response);
 		}
-		$(RC.DOMnodes.submit_button).focus();
+		$(RC.DOMnodes.submitButton).focus();
 	},
 	
-	await_response: function() {
-		$(RC.DOMnodes.expected_response_block).hide();
-		$(RC.DOMnodes.response_block).show();
-		$(RC.DOMnodes.response_field).val('')
+	awaitResponse: function() {
+		$(RC.DOMnodes.expectedResponseBlock).hide();
+		$(RC.DOMnodes.responseBlock).show();
+		$(RC.DOMnodes.responseField).val('')
 		$(RC.DOMnodes.translated).val('');
-		$(RC.DOMnodes.response_field).focus();
+		$(RC.DOMnodes.responseField).focus();
 	},
 	
-	try_again: function () {
-		$(RC.DOMnodes.response_field).addClass('incorrect');
-		this.previously_incorrect = true; // allow one re-try
-		this.show_response_message('Try again');
+	tryAgain: function () {
+		$(RC.DOMnodes.responseField).addClass('incorrect');
+		this.previouslyIncorrect = true; // allow one re-try
+		this.showResponseMessage('Try again');
 	},
 	
 	wrong: function () {
-		this.previously_incorrect = false;
-		this.post_response('incorrect');
+		this.previouslyIncorrect = false;
+		this.postResponse('incorrect');
 		this.data.question.current_interval = 0;
-		this.update_stats();
-		this.show_answer();
-		this.show_response_message('Try again');
+		this.updateStats();
+		this.showAnswer();
+		this.showResponseMessage('Try again');
 	},
 	
 	show: function() {
-		RC.timer.reset_seconds();
-		$(RC.DOMnodes.response_field).val('');
+		RC.timer.resetSeconds();
+		$(RC.DOMnodes.responseField).val('');
 		$(RC.DOMnodes.translated).html('');
 		$(RC.DOMnodes.start).hide();
 		$(RC.DOMnodes.response).show();
 		$(RC.DOMnodes.graph).hide();
 		$(RC.DOMnodes.tabs).hide();
 		$(RC.DOMnodes.topic).html(this.data.topic.name);
-		this.update_stats();
+		this.updateStats();
 		this.hint(this.data.exercise.hint);
+		if (this.data.topic.rtl) {
+			$(RC.DOMnodes.responseField).addClass('rtl');
+		} else {
+			$(RC.DOMnodes.responseField).removeClass('rtl');
+		}
 		if (this.isFormula(this.data.exercise.phrase)) {
 			RC.formula.display(RC.DOMnodes.question, this.stripPrefix(this.data.exercise.phrase));
 		} else {
-			this.show_code();
-			var phrase = this.both_versions(this.data.exercise.phrase).markup();
-			$(RC.DOMnodes.question).html(phrase);
-			RC.voices.outfox_queue(phrase, 'phrase');
+			this.showCode();
+			this.showPhrase();
 		}
-		var response = this.both_versions(this.stripPrefix(this.data.exercise.response));
-		response = RC.unicode_to_html_entity(response); //convert to HTML entities 
+		var response = this.bothVersions(this.stripPrefix(this.data.exercise.response));
+		response = RC.unicodeToHtmlEntity(response); //convert to HTML entities 
 		if (this.data.question.current_interval === 0) {
-			RC.voices.outfox_queue(response, 'response');
-			this.show_answer();
+			RC.voices.outfoxQueue(response, 'response');
+			this.showAnswer();
 		} else {
-			this.await_response();
+			this.awaitResponse();
 		}
 		if (this.isFormula(this.data.exercise.response)) {
-			$(RC.DOMnodes.maths_palette).show();
+			$(RC.DOMnodes.mathsPalette).show();
 		}
 		
 	},
 	
-	post_response: function (result) {
+	postResponse: function (result) {
 		var that = this;
-		var post_url = '/questions/' + this.data.question.id + '/responses.json';
-		var post_data = {
+		var postUrl = '/questions/' + this.data.question.id + '/responses.json';
+		var postData = {
 			'response[result]': result,
-		  'response[seconds_taken]': RC.timer.question_seconds, 
+		  'response[seconds_taken]': RC.timer.questionSeconds, 
 	    'response[interval]': this.data.question.current_interval,
 		  'authenticity_token': AUTH_TOKEN 
 		};
 		//if correct and not waiting and course not finished, show next question
-		if (result == 'correct' && !this.waiting && this.not_finished(this.next)) { 
+		if (result == 'correct' && !this.waiting && this.notFinished(this.next)) { 
 			this.data = this.next;
 			this.show();
 		}
 		$.ajax({
-			url: post_url,
-			data: post_data,
+			url: postUrl,
+			data: postData,
 			type: 'POST',
 			error: function () {
-				that.post_response(result);
+				that.postResponse(result);
 			},
 			success: function(json){
 				if (result === 'correct') { //only get next if correct answer given
 					if (this.waiting) { // still haven't picked up next question. Start again.
 						$(RC.DOMnodes.start).show();
-						this.get_first();
+						this.getFirst();
 					} else {
 						that.next = { status: 'waiting' };
-						that.get_next();
+						that.getNext();
 					}
 				}
 			}
 	  });
 	},
 	
-	check_response: function (response) {
+	checkResponse: function (response) {
 		var expected = this.data.exercise.response;
 		var match = false;
 		if (this.isBoolean(expected) && expected.charAt(0) === response.charAt(0) ) {
 			match = true;
 		} else if (this.isFormula(expected)) { // no pattern matching on formulas
 			expected = this.stripPrefix(expected);
-			if (expected.strip_spaces() === response.strip_spaces()) {
+			if (expected.stripSpaces() === response.stripSpaces()) {
 				match = true;
 			}
 		} else {
 			if (this.data.topic.ignore_punctuation === true) {
-				var expected_pattern = expected.simplify();
-				var response_pattern = response.simplify();
+				var expectedPattern = expected.simplify();
+				var responsePattern = response.simplify();
 			} else {
-				var expected_pattern = expected.strip_spaces();
-				var response_pattern = response.strip_spaces();
+				var expectedPattern = expected.stripSpaces();
+				var responsePattern = response.stripSpaces();
 			}
-			if ($(RC.DOMnodes.ignore_accents_checkbox).is(':checked')) {
-				expected_pattern = expected_pattern.strip_accents();
-				response_pattern = response_pattern.strip_accents();
+			if ($(RC.DOMnodes.ignoreAccentsCheckbox).is(':checked')) {
+				expectedPattern = expectedPattern.stripAccents();
+				responsePattern = responsePattern.stripAccents();
 			}
-			var pattern = new RegExp(expected_pattern);
-			if (pattern.test(response_pattern)) {
+			if (this.data.topic.rtl) {
+				responsePattern = responsePattern.reverse();
+			}
+			var pattern = new RegExp(expectedPattern);
+			if (pattern.test(responsePattern)) {
 				match = true;
 			}
 		}
 		if (match) {
-			RC.voices.outfox_queue(this.both_versions(expected), 'response');
-			this.previously_incorrect = false;
-			this.post_response('correct');
-			this.show_response_message();
+			RC.voices.outfoxQueue(this.bothVersions(expected), 'response');
+			this.previouslyIncorrect = false;
+			this.postResponse('correct');
+			this.showResponseMessage();
 		} else {
 			// incorrect
-			if (this.previously_incorrect || this.isBoolean(expected)) {
-				RC.voices.outfox_queue(this.both_versions(expected), 'response');
+			if (this.previouslyIncorrect || this.isBoolean(expected)) {
+				RC.voices.outfoxQueue(this.bothVersions(expected), 'response');
 				this.wrong();
 			} else {
-				this.try_again();
+				this.tryAgain();
 			}
     }
 	}
@@ -710,82 +760,79 @@ RC.question = {
 };
 
 RC.current = RC.question;
-RC.current.get_first();
-RC.interval_timer = setInterval(RC.timer.tick, 1000);
+RC.current.getFirst();
+RC.intervalTimer = setInterval(RC.timer.tick, 1000);
 
 $(document).ready(function(){
 	
-	RC.voices.outfox_init();
+	RC.voices.outfoxInit();
 	
-	if ($(RC.DOMnodes.speak_phrases_checkbox).length > 0) {
-		$(RC.DOMnodes.speak_phrases_checkbox).attr('checked', false);
-		RC.voices.phrase_language = $(RC.DOMnodes.speak_phrases_checkbox).attr("language");
+	if ($(RC.DOMnodes.speakPhrasesCheckbox).length > 0) {
+		$(RC.DOMnodes.speakPhrasesCheckbox).attr('checked', false);
+		RC.voices.phraseLanguage = $(RC.DOMnodes.speakPhrasesCheckbox).attr("language");
 	}
 	
-	if ($(RC.DOMnodes.speak_responses_checkbox).length > 0) {
-		$(RC.DOMnodes.speak_responses_checkbox).attr('checked', false);
-		RC.voices.response_language = $(RC.DOMnodes.speak_responses_checkbox).attr("language");
+	if ($(RC.DOMnodes.speakResponsesCheckbox).length > 0) {
+		$(RC.DOMnodes.speakResponsesCheckbox).attr('checked', false);
+		RC.voices.responseLanguage = $(RC.DOMnodes.speakResponsesCheckbox).attr("language");
 	}
 	
-	$(RC.DOMnodes.ignore_accents_checkbox).attr('checked', false);
+	$(RC.DOMnodes.ignoreAccentsCheckbox).attr('checked', false);
 
-	$(RC.DOMnodes.speak_phrases_checkbox).click(function(){
-		RC.voices.speak_phrase = !RC.voices.speak_phrase;
-		$(RC.DOMnodes.response_field).focus();
+	$(RC.DOMnodes.speakPhrasesCheckbox).click(function(){
+		RC.voices.speakPhrase = !RC.voices.speakPhrase;
+		$(RC.DOMnodes.responseField).focus();
 	});
 	
-	$(RC.DOMnodes.speak_responses_checkbox).click(function(){
-		RC.voices.speak_response = !RC.voices.speak_response;
-		$(RC.DOMnodes.response_field).focus();
+	$(RC.DOMnodes.speakResponsesCheckbox).click(function(){
+		RC.voices.speakResponse = !RC.voices.speakResponse;
+		$(RC.DOMnodes.responseField).focus();
 	});
 	
-	$(RC.DOMnodes.response_form).submit(function(){
-    var response = $(RC.DOMnodes.response_field).val();
-		RC.current.check_response(response);
+	$(RC.DOMnodes.responseForm).submit(function(){
+    var response = $(RC.DOMnodes.responseField).val();
+		RC.current.checkResponse(response);
 		return false;
 	});
 
-	$(RC.DOMnodes.ignore_accents_checkbox).click(function(){
-		$(RC.DOMnodes.response_field).focus();
+	$(RC.DOMnodes.ignoreAccentsCheckbox).click(function(){
+		$(RC.DOMnodes.responseField).focus();
 	});
 
-	$(RC.DOMnodes.submit_button).click(function () {
-		RC.current.await_response();
+	$(RC.DOMnodes.submitButton).click(function () {
+		RC.current.awaitResponse();
 	});
 
-	$(RC.DOMnodes.response_field).focus(function (){
-		RC.timer.reset_timeout();
+	$(RC.DOMnodes.responseField).focus(function (){
+		RC.timer.resetTimeout();
 	});
 
-	$(RC.DOMnodes.response_field).keydown(function (key){
-		if ($(RC.DOMnodes.response_field).hasClass('incorrect')) {
-			$(RC.DOMnodes.response_field).removeClass('incorrect');
+	$(RC.DOMnodes.responseField).keydown(function (key){
+		if ($(RC.DOMnodes.responseField).hasClass('incorrect')) {
+			$(RC.DOMnodes.responseField).removeClass('incorrect');
 		}
 	});
 
-	$(RC.DOMnodes.response_field).keyup(function (key){
-		RC.augmentResponse(RC.DOMnodes.response_field);
-		if (RC.question.isFormula(RC.current.data.exercise.response)) {
-			RC.formula.display(RC.DOMnodes.translated, $(RC.DOMnodes.response_field).val());
-		}
-		RC.timer.reset_timeout();
+	$(RC.DOMnodes.responseField).keyup(function (key){
+		RC.current.augmentResponse(key);
+		RC.timer.resetTimeout();
 	});
-
-	$(RC.DOMnodes.symbol).click(function () {
+	
+		$(RC.DOMnodes.symbol).click(function () {
 		var insert = $(this).attr('value');
-		$(RC.DOMnodes.response_field).val($(RC.DOMnodes.response_field).val()+insert);
+		$(RC.DOMnodes.responseField).val($(RC.DOMnodes.responseField).val()+insert);
 		if (RC.question.isFormula(RC.current.data.exercise.response)) {
-			RC.formula.display(RC.DOMnodes.translated, $(RC.DOMnodes.response_field).val());
+			RC.formula.display(RC.DOMnodes.translated, $(RC.DOMnodes.responseField).val());
 		}
-		$(RC.DOMnodes.response_field).focus();
+		$(RC.DOMnodes.responseField).focus();
 		return false;
 	})
 
 	$(RC.DOMnodes.timeout).click(function() {
 		$(this).hide();
 		$(RC.DOMnodes.content).removeClass('faded');
-		$(RC.DOMnodes.response_field).focus();
-		RC.timer.end_timeout();
+		$(RC.DOMnodes.responseField).focus();
+		RC.timer.endTimeout();
 	});
 
 	$(RC.DOMnodes.content).click(function(){
@@ -794,15 +841,15 @@ $(document).ready(function(){
 		}
 	});
 	
-	$(RC.DOMnodes.details_switch).click(function() {
-		$(RC.DOMnodes.details_switch).toggle();
+	$(RC.DOMnodes.detailsSwitch).click(function() {
+		$(RC.DOMnodes.detailsSwitch).toggle();
 		$(RC.DOMnodes.details).toggle();
-		$(RC.DOMnodes.response_field).focus();
+		$(RC.DOMnodes.responseField).focus();
 		return false;
 	});
 
-	$(RC.DOMnodes.ignore_accents_checkbox).click(function() {
-		$(RC.DOMnodes.extended_chars).toggle();
+	$(RC.DOMnodes.ignoreAccentsCheckbox).click(function() {
+		$(RC.DOMnodes.extendedChars).toggle();
 	});
 
 });
