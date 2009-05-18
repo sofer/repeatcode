@@ -29,7 +29,7 @@
 *A.* When you select a course for the first time, a new account is created automatically for you. If you want to continue to use this account, you should follow the _save your details_ link.
 
 *Q. Once I have started a course, how often should I learn?*
-*A.* you can study as often and as long as you like, but you are likely to get most benefit from studying regularly. If you are not in a hurry, or if you are studying several courses simultaneously, you may want to study each course for just a few minutes each day. You can also study more intensively, although some of the benefits of combining the gradual introduction of new material with the spaced revision of old material will be lost if you attempt to cover too much material in too short a period of time.
+*A.* you can study as often and for as long as you like, but you are likely to get most benefit from studying regularly. If you are not in a hurry, or if you are studying several courses simultaneously, you may want to study each course for just a few minutes each day. You can also study more intensively, although some of the benefits of combining the gradual introduction of new material with the spaced revision of old material will be lost if you attempt to cover too much material in too short a period of time.
 
 *Q. Can I create my own course materials?*
 *A.* Yes. Just follow the _Create_ link after you have logged in. Creating course materials is a bit more complicated than following an existing course. Instructions on how to add material will be added soon.

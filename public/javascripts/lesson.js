@@ -640,8 +640,34 @@ RC.question = {
 		this.showResponseMessage('Try again');
 	},
 	
+	randomNumberInRange: function (min,max) {
+	  var range = max - min + 1
+	  var rand = Math.floor(Math.random() * range)
+	  return min + rand
+	},
+	
+	prepare: function () {
+		var phrase = this.data.exercise.phrase;
+		var result;
+		var re = /\[\[([^\]]+)\]\]/g;
+		while (result = re.exec(phrase)) {
+			if (result[1]) {
+				alert(result[0] + ' : ' + result[1] + ' : ' + result[2] );
+			}
+		}
+		if (phrase.match(/\[\[([^\]]+)\]\]/)) {
+			
+			//alert('matched');
+			//var response = this.data.exercise.\[response;
+			//response = eval(response); // Warning:eval! collect the phrase matches
+			//alert(response);
+			
+		}
+	},
+	
 	show: function() {
 		RC.timer.resetSeconds();
+		this.prepare();
 		$(RC.DOMnodes.responseField).val('');
 		$(RC.DOMnodes.translated).html('');
 		$(RC.DOMnodes.start).hide();

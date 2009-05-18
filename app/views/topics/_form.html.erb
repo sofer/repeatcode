@@ -1,15 +1,19 @@
 
 <%= f.error_messages %>
-
+<div class="form-line">
 <%= f.label :name %>
-<%= f.text_field :name, :class => 'focus', :autocomplete => "off"  %><br>
+<%= f.text_field :name, :class => 'focus', :autocomplete => "off"  %>
+</div><div class="form-line">
 <%= f.label :ignore_punctuation %>
-<%= f.check_box :ignore_punctuation %><br>
+<%= f.check_box :ignore_punctuation %>
+</div><div class="form-line">
 <%= f.label "Display responses right to left" %>
-<%= f.check_box :rtl %> (mainly used for arithmetic)<br>
+<%= f.check_box :rtl %> 
+<div>(for arithmetic)</div>
+</div><div class="form-line">
 <%= f.label :add_together %>
-<%= f.check_box :add_together %><br>
-
+<%= f.check_box :add_together, :class => "border" %><br>
+</div>
 <div class="pad">
 	<%= content_tag 'div', h(flash[:notice]), :class => 'notice', :id => 'notice' if flash[:notice] %>
 	<%= content_tag 'div', h(flash[:error]), :class => 'error', :id => 'error' if flash[:error] %>

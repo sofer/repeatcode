@@ -88,20 +88,17 @@ input#response-field:focus	{ background-color: LightYellow; }
 .end { float: right; xtext-align: right; }
 
 /* form classes */
-label	{ float: left; text-align: right; margin: 0px 4px 0 0; }
-input[type=text]	{ margin: 0; }
-.checkbox label	{ float: left; }
-.checkbox input[type=checkbox]	{ float: left; width: 20px; margin: 0 0 0 4px; }
+label	{ float: left; width: 200px; text-align: right; margin: 4px 4px 0 0; }
+input[type=text], select	{ width: 200px; }
+input[type=checkbox]	{ float: left; width: 20px; margin: 5px 4px 0 0; }
+.form-line { padding: 2px; clear: both; }
 .signin label	{ float: left; width: 160px; height: 14px; margin: 6px; padding-top: 4px; text-align: right; }
-.signin input[type=text], input[type=password], input[type=checkbox], select	{ width: 140px; height: 14px; margin: 6px; margin-right: 70px; }
+.signin input[type=text], .signin input[type=password], .signin select	{ width: 140px; height: 14px; margin: 6px 70px 6px 6px; }
 .signin input[type=checkbox]	{ margin: 10px 4px; }
-.signin input[type=submit]	{ margin: 12px 4px; }
 .signin .text	{ float: left; height: 14px; margin: 6px; padding-top: 4px; }
 .cell input[type=submit]	{ margin: -3px 0 0 0; }
 .exercise input { width: 95%; }
 textarea	{ width: 100%; height: 300px; }
-.edit_subject label	{ width: 200px; }
-.checkbox label { float: left; width: 150px; }
 #header input[type=text]	{ margin: -2px 0 0 0; }
 .targets input[type=text] { width: 20px; height: 11px; margin: -2px 0; text-align: right; }
 .new-course input[type=submit]	{ width: 240px; margin: 2px; }

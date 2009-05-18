@@ -8,10 +8,12 @@
 </div>
 
 <div id="main">
-	<% form_for 	:topic,
-								:url => subject_topics_path(@subject) do |f| %>
-		<%= render :partial => "form", :locals => {:f => f } %>
-	<% end %>
+	<div class="pad">
+		<% form_for 	:topic,
+									:url => subject_topics_path(@subject) do |f| %>
+			<%= render :partial => "form", :locals => {:f => f } %>
+		<% end %>
+	</div>
 	<div id="list-template" style="display:none">
 		<%= render :partial => "new_exercise", :object => Exercise.new %>
 	</div>
