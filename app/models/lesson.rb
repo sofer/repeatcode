@@ -35,6 +35,7 @@ class Lesson < ActiveRecord::Base
   end
   
   def days_until_next
+    return 30 # TURNED OFF FOR NOW
     time = Time.now
     day_count = 0
     maxcount = self.course.questions.count
@@ -45,14 +46,7 @@ class Lesson < ActiveRecord::Base
     end
     return day_count
   end
-
-  def next_question(exclude_question=0)
-    course.questions.find(  :first,
-                            :conditions => ['next_datetime <= ? and id != ?', Time.now, exclude_question], 
-                            :order => 'current_interval'
-                          ) or course.next_question
-  end
-
+  
 private
 
   def set_progress

@@ -1,16 +1,18 @@
 class Course < ActiveRecord::Base
+
   belongs_to :subject
   has_many :lessons
   has_many :subscriptions
-  has_many :users, :through => :subscriptions
+  has_one :user, :through => :subscriptions # 2009-05-18: Changed to has_one
   has_many :intervals
   has_many :questions
+  has_many :course_topics
   
   named_scope :active, :conditions => { :archived => false }
   named_scope :inactive, :conditions => { :archived => true }
 
   before_validation_on_create :set_status_and_targets
-  after_create :set_intervals
+  after_create :set_intervals, :copy_course_material
   
   validates_numericality_of :accuracy_target
   validates_numericality_of :lesson_target
@@ -148,6 +150,8 @@ class Course < ActiveRecord::Base
     @last_question ||= self[:last_question] ? Question.find(self[:last_question]) : false
   end
   
+  # Destroy all questions with no exercise and all exercises with no topic
+  # 2009-05-18: GET RID OF THIS
   def clear_all
     questions = Question.find(:all)
     count = 0
@@ -161,25 +165,6 @@ class Course < ActiveRecord::Base
       end
     end
     return count
-  end
-  
-  # Add any exercises added since the last question, if they are from topics already covered
-  def add_new_material
-    question_count = 0
-    if last_question
-      if subject.exercises.last.created_at > last_question.created_at
-        new_exercises = subject.exercises.since(last_question.created_at)
-        for exercise in new_exercises
-          if exercise.topic.position < last_question.exercise.topic.position ||
-            exercise.topic.position == last_question.exercise.topic.position &&
-            exercise.position < last_question.exercise.position
-            add_question(exercise)
-            question_count += 1
-          end
-        end
-      end
-    end
-    return question_count
   end
   
   def accuracy_target
@@ -215,27 +200,41 @@ class Course < ActiveRecord::Base
     return results
   end
   
-  def next_question
-    if questions.empty?
-      # get first question
-      if self.subject.topics.first
-        return new_topic(self.subject.topics.first)
-      end
-    else
-      # get next exercise within the current topic
-      next_exercise = self.last_question.exercise.lower_item
-      if next_exercise
-        return add_question(next_exercise)
-      else
-        # get next topic
-        next_topic = self.last_question.exercise.topic.lower_item
-        if next_topic
-          return new_topic(next_topic)
+  # Add any exercises added since the last question, if they are from topics already covered
+  # THIS NEEDS TO BE CHANGED
+  def add_new_material
+    return 0 # return 0 for now.
+    question_count = 0
+    if last_question
+      if subject.exercises.last.created_at > last_question.created_at
+        new_exercises = subject.exercises.since(last_question.created_at)
+        for exercise in new_exercises
+          if exercise.topic.position < last_question.exercise.topic.position ||
+            exercise.topic.position == last_question.exercise.topic.position &&
+            exercise.position < last_question.exercise.position
+            add_question(exercise)
+            question_count += 1
+          end
         end
       end
     end
+    return question_count
   end
   
+  def next_question(exclude_question=0)
+    question = questions.find(  
+                :first,
+                :conditions => ['next_datetime <= ? and id != ?', Time.now, exclude_question], 
+                :order => 'current_interval'
+              )
+    unless question
+      question = questions.not_started.first
+      question.initial_state if question
+    end
+    return question
+  end
+  
+  # NO LONGER BEING USED?
   def add_question(exercise)
     next_question = Question.new(:exercise_id => exercise.id)
     self.questions << next_question
@@ -243,6 +242,7 @@ class Course < ActiveRecord::Base
     return next_question
   end
 
+  # NO LONGER BEING USED?
   def new_topic(topic)
     next_exercise = topic.exercises.first
     if next_exercise
@@ -260,6 +260,48 @@ class Course < ActiveRecord::Base
 
 private
 
+  # this will probably need to be speeded up
+  def copy_course_material
+    self.name = subject.name
+    self.extended_chars = subject.extended_chars
+    self.phrase_speech = subject.phrase_speech
+    self.response_speech = subject.response_speech
+
+    subject.topics.each do |topic|
+      course_topic = CourseTopic.new
+      course_topic.topic_id = topic.id
+      course_topic.name = topic.name
+      course_topic.code = topic.code
+      course_topic.data = topic.data
+      course_topic.ignore_punctuation = topic.ignore_punctuation
+      course_topic.add_together = topic.add_together
+      course_topic.rtl = topic.rtl
+      
+      if course_topic.save(false)  # don't do validations
+        course_topics << course_topic if course_topic.save(false)  # don't do validations
+        topic.exercises.each do |exercise|
+          question = Question.new
+          question.exercise_id = exercise.id
+          question.course_topic_id = course_topic.id
+          question.phrase = exercise.phrase
+          question.response = exercise.response
+          question.pattern = exercise.pattern
+          question.notes = exercise.notes
+          question.hint = exercise.hint
+          question.insert = exercise.insert
+          question.ignore = false
+
+          if question.save(false) # don't do validations
+            questions << question
+            #course_topic << question
+          end
+
+        end
+
+      end
+    end
+  end
+  
   def set_intervals
     DEFAULT_INTERVALS.each do |index, mins|
       new_interval = intervals.new( :index_no => index, :minutes => mins)

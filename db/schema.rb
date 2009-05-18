@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20090513100820) do
+ActiveRecord::Schema.define(:version => 20090518065219) do
 
   create_table "administrators", :force => true do |t|
     t.integer  "user_id"
@@ -30,6 +30,19 @@ ActiveRecord::Schema.define(:version => 20090513100820) do
     t.datetime "updated_at"
   end
 
+  create_table "course_topics", :force => true do |t|
+    t.integer  "course_id"
+    t.integer  "topic_id"
+    t.string   "name"
+    t.text     "code"
+    t.text     "data"
+    t.boolean  "ignore_punctuation"
+    t.boolean  "add_together"
+    t.boolean  "rtl"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
   create_table "courses", :force => true do |t|
     t.integer  "subject_id"
     t.integer  "accuracy_target"
@@ -39,6 +52,10 @@ ActiveRecord::Schema.define(:version => 20090513100820) do
     t.boolean  "archived"
     t.integer  "lesson_target"
     t.integer  "weekly_target"
+    t.string   "name"
+    t.string   "extended_chars"
+    t.boolean  "phrase_speech"
+    t.boolean  "response_speech"
   end
 
   create_table "enrolments", :force => true do |t|
@@ -116,6 +133,14 @@ ActiveRecord::Schema.define(:version => 20090513100820) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.boolean  "extra"
+    t.integer  "course_topic_id"
+    t.string   "phrase"
+    t.string   "response"
+    t.string   "pattern"
+    t.text     "notes"
+    t.string   "hint"
+    t.string   "insert"
+    t.boolean  "ignore",           :default => false
   end
 
   create_table "responses", :force => true do |t|

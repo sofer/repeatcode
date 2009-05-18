@@ -43,7 +43,7 @@
 			Number of exercises begun
 		</div>
 		<div class="cell half right">
-			<% questions = @course.questions.count; exercises = @course.subject.exercises.count %>
+			<% questions = @course.questions.started.count; exercises = @course.subject.exercises.count %>
 			<%=  questions %> out of 
 			<%=  exercises %>
 			(<%=  100 * questions / exercises %>%)

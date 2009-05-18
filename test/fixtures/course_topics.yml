@@ -1,0 +1,21 @@
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+
+one:
+  course_id: 1
+  topic_id: 1
+  name: MyString
+  code: MyText
+  data: MyText
+  ignore_punctuation: false
+  add_together: false
+  rtl: false
+
+two:
+  course_id: 1
+  topic_id: 1
+  name: MyString
+  code: MyText
+  data: MyText
+  ignore_punctuation: false
+  add_together: false
+  rtl: false

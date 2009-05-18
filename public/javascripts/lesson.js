@@ -533,7 +533,7 @@ RC.question = {
 			$(RC.DOMnodes.responseField).val($(RC.DOMnodes.responseField).val()+RC.parens[lastChar]);
 			$(RC.DOMnodes.responseField).shiftCaret(-1);
 		}
-		if (this.isFormula(this.data.exercise.response)) {
+		if (this.isFormula(this.data.question.response)) {
 			RC.formula.display(RC.DOMnodes.translated, $(RC.DOMnodes.responseField).val());
 		}
 		if (this.data.topic.rtl) {
@@ -549,7 +549,7 @@ RC.question = {
 	},
 	
 	showPhrase: function () {
-		var phrase = this.data.exercise.phrase;
+		var phrase = this.data.question.phrase;
 		if (this.data.question.current_interval > 0) {
 			phrase = phrase.replace(/\(\(.*?\)\)/g, '');
 		} else {
@@ -564,7 +564,7 @@ RC.question = {
 
 	showResponse: function (node, response) {
 		$(node).show();
-		if (this.isFormula(this.data.exercise.response)) {
+		if (this.isFormula(this.data.question.response)) {
 			response = this.stripPrefix(response);
 			$(node).html(RC.formula.display(node, response));
 		} else {
@@ -573,7 +573,7 @@ RC.question = {
 	},
 	
 	updateStats: function() {
-		$(RC.DOMnodes.exerciseNo).text(this.data.exercise.id);
+		$(RC.DOMnodes.exerciseNo).text(this.data.question.exercise_id);
 		$(RC.DOMnodes.questionNo).text(this.data.question.id);
 		$(RC.DOMnodes.currentInterval).text(this.data.question.current_interval.toString());
 		$(RC.DOMnodes.correctResponses).text(this.data.correct);
@@ -606,12 +606,12 @@ RC.question = {
 		$(RC.DOMnodes.responseBlock).hide();
 		$(RC.DOMnodes.expectedResponseBlock).show();
 		$(RC.DOMnodes.response).val('');
-		if (this.isFormula(this.data.exercise.response)) {
-			var formula = this.stripPrefix(this.data.exercise.response);
+		if (this.isFormula(this.data.question.response)) {
+			var formula = this.stripPrefix(this.data.question.response);
 			$(RC.DOMnodes.expectedResponse).text('( '+formula+' )');
 			RC.formula.display(RC.DOMnodes.translated, formula);
 		} else {
-			var response = this.bothVersions(this.data.exercise.response);
+			var response = this.bothVersions(this.data.question.response);
 			$(RC.DOMnodes.expectedResponse).text(response);
 		}
 		$(RC.DOMnodes.submitButton).focus();
@@ -647,7 +647,7 @@ RC.question = {
 	},
 	
 	prepare: function () {
-		var phrase = this.data.exercise.phrase;
+		var phrase = this.data.question.phrase;
 		var result;
 		var re = /\[\[([^\]]+)\]\]/g;
 		while (result = re.exec(phrase)) {
@@ -658,7 +658,7 @@ RC.question = {
 		if (phrase.match(/\[\[([^\]]+)\]\]/)) {
 			
 			//alert('matched');
-			//var response = this.data.exercise.\[response;
+			//var response = this.data.question.\[response;
 			//response = eval(response); // Warning:eval! collect the phrase matches
 			//alert(response);
 			
@@ -676,19 +676,19 @@ RC.question = {
 		$(RC.DOMnodes.tabs).hide();
 		$(RC.DOMnodes.topic).html(this.data.topic.name);
 		this.updateStats();
-		this.hint(this.data.exercise.hint);
+		this.hint(this.data.question.hint);
 		if (this.data.topic.rtl) {
 			$(RC.DOMnodes.responseField).addClass('rtl');
 		} else {
 			$(RC.DOMnodes.responseField).removeClass('rtl');
 		}
-		if (this.isFormula(this.data.exercise.phrase)) {
-			RC.formula.display(RC.DOMnodes.question, this.stripPrefix(this.data.exercise.phrase));
+		if (this.isFormula(this.data.question.phrase)) {
+			RC.formula.display(RC.DOMnodes.question, this.stripPrefix(this.data.question.phrase));
 		} else {
 			this.showCode();
 			this.showPhrase();
 		}
-		var response = this.bothVersions(this.stripPrefix(this.data.exercise.response));
+		var response = this.bothVersions(this.stripPrefix(this.data.question.response));
 		response = RC.unicodeToHtmlEntity(response); //convert to HTML entities 
 		if (this.data.question.current_interval === 0) {
 			RC.voices.outfoxQueue(response, 'response');
@@ -696,7 +696,7 @@ RC.question = {
 		} else {
 			this.awaitResponse();
 		}
-		if (this.isFormula(this.data.exercise.response)) {
+		if (this.isFormula(this.data.question.response)) {
 			$(RC.DOMnodes.mathsPalette).show();
 		}
 		
@@ -738,7 +738,7 @@ RC.question = {
 	},
 	
 	checkResponse: function (response) {
-		var expected = this.data.exercise.response;
+		var expected = this.data.question.response;
 		var match = false;
 		if (this.isBoolean(expected) && expected.charAt(0) === response.charAt(0) ) {
 			match = true;
@@ -847,7 +847,7 @@ $(document).ready(function(){
 		$(RC.DOMnodes.symbol).click(function () {
 		var insert = $(this).attr('value');
 		$(RC.DOMnodes.responseField).val($(RC.DOMnodes.responseField).val()+insert);
-		if (RC.question.isFormula(RC.current.data.exercise.response)) {
+		if (RC.question.isFormula(RC.current.data.question.response)) {
 			RC.formula.display(RC.DOMnodes.translated, $(RC.DOMnodes.responseField).val());
 		}
 		$(RC.DOMnodes.responseField).focus();

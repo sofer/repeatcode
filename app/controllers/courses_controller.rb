@@ -92,7 +92,7 @@ class CoursesController < ApplicationController
 
   # POST /courses
   # POST /courses.xml
-  def create    
+  def create
     @subject = Subject.find(params[:subject_id])
     @course = @subject.courses.new(params[:course])
 

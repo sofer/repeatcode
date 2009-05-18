@@ -29,17 +29,12 @@ class LessonsController < ApplicationController
       format.xml  { render :xml => @question.exercise }
       format.json  { 
         if params[:ignore]
-          question = @lesson.next_question(params[:ignore])
+          question = @lesson.course.next_question(params[:ignore])
         else
-          question = @lesson.next_question
+          question = @lesson.course.next_question
         end
         if question
-          if question.exercise.topic
-            topic = question.exercise.topic
-          else
-            topic = "question removed from course"
-          end
-          render :json => { 'ignored' => params[:ignore], 'status' => 'ok', 'exercise' => question.exercise, 'question' => question, 'topic' => topic, 'correct' => @lesson.correct_responses, 'backlog' => @lesson.backlog }
+          render :json => { 'ignored' => params[:ignore], 'status' => 'ok', 'question' => question, 'topic' => question.course_topic, 'correct' => @lesson.correct_responses, 'backlog' => @lesson.backlog }
         else
           render :json => { 'status' => 'end', 'days_until_next' => @lesson.days_until_next }
         end
