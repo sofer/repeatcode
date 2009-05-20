@@ -128,10 +128,12 @@ class CoursesController < ApplicationController
         flash[:notice] = 'Course was successfully updated.'
         format.html { redirect_to(:back) }
         format.xml  { head :ok }
+        format.json { head :ok }
       else
         flash[:notice] = 'Course was NOT updated.'
         format.html { redirect_to(:back) }
         format.xml  { render :xml => @course.errors, :status => :unprocessable_entity }
+        format.json { render :json => @course.errors }
       end
     end
   end

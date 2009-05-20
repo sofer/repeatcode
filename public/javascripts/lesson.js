@@ -80,8 +80,11 @@ RC.DOMnodes = {
 	detailsSwitch: '.details-switch',
 	extendedChars: '#extended-chars',
 	ignoreAccentsCheckbox: '#ignore-accents',
-	speakPhrasesCheckbox: '#speak-phrases',
-	speakResponsesCheckbox: '#speak-responses',
+	voices: '#voices',
+	voicesSwitch: '#voices-switch',
+	phraseVoice: '#phrase-voice',
+	responseVoice: '#response-voice',
+	voicesForm: '#voices-form',
 	timeout: '#timeout',
 	start: '#start',
 	loading: '#loading',
@@ -123,33 +126,40 @@ RC.unicodeToHtmlEntity = function(phrase) {
 // 1 May 2009: Still got problems with non-ASCII. Added checking code for users
 RC.voices = {
 	
-	//voiceServerUrl: 'http://localhost:2000/' no longer using this
-
-	languages: {
-		'FR': 'com.acapela.iVox.voice.iVoxJulie22k',
-		'IT': 'com.acapela.iVox.voice.iVoxChiara22k',
-		'EN': 'com.apple.speech.synthesis.voice.Alex'
-	},
-	
-	installed: false,
+	isFirefox: false,
+	isInstalled: false,
 	speaking: false,
 	pending: [],
-	phraseLanguage: '',
-	responseLanguage: '',	
-	speakPhrase: false,
-	speakResponse: false,
+	phraseVoice: '',
+	responseVoice: '',
+	installedVoices: [],
 
 	outfoxInit: function() {
-		var isFirefox = ( navigator.userAgent != null &&  navigator.userAgent.indexOf( "Firefox/" ) != -1 );
-		if (isFirefox && typeof outfox === 'object') { // check to see if outfox file has been loaded
-			this.installed = true; 
-			outfox.init("outfox", JSON.stringify, JSON.parse);
-	    outfox.startService("audio").addCallback(this.onStart).addErrback(this.onFail);
+		this.phraseVoice = $(RC.DOMnodes.phraseVoice).val(),
+		this.responseVoice = $(RC.DOMnodes.responseVoice).val(),
+		this.isFirefox = navigator.userAgent !== null && navigator.userAgent.indexOf('Firefox/') !== -1 ;
+		if (this.isFirefox) { 
+			$(RC.DOMnodes.messageEnvelope).html('Outfox Firefox extension for text-to-speech may not be installed...');
+			if (typeof outfox === 'object') { // check to see if outfox file has been loaded
+				this.isInstalled = true;
+				outfox.init("outfox", JSON.stringify, JSON.parse);
+	    	outfox.startService("audio").addCallback(this.onStart).addErrback(this.onFail);
+			}
 		}
 	},
 	
 	onStart: function () {
-		$(RC.DOMnodes.messageEnvelope).html('Outfox is installed. You can use text-to-speech.');
+		$(RC.DOMnodes.messageEnvelope).html('Outfox is installed. Voices are available for this lesson.');
+		$(RC.DOMnodes.voicesSwitch).show();
+		this.installedVoices = outfox.audio.getProperty('voices');
+		var options = '';
+		for (var i=0; i<this.installedVoices.length; i++) {
+			var label = this.installedVoices[i].match(/[^.]+$/);
+			options += '<option value="'+this.installedVoices[i]+'">' + label + '</option>';
+		}
+		$(RC.DOMnodes.phraseVoice).append(options);
+		$(RC.DOMnodes.responseVoice).append(options);
+		
 	},
 
 	onFail: function (cmd) {
@@ -157,77 +167,59 @@ RC.voices = {
 	},
 
 	outfoxQueue: function (phrase, which) {
-		if (this.installed && which === 'phrase' && this.speakPhrase ||
-				which === 'response' && this.speakResponse) {
+		if (this.isFirefox && this.isInstalled && (which === 'phrase' && this.phraseVoice ||
+				which === 'response' && this.responseVoice)) {
 			if (which === 'phrase') {
-				var lang = this.phraseLanguage;
+				var voice = this.phraseVoice;
 			} else {
-				var lang = this.responseLanguage;
+				var voice = this.responseVoice;
+				phrase = phrase.replace(/\(.*?\)/g, ''); //strip out brackets
 			}
 			if (outfox.audio) {
-				outfox.audio.setProperty('voice', this.languages[lang]);
+				outfox.audio.setProperty('voice', voice);
 				outfox.audio.say(phrase);
-				if (which === 'response') {
-					$(RC.DOMnodes.messageEnvelope).html(phrase);
-				}
-			} else {
-				$(RC.DOMnodes.messageEnvelope).html('outfox: something went wrong...');
 			}
 		}
 	},
 
-	
-	// old-style. No longer in use.
-	speak: function(phrase, lang) {
-		var that = this;
-		$(RC.DOMnodes.messageEnvelope).html('speaking...');
-		this.speaking = true;
-		$.ajax({
-			//async: false,
-			url: that.voiceServerUrl,
-			data: { 'lang': lang, 'phrase': phrase },
-			dataType: 'jsonp',
-			error: function () {
-				$(RC.DOMnodes.messageEnvelope).html('Failed to access voices on your computer.');
-			},
-			success: function () {
-				$(RC.DOMnodes.messageEnvelope).html('');
-			},
-			complete: function() {
-				that.speaking = false;
-				if (that.pending.length > 0) {
-					var next = that.pending.shift();
-					that.speak(next[0], next[1]);
-				}
-			}
-		});
+	setVoices: function() {
+		$(RC.DOMnodes.voices).show();
+		$(RC.DOMnodes.content).addClass('faded');
+		RC.timer.timedOut = true;
 	},
 	
-	// old-style. No longer in use.
-	queue: function(phrase, which) {
-		if (which === 'phrase' && this.speakPhrase ||
-				which === 'response' && this.speakResponse) {
-			if (which === 'phrase') {
-				var lang = this.phraseLanguage;
-			} else {
-				var lang = this.responseLanguage;
+	updateVoices: function() {
+		this.phraseVoice = $(RC.DOMnodes.phraseVoice).val();
+		this.responseVoice = $(RC.DOMnodes.responseVoice).val();
+
+		$(RC.DOMnodes.voices).hide();
+		$(RC.DOMnodes.content).removeClass('faded');
+		$(RC.DOMnodes.responseField).focus();
+		this.timedOut = false;
+		
+		// update course
+		var postUrl = '/courses/' + RC.question.data.question.course_id + '.json';
+		var postData = {
+			'course[phrase_voice]': this.phraseVoice,
+			'course[response_voice]': this.responseVoice,
+		  'authenticity_token': AUTH_TOKEN 
+		};
+		$.ajax({
+			type: 'PUT',
+			url: postUrl,
+			data: postData,
+			success: function() {
+				$(RC.DOMnodes.messageEnvelope).html('Course voices updated.');
 			}
-			if (this.speaking) {
-				this.pending.push([phrase,lang])
-				$(RC.DOMnodes.messageEnvelope).html('queuing speech...');
-			} else {
-				this.speak(phrase,lang)
-			}
-		}
+	  });
 	}
 	
-
 }
 
 RC.timer = {
 
 	timeout: 120,
-	secondsToTimeout: 120,
+	secondsToTimeout: this.timeout,
 	questionSeconds: 0,
 	lessonSeconds: 0,
 	timedOut: false,
@@ -271,11 +263,15 @@ RC.timer = {
 			$(RC.DOMnodes.timeout).slideDown('slow');
 			$(RC.DOMnodes.content).addClass('faded');
 			$(RC.DOMnodes.timeout).focus();
+			$("a").attr('disabled','disabled');
 			this.secondsToTimeout = this.timeout;
 			this.timedOut = true;
 	},
 	
 	endTimeout: function () {
+		$(RC.DOMnodes.timeout).hide();
+		$(RC.DOMnodes.content).removeClass('faded');
+		$(RC.DOMnodes.responseField).focus();
 		this.timedOut = false;
 	}
 
@@ -793,28 +789,8 @@ $(document).ready(function(){
 	
 	RC.voices.outfoxInit();
 	
-	if ($(RC.DOMnodes.speakPhrasesCheckbox).length > 0) {
-		$(RC.DOMnodes.speakPhrasesCheckbox).attr('checked', false);
-		RC.voices.phraseLanguage = $(RC.DOMnodes.speakPhrasesCheckbox).attr("language");
-	}
-	
-	if ($(RC.DOMnodes.speakResponsesCheckbox).length > 0) {
-		$(RC.DOMnodes.speakResponsesCheckbox).attr('checked', false);
-		RC.voices.responseLanguage = $(RC.DOMnodes.speakResponsesCheckbox).attr("language");
-	}
-	
 	$(RC.DOMnodes.ignoreAccentsCheckbox).attr('checked', false);
 
-	$(RC.DOMnodes.speakPhrasesCheckbox).click(function(){
-		RC.voices.speakPhrase = !RC.voices.speakPhrase;
-		$(RC.DOMnodes.responseField).focus();
-	});
-	
-	$(RC.DOMnodes.speakResponsesCheckbox).click(function(){
-		RC.voices.speakResponse = !RC.voices.speakResponse;
-		$(RC.DOMnodes.responseField).focus();
-	});
-	
 	$(RC.DOMnodes.responseForm).submit(function(){
     var response = $(RC.DOMnodes.responseField).val();
 		RC.current.checkResponse(response);
@@ -855,9 +831,6 @@ $(document).ready(function(){
 	})
 
 	$(RC.DOMnodes.timeout).click(function() {
-		$(this).hide();
-		$(RC.DOMnodes.content).removeClass('faded');
-		$(RC.DOMnodes.responseField).focus();
 		RC.timer.endTimeout();
 	});
 
@@ -868,12 +841,26 @@ $(document).ready(function(){
 	});
 	
 	$(RC.DOMnodes.detailsSwitch).click(function() {
-		$(RC.DOMnodes.detailsSwitch).toggle();
-		$(RC.DOMnodes.details).toggle();
-		$(RC.DOMnodes.responseField).focus();
+		if (!$(RC.DOMnodes.content).hasClass('faded')) {
+			$(RC.DOMnodes.detailsSwitch).toggle();
+			$(RC.DOMnodes.details).toggle();
+			$(RC.DOMnodes.responseField).focus();
+		}
 		return false;
 	});
 
+	$(RC.DOMnodes.voicesSwitch).click(function() {
+		if (!$(RC.DOMnodes.content).hasClass('faded')) {
+			RC.voices.setVoices();
+		}
+		return false;
+	});
+	
+	$(RC.DOMnodes.voicesForm).submit(function() {
+		RC.voices.updateVoices();
+		return false;
+	});
+	
 	$(RC.DOMnodes.ignoreAccentsCheckbox).click(function() {
 		$(RC.DOMnodes.extendedChars).toggle();
 	});

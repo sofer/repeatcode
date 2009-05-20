@@ -19,15 +19,15 @@
 	</div>
 
 	<label>Your ID</label>
-	<div class="text"> <code><%= current_user.uid %></code> </div>
+	<div class="comment"> <code><%= current_user.uid %></code> </div>
 	<div class="small centre clear">(Make a note of it and keep it safe.)</div>
 
 	<label>Logged in from</label>
-	<div class="text"> <%= current_user.last_login %> </div>
+	<div class="comment"> <%= current_user.last_login %> </div>
 	<div class="clear"> </div>
 
 	<label>Logged in at</label>
-	<div class="text"> <%= formatted_date_time current_user.updated_at %> </div>
+	<div class="comment"> <%= formatted_date_time current_user.updated_at %> </div>
 	<div class="clear"> </div>
 
 	<%= error_messages_for :user %>
@@ -45,8 +45,9 @@
 		<label for="email">Email</label>
 		<%= f.text_field :email %>
 		<label for="voice">Text to voice</label>
-		<%= f.check_box :voice %> <%= link_to 'Help', :controller => 'about', :action => 'voice' %>
-		<div class="centre space"><%= submit_tag 'Update' %></div>
+		<%= f.check_box :voice %> 
+		<div class="comment"><%= link_to 'Help', :controller => 'about', :action => 'voice' %></div>
+		<div class="centre clear"><%= submit_tag 'Update' %></div>
 	<% end -%>
 
 </div>

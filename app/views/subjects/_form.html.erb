@@ -1,28 +1,19 @@
 
 <%= f.error_messages %>
-<div>
 <%= f.label :name %>
 <%= f.text_field :name, :autocomplete => "off"  %>
-</div><div class="form-line">
 <%= f.label :area_id %>
 <%= f.select(:area_id, Subject::AREAS_FOR_FORM) %>
-</div><div class="form-line">
-<%= f.label :phrase_speech %>
-<%= f.select(:phrase_speech, Subject::LANGUAGES_FOR_FORM, { :include_blank => true } ) %>
-</div><div class="form-line">
-<%= f.label :response_speech %>
-<%= f.select(:response_speech, Subject::LANGUAGES_FOR_FORM, { :include_blank => true } ) %>
-</div><div class="form-line">
 <%= f.label :public %>
 <%= f.check_box :public %>
-</div><div class="form-line">
+<br class="clear">
 <%= f.label :archived %>
 <%= f.check_box :archived %>
-</div><div class="form-line">
+<br class="clear">
 <%= f.label :ignore_punctuation %>
 <%= f.check_box :ignore_punctuation %> 
-<span>[ , . ! ? - ]</span>
-</div><div class="form-line">
+<div class="comment">[ , . ! ? - ]</div>
+<br class="clear">
 <%= f.label "Non-standard characters" %>
 <%= f.text_field :extended_chars, :autocomplete => "off"   %>
-</div>
+<br class="space">

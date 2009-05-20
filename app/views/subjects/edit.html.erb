@@ -10,18 +10,17 @@
 	</h2>
 </div>
 <div id="main">
+	
+	<fieldset>
 	<% form_for(@subject) do |f| %>
-
 		<%= render :partial => 'form', :locals => {:f => f } %>
-
-	  <p>
-	    <%= f.submit "Update" %>
-	  </p>
+	  <div class="centre space"><%= f.submit "Update" %></div>
 	<% end %>
 
 <p>Non-standard characters detected: <%= @extended %><br>
-(Paste into form above to add them to the shortcut menu for users)
+(Paste into text field above to add them to the lesson shortcut menu)
 </p>
+	</fieldset>
 
 
 </div>

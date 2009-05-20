@@ -11,8 +11,6 @@ hr	{ height: 1px; border: 0; color: DodgerBlue; background-color: DodgerBlue; }
 #envelope	{ position: relative; margin: 0 auto; width: 900px; background: white; border: 4px DodgerBlue solid; -moz-border-radius-bottomright: 10px; -moz-border-radius-bottomleft: 10px; -webkit-border-bottom-right-radius: 10px; -webkit-border-bottom-left-radius: 10px; }
 .fixed	{ height: 500px; }
 #message-envelope	{ margin: 4px auto; width: 892px; }
-#timeout	{ position: absolute; border: 1px solid DimGray; left: 40px; right: 40px; top: 40px; bottom: 40px; background: LightYellow; padding-top: 200px; text-align: center; display: none; }
-#timeout h2	{ font-size: 18px; }
 #header	{ position: absolute; height: 28px; top: 0; right: 0; left: 0; background: DodgerBlue; }
 #header a	{ color: MidnightBlue; }
 #footer	{ position: absolute; height: 40px; left: 0; right: 0; bottom: 0; margin: 4px; border-top: 1px solid; }
@@ -29,6 +27,8 @@ hr	{ height: 1px; border: 0; color: DodgerBlue; background-color: DodgerBlue; }
 #errorExplanation ul li	{ font-size: 12px; }
 
 /* lesson id's and classes */
+#timeout, #voices	{ position: absolute; border: 1px solid DimGray; left: 40px; right: 40px; top: 40px; bottom: 40px; background: LightYellow; padding-top: 160px; text-align: center; display: none; }
+#timeout h2	{ font-size: 18px; }
 #question	{ margin-top: 30px; text-align: center; line-height: 1.2;  font-size: 24px; }
 #response	{ position: absolute; bottom: 0; left: 0; right: 0; text-align: center; font-size: 28px; line-height: 1.2; }
 #start, #completed, .big-notice	{ padding: 150px; text-align: center; font-size: 18px; }
@@ -88,14 +88,19 @@ input#response-field:focus	{ background-color: LightYellow; }
 .end { float: right; xtext-align: right; }
 
 /* form classes */
-label	{ float: left; width: 200px; text-align: right; margin: 4px 4px 0 0; }
-input[type=text], select	{ width: 200px; }
-input[type=checkbox]	{ float: left; width: 20px; margin: 5px 4px 0 0; }
+
+fieldset { width: 460px; border: none; margin: 10px auto;}
+legend { font-weight: bold; margin: 10px;}
+label	{ float: left; width: 220px; text-align: right; padding: 8px 4px 0 0; height: 1em; }
+input[type=text], select	{ float: left; width: 220px; margin: 4px;}
+input[type=checkbox]	{ float: left; width: 20px; margin: 8px 4px 0 3px; }
 .form-line { padding: 2px; clear: both; }
+.comment { float: left; padding: 4px 0 0 6px; }
+input[type=submit]	{ margin: 10px; }
 .signin label	{ float: left; width: 160px; height: 14px; margin: 6px; padding-top: 4px; text-align: right; }
 .signin input[type=text], .signin input[type=password], .signin select	{ width: 140px; height: 14px; margin: 6px 70px 6px 6px; }
 .signin input[type=checkbox]	{ margin: 10px 4px; }
-.signin .text	{ float: left; height: 14px; margin: 6px; padding-top: 4px; }
+.signin .comment	{ padding-top: 10px; }
 .cell input[type=submit]	{ margin: -3px 0 0 0; }
 .exercise input { width: 95%; }
 textarea	{ width: 100%; height: 300px; }
@@ -130,6 +135,7 @@ textarea	{ width: 100%; height: 300px; }
 .small-gap-above { margin-top: 4px; }
 .clear	{ clear: both; }
 .faded	{ opacity: 0.2; }
+.faded a { cursor: default; }
 .copy	{ margin: 20px 80px; }
 .copy p { margin: 1em; }
 .small { font-size: 13px; }

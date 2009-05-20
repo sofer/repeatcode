@@ -1,6 +1,13 @@
 # Methods added to this helper will be available to all templates in the application.
 module ApplicationHelper
   
+  def selected_voice(voice)
+    unless voice.blank?
+      name = voice[/[^.]+$/] 
+      "<option value=\"#{voice}\" selected=\"selected\">#{name}</a>"
+    end
+  end
+  
   def textilize(text)
     RedCloth.new(text).to_html
   end

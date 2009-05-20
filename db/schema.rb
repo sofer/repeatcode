@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20090518065219) do
+ActiveRecord::Schema.define(:version => 20090520121121) do
 
   create_table "administrators", :force => true do |t|
     t.integer  "user_id"
@@ -56,6 +56,8 @@ ActiveRecord::Schema.define(:version => 20090518065219) do
     t.string   "extended_chars"
     t.boolean  "phrase_speech"
     t.boolean  "response_speech"
+    t.string   "response_voice"
+    t.string   "phrase_voice"
   end
 
   create_table "enrolments", :force => true do |t|

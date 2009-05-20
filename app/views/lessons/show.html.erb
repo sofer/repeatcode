@@ -4,7 +4,7 @@
 
 	<div id="header">
 		<h1 class="top-left pad">
-	  	<div id="subject"><%= h @lesson.course.subject.name %></div>
+	  	<div id="subject"><%= h @lesson.course.name %></div>
 		</h1>
 		<h2 class="top-right pad">
 			<div id="topic"></div>
@@ -104,35 +104,38 @@
 			<% end %>
 		</div>
 		<div id="loading"><img src="/images/furniture/loading.gif" width="16" height="16" alt="waiting..." align="right"></div>
-		<% if current_user.voice %>
-			<div class="bottom-centre">
-				<div class="centre half">
-					<% unless @lesson.course.subject.phrase_speech.empty? %>
-						<div class="checkbox">
-							<label>speak questions</label>
-							<input type="checkbox" checked="false" id="speak-phrases" language="<%= @lesson.course.subject.phrase_speech %>">
-						</div>
-					<% end %>
-					<% unless @lesson.course.subject.response_speech.empty? %>
-						<div class="checkbox">
-							<label>speak answers</label>
-							<input type="checkbox" checked="checked" id="speak-responses" language="<%= @lesson.course.subject.response_speech %>">
-						</div>
-					<% end %>
-				</div>
-			</div>
-		<% end %>
 		<div class="bottom-right">
-			<a href="" class="details-switch">Show details</a> 
+			<a href="" id="voices-switch" class="hidden">Voices</a> 
+			| <a href="" class="details-switch">Show details</a> 
 			<a href="" class="details-switch hidden">Hide details</a> 
 			| <%= link_to 'End lesson', courses_path %>
 		</div>
 	</div>
 
-	<div id="timeout">
-		<h2>Taking time out</h2>
-		Click to continue
-	</div>
+</div>
 
+<div id="voices" class="hidden">
+	<form id="voices-form">
+		<fieldset>
+			<legend>Change text-to-speech options</legend>
+			<%= label_tag 'Voices for phrases' %>
+			<select id="phrase-voice">
+				<option value="">None</option>
+				<%= selected_voice @lesson.course.phrase_voice %>
+			</select>
+			<%= label_tag 'Voices for responses' %>
+			<select id="response-voice">
+				<option value="">None</option>
+				<%= selected_voice @lesson.course.response_voice %>
+			</select>
+			<%= submit_tag %>
+		</fieldset>
+	</form>
+</div>
+
+
+<div id="timeout">
+	<h2>Taking time out</h2>
+	Click to continue
 </div>
 
