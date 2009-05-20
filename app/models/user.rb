@@ -68,6 +68,7 @@ private
       uid += chars[i]
     }
     self.uid = uid
+    self.voice = true # at least for now 
   end
   
 end

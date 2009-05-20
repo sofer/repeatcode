@@ -21,7 +21,12 @@ class LessonsController < ApplicationController
 
   def show
     @lesson = Lesson.find(params[:id])
-    
+    if  current_user.voice
+      flash[:notice] = 'Outfox Firefox extension for text-to-speech may not be installed...' 
+    else 
+      flash[:notice] = 'Text to speech is off. Edit your profile to turn it on.' 
+    end
+  
     respond_to do |format|
       format.html {
 

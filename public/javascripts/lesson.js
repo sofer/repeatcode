@@ -135,16 +135,17 @@ RC.voices = {
 	installedVoices: [],
 
 	outfoxInit: function() {
-		this.phraseVoice = $(RC.DOMnodes.phraseVoice).val(),
-		this.responseVoice = $(RC.DOMnodes.responseVoice).val(),
 		this.isFirefox = navigator.userAgent !== null && navigator.userAgent.indexOf('Firefox/') !== -1 ;
 		if (this.isFirefox) { 
-			$(RC.DOMnodes.messageEnvelope).html('Outfox Firefox extension for text-to-speech may not be installed...');
 			if (typeof outfox === 'object') { // check to see if outfox file has been loaded
 				this.isInstalled = true;
+				this.phraseVoice = $(RC.DOMnodes.phraseVoice).val(),
+				this.responseVoice = $(RC.DOMnodes.responseVoice).val(),
 				outfox.init("outfox", JSON.stringify, JSON.parse);
 	    	outfox.startService("audio").addCallback(this.onStart).addErrback(this.onFail);
 			}
+		} else {
+			$(RC.DOMnodes.messageEnvelope).html('');
 		}
 	},
 	
