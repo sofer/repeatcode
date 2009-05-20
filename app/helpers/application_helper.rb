@@ -4,7 +4,7 @@ module ApplicationHelper
   def selected_voice(voice)
     unless voice.blank?
       name = voice[/[^.]+$/] 
-      "<option value=\"#{voice}\" selected=\"selected\">#{name}</a>"
+      "<option value=\"#{voice}\" selected=\"selected\">#{name}</a><option value=\"\">--------</a>"
     end
   end
   
