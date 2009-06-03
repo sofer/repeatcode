@@ -1,12 +1,12 @@
 class TopicsController < ApplicationController
 
   before_filter :authorize
-  before_filter :subject, :only => [ :index, :new, :create, :destroy ]
 
   # GET /topics
   # GET /topics.xml
   def index
     @topics = @subject.topics.all
+    @subject = Subject.find(params[:subject_id])
 
     respond_to do |format|
       format.html # index.html.erb
@@ -29,7 +29,21 @@ class TopicsController < ApplicationController
   # GET /topics/new.xml
   def new
     @topic = Topic.new
-    @topic.ignore_punctuation = @subject.ignore_punctuation
+    
+    # put this in user model, perhaps
+    if current_user.subjects.empty?
+      subject = Subject.new
+      subject.name = 'Uncategorized'
+      subject.public = false
+      subject.save!
+    end
+    
+    @subjects = current_user.subjects
+    
+    if params[:subject_id]
+      @subject = Subject.find(params[:subject_id])
+      @topic.ignore_punctuation = @subject.ignore_punctuation
+    end
 
     respond_to do |format|
       format.html # new.html.erb
@@ -45,14 +59,15 @@ class TopicsController < ApplicationController
   # POST /topics
   # POST /topics.xml
   def create
-    @topic = @subject.topics.create(params[:topic])
+    @topic = Topic.new(params[:topic])
 
     respond_to do |format|
       if @topic.save
         flash[:notice] = 'Topic was successfully created.'
-        format.html { redirect_to(subject_path(@topic.subject)) }
+        format.html { redirect_to @topic.subject }
         format.xml  { render :xml => @topic, :status => :created, :location => @topic }
       else
+        flash[:notice] = 'Looks like we had a problem.'
         format.html { render :action => "new" }
         format.xml  { render :xml => @topic.errors, :status => :unprocessable_entity }
       end
@@ -87,11 +102,5 @@ class TopicsController < ApplicationController
       format.xml  { head :ok }
     end
   end
-  
-protected
 
-  def subject
-    @subject = Subject.find(params[:subject_id])
-  end
-  
 end

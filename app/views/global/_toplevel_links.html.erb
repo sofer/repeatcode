@@ -20,7 +20,7 @@
 		<% end %>
 		<%= link_to_unless_current 'Learn', :controller => 'courses', :action => 'index' %> |
 		<% if current_user.login and not current_user.login.empty? %>
-			<%= link_to_unless_current 'Create', :controller => 'subjects', :action => 'index' %> | 
+			<%= link_to_unless_current 'Create', :controller => 'topics', :action => 'new' %> | 
 		<% end %>
 		<%= link_to_unless_current 'About', :controller => 'about', :action => 'faq' %> |
 		<%= link_to_unless_current 'Logout', '/logout'%>

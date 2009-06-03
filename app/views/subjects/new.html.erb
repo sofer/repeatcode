@@ -7,9 +7,11 @@
 </div>
 <div id="main">
 	<% form_for(@subject) do |f| %>
-		<%= render :partial => 'form', :locals => {:f => f } %>
-	  <br><br>
-		<%= f.submit "Create" %>
+		<fieldset>
+			<%= render :partial => 'form', :locals => {:f => f } %>
+		  <br><br>
+			<%= f.submit "Create" %>
+		</fieldset>
 	<% end %>
 </div>
 

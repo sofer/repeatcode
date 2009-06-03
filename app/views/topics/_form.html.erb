@@ -9,10 +9,11 @@
 </div><div class="form-line">
 <%= f.label "Display responses right to left" %>
 <%= f.check_box :rtl %> 
-<div>(for arithmetic)</div>
-</div><div class="form-line">
-<%= f.label :add_together %>
-<%= f.check_box :add_together, :class => "border" %><br>
+<div class="comment">(for arithmetic)</div>
+</div>
+<div class="form-line">
+<% # f.label :add_together %>
+<% # f.check_box :add_together, :class => "border" %><br>
 </div>
 <div class="pad">
 	<%= content_tag 'div', h(flash[:notice]), :class => 'notice', :id => 'notice' if flash[:notice] %>
@@ -63,6 +64,7 @@
 	<div class="clear"> </div>
 </div>
 
+<% if false # ignoring this stuff for now %>
 <% if @topic.show_data %>
 	<div id="data">
 		<%= f.label :data %><br />
@@ -74,4 +76,5 @@
 	 	<%= f.label :code %><br />
 		<%= f.text_area :code %><br>
 	</div>
+<% end %>
 <% end %>

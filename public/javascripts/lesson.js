@@ -536,6 +536,12 @@ RC.question = {
 		if (this.data.topic.rtl) {
 			var fieldValue = $(RC.DOMnodes.responseField).val();
 			// use key.keyCode.fromCharCode();
+			//alert(key.keyCode);
+			var str = '0123456789';
+			var txt = '';
+			//for (var i=0;i<10;++) {
+				
+			//}
 			if (key.keyCode === 8) { // delete key
 				fieldValue = fieldValue.slice(0,fieldValue.length-1)
 			} else {
@@ -649,7 +655,7 @@ RC.question = {
 		var re = /\[\[([^\]]+)\]\]/g;
 		while (result = re.exec(phrase)) {
 			if (result[1]) {
-				alert(result[0] + ' : ' + result[1] + ' : ' + result[2] );
+				// alert(result[0] + ' : ' + result[1] + ' : ' + result[2] );
 			}
 		}
 		if (phrase.match(/\[\[([^\]]+)\]\]/)) {

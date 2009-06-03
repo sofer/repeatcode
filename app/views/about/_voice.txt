@@ -1,6 +1,6 @@
 *Most modern computers* have text-to-speech capabilities.
 
-In order to make them available, you will need to use the "Firefox":www.mozilla.com/firefox/ web browser with the  "Outfox":http://code.google.com/p/outfox/wiki/GettingStarted Add-on installed (Outfox is experimental software and has not yet been tested by the Firefox editorial team, so proceed with caution).
+In order to make them available, you will need to use the "Firefox":www.mozilla.com/firefox/ web browser with the  "Outfox":http://code.google.com/p/outfox/wiki/GettingStarted extension installed (Outfox is experimental software and has not yet been tested by the Firefox editorial team, so proceed with caution).
 
 If you want to use foreign language pronounciations, you will need to install the relevant foreign language voices from "Acapela":http://www.acapela-group.com/ or other vendors. 
 

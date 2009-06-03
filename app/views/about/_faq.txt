@@ -5,7 +5,7 @@
 *A.* A course of study is presented through a series of questions and answers, which are introduced gradually and repeated regularly until the material is mastered.
 
 *Q. What is different about studying this way?*
-*A.* It is very efficient. If you are revising for an exam or are trying to commit information to long-term memory, studying here is likely to work better for you than anything else you have tried.
+*A.* It is very efficient. If you are revising for an exam or are trying to commit information to long-term memory, studying here is likely to work very well for you.
 
 *Q. What are the key principles involved?*
 *A.* Spaced repetition and active recall.
@@ -38,7 +38,7 @@
 *A.* Yes. Absolutely. A range of tools for teachers and administrators will be added soon.
 
 *Q. What support do you offer for foreign language learning?*
-*A.* We are planning to make use of new text-to-voice technology to combine written and spoken translations in a variety of languages.
+*A.* We use the text-to-speech facilities installed on most new computers to combine written and spoken translations in a variety of languages. Text-to-speech can also be used to aid learning by visually impaired users.
 
 *Q. What support do you offer for mathematics?*
 *A.* We provide a variety of techniques to make it easy to present a variety of mathematical material and to for users to construct mathematical formulae and graphs using a standard keyboard.
@@ -50,7 +50,7 @@
 *A.* As of May 2009, it is in public pre-beta. The emphasis in the first few weeks will be on building up and testing a variety of different sorts of learning materials, but we hope to make it easier for other people to start creating and sharing their own materials before the end of the summer.
 
 *Q. What is the technology behind this site?*
-*A.* It is developed in "Rails":http://www.rubyonrails.com with significant use of JavaScript and "JQuery":http://www.jquery.com. Graphing is provided by "Flot":http://code.google.com/p/flot/. Text-to-speech is achieved using the "Outfox":http://code.google.com/p/outfox/ Firefox extension combined with infovox voices from "Acapela":http://www.acapela-group.com/. The code is source controlled at "GitHub":http://www.github.com and hosted at "SliceHost":http://www.slicehost.com.
+*A.* It is developed in "Rails":http://www.rubyonrails.com with significant use of JavaScript and "JQuery":http://www.jquery.com. Graphing is provided by "Flot":http://code.google.com/p/flot/. Text-to-speech is achieved using the "Outfox":http://code.google.com/p/outfox/ Firefox extension. The code is source controlled at "GitHub":http://www.github.com and hosted at "SliceHost":http://www.slicehost.com.
 
 *Q. Who maintains this site.*
 *A.* It is owned and managed by "Danny Sofer":http://www.sofer.com/.

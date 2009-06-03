@@ -1,25 +1,128 @@
 <div id="header">
 	<h1 class="top-left pad">
-		<%= link_to 'Courses', courses_path %> | 
-		<%= link_to 'Materials', subjects_path %> | 
-		<%= link_to @subject.name, @subject %> | 
+		<%= link_to(@subject.name, @subject) if @subject %> 
 		New
 	</h1>
 </div>
 
 <div id="main">
-	<div class="pad">
-		<% form_for 	:topic,
-									:url => subject_topics_path(@subject) do |f| %>
-			<%= render :partial => "form", :locals => {:f => f } %>
+	
+	<% form_for @topic do |f| %>
+	
+	<div id="firstly">
+
+		<div id="import-select" class="choice-box go">
+			<input type="radio" name="choice" checked>
+			<div class="comment"><b>Copy and paste</b> from a table</div>
+		</div>
+	
+		<div id="table-select" class="choice-box">
+			<input type="radio" name="choice" checked>
+			<div class="comment"><b>Start from scratch</b></div>
+		</div>
+	
+		<div class="clear"> </div>
+	
+		<div id="import">
+			<div class="small bold pad message">Copy a table of questions and responses into the box below</div>
+			<%= text_area_tag "import-data", "When creating a table, questions or phrases go in the first column; responses go in the second column. A third column can be used to provide hints. If copying from a text file, columns must be separated by tabs.", { :class => "grey" } %>
+			<div class="bottom-centre">
+				<input id="parse-import-data" type="submit" value="Continue"/>		
+			</div>
+		</div>
+
+		<div id="table" class="topic">
+			<table class="topic-exercises-table">
+				<thead>
+					<tr>
+						<th>Question or phrase</th>
+						<th>Response</th>
+						<th>Hint <%= link_to '?', {}, :id => "hint-help" %></th>
+					</tr>
+				</thead>
+				<tbody id="exercises">
+					<% 14.times do |i| %>
+						<%= render :partial => "new_exercise", :object => Exercise.new %>
+					<% end %>
+					<td>Nothing here yet</td>
+				</tbody>
+			</table>
+			
+			<div class="big centre">
+				<span id="up" class="border pointer">&laquo;</span>
+				<span id="down" class="border pointer">&raquo;</span>
+			</div>
+		
+			<div class="bottom-centre">
+				<input id="confirm" type="submit" value="Continue"/>
+			</div>
+
+		</div>
+	</div>
+
+	<div id="finally">
+		
+		
+		<fieldset class="big-space warning message">&nbsp;</fieldset>
+		
+		<fieldset class="box">
+			<%= f.error_messages %>
+			
+			<div class="form-line">
+				<%= f.label :name, "Topic name", :class => "bold" %>
+				<%= f.text_field :name, :class => 'focus', :autocomplete => "off"  %>
+			</div>
+			<div class="form-line">
+				<%= f.label "Part of" %>
+				<%= f.collection_select :subject_id, @subjects, :id, :name %>
+			</div>
+			<div class="form-line">
+				<%= f.label :ignore_punctuation %>
+				<%= f.check_box :ignore_punctuation %>
+			<div class="comment">[ , . ! ? - ]</div>
+			</div>
+			<div id="rtl" class="form-line">
+				<%= f.label "Display responses right to left" %>
+				<%= f.check_box :rtl %> 
+			<div class="comment">(for arithmetic)</div>
+			</div>
+			<div id="rtl" class="form-line">
+				<%= f.label "Number of exercises" %>
+			<div id="import-count" class="comment bold"> </div>
+			</div>
+		</fieldset>
+
+		<div id="form-data"> </div>
+		
+		<div class="bottom-centre">
+			<%= f.submit "Finish" %>
+		</div>
+
+	</div>
+
+	<% if false # ignoring this stuff for now %>
+		<% if @topic.show_data %>
+			<div id="data">
+				<%= f.label :data %><br />
+				<%= f.text_area :data %><br>
+			</div>
 		<% end %>
-	</div>
-	<div id="list-template" style="display:none">
-		<%= render :partial => "new_exercise", :object => Exercise.new %>
-	</div>
+		<% if @topic.show_code %>
+			<div id="code">
+			 	<%= f.label :code %><br />
+				<%= f.text_area :code %><br>
+			</div>
+		<% end %>
+	<% end %>
+
+	<% end %>
 
 </div>
 
 <div id="footer">
 	<%= render :partial => 'global/toplevel_links' %>
+</div>
+
+<div id="form-data-template">
+	<%= render :partial => "new_exercise", :object => Exercise.new %>
 </div>

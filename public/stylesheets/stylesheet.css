@@ -7,6 +7,7 @@ li:before { content: "\00BB \0020"; }
 style	{ display: block; }
 body	{ background: #e8e8e8; font-family: helvetica, arial, sans-serif; margin: 0;}
 hr	{ height: 1px; border: 0; color: DodgerBlue; background-color: DodgerBlue; }
+table	{ border-collapse: collapse; }
 
 #envelope	{ position: relative; margin: 0 auto; width: 900px; background: white; border: 4px DodgerBlue solid; -moz-border-radius-bottomright: 10px; -moz-border-radius-bottomleft: 10px; -webkit-border-bottom-right-radius: 10px; -webkit-border-bottom-left-radius: 10px; }
 .fixed	{ height: 500px; }
@@ -19,9 +20,9 @@ hr	{ height: 1px; border: 0; color: DodgerBlue; background-color: DodgerBlue; }
 .signin	{ margin: 40px auto; width: 400px; }
 .fixed-height { height: 420px; }
 
-/* error id's */
-.fieldWithErrors	{ padding: 2px; background-color: red; display: table; }
-#errorExplanation	{ width: 400px; border: 2px solid red; padding: 7px; padding-bottom: 12px; margin-bottom: 20px; background-color: #f0f0f0; }
+/* error id's THESE NEED WORK */
+.fieldWithErrors	{ xpadding: 2px; background-color: red; xdisplay: table; }
+#errorExplanation	{ xwidth: 400px; border: 2px solid red; padding: 7px; padding-bottom: 12px; margin-bottom: 20px; background-color: #f0f0f0; }
 #errorExplanation h2	{ text-align: left; font-weight: bold; padding: 5px 5px 5px 15px; font-size: 12px; margin: -7px; background-color: #c00; color: #fff; }
 #errorExplanation p	{ color: #333; margin-bottom: 0; padding: 5px; }
 #errorExplanation ul li	{ font-size: 12px; }
@@ -62,14 +63,19 @@ input#response-field:focus	{ background-color: LightYellow; }
 .nospace { letter-spacing: -0.6em; }
 
 /* topics */
+.choice-box { float: left; width: 260px; height: 30px; padding: 2px; margin: 0 4px 0 0; border: 1px solid grey; cursor: pointer; -moz-user-select: none; -webkit-user-select: none; user-select: none; }
+
+
+/* REMOVE
 .item .phrase, .response, .hint, .insert, .remove	{ float: left; }
 .item .response, .hint, .insert	{ width: 180px; }
 .item .phrase	{ width: 300px; }
+*/
 
 /*courses*/
 .col3 { float: left; width: 32%; }
 
-/* tables */
+/* tables - DEPRECATE? */
 .row { height: 24px; padding: 0; margin: 0; border-bottom: solid 1px DodgerBlue; clear: both; }
 .cell { float: left; height: 20px; padding: 5px 2px 0px 0px; margin: 0; }
 .double-row { height: 48px; }
@@ -87,15 +93,22 @@ input#response-field:focus	{ background-color: LightYellow; }
 .twelfth { width: 8%; }
 .end { float: right; xtext-align: right; }
 
-/* form classes */
+/* tables */
+table	{ width: 100%; margin: 4px 1px; }
+th { color: white; background: Grey; padding: 2px; border: 1px solid grey; }
+td	{ padding: 2px; color: Grey; margin: 0; border: 1px solid grey; }
+table input[type=text]	{ xheight: 1.4em; width: 98%; margin: 0; }
+.topic th, .topic td { width: 33%; }
 
-fieldset { width: 460px; border: none; margin: 10px auto;}
+/* form classes */
+fieldset { width: 460px; padding: 4px; margin: 0 auto; border: none; }
 legend { font-weight: bold; margin: 10px;}
 label	{ float: left; width: 220px; text-align: right; padding: 8px 4px 0 0; height: 1em; }
-input[type=text], select	{ float: left; width: 220px; margin: 4px;}
-input[type=checkbox]	{ float: left; width: 20px; margin: 8px 4px 0 3px; }
+input[type=text], select	{ float: left; width: 216px; margin: 4px;}
+input[type=checkbox], input[type=radio]	{ float: left; width: 20px; margin: 8px 4px 0 3px; }
+textarea	{ width: 99%; height: 320px; padding: 2px; font-family: helvetica, arial, sans-serif; }
 .form-line { padding: 2px; clear: both; }
-.comment { float: left; padding: 4px 0 0 6px; }
+.comment { float: left; padding: 8px 0 0 6px; }
 input[type=submit]	{ margin: 10px; }
 .signin label	{ float: left; width: 160px; height: 14px; margin: 6px; padding-top: 4px; text-align: right; }
 .signin input[type=text], .signin input[type=password], .signin select	{ width: 140px; height: 14px; margin: 6px 70px 6px 6px; }
@@ -103,7 +116,6 @@ input[type=submit]	{ margin: 10px; }
 .signin .comment	{ padding-top: 10px; }
 .cell input[type=submit]	{ margin: -3px 0 0 0; }
 .exercise input { width: 95%; }
-textarea	{ width: 100%; height: 300px; }
 #header input[type=text]	{ margin: -2px 0 0 0; }
 .targets input[type=text] { width: 20px; height: 11px; margin: -2px 0; text-align: right; }
 .new-course input[type=submit]	{ width: 240px; margin: 2px; }
@@ -120,26 +132,33 @@ textarea	{ width: 100%; height: 300px; }
 .top-left { position: absolute; top: 0; left: 0; }
 .top-right { position: absolute; top: 0; right: 0; }
 .pad { padding: 4px; }
-.border	{border: 1px dashed; }
+.border	{border: 1px solid grey; }
 .hidden	{ display: none; } 
 .notice	{ color: green; }
 .error, .warning	{ color: #f00; }
 .centre	{ text-align: center; }
 .bold	{ font-weight: bold; }
+.grey { color: grey; }
 .correct { color: green; }
 .incorrect	{ text-decoration: line-through; color: red; }
 .white { color: white; }
 .italic { font-style: italic; }
 .space	{ margin: 10px; }
-.big-space { margin: 160px; }
+.big-space { margin-top: 100px; }
 .small-gap-above { margin-top: 4px; }
 .clear	{ clear: both; }
 .faded	{ opacity: 0.2; }
 .faded a { cursor: default; }
+.pointer	{ cursor: pointer; cursor: pointer; -moz-user-select: none; -webkit-user-select: none; user-select: none; }
+.disabled { cursor: default; color: grey; }
 .copy	{ margin: 20px 80px; }
 .copy p { margin: 1em; }
 .small { font-size: 13px; }
+.big { font-size: 18px; }
+.box { background: LightYellow; border: 1px solid grey; }
 .box-text { background-color: #ccc; color: Blue; text-decoration: none; padding: 4px; margin: 4px; border: 2px DodgerBlue solid; -moz-border-radius: 4px; -webkit-border-radius: 4px; }
 .double-height { line-height: 2em; }
 .rtl { direction: rtl; }
-
+.stop { background-color: Red;}
+.ready { background-color: Gold;}
+.go { background-color: YellowGreen;}

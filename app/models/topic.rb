@@ -18,7 +18,9 @@ class Topic < ActiveRecord::Base
   def show_code
     true
   end
-
+  
+  # for an explanation of what's going on here, see 
+  # Advanced Rails Recipes #14: "Handling Multiple Models In One Form"
   def new_exercise_attributes=(exercise_attributes)
     exercise_attributes.each do |attributes|
       unless attributes['phrase'].empty?
