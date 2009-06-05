@@ -514,7 +514,7 @@ RC.question = {
 	},
 	
 	bothVersions: function (text) {
-		var re = /(.*)\(([^)]*)\)\s*\|\s*\(([^)]*)\)(.*)/;
+		var re = /(.*)\(([^)]*)\s*\|\s*([^)]*)\)(.*)/;
 		return text.replace(re, '"$1$2$4" or "$1$3$4"')
 	},
 	
