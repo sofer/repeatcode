@@ -18,7 +18,10 @@ class User < ActiveRecord::Base
   include Authentication::ByCookieToken
   #include Authentication::ByPassword
 
-  before_create :assign_uid
+  before_create :assign_uid, :set_defaults
+
+  validates_uniqueness_of   :login,    :case_sensitive => false, :allow_nil => true, :allow_blank => true
+  validates_uniqueness_of   :email,    :case_sensitive => false, :allow_nil => true, :allow_blank => true
 
   # REMOVED THESE FOR NOW BECAUSE OF AUTO REGISTRATION - 2009-04-28
   #validates_presence_of     :organization_id
@@ -68,6 +71,9 @@ private
       uid += chars[i]
     }
     self.uid = uid
+  end
+  
+  def set_defaults
     self.voice = true # at least for now 
   end
   

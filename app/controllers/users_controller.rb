@@ -42,8 +42,8 @@ class UsersController < ApplicationController
         format.html { redirect_to(:back) }
         format.xml  { head :ok }
       else
-        flash[:notice] = 'Your details were NOT updated.'
-        format.html { redirect_to(:back) }
+        flash[:error] = 'Login has already been taken.'
+        format.html { render :action => "edit" }
         format.xml  { render :xml => @course.errors, :status => :unprocessable_entity }
       end
     end

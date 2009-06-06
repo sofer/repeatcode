@@ -36,6 +36,7 @@ class TopicsController < ApplicationController
       subject.name = 'Uncategorized'
       subject.public = false
       subject.save!
+      current_user.subjects << subject
     end
     
     @subjects = current_user.subjects

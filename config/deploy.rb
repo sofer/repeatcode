@@ -34,5 +34,5 @@ end
 
 desc "Run cleanup after every deployment"
 task :after_deploy do
-#  deploy:cleanup
+  deploy:cleanup
 end

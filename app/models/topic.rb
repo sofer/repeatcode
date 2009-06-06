@@ -15,6 +15,7 @@ class Topic < ActiveRecord::Base
   def show_data
     true
   end
+  
   def show_code
     true
   end

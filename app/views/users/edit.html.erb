@@ -30,24 +30,25 @@
 	<div class="comment"> <%= formatted_date_time current_user.updated_at %> </div>
 	<div class="clear"> </div>
 
-	<%= error_messages_for :user %>
-
 	<% form_for @user do |f| -%>
 
 	<!--
 		<label for="organization" class="bold">Organization</label>
 		<%= select_tag 'user[organization_id]',  options_for_select(Organization::LIST_FOR_FORM), { :prompt => 'Select Person'}  %>
 		<br>
-		<%= select_tag 'test', options_from_collection_for_select(@organizations, 'id', 'name') %>
+		<%= select_tag 'test', options_from_collection_for_select(@organizations, 'id', 'name') if @organizations %>
 -->
+		<div>
 		<label for="login">Login</label>
 		<%= f.text_field :login %>
+		</div>
 		<label for="email">Email</label>
 		<%= f.text_field :email %>
 		<label for="voice">Text to speech</label>
 		<%= f.check_box :voice %> 
 		<div class="comment"><%= link_to 'Help', :controller => 'about', :action => 'voice' %></div>
 		<div class="centre clear"><%= submit_tag 'Update' %></div>
+		
 	<% end -%>
 
 </div>

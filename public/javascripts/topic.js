@@ -70,6 +70,7 @@ RC.topic = {
 	},
 	
 	parse: function(importedText) {
+		this.exercises = []
 		var lines = importedText.split("\n");
 		for (var i = 0; i < lines.length; i += 1) {
 			if ( lines[i].match(/\w/) ) {
@@ -89,7 +90,7 @@ RC.topic = {
 		if (this.exercises.length > 0) {
 			return true;
 		} else {
-			this.message = "Please enter some data first";
+			this.message = "Please enter some data";
 			return false;
 		}
 	},
