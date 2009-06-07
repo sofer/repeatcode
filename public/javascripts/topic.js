@@ -127,7 +127,6 @@ $(document).ready(function(){
 	});
 
 	$("#parse-import-data").click(function(){
-		$(".message").text(RC.topic.message);
 		if ( RC.topic.parse( $("#import-data").val() ) ) {
 			RC.topic.addImportedData();
 			RC.table.init('#exercises', 13);
@@ -137,6 +136,7 @@ $(document).ready(function(){
 			$("#table").show();
 			$("#navigation").show();
 		}
+		$(".message").text(RC.topic.message);
 		return false;
 	});
 	
