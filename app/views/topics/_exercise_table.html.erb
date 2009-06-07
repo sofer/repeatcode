@@ -7,7 +7,7 @@
 			<th>Hint <%= link_to '?', {}, :id => "hint-help" %></th>
 		</tr>
 	</thead>
-	<tbody id="exercises">
+	<tbody id="exercises" class="hidden">
 		<%= render :partial => "exercise", :collection => exercises %>
 	</tbody>
 </table>
