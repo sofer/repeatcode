@@ -98,7 +98,9 @@ table	{ width: 100%; margin: 4px 1px; }
 th { color: white; background: Grey; padding: 2px; border: 1px solid grey; }
 td	{ padding: 2px; color: Grey; margin: 0; border: 1px solid grey; }
 table input[type=text]	{ xheight: 1.4em; width: 98%; margin: 0; }
-.topic th, .topic td { width: 33%; }
+.topic-exercises-table td { width: 32%; }
+.topic-exercises-table .first { width: 20px; text-align:right; }
+td .narrow { width: 20px; }
 
 /* form classes */
 fieldset { width: 460px; padding: 4px; margin: 0 auto; border: none; }
@@ -135,7 +137,7 @@ input[type=submit]	{ margin: 10px; }
 .border	{border: 1px solid grey; }
 .hidden	{ display: none; } 
 .notice	{ color: green; }
-.error, .warning	{ color: #f00; }
+.error, .warning	{ color: Maroon; }
 .centre	{ text-align: center; }
 .bold	{ font-weight: bold; }
 .grey { color: grey; }

@@ -1,6 +1,3 @@
-//using jquery
-
-var RC = {};
 
 String.prototype.simplify = function () {
 	return this.replace(/[\s,.!?\-\\']/g, '').toLowerCase();

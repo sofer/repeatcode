@@ -1,0 +1,19 @@
+<table class="topic-exercises-table">
+	<thead>
+		<tr>
+			<th> </th>
+			<th>Question or phrase</th>
+			<th>Response</th>
+			<th>Hint <%= link_to '?', {}, :id => "hint-help" %></th>
+		</tr>
+	</thead>
+	<tbody id="exercises">
+		<%= render :partial => "exercise", :collection => exercises %>
+	</tbody>
+</table>
+
+<div id="navigation" class="big centre">
+	<span id="up" class="border pointer">&laquo;</span>
+	<span id="down" class="border pointer">&raquo;</span>
+</div>
+

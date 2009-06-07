@@ -1,7 +1,6 @@
 <div id="header">
 	<h1 class="top-left pad">
-		<%= link_to 'Courses', courses_path %> | 
-		<%= link_to 'Materials', subjects_path %> | 
+		<%= link_to 'Create', subjects_path %> | 
 		<%= link_to @topic.subject.name, @topic.subject %> | 
 		<%= @topic.name %>
 	</h1>
@@ -11,18 +10,23 @@
 </div>
 
 <div id="main">
-	<div class="pad">
+
 	<% form_for	@topic,
 							:html => { :method => :put } do |f| %>
-		<%= render :partial => "form", :locals => {:f => f } %>
+		<%= render :partial => "exercise_table", :locals => { :exercises => @topic.exercises } %>
+	
+		<div class="bottom-centre">
+			<%= f.submit "Update" %>
+		</div>
+	
 	<% end %>
-	</div>
 
-	<div id="list-template" style="display:none">
-		<%= render :partial => "new_exercise", :object => Exercise.new %>
-	</div>
 </div>
 
 <div id="footer">
 	<%= render :partial => 'global/toplevel_links' %>
+</div>
+
+<div id="list-template" style="display:none">
+	<%= render :partial => "new_exercise", :object => Exercise.new %>
 </div>
