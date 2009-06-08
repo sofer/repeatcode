@@ -1,0 +1,37 @@
+<tr>
+  <% fields_for(course) do |f| %>
+		<td>
+			<% form_for :lesson,
+	 								:url => course_lessons_path(course) do |f| %>
+				<%= f.submit "Learn now" %>
+			<% end %>
+		</td>
+		<td class="name">
+			<%= course.name %>
+		</td>
+		<td>
+			<%= 'On target' if course.on_target? %>
+		</td>
+		<td>
+			<%= course.backlog_count %>
+		</td>
+		<td>
+			<%= relative_date course.lessons.last.updated_at if course.lessons.last %>
+		</td>
+		<td>
+			<%= 'Updates' if course.update_required? %>
+		</td>
+		<td>
+			<%= link_to "Targets", course_path(course) %>
+		</td>
+		<td>
+			<%= link_to 'Topics', edit_course_path(course) %>
+		</td>
+		<td>
+			<% form_for course do |f| %>
+			<%= f.hidden_field :archived, :value => @make_archived  %>
+			<%= f.submit @action %>
+			<% end %>
+		</td>
+	<% end %>
+</td>

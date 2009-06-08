@@ -1,6 +1,6 @@
 <tr>
 	<td class="first"><%= subject_counter + 1 %></td>
-  <% fields_for_exercise(subject) do |f| %>
+  <% fields_for_subject(subject) do |f| %>
 		<td class="name">
 			<%= link_to subject.name, subject %>
 		</td>

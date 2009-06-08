@@ -11,7 +11,7 @@
 			<%= f.text_field :hint, :autocomplete => "off"  %>
 		</td>
 		<td class="last">
-			<%= f.check_box :removed %>
+			<%= f.check_box :removed if exercise.phrase %>
 		</td>
 	<% end %>
 </td>

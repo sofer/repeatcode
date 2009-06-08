@@ -24,21 +24,7 @@ class CoursesController < ApplicationController
   # GET /courses.xml
   def index
     
-    if params[:archived]
-      @action = 'Unarchive'
-      @make_archived = "false"
-      @courses = current_user.courses.inactive.paginate(
-                :per_page => 14, 
-                :page => params[:page]
-                )
-    else
-      @action = 'Archive'
-      @make_archived = "true"
-      @courses = current_user.courses.active.paginate(
-                :per_page => 14, 
-                :page => params[:page]
-                )
-    end
+    @courses = current_user.courses.active
     
     # check the queue of pending questions
     if params[:version] and params[:version]=='clear' 

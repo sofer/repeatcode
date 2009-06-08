@@ -71,6 +71,7 @@ $(document).ready(function(){
 	
 	RC.table.init('#topics', 16);
 	RC.table.init('#subjects', 16);
+	RC.table.init('#courses', 12);
 	
 	$("#down").click(function() {
 		if (!$(this).hasClass("disabled")) {

@@ -6,6 +6,7 @@ class Exercise < ActiveRecord::Base
   acts_as_list :scope => :topic
   
   named_scope :current, :conditions => { :removed => false }
+  named_scope :recently_updated, :order => 'updated_at DESC'
 
   # A HACK TO GET THE SQL WORKING in course.add_new_material
   named_scope :since, lambda { |time|

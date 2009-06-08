@@ -41,6 +41,17 @@ class Course < ActiveRecord::Base
     8 => DAY * 224
   }
   
+  def update_required?
+    # return true
+    if  not subject or 
+        questions.empty? or 
+        questions.last.created_at < subject.exercises.recently_updated.first.updated_at
+      return false
+    else
+      return true
+    end
+  end
+  
   def backlog_count
     questions.count(:conditions => ['next_datetime < ? AND current_interval > 0', Time.now])
   end

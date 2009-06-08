@@ -2,55 +2,38 @@
 	<h1 class="top-left pad">
 		Courses
 	</h1>
-	<h2 class="top-right pad">
-		<%= link_to 'Choose a new course', new_course_path %>
-	</h2>
 </div>
 
 <div id="main">
 
-	<div class="row">
-		<div class="cell half"> </div>
-		<div class="cell twelfth bold centre">Today</div>
-		<div class="cell twelfth bold">Backlog</div>
-		<div class="cell sixth bold">Last lesson</div>
+	<table class="courses-table">
+		<thead>
+			<tr>
+				<th> </th>
+				<th> </th>
+				<th>Today</th>
+				<th>Backlog</th>
+				<th>Last lesson</th>
+				<th> </th>
+				<th> </th>
+				<th> </th>
+				<th> </th>
+			</tr>
+		</thead>
+		<tbody id="courses">
+			<%= render :partial => "course", :collection => @courses.active %>
+		</tbody>
+	</table>
+
+	<div id="navigation" class="bottom-left hidden">
+		<span id="up" class="button space-right">&laquo; Previous</span>
+		<span id="down" class="button">Next &raquo;</span>
 	</div>
 
-	<% for course in @courses %>
-		<div class="row">
-			<div class="cell tenth">
-				<% form_for :lesson,
-		 								:url => course_lessons_path(course) do |f| %>
-					<%= f.submit "Learn now" %>
-				<% end %>
-			</div>
-			<div class="bold cell two-fifths">
-				<% if course.subject %>
-					<%= course.subject.name %>
-				<% else %>
-					[ course removed ]
-				<% end %>
-			</div>
-			<div class="cell twelfth correct"><% if course.on_target? %>On target<% end %></div>
-			<div class="cell twelfth centre"> <%= course.backlog_count %> </div>
-			<div class="cell twelfth centre"> <%= relative_date course.lessons.last.updated_at if course.lessons.last %> </div>
-			<div class="cell twelfth right">
-				<%= link_to "Targets", course_path(course) %>
-			</div>
-			<div class="cell twelfth right">
-				<%= link_to 'Topics', edit_course_path(course) %>
-			</div>
-			<div class="cell twelfth right">
-				<% form_for course do |f| %>
-				<%= f.hidden_field :archived, :value => @make_archived  %>
-				<%= f.submit @action %>
-				<% end %>
-			</div>
+	<div class="bottom-right">
+		<div class="bold button">
+			<%= link_to 'Choose a new course', new_course_path %>
 		</div>
-	<% end %>
-
-	<div class="bottom-centre">
-		<%= will_paginate @courses %>
 	</div>
 
 </div>

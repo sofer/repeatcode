@@ -1,10 +1,10 @@
 <div id="header">
-	<h1 class="top-left">
+	<h1 class="top-left pad">
 		<%= link_to 'Create', subjects_path %>
 	  &raquo; <%=h @subject.name %>
 		&raquo; <%= link_to 'Edit', edit_subject_path(@subject) %>
 	</h1>
-	<h2 class="top-right">
+	<h2 class="top-right pad">
 		<%= link_to 'New topic', new_subject_topic_path(@subject) %>
 	</h2>
 	<div class="clear"></div>
