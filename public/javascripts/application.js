@@ -6,6 +6,7 @@ RC.table = {
 	limit: 1,
 	tableSize: 0,
 	tbodyId: "",
+	navigationId: "#navigation",
 	downId: "#down",
 	upId: "#up",
 	
@@ -35,21 +36,26 @@ RC.table = {
 
 	navigation: function() {
 		if (this.tableSize > this.offset + this.limit ) {
-			$(this.downId).show();
+			$(this.downId).removeClass("disabled");
 		} else {
-			$(this.downId).hide();
+			$(this.downId).addClass("disabled");
+			$(this.downId).removeClass("ready");
 		}
 		if (this.offset > 0 ) {
-			$(this.upId).show();
+			$(this.upId).removeClass("disabled");
 		} else {
-			$(this.upId).hide();
+			$(this.upId).addClass("disabled");
+			$(this.upId).removeClass("ready");
 		}
 	},
 	
 	display: function() {
 		$("tr", this.tbodyId).hide();
 		$("tr", this.tbodyId).slice(this.offset, this.offset + this.limit).show();
-		this.navigation();
+		if (this.tableSize > this.limit) {
+			$(this.navigationId).show();
+			this.navigation();
+		}
 		$(this.tbodyId).show();
 	},
 	
@@ -63,28 +69,50 @@ RC.table = {
 
 $(document).ready(function(){
 	
+	RC.table.init('#topics', 16);
+	
+	$("#down").click(function() {
+		if (!$(this).hasClass("disabled")) {
+			RC.table.down();
+		}
+	});
+	
+	$("#up").click(function() {
+		if (!$(this).hasClass("disabled")) {
+			RC.table.up();
+		}
+	});
+	
 	$(".button").mouseover(function() {
-		$(this).addClass("ready");
+		if (!$(this).hasClass("disabled")) {
+			$(this).addClass("ready");
+		}
 	});
 
 	$(".button").mouseout(function() {
-		$(this).removeClass("ready");
+		if (!$(this).hasClass("disabled")) {
+			$(this).removeClass("ready");
+		}
 	});
 	
 	$(".radio").click(function() {
+		if (!$(this).hasClass("disabled")) {
+			$(this).children("input:radio").click();
+			$(this).addClass("go");
+		}
 		$(".radio").removeClass("go");
-		$(this).children("input:radio").click();
-		$(this).addClass("go");
 	});
 
 	$(".checkbox").click(function() {
-		var checkbox = $("input:checkbox:first", this);
-		if (checkbox.attr("checked")) {
-			checkbox.attr("checked", false);
-			$(this).removeClass("go");
-		} else {
-			checkbox.attr("checked", true);
-			$(this).addClass("go");
+		if (!$(this).hasClass("disabled")) {
+			var checkbox = $("input:checkbox:first", this);
+			if (checkbox.attr("checked")) {
+				checkbox.attr("checked", false);
+				$(this).removeClass("go");
+			} else {
+				checkbox.attr("checked", true);
+				$(this).addClass("go");
+			}
 		}
 	});
 

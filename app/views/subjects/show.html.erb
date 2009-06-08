@@ -10,24 +10,25 @@
 	<div class="clear"></div>
 </div>
 <div id="main">
-	<div class="row">
-			<div class="cell half"> </div>
-			<div class="bold cell quarter right">Updated</div>
-			<div class="bold cell quarter right">Exercises</div>
-		</div>
-	<% for topic in @topics %>
-	<div class="row">
-			<div class="bold cell half">
-				<% name = topic.name.length > 52 ? topic.name.slice(0..52) + '...' : topic.name %>
-				<%= link_to name, edit_topic_path(topic) %>
-			</div>
-	    <div class="cell quarter right"><%= relative_date topic.last_update %></div>
-	    <div class="cell quarter right"><%= topic.exercises.count %></div>
-		</div>
-	<% end %>
+	
+	<table class="topics-table ">
+		<thead>
+			<tr>
+				<th class="first"> </th>
+				<th></th>
+				<th>Updated</th>
+				<th>Exercises</th>
+				<th class="last"> </th>
+			</tr>
+		</thead>
+		<tbody id="topics">
+			<%= render :partial => "topic", :collection => @subject.topics.current %>
+		</tbody>
+	</table>
 
-	<div class="bottom-centre">
-		<%= will_paginate @topics %>
+	<div id="navigation" class="bottom-left hidden">
+		<span id="up" class="button space-right">&laquo; Previous</span>
+		<span id="down" class="button">Next &raquo;</span>
 	</div>
 
 </div>

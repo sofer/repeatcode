@@ -1,0 +1,17 @@
+<tr>
+	<td class="first"><%= topic_counter + 1 %></td>
+  <% fields_for_exercise(topic) do |f| %>
+		<td class="name">	
+			<%= link_to topic.name, edit_topic_path(topic) %>
+		</td>
+		<td>	
+			<%= relative_date topic.last_update %>
+		</td>
+		<td>
+			<%= topic.exercises.current.count %>
+		</td>
+		<td class="last">
+			[Remove]
+		</td>
+	<% end %>
+</td>

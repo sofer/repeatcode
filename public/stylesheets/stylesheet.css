@@ -7,7 +7,6 @@ li:before { content: "\00BB \0020"; }
 style	{ display: block; }
 body	{ background: #e8e8e8; font-family: helvetica, arial, sans-serif; margin: 0;}
 hr	{ height: 1px; border: 0; color: DodgerBlue; background-color: DodgerBlue; }
-table	{ border-collapse: collapse; }
 
 #envelope	{ position: relative; margin: 0 auto; width: 900px; background: white; border: 4px DodgerBlue solid; -moz-border-radius-bottomright: 10px; -moz-border-radius-bottomleft: 10px; -webkit-border-bottom-right-radius: 10px; -webkit-border-bottom-left-radius: 10px; }
 .fixed	{ height: 500px; }
@@ -93,13 +92,16 @@ input#response-field:focus	{ background-color: LightYellow; }
 .end { float: right; xtext-align: right; }
 
 /* tables */
-table	{ width: 100%; margin: 4px 1px; }
-th { xcolor: white; xbackground: Grey; padding: 2px; border-bottom: 1px solid DodgerBlue; }
-td	{ padding: 2px; color: Grey; margin: 0; border-bottom: 1px solid DodgerBlue; }
+table	{ border-collapse: collapse; width: 100%; margin: 4px 1px; }
+th { padding: 2px; border-bottom: 1px solid DodgerBlue; text-align: left; }
+td	{ padding: 2px; color: margin: 0; border-bottom: 1px solid DodgerBlue; }
 table input[type=text]	{ xheight: 1.4em; width: 98%; margin: 0; }
-.topic-exercises-table th { width: 30%; text-align: left; }
+.topic-exercises-table th { width: 30%; }
+.topic-exercises-table td { color: Grey; }
 .topic-exercises-table .first, .last { width: 5%; text-align: right; }
 .topic-exercises-table input[type=checkbox]	{ float: right; }
+.topics-table .name { width: 50%; font-weight: bold; }
+.topics-table .first, .last { width: 5%; text-align: right; }
 
 /* form classes */
 input[type=checkbox],  input[type=radio]	{ float: left; width: 20px; margin: 0 8px 0 0; }
@@ -135,7 +137,7 @@ input[type=submit]	{ margin: 10px; }
 .top-left { position: absolute; top: 0; left: 0; }
 .top-right { position: absolute; top: 0; right: 0; }
 .pad { padding: 4px; }
-.border	{border: 1px solid grey; }
+.border	{ border: 1px solid grey; }
 .hidden	{ display: none; } 
 .notice	{ color: green; }
 .error, .warning	{ color: Maroon; }
@@ -167,4 +169,5 @@ input[type=submit]	{ margin: 10px; }
 .stop { background-color: Red;}
 .ready { background-color: Gold;}
 .go { background-color: YellowGreen;}
-.button { float: left; position: relative; padding: 6px 10px 0 10px; height: 20px; margin-bottom: 4px; border: 1px solid grey; cursor: pointer; -moz-user-select: none; -webkit-user-select: none; user-select: none; }
+.button	{ float: left; position: relative; padding: 6px 10px 0 10px; height: 20px; margin-bottom: 4px; border: 1px solid grey; cursor: pointer; -moz-user-select: none; -webkit-user-select: none; user-select: none; }
+.disabled	{ color: grey; cursor: default; }

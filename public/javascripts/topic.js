@@ -48,8 +48,9 @@ RC.topic = {
 				$(".phrase:last", "#hidden-fields").val(this.importedExercises[i][0]);
 				$(".response:last", "#hidden-fields").val(this.importedExercises[i][1]);
 				$(".hint:last", "#hidden-fields").val(this.importedExercises[i][2]);
+				var rowNo = i + 1;
 				var row = "<tr>" +
-									"<td>" + i + "</td>" +
+									"<td>" + rowNo + "</td>" +
 									"<td>" + this.importedExercises[i][0] + "</td>" +
 									"<td>" + this.importedExercises[i][1] + "</td>" +
 									"<td>" + this.importedExercises[i][2] + "</td>" +
@@ -108,18 +109,10 @@ $(document).ready(function(){
 		return false;
 	});
 	
-	$("#down").click(function() {
-		RC.table.down();
-	});
-	
-	$("#up").click(function() {
-		RC.table.up();
-	});
-
 	$("#parse-import-data").click(function(){
 		if ( RC.topic.parse( $("#import-data").val() ) ) {
 			RC.topic.addImportedData();
-			RC.table.init('#exercises', 13);
+			RC.table.init('#exercises', 15);
 			RC.table.display();
 			$("#choose").hide();
 			$("#import").hide();

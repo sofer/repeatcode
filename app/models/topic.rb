@@ -4,6 +4,7 @@ class Topic < ActiveRecord::Base
   has_many :exercises, :dependent => :destroy
 
   named_scope :recent, :conditions => [ 'created_at > ?', 3.hours.ago ]
+  named_scope :current, :conditions => { :removed => false }
 
   acts_as_list :scope => :subject
   

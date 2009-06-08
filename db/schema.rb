@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20090608125948) do
+ActiveRecord::Schema.define(:version => 20090608154415) do
 
   create_table "administrators", :force => true do |t|
     t.integer  "user_id"
@@ -41,6 +41,7 @@ ActiveRecord::Schema.define(:version => 20090608125948) do
     t.boolean  "rtl"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.boolean  "removed",            :default => false
   end
 
   create_table "courses", :force => true do |t|
@@ -144,6 +145,7 @@ ActiveRecord::Schema.define(:version => 20090608125948) do
     t.string   "hint"
     t.string   "insert"
     t.boolean  "ignore",           :default => false
+    t.boolean  "removed",          :default => false
   end
 
   create_table "responses", :force => true do |t|
@@ -188,6 +190,7 @@ ActiveRecord::Schema.define(:version => 20090608125948) do
     t.boolean  "add_together"
     t.boolean  "ignore_punctuation", :default => true
     t.boolean  "rtl",                :default => false
+    t.boolean  "removed",            :default => false
   end
 
   create_table "tuitions", :force => true do |t|

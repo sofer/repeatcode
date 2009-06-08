@@ -7,6 +7,7 @@ class Question < ActiveRecord::Base
 
   named_scope :started, :conditions => "current_interval IS NOT NULL"
   named_scope :not_started, :conditions => "current_interval IS NULL"
+  named_scope :current, :conditions => { :removed => false }
 
   def reset_interval_and_datetime(interval)
     self.current_interval = interval + 1 unless interval == Course::MAX_INDEX
