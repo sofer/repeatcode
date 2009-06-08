@@ -5,20 +5,7 @@ class SubjectsController < ApplicationController
   # GET /subjects
   # GET /subjects.xml
   def index
-    if params[:archived]
-      @action = 'Unarchive'
-      @subjects = current_user.subjects.inactive.paginate(
-                :per_page => 15, 
-                :page => params[:page]
-                )
-    else
-      @action = 'Archive'
-      @subjects = current_user.subjects.active.paginate(
-                :per_page => 15, 
-                :page => params[:page],
-                :order => "area_id, name"
-                )
-    end
+    @subjects = current_user.subjects.active
     
     respond_to do |format|
       format.html # index.html.erb

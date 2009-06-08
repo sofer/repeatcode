@@ -42,7 +42,7 @@ class TopicsController < ApplicationController
         @subject = Subject.find(params[:subject_id])
         @topic.ignore_punctuation = @subject.ignore_punctuation
       else
-        @subject = current_user.subjects.first
+        @subject = current_user.subjects.last
       end
     end
     

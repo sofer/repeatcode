@@ -1,0 +1,23 @@
+<tr>
+	<td class="first"><%= subject_counter + 1 %></td>
+  <% fields_for_exercise(subject) do |f| %>
+		<td class="name">
+			<%= link_to subject.name, subject %>
+		</td>
+		<td>
+			<%= 'Public' if subject.public %>
+		</td>
+		<td>
+			<%= Subject::AREAS[subject.area_id] %>
+		</td>
+		<td>
+			<%= relative_date subject.last_update %>
+		</td>
+		<td>
+			<%= subject.exercises.count %>
+		</td>
+		<td class="last">
+			[Remove]
+		</td>
+	<% end %>
+</td>

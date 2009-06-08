@@ -70,6 +70,7 @@ RC.table = {
 $(document).ready(function(){
 	
 	RC.table.init('#topics', 16);
+	RC.table.init('#subjects', 16);
 	
 	$("#down").click(function() {
 		if (!$(this).hasClass("disabled")) {

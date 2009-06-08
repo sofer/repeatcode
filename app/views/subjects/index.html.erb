@@ -2,33 +2,36 @@
 	<h1 class="top-left pad">
 		Create
 	</h1>
-	<h2 class="top-right pad">
-		<%= link_to 'New subject', new_subject_path %>
-	</h2>
 </div>
 <div id="main">
-		<div class="row">
-			<div class="bold cell third"> </div>
-			<div class="bold cell eighth"> </div>
-			<div class="bold cell eighth"> </div>
-			<div class="bold cell eighth right">Updated</div>
-			<div class="bold cell eighth right">Exercises</div>
-			<div class="bold cell eighth"> </div>
-		</div>
-		<% for subject in @subjects %>
-	  <div class="row">
-	    <div class="bold cell third"><%= link_to subject.name, subject %></div>
-	    <div class="cell eighth"><%= h subject.public %></div>
-	    <div class="cell eighth right"><%= Subject::AREAS[subject.area_id] %></div>
-	    <div class="cell eighth right"><%= relative_date subject.last_update %></div>
-	    <div class="cell eighth right"><%= subject.exercises.count %></div>
-	    <div class="cell eighth right"><%= link_to 'Delete', subject, :confirm => 'WARNING! This will destroy all course content. Do you really want to do this?', :method => :delete %></div>
-	  </div>
-		<% end %>
+	
+	<table class="subjects-table">
+		<thead>
+			<tr>
+				<th class="first"> </th>
+				<th></th>
+				<th>Access</th>
+				<th>Subject area</th>
+				<th>Updated</th>
+				<th>Exercises</th>
+				<th class="last"> </th>
+			</tr>
+		</thead>
+		<tbody id="subjects">
+			<%= render :partial => "subject", :collection => @subjects.active %>
+		</tbody>
+	</table>
 
-		<div class="bottom-centre">
-			<%= will_paginate @subjects %>
+	<div id="navigation" class="bottom-left hidden">
+		<span id="up" class="button space-right">&laquo; Previous</span>
+		<span id="down" class="button">Next &raquo;</span>
+	</div>
+
+	<div class="bottom-right">
+		<div class="bold button">
+			<%= link_to 'New subject', new_subject_path %>
 		</div>
+	</div>
 
 </div>
 
