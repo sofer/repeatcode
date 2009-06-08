@@ -12,7 +12,8 @@ class Course < ActiveRecord::Base
   named_scope :inactive, :conditions => { :archived => true }
 
   before_validation_on_create :set_status_and_targets
-  after_create :set_intervals, :copy_course_material
+  before_create :copy_course_material
+  after_create :set_intervals
   
   validates_numericality_of :accuracy_target
   validates_numericality_of :lesson_target
