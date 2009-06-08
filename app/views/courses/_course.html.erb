@@ -29,8 +29,8 @@
 		</td>
 		<td>
 			<% form_for course do |f| %>
-			<%= f.hidden_field :archived, :value => @make_archived  %>
-			<%= f.submit @action %>
+			<%= f.hidden_field :archived, :value => true  %>
+			<%= f.submit 'Archive' %>
 			<% end %>
 		</td>
 	<% end %>
