@@ -13,8 +13,18 @@
 
 	<% form_for	@topic,
 							:html => { :method => :put } do |f| %>
-		<%= render :partial => "exercise_table", :locals => { :exercises => @topic.exercises } %>
-	
+		<%= render :partial => "exercise_table", :locals => { :exercises => @topic.exercises.current, :add => Exercise.new } %>
+		
+		<div class="bottom-right">
+			<div class="checkbox button space-right">
+				<input type="checkbox" name="delete" />
+				Remove checked
+			</div>
+			<div id="add-exercise" class="button">
+				Add
+			</div>
+		</div>
+
 		<div class="bottom-centre">
 			<%= f.submit "Update" %>
 		</div>
@@ -25,8 +35,4 @@
 
 <div id="footer">
 	<%= render :partial => 'global/toplevel_links' %>
-</div>
-
-<div id="list-template" style="display:none">
-	<%= render :partial => "new_exercise", :object => Exercise.new %>
 </div>

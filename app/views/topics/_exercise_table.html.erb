@@ -1,19 +1,21 @@
 <table class="topic-exercises-table">
 	<thead>
 		<tr>
-			<th> </th>
+			<th class="first"> </th>
 			<th>Question or phrase</th>
 			<th>Response</th>
 			<th>Hint <%= link_to '?', {}, :id => "hint-help" %></th>
+			<th class="last"> </th>
 		</tr>
 	</thead>
 	<tbody id="exercises" class="hidden">
 		<%= render :partial => "exercise", :collection => exercises %>
+		<%= render(:partial => "new_exercise", :object => add) if add %>
 	</tbody>
 </table>
 
-<div id="navigation" class="big centre">
-	<span id="up" class="border pointer">&laquo;</span>
-	<span id="down" class="border pointer">&raquo;</span>
+<div id="navigation" class="bottom-left">
+	<span id="up" class="button space-right">&laquo; Previous</span>
+	<span id="down" class="button">Next &raquo;</span>
 </div>
 

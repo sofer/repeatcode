@@ -63,7 +63,6 @@ input#response-field:focus	{ background-color: LightYellow; }
 .nospace { letter-spacing: -0.6em; }
 
 /* topics */
-.choice-box { float: left; width: 260px; height: 30px; padding: 2px; margin: 0 4px 0 0; border: 1px solid grey; cursor: pointer; -moz-user-select: none; -webkit-user-select: none; user-select: none; }
 
 
 /* REMOVE
@@ -95,19 +94,20 @@ input#response-field:focus	{ background-color: LightYellow; }
 
 /* tables */
 table	{ width: 100%; margin: 4px 1px; }
-th { color: white; background: Grey; padding: 2px; border: 1px solid grey; }
-td	{ padding: 2px; color: Grey; margin: 0; border: 1px solid grey; }
+th { xcolor: white; xbackground: Grey; padding: 2px; border-bottom: 1px solid DodgerBlue; }
+td	{ padding: 2px; color: Grey; margin: 0; border-bottom: 1px solid DodgerBlue; }
 table input[type=text]	{ xheight: 1.4em; width: 98%; margin: 0; }
-.topic-exercises-table td { width: 32%; }
-.topic-exercises-table .first { width: 20px; text-align:right; }
-td .narrow { width: 20px; }
+.topic-exercises-table th { width: 30%; text-align: left; }
+.topic-exercises-table .first, .last { width: 5%; text-align: right; }
+.topic-exercises-table input[type=checkbox]	{ float: right; }
 
 /* form classes */
+input[type=checkbox],  input[type=radio]	{ float: left; width: 20px; margin: 0 8px 0 0; }
 fieldset { width: 460px; padding: 4px; margin: 0 auto; border: none; }
 legend { font-weight: bold; margin: 10px;}
 label	{ float: left; width: 220px; text-align: right; padding: 8px 4px 0 0; height: 1em; }
-input[type=text], select	{ float: left; width: 216px; margin: 4px;}
-input[type=checkbox], input[type=radio]	{ float: left; width: 20px; margin: 8px 4px 0 3px; }
+fieldset input[type=text], select	{ float: left; width: 216px; margin: 4px;}
+fieldset input[type=checkbox],  fieldset input[type=radio]	{ margin-top: 8px; }
 textarea	{ width: 99%; height: 320px; padding: 2px; font-family: helvetica, arial, sans-serif; }
 .form-line { padding: 2px; clear: both; }
 .comment { float: left; padding: 8px 0 0 6px; }
@@ -125,12 +125,13 @@ input[type=submit]	{ margin: 10px; }
 /* deal with left and right slightly differently, partly because of IE oddity */
 /* avoid floats inside absolutely positioned elements because of IE oddity */
 .left	{ float: left; }
-.float-right	{ float: right; }
 .right	{ text-align: right; } 
+.float-right	{ float: right; }
 .centre	{ margin: 0 auto; } 
 .bottom-left { position: absolute; bottom: 0; left: 0; }
 .bottom-right { position: absolute; bottom: 0; right: 0; }
-.bottom-centre { position: absolute; bottom: 0; left: 0; right: 0; text-align: center; } 
+.bottom-centre { position: absolute; bottom: 0; left: 300px; right: 300px; text-align: center; } 
+.abs-right { position: absolute; right: 0; }
 .top-left { position: absolute; top: 0; left: 0; }
 .top-right { position: absolute; top: 0; right: 0; }
 .pad { padding: 4px; }
@@ -147,6 +148,8 @@ input[type=submit]	{ margin: 10px; }
 .italic { font-style: italic; }
 .space	{ margin: 10px; }
 .big-space { margin-top: 100px; }
+.space-left	{ margin-left: 4px; }
+.space-right	{ margin-right: 4px; }
 .small-gap-above { margin-top: 4px; }
 .clear	{ clear: both; }
 .faded	{ opacity: 0.2; }
@@ -164,3 +167,4 @@ input[type=submit]	{ margin: 10px; }
 .stop { background-color: Red;}
 .ready { background-color: Gold;}
 .go { background-color: YellowGreen;}
+.button { float: left; position: relative; padding: 6px 10px 0 10px; height: 20px; margin-bottom: 4px; border: 1px solid grey; cursor: pointer; -moz-user-select: none; -webkit-user-select: none; user-select: none; }

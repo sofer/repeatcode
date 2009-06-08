@@ -32,19 +32,21 @@ class TopicsController < ApplicationController
     
     # put this in user model, perhaps
     if current_user.subjects.empty?
-      subject = Subject.new
-      subject.name = 'Uncategorized'
-      subject.public = false
-      subject.save!
-      current_user.subjects << subject
+      @subject = Subject.new
+      @subject.name = 'Uncategorized'
+      @subject.public = false
+      @subject.save!
+      current_user.subjects << @subject
+    else
+      if params[:subject_id]
+        @subject = Subject.find(params[:subject_id])
+        @topic.ignore_punctuation = @subject.ignore_punctuation
+      else
+        @subject = current_user.subjects.first
+      end
     end
     
     @subjects = current_user.subjects
-    
-    if params[:subject_id]
-      @subject = Subject.find(params[:subject_id])
-      @topic.ignore_punctuation = @subject.ignore_punctuation
-    end
 
     respond_to do |format|
       format.html # new.html.erb

@@ -49,10 +49,11 @@ RC.topic = {
 				$(".response:last", "#hidden-fields").val(this.importedExercises[i][1]);
 				$(".hint:last", "#hidden-fields").val(this.importedExercises[i][2]);
 				var row = "<tr>" +
-									"<td class=\"first\">" + i + "</td>" +
+									"<td>" + i + "</td>" +
 									"<td>" + this.importedExercises[i][0] + "</td>" +
 									"<td>" + this.importedExercises[i][1] + "</td>" +
 									"<td>" + this.importedExercises[i][2] + "</td>" +
+									"<td> </td>" +
 									"</tr>"
 				$("#exercises").append(row);
 			}
@@ -62,6 +63,7 @@ RC.topic = {
 	checkScratchTable: function(){
 		this.addedExercises = $("#exercises > tr td.phrase input[value!='']").length;
 	}
+	
 };
 
 $(document).ready(function(){
@@ -73,26 +75,14 @@ $(document).ready(function(){
 		return false;
 	});
 
+	$("#add-exercise").click(function() {
+		RC.table.appendRow();
+	});
+
 	$("#choose-import").children("input:radio").click();
 	$("#table").hide();
 	$("#finally").hide();
-	//$("#firstly").hide();
-	//$("#finally").show();
 
-	$(".choice-box").mouseover(function() {
-		$(this).addClass("ready");
-	});
-
-	$(".choice-box").mouseout(function() {
-		$(this).removeClass("ready");
-	});
-	
-	$(".choice-box").click(function() {
-		$(".choice-box").removeClass("go");
-		$(this).children("input:radio").click();
-		$(this).addClass("go");
-	});
-	
 	$("#choose-import").click(function() {
 		$("#table").hide();
 		$("#import").show();
@@ -160,6 +150,10 @@ $(document).ready(function(){
 			$(".message").text("Please add a topic name");
 			return false;
 		}
+	});
+	
+	$("#add-exercise").click(function() {
+		
 	});
 	
 });

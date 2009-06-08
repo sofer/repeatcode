@@ -1,5 +1,6 @@
 <tr>
-  <% fields_for_exercise(new_exercise) do |f| %>
+  <td>New</td>
+	<% fields_for_exercise(new_exercise) do |f| %>
 		<td class="phrase">	
 				<%= f.text_field :phrase, :autocomplete => "off"  %>
 		</td>
@@ -9,5 +10,7 @@
 		<td>	
 			<%= f.text_field :hint, :autocomplete => "off"  %>
 		</td>
+		<td>
+		</td>
 	<% end %>
-</td>
+</tr>

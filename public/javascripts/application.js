@@ -25,6 +25,13 @@ RC.table = {
 		this.offset -= this.limit;
 		this.display();
 	},
+	
+	tail: function() {
+		if (this.tableSize > this.offset + this.limit) {
+			this.offset = this.tableSize - this.tableSize % this.limit;
+			this.display();
+		}
+	},
 
 	navigation: function() {
 		if (this.tableSize > this.offset + this.limit ) {
@@ -44,12 +51,42 @@ RC.table = {
 		$("tr", this.tbodyId).slice(this.offset, this.offset + this.limit).show();
 		this.navigation();
 		$(this.tbodyId).show();
+	},
+	
+	appendRow: function() {
+		$("tr:last", this.tbodyId).clone().appendTo(this.tbodyId);
+		this.tableSize += 1;
+		this.tail();
 	}
 
 };
 
-
 $(document).ready(function(){
+	
+	$(".button").mouseover(function() {
+		$(this).addClass("ready");
+	});
+
+	$(".button").mouseout(function() {
+		$(this).removeClass("ready");
+	});
+	
+	$(".radio").click(function() {
+		$(".radio").removeClass("go");
+		$(this).children("input:radio").click();
+		$(this).addClass("go");
+	});
+
+	$(".checkbox").click(function() {
+		var checkbox = $("input:checkbox:first", this);
+		if (checkbox.attr("checked")) {
+			checkbox.attr("checked", false);
+			$(this).removeClass("go");
+		} else {
+			checkbox.attr("checked", true);
+			$(this).addClass("go");
+		}
+	});
 
 	$('.toggle-switch').change(function() {
 		$('.toggle').toggle();
@@ -58,10 +95,6 @@ $(document).ready(function(){
 	$('.display-on-change').change(function() {
 		var txt = $('.display-on-change :selected').text();
 		$('.display-changed').text(txt);
-	});
-	
-	$('#NOTINUSEorg').change(function() {
-		document.location = '/organizations/' + $(this).val() + '/users/new';
 	});
 	
 });

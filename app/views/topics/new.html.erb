@@ -13,15 +13,16 @@
 		<div id="firstly">
 
 			<div id="choose">
-				<div id="choose-import" class="choice-box go">
+				<div id="choose-import" class="radio button space-right go">
 					<input type="radio" name="choice" checked>
-					<div class="comment"><b>Copy and paste</b> from a table</div>
+					<b>Copy and paste</b> from a table
 				</div>
 	
-				<div id="choose-table" class="choice-box">
-					<input type="radio" name="choice" checked>
-					<div class="comment"><b>Start from scratch</b></div>
+				<div id="choose-table" class="radio button">
+					<input type="radio" name="choice">
+					<b>Start from scratch</b>
 				</div>
+
 			</div>
 	
 			<div class="clear"> </div>
@@ -32,7 +33,7 @@
 				<div class="small bold pad message warning">Enter some exercises in the table below</div>
 
 				<% exercises = (1..11).collect { Exercise.new } %>
-				<%= render :partial => "exercise_table", :locals => { :exercises => exercises } %>
+				<%= render :partial => "exercise_table", :locals => { :exercises => exercises, :add => false } %>
 
 				<div class="bottom-centre">
 					<input id="confirm" type="submit" value="Continue"/>

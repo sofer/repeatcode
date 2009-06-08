@@ -5,11 +5,13 @@ class Exercise < ActiveRecord::Base
   has_one :subject, :through => :topic
   acts_as_list :scope => :topic
   
+  named_scope :current, :conditions => { :removed => false }
+
   # A HACK TO GET THE SQL WORKING in course.add_new_material
   named_scope :since, lambda { |time|
    { :conditions => [ 'exercises.created_at > ?', time ] } 
   }
-
+  
   # if a topic has code associated with it then build the code up one exercise at a time
   def code(response=false)
     output = self.topic.code

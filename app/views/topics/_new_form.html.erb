@@ -9,11 +9,7 @@
 	</div>
 	<div class="form-line">
 		<%= f.label "Part of" %>
-		<% if @subject %>
-			<div class="comment"><b><%= @subject.name %></b></div>
-		<% else %>
-			<%= f.collection_select :subject_id, @subjects, :id, :name %>
-		<% end %>
+			<%= f.select :subject_id, @subjects.collect {|s| [ s.name, s.id ] }, { :selected => @subject.id } %>
 	</div>
 	<div class="form-line">
 		<%= f.label :ignore_punctuation %>

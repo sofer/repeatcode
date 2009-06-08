@@ -32,7 +32,4 @@ namespace :deploy do
   end
 end
 
-desc "Run cleanup after every deployment"
-task :after_deploy do
-  deploy:cleanup
-end
+after "deploy", "deploy:cleanup"
