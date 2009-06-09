@@ -15,7 +15,7 @@ class Subject < ActiveRecord::Base
   before_create :set_status
   
   validates_presence_of :name
-  validates_presence_of :area
+  validates_presence_of :area_id
   
   # little hack to get areas in memory. See Advanced Rails Recipes, p.206
   AREAS_FOR_FORM = Area.find(:all).map do |a|
@@ -27,14 +27,6 @@ class Subject < ActiveRecord::Base
   Area.find(:all).each do |a|
     AREAS[a.id] = a.name
   end
-
-  X_LANGUAGES_FOR_FORM = [
-    ['English', 'EN'],
-    ['Deutsch', 'DE'],
-    ['Español', 'ES'],
-    ['Français', 'FR'],
-    ['Italiano', 'IT']
-  ]
 
   def exercise_count
     count = 0
