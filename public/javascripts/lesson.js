@@ -106,7 +106,8 @@ RC.DOMnodes = {
 	languagePalette: '#language-palette',
 	daysTilNext: '#days-til-next',
 	symbol: '.symbol',
-	messageEnvelope: '#message-envelope',
+	//messageEnvelope: '#message-envelope',
+	messageEnvelope: '#notice',
 	tabs: '#tabs',
 	dataTab: '#data-tab',
 	codeTab: '#code-tab',
@@ -142,12 +143,12 @@ RC.voices = {
 	    	outfox.startService("audio").addCallback(this.onStart).addErrback(this.onFail);
 			}
 		} else {
-			$(RC.DOMnodes.messageEnvelope).html('');
+			$(RC.DOMnodes.messageEnvelope).text('');
 		}
 	},
 	
 	onStart: function () {
-		$(RC.DOMnodes.messageEnvelope).html('Outfox is installed. Voices are available for this lesson.');
+		$(RC.DOMnodes.messageEnvelope).text('Outfox is installed. Voices are available for this lesson.');
 		$(RC.DOMnodes.voicesSwitch).show();
 		this.installedVoices = outfox.audio.getProperty('voices');
 		var options = '';
@@ -161,7 +162,7 @@ RC.voices = {
 	},
 
 	onFail: function (cmd) {
-		$(RC.DOMnodes.messageEnvelope).html(cmd.description);
+		$(RC.DOMnodes.messageEnvelope).text(cmd.description);
 	},
 
 	outfoxQueue: function (phrase, which) {
@@ -207,7 +208,7 @@ RC.voices = {
 			url: postUrl,
 			data: postData,
 			success: function() {
-				$(RC.DOMnodes.messageEnvelope).html('Course voices updated.');
+				$(RC.DOMnodes.messageEnvelope).text('Course voices updated.');
 			}
 	  });
 	}

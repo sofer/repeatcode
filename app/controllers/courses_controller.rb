@@ -1,6 +1,6 @@
 class CoursesController < ApplicationController
 
-  before_filter :login_required, :except => :new
+  before_filter :login_required, :except => [ :new, :index ]
 
   # over-ride login_required in AuthenticatedSystem to allow new users to be created ad hoc
   def login_required
@@ -24,17 +24,29 @@ class CoursesController < ApplicationController
   # GET /courses.xml
   def index
     
-    @courses = current_user.courses.active
-    
-    # check the queue of pending questions
-    if params[:version] and params[:version]=='clear' 
-      message = @courses.first.clear_all
-      flash[:notice] = message
-    end
+    if current_user and current_user.courses.active
+      
+      @courses = current_user.courses.active
+      flash[:notice] = '' if flash[:notice] =~ /^Outfox/ # to clear out notices from lessons/show
+      
+      # check the queue of pending questions
+      if params[:version] and params[:version]=='clear' 
+        message = @courses.first.clear_all
+        flash[:notice] = message
+      end
 
-    respond_to do |format|
-      format.html # index.html.erb
-      format.xml  { render :xml => @courses }
+      respond_to do |format|
+        format.html # index.html.erb
+        format.xml  { render :xml => @courses }
+      end
+      
+    else
+
+      respond_to do |format|
+        format.html { redirect_to :action => 'new' }
+        format.xml  { render :xml => @courses }
+      end
+      
     end
   end
 
@@ -68,7 +80,6 @@ class CoursesController < ApplicationController
   # GET /courses/new.xml
   def new
     @areas = Area.find(:all)
-    @private_subjects = current_user.subjects.private if current_user
     
     respond_to do |format|
       format.html # new.html.erb

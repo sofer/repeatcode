@@ -40,9 +40,9 @@
 		</ul>
 		<br/>
 	<% end %>
-	<% if @private_subjects and @private_subjects.count > 0 %>
+	<% if current_user and current_user.subjects.private.count > 0 %>
 	<h3 class="centre">Not public</h3>
-		<% for subject in @private_subjects %>
+		<% for subject in current_user.subjects.private %>
 			<% if row >= limit %>
 			</div><div class="col3">
 				<% row = 0 %>

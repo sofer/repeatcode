@@ -39,7 +39,7 @@ class UsersController < ApplicationController
     respond_to do |format|
       if @user.update_attributes(params[:user])
         flash[:notice] = 'Your details were successfully updated.'
-        format.html { redirect_to(:back) }
+        format.html { redirect_to '/' }
         format.xml  { head :ok }
       else
         flash[:error] = 'Login has already been taken.'
