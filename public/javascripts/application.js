@@ -10,6 +10,10 @@ RC.table = {
 	downId: "#down",
 	upId: "#up",
 	
+	debug: function() {
+		alert(this.tableSize + ' : ' + this.offset + ' : ' + this.limit );
+	},
+	
 	init: function(tbodyId, limit) {
 		this.tbodyId = tbodyId;
 		this.limit = limit;
@@ -77,6 +81,10 @@ $(document).ready(function(){
 	}
 	if ($('#courses').length) {
 		RC.table.init('#courses', 12);
+	}
+	
+	if ($('#exercises').length) {
+		RC.table.init('#exercises', 12);
 	}
 	
 	

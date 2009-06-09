@@ -1,7 +1,7 @@
 <tr>
 	<td class="first"><%= exercise_counter + 1 %></td>
   <% fields_for_exercise(exercise) do |f| %>
-		<td>	
+		<td class="phrase">	
 				<%= f.text_field :phrase, :autocomplete => "off"  %>
 		</td>
 		<td>	

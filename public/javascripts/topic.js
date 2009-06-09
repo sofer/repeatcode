@@ -69,8 +69,6 @@ RC.topic = {
 
 $(document).ready(function(){
 	
-	RC.table.init('#exercises', 12);
-	
 	$("#hint-help").click(function() {
 		alert("Nothing here yet");
 		return false;
@@ -92,7 +90,9 @@ $(document).ready(function(){
 
 	$("#choose-table").click(function() {
 		$("#import").hide();
+		$("#navigation").hide();
 		$("#table").show();
+		RC.table.display();
 		return false;
 	});
 
