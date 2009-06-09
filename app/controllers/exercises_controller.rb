@@ -5,7 +5,8 @@ class ExercisesController < ApplicationController
   # GET /exercises
   # GET /exercises.xml
   def index
-    @exercises = Exercise.all
+    @subject = Subject.find(params[:subject_id])
+    @exercises = @subject.exercises
 
     respond_to do |format|
       format.html # index.html.erb

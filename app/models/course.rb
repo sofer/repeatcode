@@ -44,17 +44,6 @@ class Course < ActiveRecord::Base
     9 => DAY * 224
   }
   
-  def update_required?
-    # return true
-    if  not subject or 
-        questions.empty? or 
-        questions.last.created_at > subject.exercises.recently_updated.first.updated_at
-      return false
-    else
-      return true
-    end
-  end
-  
   def backlog_count
     questions.count(:conditions => ['next_datetime < ? AND current_interval > 0', Time.now])
   end
@@ -214,9 +203,73 @@ class Course < ActiveRecord::Base
     return results
   end
   
+  def update_required?
+    if subject.exercises.updated_since(self.synched_at).empty?
+      return false
+    else
+      return true
+    end
+  end
+  
+  def update_topics
+    result_string = ''
+    updated_count = created_count = 0
+    updated_topics = subject.topics.updated_since(self.synched_at)
+    if updated_topics
+      for topic in updated_topics
+        course_topic = course_topics.first( :conditions => { :topic_id => topic.id } )
+        if course_topic
+          updated_count += 1
+        else
+          created_count += 1
+          course_topic = CourseTopic.new({ :course_id => self.id })
+        end
+        course_topic.update_from_topic(topic.id)
+      end
+    end
+    result_string += "1 new topic created. " if created_count == 1
+    result_string + "#{created_count} new topics created. " if created_count > 1
+    result_string + "1 topic updated. " if updated_count == 1
+    result_string + "#{updated_count} topics updated. " if updated_count > 1
+    return result_string
+  end
+
+  def update_questions
+    result_string = update_topics
+    updated_count = created_count = 0
+    updated_exercises = subject.exercises.updated_since(self.synched_at)
+    if updated_exercises
+      for exercise in updated_exercises
+        question = questions.first( :conditions => { :exercise_id => exercise.id } )
+        if question
+          updated_count += 1
+        else
+          created_count += 1
+          course_topic = course_topics.first( :conditions => { :topic_id => exercise.topic_id } )
+          question = Question.new({ :course_id => self.id, :course_topic_id => course_topic.id})
+        end
+        question.update_from_exercise(exercise.id)
+      end
+    end
+    begin
+      self.update_attributes!({ :synched_at => Time.now })
+    rescue RecordInvalid => error
+        logger.error invalid.record.errors
+    end
+    result_string +=  "1 new exercise created. " if created_count == 1
+    result_string += "#{created_count} new exercises created. " if created_count > 1
+    result_string += "1 exercise updated. " if updated_count == 1
+    result_string += "#{updated_count} exercises updated. " if updated_count > 1
+    if result_string.empty?
+      return "No updates to course exercises required."
+    else
+      return result_string
+    end
+  end
+  
   # Add any exercises added since the last question, if they are from topics already covered
   # THIS NEEDS TO BE CHANGED
-  def add_new_material
+  def x_add_new_material
     return 0 # return 0 for now.
     question_count = 0
     if last_question

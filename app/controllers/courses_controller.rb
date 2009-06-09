@@ -115,13 +115,19 @@ class CoursesController < ApplicationController
 
   # PUT /courses/1
   # PUT /courses/1.xml
-  # Updates NOT JUST USED for un/archiving. NEED TO CHANGE THIS
+  # Used for archiving and for updating questions
   def update
     @course = Course.find(params[:id])
     
+    if params[:course]
+      @course.update_attributes(params[:course])
+      flash[:notice] = 'Some sort of update happened...'
+    else
+      flash[:notice] = @course.update_questions
+    end
+    
     respond_to do |format|
-      if @course.update_attributes(params[:course])
-        flash[:notice] = 'Course was successfully updated.'
+      if @course.errors.size == 0
         format.html { redirect_to(:back) }
         format.xml  { head :ok }
         format.json { head :ok }
@@ -131,6 +137,7 @@ class CoursesController < ApplicationController
         format.xml  { render :xml => @course.errors, :status => :unprocessable_entity }
         format.json { render :json => @course.errors }
       end
+      
     end
   end
 

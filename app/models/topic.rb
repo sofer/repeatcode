@@ -6,6 +6,11 @@ class Topic < ActiveRecord::Base
   named_scope :recent, :conditions => [ 'created_at > ?', 3.hours.ago ]
   named_scope :current, :conditions => { :removed => false }
 
+  # slightly hacked to get 'updated_at' working in course.add_new_material
+  named_scope :updated_since, lambda { |time|
+   { :conditions => [ 'topics.updated_at > ?', time ] } 
+  }
+
   acts_as_list :scope => :subject
   
   after_update :save_exercises

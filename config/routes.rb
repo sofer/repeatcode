@@ -19,8 +19,8 @@ ActionController::Routing::Routes.draw do |map|
 
   map.resources :administrators
 
-
   map.resources :exercises
+  
   map.resources :subscriptions
   map.resources :authorships
 
@@ -38,6 +38,7 @@ ActionController::Routing::Routes.draw do |map|
   map.resources :subjects do |subject|
     subject.resources :topics
     subject.resources :courses
+    subject.resources :exercises
   end
   map.resources :topics
 

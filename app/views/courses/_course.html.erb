@@ -9,7 +9,7 @@
 		<td class="name">
 			<%= course.name %>
 		</td>
-		<td>
+		<td class="warning">
 			<%= 'On target' if course.on_target? %>
 		</td>
 		<td>
@@ -19,7 +19,11 @@
 			<%= relative_date course.lessons.last.updated_at if course.lessons.last %>
 		</td>
 		<td>
-			<%= 'Updates' if course.update_required? %>
+			<% if course.update_required? %>
+				<% form_for course do |f| %>
+					<%= f.submit 'Update' %>
+				<% end %>
+			<% end %>
 		</td>
 		<td>
 			<%= link_to "Targets", course_path(course) %>

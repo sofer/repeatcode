@@ -13,6 +13,22 @@ class Question < ActiveRecord::Base
   validates_presence_of :exercise_id
   validates_presence_of :course_topic_id
 
+  def update_from_exercise(exercise_id)
+    exercise = Exercise.find(exercise_id)
+    begin
+      self.update_attributes!({ :exercise_id => exercise.id,
+                                :phrase => exercise.phrase,
+                                :response => exercise.response,
+                                :pattern => exercise.pattern,
+                                :notes => exercise.notes,
+                                :hint => exercise.hint,
+                                :insert => exercise.insert,
+                                :ignore => false })
+    rescue RecordInvalid => error
+        logger.error invalid.record.errors
+    end
+  end
+
   def reset_interval_and_datetime(interval)
     self.current_interval = interval + 1 unless interval == Course::MAX_INDEX
     minutes_to_go = course.intervals.find(:first, :conditions => {:index_no => self.current_interval}).minutes

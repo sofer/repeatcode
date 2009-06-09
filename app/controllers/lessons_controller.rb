@@ -57,15 +57,7 @@ class LessonsController < ApplicationController
     else
       flash[:notice] = "Returned to current lesson." 
     end
-    new_material_count = @course.add_new_material
-    if new_material_count > 0
-      if new_material_count == 1
-        flash[:notice] = "Course updated with one recently added exercise in a topic that you have already covered"
-      else
-        flash[:notice] = "Course updated with #{new_material_count} recently added exercises in topics that you have already covered"
-      end
-    end
-    
+
     respond_to do |format|
       if @lesson.save
         format.html { redirect_to(@lesson) }

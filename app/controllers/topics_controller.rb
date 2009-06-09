@@ -70,8 +70,8 @@ class TopicsController < ApplicationController
         format.html { redirect_to @topic.subject }
         format.xml  { render :xml => @topic, :status => :created, :location => @topic }
       else
-        flash[:notice] = 'Looks like we had a problem.'
-        format.html { render :action => "new" }
+        flash[:error] = 'Looks like we had a problem.'
+        format.html { redirect_to :back }
         format.xml  { render :xml => @topic.errors, :status => :unprocessable_entity }
       end
     end

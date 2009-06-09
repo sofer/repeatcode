@@ -8,12 +8,13 @@ class Exercise < ActiveRecord::Base
   named_scope :current, :conditions => { :removed => false }
   named_scope :recently_updated, :order => 'updated_at DESC'
 
-  # A HACK TO GET THE SQL WORKING in course.add_new_material
-  named_scope :since, lambda { |time|
-   { :conditions => [ 'exercises.created_at > ?', time ] } 
+  # slightly hacked to get 'updated_at' working in course.add_new_material
+  named_scope :updated_since, lambda { |time|
+   { :conditions => [ 'exercises.updated_at > ?', time ] } 
   }
   
-  validates_presence_of :topic_id
+  # This is causing problems when saving from topic, but I a m not sure why
+  # validates_presence_of :topic_id
   
   # if a topic has code associated with it then build the code up one exercise at a time
   def code(response=false)
