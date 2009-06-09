@@ -9,7 +9,6 @@ class Question < ActiveRecord::Base
   named_scope :not_started, :conditions => "current_interval IS NULL"
   named_scope :current, :conditions => { :removed => false }
 
-  validates_presence_of :name
   validates_presence_of :course_id
   validates_presence_of :exercise_id
   validates_presence_of :course_topic_id

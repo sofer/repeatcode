@@ -20,6 +20,10 @@ private
     else
       question.reset_interval_and_datetime(0)
     end
-    question.save!
+    begin
+      question.save!
+    rescue RecordInvalid => error
+        logger.error invalid.record.errors
+    end
   end
 end
