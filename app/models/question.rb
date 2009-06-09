@@ -9,6 +9,11 @@ class Question < ActiveRecord::Base
   named_scope :not_started, :conditions => "current_interval IS NULL"
   named_scope :current, :conditions => { :removed => false }
 
+  validates_presence_of :name
+  validates_presence_of :course_id
+  validates_presence_of :exercise_id
+  validates_presence_of :course_topic_id
+
   def reset_interval_and_datetime(interval)
     self.current_interval = interval + 1 unless interval == Course::MAX_INDEX
     minutes_to_go = course.intervals.find(:first, :conditions => {:index_no => self.current_interval}).minutes

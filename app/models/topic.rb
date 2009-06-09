@@ -11,6 +11,7 @@ class Topic < ActiveRecord::Base
   after_update :save_exercises
 
   validates_presence_of :name
+  validates_presence_of :subject_id
 
   # temp
   def show_data

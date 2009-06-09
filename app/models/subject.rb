@@ -1,11 +1,11 @@
 class Subject < ActiveRecord::Base
 
+  belongs_to :areas
   has_many :topics, :order => :position
   has_many :exercises, :through => :topics
   has_many :courses
   has_many :authorships
   has_many :users, :through => :authorships
-  belongs_to :areas
   
   named_scope :active, :conditions => {:archived => false}
   named_scope :inactive, :conditions => {:archived => true}
@@ -15,6 +15,7 @@ class Subject < ActiveRecord::Base
   before_create :set_status
   
   validates_presence_of :name
+  validates_presence_of :area
   
   # little hack to get areas in memory. See Advanced Rails Recipes, p.206
   AREAS_FOR_FORM = Area.find(:all).map do |a|
@@ -27,7 +28,7 @@ class Subject < ActiveRecord::Base
     AREAS[a.id] = a.name
   end
 
-  LANGUAGES_FOR_FORM = [
+  X_LANGUAGES_FOR_FORM = [
     ['English', 'EN'],
     ['Deutsch', 'DE'],
     ['Español', 'ES'],

@@ -11,10 +11,11 @@ class Course < ActiveRecord::Base
   named_scope :active, :conditions => { :archived => false }
   named_scope :inactive, :conditions => { :archived => true }
 
-  before_validation_on_create :set_status_and_targets
-  before_create :copy_course_material
-  after_create :set_intervals
+  before_validation_on_create :set_status_and_targets, :copy_subject_details
+  after_create :set_intervals, :copy_course_material
   
+  validates_presence_of :name
+  validates_presence_of :subject_id
   validates_numericality_of :accuracy_target
   validates_numericality_of :lesson_target
   validates_numericality_of :weekly_target
@@ -26,7 +27,7 @@ class Course < ActiveRecord::Base
     'WEEKLY'    => 5   # number of lessons per week
   }
 
-  MAX_INDEX = 8
+  MAX_INDEX = 9
 
   DAY = 60 * 24
   
@@ -34,19 +35,20 @@ class Course < ActiveRecord::Base
     0 => 0,
     1 => 1,
     2 => 5,
-    3 => DAY / 2,
-    4 => DAY * 6,
-    5 => DAY * 15,
-    6 => DAY * 35,
-    7 => DAY * 85,
-    8 => DAY * 224
+    3 => 30,
+    4 => DAY,
+    5 => DAY * 6,
+    6 => DAY * 15,
+    7 => DAY * 35,
+    8 => DAY * 85,
+    9 => DAY * 224
   }
   
   def update_required?
     # return true
     if  not subject or 
         questions.empty? or 
-        questions.last.created_at < subject.exercises.recently_updated.first.updated_at
+        questions.last.created_at > subject.exercises.recently_updated.first.updated_at
       return false
     else
       return true
@@ -270,18 +272,23 @@ class Course < ActiveRecord::Base
     end
   end
 
-private
-
-  # this will probably need to be speeded up
-  def copy_course_material
+  def copy_subject_details
     self.name = subject.name
     self.extended_chars = subject.extended_chars
     self.phrase_speech = subject.phrase_speech
     self.response_speech = subject.response_speech
+  end
+  
+private
 
-    subject.topics.each do |topic|
+  # this will probably need to be speeded up
+  
+  def copy_course_material
+
+    subject.topics.current.each do |topic|
       course_topic = CourseTopic.new
       course_topic.topic_id = topic.id
+      course_topic.course_id = self.id
       course_topic.name = topic.name
       course_topic.code = topic.code
       course_topic.data = topic.data
@@ -290,10 +297,10 @@ private
       course_topic.rtl = topic.rtl
       
       if course_topic.save(false)  # don't do validations
-        course_topics << course_topic if course_topic.save(false)  # don't do validations
-        topic.exercises.each do |exercise|
+        topic.exercises.current.each do |exercise|
           question = Question.new
           question.exercise_id = exercise.id
+          question.course_id = self.id
           question.course_topic_id = course_topic.id
           question.phrase = exercise.phrase
           question.response = exercise.response
@@ -302,12 +309,7 @@ private
           question.hint = exercise.hint
           question.insert = exercise.insert
           question.ignore = false
-
-          if question.save(false) # don't do validations
-            questions << question
-            #course_topic << question
-          end
-
+          question.save(false) # don't do validations
         end
 
       end

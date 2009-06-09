@@ -13,6 +13,8 @@ class Exercise < ActiveRecord::Base
    { :conditions => [ 'exercises.created_at > ?', time ] } 
   }
   
+  validates_presence_of :topic_id
+  
   # if a topic has code associated with it then build the code up one exercise at a time
   def code(response=false)
     output = self.topic.code
