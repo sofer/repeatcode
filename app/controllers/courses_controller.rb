@@ -27,7 +27,6 @@ class CoursesController < ApplicationController
     if current_user and current_user.courses.active
       
       @courses = current_user.courses.active
-      flash[:notice] = '' if flash[:notice] =~ /^Outfox/ # to clear out notices from lessons/show
       
       # check the queue of pending questions
       if params[:version] and params[:version]=='clear' 
