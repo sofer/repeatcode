@@ -7,7 +7,8 @@ class Question < ActiveRecord::Base
 
   named_scope :started, :conditions => "current_interval IS NOT NULL"
   named_scope :not_started, :conditions => "current_interval IS NULL"
-  named_scope :current, :conditions => { :removed => false }
+  named_scope :current, :conditions => { :ignore => false }
+  named_scope :ignored, :conditions => { :ignore => true }
 
   validates_presence_of :course_id
   validates_presence_of :exercise_id

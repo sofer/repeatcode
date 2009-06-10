@@ -58,6 +58,9 @@
 			<div id="expected-response-block">
 				<div id="expected-response"> </div>
 				<%= submit_tag "OK", :id => "ok", :class => "space" %>
+				<div id="corrections">
+					<a href="" id="amend-link">Amend</a> | <a href="" id="ignore-link">Ignore</a>
+				</div>
 			</div>
 
 			<div id="response-block" class="centre half">
@@ -105,7 +108,7 @@
 		</div>
 		<div id="loading"><img src="/images/furniture/loading.gif" width="16" height="16" alt="waiting..." align="right"></div>
 		<div class="bottom-right">
-			<a href="" id="voices-switch" class="hidden">Voices</a> 
+			<a href="" id="voices-link" class="hidden">Voices</a> 
 			| <a href="" class="details-switch">Show details</a> 
 			<a href="" class="details-switch hidden">Hide details</a> 
 			| <%= link_to 'End lesson', courses_path %>
@@ -114,8 +117,44 @@
 
 </div>
 
+<div id="amend" class="hidden">
+	<div class="overlay"></div>
+	<div class="message-frame">
+		<fieldset>
+			<legend>Amend this question</legend>
+				<%= label_tag 'Phrase' %>
+				<%= text_field_tag "amend-phrase", nil, :autocomplete => "off" %> 
+				<%= label_tag 'Response' %>
+				<%= text_field_tag "amend-response", nil, :autocomplete => "off" %> 
+				<%= label_tag 'Hint' %>
+				<%= text_field_tag "amend-hint", nil, :autocomplete => "off" %> 
+				<%= submit_tag 'Cancel' %>
+				<%= submit_tag 'OK' %>
+		</fieldset>
+	</div>
+</div>
+
+<div id="ignore" class="hidden">
+	<div class="overlay"></div>
+	<div class="message-frame">
+		<fieldset>
+			<legend>Ignore this question</legend>
+
+			<div class="phrase"></div>
+			
+			<div class="response"></div>
+
+				<%= submit_tag 'Cancel' %>
+				<%= submit_tag 'OK' %>
+
+			<div>(This question will not appear again)</div>
+		</fieldset>
+	</div>
+</div>
+
 <div id="voices" class="hidden">
-	<form id="voices-form">
+	<div class="overlay"></div>
+	<div class="message-frame">
 		<fieldset>
 			<legend>Change text-to-speech options</legend>
 			<%= label_tag 'Voices for phrases' %>
@@ -128,14 +167,18 @@
 				<option value="">None</option>
 				<%= selected_voice @lesson.course.response_voice %>
 			</select>
-			<%= submit_tag %>
+			<%= submit_tag 'Cancel' %>
+			<%= submit_tag 'OK' %>
 		</fieldset>
-	</form>
+	</div>
 </div>
 
 
-<div id="timeout">
-	<h2>Taking time out</h2>
-	Click to continue
+<div id="timeout" class="hidden">
+	<div class="overlay"></div>
+	<div class="message-frame">
+		<h2>Taking time out</h2>
+		Click to continue
+	</div>
 </div>
 

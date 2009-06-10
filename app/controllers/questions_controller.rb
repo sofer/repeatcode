@@ -1,6 +1,6 @@
 class QuestionsController < ApplicationController
   
-  before_filter :authorize
+  before_filter :authorize, :except => :update
   
   # GET /questions
   # GET /questions.xml
@@ -38,14 +38,13 @@ class QuestionsController < ApplicationController
   # PUT /questions/1.xml
   def update
     @question = Question.find(params[:id])
-    @question.set_interval
 
     respond_to do |format|
       if @question.update_attributes(params[:question])
-        format.html { redirect_to(@question.course.current_lesson) }
+        format.json { render :json => 'Question updated OK' }
         format.xml  { head :ok }
       else
-        format.html { render :action => "edit" }
+        format.json { render :json => @question.errors }
         format.xml  { render :xml => @question.errors, :status => :unprocessable_entity }
       end
     end

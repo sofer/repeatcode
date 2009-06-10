@@ -266,30 +266,9 @@ class Course < ActiveRecord::Base
       return result_string
     end
   end
-  
-  # Add any exercises added since the last question, if they are from topics already covered
-  # THIS NEEDS TO BE CHANGED
-  def x_add_new_material
-    return 0 # return 0 for now.
-    question_count = 0
-    if last_question
-      if subject.exercises.last.created_at > last_question.created_at
-        new_exercises = subject.exercises.since(last_question.created_at)
-        for exercise in new_exercises
-          if exercise.topic.position < last_question.exercise.topic.position ||
-            exercise.topic.position == last_question.exercise.topic.position &&
-            exercise.position < last_question.exercise.position
-            add_question(exercise)
-            question_count += 1
-          end
-        end
-      end
-    end
-    return question_count
-  end
-  
+    
   def next_question(exclude_question=0)
-    question = questions.find(  
+    question = questions.current.find(  
                 :first,
                 :conditions => ['next_datetime <= ? and id != ?', Time.now, exclude_question], 
                 :order => 'current_interval'

@@ -1,6 +1,6 @@
 class CoursesController < ApplicationController
 
-  before_filter :login_required, :except => [ :new, :index ]
+  before_filter :login_required, :except => :new
 
   # over-ride login_required in AuthenticatedSystem to allow new users to be created ad hoc
   def login_required
@@ -24,28 +24,17 @@ class CoursesController < ApplicationController
   # GET /courses.xml
   def index
     
-    if current_user and current_user.courses.active
-      
-      @courses = current_user.courses.active
-      
-      # check the queue of pending questions
-      if params[:version] and params[:version]=='clear' 
-        message = @courses.first.clear_all
-        flash[:notice] = message
-      end
+    @courses = current_user.courses.active
+    
+    # check the queue of pending questions
+    if params[:version] and params[:version]=='clear' 
+      message = @courses.first.clear_all
+      flash[:notice] = message
+    end
 
-      respond_to do |format|
-        format.html # index.html.erb
-        format.xml  { render :xml => @courses }
-      end
-      
-    else
-
-      respond_to do |format|
-        format.html { redirect_to :action => 'new' }
-        format.xml  { render :xml => @courses }
-      end
-      
+    respond_to do |format|
+      format.html # index.html.erb
+      format.xml  { render :xml => @courses }
     end
   end
 
@@ -79,7 +68,7 @@ class CoursesController < ApplicationController
   # GET /courses/new.xml
   def new
     @areas = Area.find(:all)
-    
+  
     respond_to do |format|
       format.html # new.html.erb
       format.xml  { render :xml => @course }
@@ -130,7 +119,7 @@ class CoursesController < ApplicationController
       if @course.errors.size == 0
         format.html { redirect_to(:back) }
         format.xml  { head :ok }
-        format.json { head :ok }
+        format.json { render :json => "Voices updated OK" }
       else
         flash[:notice] = 'Course was NOT updated.'
         format.html { redirect_to(:back) }

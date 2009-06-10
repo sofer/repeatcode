@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20090609055728) do
+ActiveRecord::Schema.define(:version => 20090610090114) do
 
   create_table "administrators", :force => true do |t|
     t.integer  "user_id"
@@ -146,7 +146,7 @@ ActiveRecord::Schema.define(:version => 20090609055728) do
     t.string   "hint"
     t.string   "insert"
     t.boolean  "ignore",           :default => false
-    t.boolean  "removed",          :default => false
+    t.boolean  "amended",          :default => false
   end
 
   create_table "responses", :force => true do |t|
