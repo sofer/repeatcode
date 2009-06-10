@@ -69,10 +69,8 @@ $.fn.shiftCaret = function (pos) {
 RC.DOMnodes = {
 	amend: '#amend',
 	amendLink: '#amend-link',
-	amendForm: '#amend-form',
 	ignore: '#ignore',
 	ignoreLink: '#ignore-link',
-	ignoreForm: '#ignore-form',
 	completed: '#completed',
 	content: '#content',
 	seconds: '#seconds',
@@ -860,7 +858,7 @@ RC.question.getFirst();
 RC.intervalTimer = setInterval(RC.timer.tick, 1000);
 
 $(document).ready(function(){
-	
+
 	RC.voices.outfoxInit();
 	
 	$(RC.DOMnodes.ignoreAccentsCheckbox).attr('checked', false);
@@ -939,7 +937,7 @@ $(document).ready(function(){
 		RC.timer.resetTimeout();
 	});
 	
-		$(RC.DOMnodes.symbol).click(function () {
+	$(RC.DOMnodes.symbol).click(function () {
 		var insert = $(this).attr('value');
 		$(RC.DOMnodes.responseField).val($(RC.DOMnodes.responseField).val()+insert);
 		if (RC.question.isFormula(RC.question.data.question.response)) {
@@ -953,10 +951,6 @@ $(document).ready(function(){
 		RC.timer.endTimeout();
 	});
 
-	$(RC.DOMnodes.content).click(function(){
-		return false;
-	});
-	
 	$(RC.DOMnodes.detailsSwitch).click(function() {
 		$(RC.DOMnodes.detailsSwitch).toggle();
 		$(RC.DOMnodes.details).toggle();

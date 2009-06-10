@@ -34,6 +34,8 @@ hr	{ height: 1px; border: 0; color: DodgerBlue; background-color: DodgerBlue; }
 #amend input[type="text"]	{ float: none; width: 96%; margin-top: 2px; }
 #ignore fieldset * { margin: 18px; }
 #voices fieldset * { margin-top: 20px; }
+#voices fieldset option { margin-top: 0; }
+
 
 #timeout h2	{ margin-top: 120px; font-size: 18px; }
 #question	{ margin-top: 30px; text-align: center; line-height: 1.2;  font-size: 24px; }
@@ -166,7 +168,6 @@ textarea	{ width: 99%; height: 320px; padding: 2px; font-family: helvetica, aria
 .space-right	{ margin-right: 4px; }
 .small-gap-above { margin-top: 4px; }
 .clear	{ clear: both; }
-.faded a { cursor: default; }
 .pointer	{ cursor: pointer; cursor: pointer; -moz-user-select: none; -webkit-user-select: none; user-select: none; }
 .disabled { cursor: default; color: grey; }
 .copy	{ margin: 20px 80px; }
