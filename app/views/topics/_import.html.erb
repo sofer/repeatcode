@@ -1,7 +1,7 @@
-<div id="import">
-	<div class="small bold pad message warning">Copy a table of questions and responses into the box below</div>
+<div id="topic-import">
 	<%= text_area_tag "import-data", "Copy and paste straight from a spreadsheet. Questions or phrases go in the first column. Responses go in the second column. A third column can be used to provide hints. If copying from a text file, remember to separate columns with tabs.", { :class => "grey" } %>
-	<div class="bottom-centre">
+	<div class="small bold pad message warning">Copy a table of questions and responses into the box above</div>
+	<div class="submit">
 		<input id="parse-import-data" type="submit" value="Continue"/>		
 	</div>
 </div>

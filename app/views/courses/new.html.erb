@@ -11,8 +11,6 @@
 </div>
 <div id="main">
 
-	<br>
-
 	<div class="col3">
 
 	<% row = 0; limit = 16 %>
@@ -24,7 +22,7 @@
 			<% row = 0 %>
 		<% end %>
 		<% row += 2 %>
-		<h3 class="centre"> <%= area.name %> </h3>
+		<h2 class="centre"> <%= area.name %> </h2>
 		<% for subject in area.subjects.public %>
 			<% if row >= limit %>
 			</div><div class="col3">
@@ -38,10 +36,9 @@
 				<% end %>
 		<% end %>
 		</ul>
-		<br/>
 	<% end %>
 	<% if current_user and current_user.subjects.private.count > 0 %>
-	<h3 class="centre">Not public</h3>
+	<h2 class="centre">Not public</h2>
 		<% for subject in current_user.subjects.private %>
 			<% if row >= limit %>
 			</div><div class="col3">

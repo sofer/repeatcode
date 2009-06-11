@@ -13,29 +13,27 @@
 		<div id="firstly">
 
 			<div id="choose">
-				<div id="choose-import" class="radio button space-right go">
+				<div id="choose-import" class="radio button go">
 					<input type="radio" name="choice" checked>
 					<b>Copy and paste</b> from a table
 				</div>
 	
-				<div id="choose-table" class="radio button">
+				<div id="choose-table" class="radio button space-left">
 					<input type="radio" name="choice">
 					<b>Start from scratch</b>
 				</div>
 
 			</div>
-	
-			<div class="clear"> </div>
-	
+				
 			<%= render :partial => "import" %>
 
 			<div id="table" class="topic">
-				<div class="small bold pad message warning">Enter some exercises in the table below</div>
 
-				<% exercises = (1..11).collect { Exercise.new } %>
+				<% exercises = (1..12).collect { Exercise.new } %>
 				<%= render :partial => "exercise_table", :locals => { :exercises => exercises, :add => false } %>
+				<div class="small bold pad message warning">Enter some exercises in the table above</div>
 
-				<div class="bottom-centre">
+				<div class="submit">
 					<input id="confirm" type="submit" value="Continue"/>
 				</div>
 
@@ -47,13 +45,9 @@
 		
 			<%= render :partial => "new_form", :locals => { :f => f } %>
 		
-			<div id="hidden-fields"> </div>
-		
-			<div class="bottom-centre">
-				<%= f.submit "Finish" %>
-			</div>
-
 		</div>
+
+		<div id="hidden-fields"> </div>
 
 	<% end %>
 

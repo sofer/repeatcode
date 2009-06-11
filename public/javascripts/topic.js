@@ -84,12 +84,12 @@ $(document).ready(function(){
 
 	$("#choose-import").click(function() {
 		$("#table").hide();
-		$("#import").show();
+		$("#topic-import").show();
 		return false;
 	});
 
 	$("#choose-table").click(function() {
-		$("#import").hide();
+		$("#topic-import").hide();
 		$("#navigation").hide();
 		$("#table").show();
 		RC.table.display();
@@ -115,7 +115,7 @@ $(document).ready(function(){
 			RC.table.init('#exercises', 15);
 			RC.table.display();
 			$("#choose").hide();
-			$("#import").hide();
+			$("#topic-import").hide();
 			$("#table").show();
 			$("#navigation").show();
 		}

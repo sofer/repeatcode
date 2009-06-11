@@ -57,7 +57,9 @@
 
 			<div id="expected-response-block">
 				<div id="expected-response"> </div>
-				<%= submit_tag "OK", :id => "ok", :class => "space" %>
+				<div class="submit">
+					<%= submit_tag "OK", :id => "ok"%>
+				</div>
 				<div id="corrections">
 					<a href="" id="amend-link">Amend</a> | <a href="" id="ignore-link">Ignore</a>
 				</div>
@@ -72,7 +74,7 @@
 					<div id="palettes">
 						<% unless @lesson.course.subject.extended_chars.blank? %>
 						<div id="language-palette" class="palette">
-							<div class="float-right checkbox">
+							<div id="palette-switch">
 								<label>ignore accents</label>
 								<input type="checkbox" id="ignore-accents">
 							</div>
@@ -177,8 +179,10 @@
 <div id="timeout" class="hidden">
 	<div class="overlay"></div>
 	<div class="message-frame">
-		<h2>Taking time out</h2>
-		Click to continue
+		<fieldset>
+			<h2>Taking time out</h2>
+			Click to continue
+		</div>
 	</div>
 </div>
 

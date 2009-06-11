@@ -113,11 +113,11 @@ $(document).ready(function(){
 	});
 	
 	$(".radio").click(function() {
+		$(".radio").removeClass("go");
 		if (!$(this).hasClass("disabled")) {
 			$(this).children("input:radio").click();
 			$(this).addClass("go");
 		}
-		$(".radio").removeClass("go");
 	});
 
 	$(".checkbox").click(function() {

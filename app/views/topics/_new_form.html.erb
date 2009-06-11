@@ -1,28 +1,34 @@
-<fieldset class="big-space warning message">&nbsp;</fieldset>
-
-<fieldset class="box">
-	<%= f.error_messages %>
+<div class="box">
+	<fieldset id="topic-details">
+		<%= f.error_messages %>
 				
-	<div class="form-line">
-		<%= f.label :name, "Topic name", :class => "bold" %>
-		<%= f.text_field :name, :class => 'focus', :autocomplete => "off"  %>
-	</div>
-	<div class="form-line">
-		<%= f.label "Part of" %>
-			<%= f.select :subject_id, @subjects.collect {|s| [ s.name, s.id ] }, { :selected => @subject.id } %>
-	</div>
-	<div class="form-line">
-		<%= f.label :ignore_punctuation %>
-		<%= f.check_box :ignore_punctuation %>
-	<div class="comment">[ , . ! ? - ]</div>
-	</div>
-	<div id="rtl" class="form-line">
-		<%= f.label "Display responses right to left" %>
-		<%= f.check_box :rtl %> 
-	<div class="comment">(for arithmetic)</div>
-	</div>
-	<div class="form-line">
-		<%= f.label "Number of exercises" %>
-	<div id="exercise-count" class="comment bold"> </div>
-	</div>
-</fieldset>
+		<div class="form-line">
+			<%= f.label :name, "Topic name", :class => "bold" %>
+			<%= f.text_field :name, :class => 'focus', :autocomplete => "off"  %>
+		</div>
+		<div class="form-line">
+			<%= f.label "Part of" %>
+				<%= f.select :subject_id, @subjects.collect {|s| [ s.name, s.id ] }, { :selected => @subject.id } %>
+		</div>
+		<div class="form-line">
+			<%= f.label :ignore_punctuation %>
+			<%= f.check_box :ignore_punctuation %>
+		<div class="comment">[ , . ! ? - ]</div>
+		</div>
+		<div id="rtl" class="form-line">
+			<%= f.label "Display responses right to left" %>
+			<%= f.check_box :rtl %> 
+		<div class="comment">(for arithmetic)</div>
+		</div>
+		<div class="form-line">
+			<%= f.label "Number of exercises" %>
+		<div id="exercise-count" class="comment bold"> </div>
+		</div>
+	</fieldset>
+	<div class="warning message">Nothing here</div>
+</div>
+
+<div class="submit">
+	<%= f.submit "Finish" %>
+</div>
+

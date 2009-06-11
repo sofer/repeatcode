@@ -583,7 +583,7 @@ RC.question = {
 			$(RC.DOMnodes.responseMessage).text(message);
 		} else if (this.data.correct === parseInt($(RC.DOMnodes.target).text())) {
 			$(RC.DOMnodes.responseMessage).text("CONGRATULATIONS! Today's target reached");
-		} else if (this.data.correct % 10 == 0) {
+		} else if (this.data.correct % 10 == 0 && this.data.correct > 0) {
 			$(RC.DOMnodes.responseMessage).text(this.data.correct + ' correct answers');
 		} else {
 			$(RC.DOMnodes.responseMessage).text("Correct");
@@ -636,7 +636,7 @@ RC.question = {
 		this.data.question.current_interval = 0;
 		this.updateStats();
 		this.showAnswer();
-		this.showResponseMessage('Try again');
+		//this.showResponseMessage('Try again');
 	},
 	
 	randomNumberInRange: function (min,max) {
