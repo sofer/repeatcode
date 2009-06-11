@@ -82,7 +82,7 @@ $(document).ready(function(){
 	} else if ($('#exercises').length) {
 		RC.table.init('#exercises', 12);
 	} else if ($('#course-topics').length) {
-		RC.table.init('#course-topics', 16);
+		RC.table.init('#course-topics', 14);
 	}
 	
 	
