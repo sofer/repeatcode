@@ -30,6 +30,9 @@
 			<div class="bold cell eighth">
 					<%= user.login %>
 			</div>
+			<div class="bold cell quarter">
+					<%= user.email %>
+			</div>
 			<div class="cell eighth">
 					(<%= user.uid %>)
 			</div>
@@ -39,10 +42,10 @@
 			<div class="cell eighth">
 					<%= user.last_login %>
 			</div>
-			<div class="bold cell third">
+			<div class="bold cell eighth">
 					<%= user.organization.name if user.organization %>
 			</div>
-			<div class="cell third sixth">
+			<div class="cell eighth">
 				<% form_for :administrator, :url => { :action => "create" } do |f| %>
 					<%= f.hidden_field(:user_id, :value => user.id ) %>
 					<%= f.submit "Make administrator" %>
