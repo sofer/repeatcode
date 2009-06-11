@@ -274,7 +274,7 @@ class Course < ActiveRecord::Base
                 :order => 'current_interval'
               )
     unless question
-      question = questions.not_started.first
+      question = questions.new.first
       question.initial_state if question
     end
     return question
@@ -313,37 +313,14 @@ class Course < ActiveRecord::Base
   
 private
 
-  # this will probably need to be speeded up
-  
+  # this may need speeding up
   def copy_course_material
-
     subject.topics.current.each do |topic|
-      course_topic = CourseTopic.new
-      course_topic.topic_id = topic.id
-      course_topic.course_id = self.id
-      course_topic.name = topic.name
-      course_topic.code = topic.code
-      course_topic.data = topic.data
-      course_topic.ignore_punctuation = topic.ignore_punctuation
-      course_topic.add_together = topic.add_together
-      course_topic.rtl = topic.rtl
-      
-      if course_topic.save(false)  # don't do validations
-        topic.exercises.current.each do |exercise|
-          question = Question.new
-          question.exercise_id = exercise.id
-          question.course_id = self.id
-          question.course_topic_id = course_topic.id
-          question.phrase = exercise.phrase
-          question.response = exercise.response
-          question.pattern = exercise.pattern
-          question.notes = exercise.notes
-          question.hint = exercise.hint
-          question.insert = exercise.insert
-          question.ignore = false
-          question.save(false) # don't do validations
-        end
-
+      course_topic = CourseTopic.new({ :course_id => self.id })
+      course_topic.update_from_topic(topic.id)
+      topic.exercises.current.each do |exercise|
+        question = Question.new({ :course_id => self.id, :course_topic_id => course_topic.id})
+        question.update_from_exercise(exercise.id)
       end
     end
   end

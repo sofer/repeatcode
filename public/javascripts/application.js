@@ -75,16 +75,14 @@ $(document).ready(function(){
 	
 	if ($('#topics').length) {
 		RC.table.init('#topics', 16);
-	}
-	if ($('#subjects').length) {
+	} else if ($('#subjects').length) {
 		RC.table.init('#subjects', 16);
-	}
-	if ($('#courses').length) {
+	} else if ($('#courses').length) {
 		RC.table.init('#courses', 12);
-	}
-	
-	if ($('#exercises').length) {
+	} else if ($('#exercises').length) {
 		RC.table.init('#exercises', 12);
+	} else if ($('#course-topics').length) {
+		RC.table.init('#course-topics', 16);
 	}
 	
 	

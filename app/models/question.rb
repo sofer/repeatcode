@@ -5,8 +5,9 @@ class Question < ActiveRecord::Base
   belongs_to :course_topic
   has_many :responses, :dependent => :destroy
 
-  named_scope :started, :conditions => "current_interval IS NOT NULL"
-  named_scope :not_started, :conditions => "current_interval IS NULL"
+  named_scope :queued, :conditions => "current_interval IS NOT NULL"
+  named_scope :started, :conditions => "current_interval > 0"
+  named_scope :new, :conditions => "current_interval IS NULL"
   named_scope :current, :conditions => { :ignore => false }
   named_scope :ignored, :conditions => { :ignore => true }
 
@@ -38,9 +39,7 @@ class Question < ActiveRecord::Base
   end
 
   def initial_state
-    self.current_interval = 0
-    self.next_datetime = Time.now
-    self.save
+    self.update_attributes( {:next_datetime => Time.now, :current_interval => 0 })
   end
-
+  
 end

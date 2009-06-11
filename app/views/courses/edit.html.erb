@@ -9,22 +9,27 @@
 </div>
 
 <div id="main">
-	
+	<table class="course-topics-table">
+		<thead>
+			<tr>
+				<th> </th>
+				<th> </th>
+				<th>Started</th>
+				<th>Queued</th>
+				<th>Total</th>
+				<th></th>
+			</tr>
+		</thead>
+		<tbody id="course-topics">
 
+			<%= render :partial => "course_topic", :collection => @course.course_topics.current %>
 
-	<% for topic in @topics %>
-		<div class="row">
-			<div class="cell half">
-				<%= topic.name %>
-			</div>
-			<div class="cell half right">
-			</div>
-		</div>
+		</tbody>
+	</table>
 
-	<% end %>
-
-	<div class="bottom-centre">
-		<%= will_paginate @topics %>
+	<div id="navigation" class="bottom-left hidden">
+		<span id="up" class="button space-right">&laquo; Previous</span>
+		<span id="down" class="button">Next &raquo;</span>
 	</div>
 
 </div>

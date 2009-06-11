@@ -58,15 +58,17 @@ class CoursesController < ApplicationController
   # GET /courses/1/edit
   def edit
     @course = Course.find(params[:id])
-    @topics = @course.subject.topics.paginate(
-              :per_page => 15, 
-              :page => params[:page]
-              )
+
+    respond_to do |format|
+      format.html # edit.html.erb
+      format.xml  { render :xml => @course }
+    end
   end
 
   # GET /courses/new
   # GET /courses/new.xml
   def new
+    @course = Course.new()
     @areas = Area.find(:all)
   
     respond_to do |format|

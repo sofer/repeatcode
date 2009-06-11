@@ -24,5 +24,11 @@ class CourseTopic < ActiveRecord::Base
         logger.error invalid.record.errors
     end
   end
+  
+  def send_to_top
+    for question in questions.current.reverse
+      question.initial_state
+    end
+  end
 
 end

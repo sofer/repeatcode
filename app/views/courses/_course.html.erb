@@ -26,15 +26,12 @@
 			<% end %>
 		</td>
 		<td>
-			<%= link_to "Targets", course_path(course) %>
-		</td>
-		<td>
-			<%= link_to 'Topics', edit_course_path(course) %>
+			<%= link_to "manage", course_path(course) %>
 		</td>
 		<td>
 			<% form_for course do |f| %>
-			<%= f.hidden_field :archived, :value => true  %>
-			<%= f.submit 'Archive' %>
+				<%= f.hidden_field :archived, :value => true  %>
+				<%= f.submit 'Archive' %>
 			<% end %>
 		</td>
 	<% end %>

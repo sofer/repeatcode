@@ -24,6 +24,8 @@ ActionController::Routing::Routes.draw do |map|
   map.resources :subscriptions
   map.resources :authorships
 
+  map.resources :course_topics
+
   map.resources :questions do |question|
     question.resources :responses 
   end  

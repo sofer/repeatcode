@@ -6,7 +6,7 @@ class QuestionsController < ApplicationController
   # GET /questions.xml
   def index
     @course = Course.find(params[:course_id])
-    @questions =  @course.questions.started.paginate(
+    @questions =  @course.questions.queued.paginate(
                   :per_page => 15, 
                   :page => params[:page], 
                   :order => "next_datetime"

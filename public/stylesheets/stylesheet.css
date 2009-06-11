@@ -94,7 +94,9 @@ input#response-field:focus	{ background-color: LightYellow; }
 /*courses*/
 .col3	{ float: left; width: 32%; }
 .col3 h2	{ margin-top: 18px; }
-.courses-table .name { width: 30%; font-weight: bold; }
+.courses-table .name { width: 40%; font-weight: bold; }
+.course-topics-table .name { width: 60%; font-weight: bold; }
+
 
 /* subjects */
 .subjects-table .name { width: 40%; font-weight: bold; }
