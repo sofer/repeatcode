@@ -1,7 +1,8 @@
 # This controller handles the login/logout function of the site.  
 class SessionsController < ApplicationController
+  
   # Be sure to include AuthenticationSystem in Application Controller instead
-  include AuthenticatedSystem
+  #include AuthenticatedSystem
 
   
   # render new.rhtml
@@ -12,8 +13,12 @@ class SessionsController < ApplicationController
   end
 
   def create
-    if params[:uid] and params[:uid] != ''
-      user = User.find_by_uid(params[:uid])
+    if params[:uid] 
+      if params[:uid] == ''
+        # flash[:error] = "Please enter your login"
+      else
+        user = User.find_by_uid(params[:uid])
+      end
     else
       logout_keeping_session!
       user = User.authenticate(params[:login], params[:password])
