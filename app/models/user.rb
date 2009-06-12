@@ -20,8 +20,8 @@ class User < ActiveRecord::Base
 
   before_create :assign_uid, :set_defaults
 
-  #validates_uniqueness_of   :login,    :case_sensitive => false, :allow_nil => true, :allow_blank => true
-  #validates_uniqueness_of   :email,    :case_sensitive => false, :allow_nil => true, :allow_blank => true
+  validates_uniqueness_of   :login,    :case_sensitive => false, :allow_nil => true, :allow_blank => true
+  validates_uniqueness_of   :email,    :case_sensitive => false, :allow_nil => true, :allow_blank => true
 
   # REMOVED THESE FOR NOW BECAUSE OF AUTO REGISTRATION - 2009-04-28
   #validates_presence_of     :organization_id

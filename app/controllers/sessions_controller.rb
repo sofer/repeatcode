@@ -14,9 +14,7 @@ class SessionsController < ApplicationController
 
   def create
     if params[:uid] 
-      if params[:uid] == ''
-        # flash[:error] = "Please enter your login"
-      else
+      if params[:uid] != ''
         user = User.find_by_uid(params[:uid])
       end
     else
