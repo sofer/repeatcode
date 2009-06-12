@@ -1,14 +1,14 @@
 <div id="header">
-	<h1 class="top-left pad">
+	<h1>
 		<%= link_to 'Create', subjects_path %>
 	  &raquo; <%=h @subject.name %>
 		&raquo; <%= link_to 'Edit', edit_subject_path(@subject) %>
 	</h1>
-	<h2 class="top-right pad">
-		<%= link_to 'New topic', new_subject_topic_path(@subject) %>
+	<h2>
+		Last updated: <%= @subject.days_since_last_update %> days ago
 	</h2>
-	<div class="clear"></div>
 </div>
+
 <div id="main">
 	
 	<table class="topics-table ">
@@ -26,16 +26,21 @@
 		</tbody>
 	</table>
 
-	<div id="navigation" class="bottom-left hidden">
-		<span id="up" class="button space-right">&laquo; Previous</span>
+	<div id="table-navigation">
+		<span id="up" class="button">&laquo; Previous</span>
 		<span id="down" class="button">Next &raquo;</span>
+	</div>
+	
+	<div class="actions">
+		<div class="button">
+			<%= link_to 'New topic', new_subject_topic_path(@subject) %>
+		</div>
 	</div>
 
 </div>
 
 <div id="footer">
 	<div class="left">
-		Last updated: <%= @subject.days_since_last_update %> days ago
 	</div> 
 	<%= render :partial => 'global/toplevel_links' %>
 </div>

@@ -3,22 +3,22 @@
 <div id="content">
 
 	<div id="header">
-		<h1 class="top-left pad">
+		<h1>
 	  	<div id="subject"><%= h @lesson.course.name %></div>
 		</h1>
-		<h2 class="top-right pad">
+		<h2>
 			<div id="topic"></div>
 		</h2>
 	</div>
 
 	<div id="main">
 
-		<div class="left">
+		<div id="progress">
 			Correct responses: <span id="correct-responses"></span> (Target: <span id="target"><%= @lesson.course.lesson_target %></span>)
-		</div>
-		<div class="right">
 			Elapsed time: <span id="elapsed-time">0</span> minutes
 		</div>
+		
+		<div id="progress-alert"> </div>
 
 		<div id="start">
 			<div>
@@ -26,7 +26,7 @@
 			</div>
 		</div>
 
-		<div id="completed" class="hidden">
+		<div id="completed">
 			<div>
 				Course completed.<br><br>Come back again in <span id="days-til-next"></span> for a review.<br><br>
 			</div>
@@ -37,80 +37,74 @@
 
 		<div id="question"> </div>
 		
-		<div id="graph" class="hidden"> </div>
+		<div id="graph"> </div>
 	
-		<div id="code-block" class="hidden">
+		<div id="code-block">
 			<div id="data-tab" class="data tab border">
 			</div>
 			<div id="code-tab" class="code tab border">
 			</div>
 			<div id="output-tab" class="output tab border">
 			</div>
-			<div class="clear"></div>
 		</div>
 
-		<div id="response" class="hidden">
-
-			<div id="response-message"> </div>
-
-			<div id="translated"> </div>
-
-			<div id="expected-response-block">
-				<div id="expected-response"> </div>
-				<div class="submit">
-					<%= submit_tag "OK", :id => "ok"%>
-				</div>
-				<div id="corrections">
-					<a href="" id="amend-link">Amend</a> | <a href="" id="ignore-link">Ignore</a>
-				</div>
+		<div id="answer">
+		
+			<div id="formatted-answer"> </div>
+		
+			<div id="answer-text"> </div>
+			<div class="submit">
+				<%= submit_tag "OK", :id => "ok"%>
 			</div>
+			<div id="corrections">
+				<a href="" id="amend-link">Amend</a> | <a href="" id="ignore-link">Ignore</a>
+			</div>
+		
+		</div>
 
-			<div id="response-block" class="centre half">
-				<form id="response-form">
-					<%= text_field_tag "response-field", nil, :autocomplete => "off" %> 
-				</form>
-				<div class="clear"> </div>
-				<div id="toolbar">
-					<div id="palettes">
-						<% unless @lesson.course.subject.extended_chars.blank? %>
-						<div id="language-palette" class="palette">
-							<div id="palette-switch">
-								<label>ignore accents</label>
-								<input type="checkbox" id="ignore-accents">
-							</div>
-							<div id="extended-chars">
-								<%= palette @lesson.course.subject.extended_chars %>
-							</div>
+		<div id="response">
+			<div id="formatted-response"> </div>
+			<form id="response-form">
+				<%= text_field_tag "response-field", nil, :autocomplete => "off" %> 
+			<div id="toolbar">
+				<div id="palettes">
+					<% unless @lesson.course.extended_chars.blank? %>
+					<div id="language-palette" class="palette">
+						<div id="palette-switch">
+							ignore accents
+							<input type="checkbox" id="ignore-accents">
 						</div>
-						<% end %>
-						<%= render :partial => 'maths_palette' %>
+						<div id="extended-chars">
+							<%= palette @lesson.course.subject.extended_chars %>
+						</div>
 					</div>
+					<% end %>
+					<%= render :partial => 'maths_palette' %>
 				</div>
 			</div>
-
+		</form>
 		</div>
-	 	
 	</div>
 
 	<div id="footer">
-		<div class="bottom-left">
-			<span id="details" class="hidden">
-				Exercise no: <span id="exercise-no"></span>
-				| Question no: <span id="question-no"></span>
-				| Repetition no: <span id="current-interval"></span>
-				| Backlog: <span id="backlog"></span>
-				| <span id="seconds">0</span> seconds
-			</span>
-			<br>
+		<div id="details">
+			Exercise no: <span id="exercise-no"></span>
+			| Question no: <span id="question-no"></span>
+			| Repetition no: <span id="current-interval"></span>
+			| Backlog: <span id="backlog"></span>
+			| <span id="seconds">0</span> seconds
+		</div>
+		<div id="loading"><img src="/images/furniture/loading.gif" width="16" height="16" alt="waiting..." align="right"></div>
+			
+		<div id="user">
 			<% if current_user.login %>
 				Logged in as: <%= current_user.login %>
 			<% else %>
 				User ID: <%= current_user.uid %>
 			<% end %>
 		</div>
-		<div id="loading"><img src="/images/furniture/loading.gif" width="16" height="16" alt="waiting..." align="right"></div>
-		<div class="bottom-right">
-			<a href="" id="voices-link" class="hidden">Voices</a> 
+		<div id="navigation">
+			<a href="" id="voices-link">Voices</a> 
 			| <a href="" class="details-switch">Show details</a> 
 			<a href="" class="details-switch hidden">Hide details</a> 
 			| <%= link_to 'End lesson', courses_path %>
@@ -119,7 +113,7 @@
 
 </div>
 
-<div id="amend" class="hidden">
+<div id="amend">
 	<div class="overlay"></div>
 	<div class="message-frame">
 		<fieldset>
@@ -136,7 +130,7 @@
 	</div>
 </div>
 
-<div id="ignore" class="hidden">
+<div id="ignore">
 	<div class="overlay"></div>
 	<div class="message-frame">
 		<fieldset>
@@ -154,7 +148,7 @@
 	</div>
 </div>
 
-<div id="voices" class="hidden">
+<div id="voices">
 	<div class="overlay"></div>
 	<div class="message-frame">
 		<fieldset>
@@ -176,11 +170,11 @@
 </div>
 
 
-<div id="timeout" class="hidden">
+<div id="timeout">
 	<div class="overlay"></div>
 	<div class="message-frame">
 		<fieldset>
-			<h2>Taking time out</h2>
+			<h3>Taking time out</h3>
 			Click to continue
 		</div>
 	</div>

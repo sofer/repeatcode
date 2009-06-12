@@ -1,35 +1,43 @@
 <div id="header">
-	<h1 class="top-left pad">
+	<h1>
 		<%= link_to 'Home', '/' %>
 		&raquo; Log in
 	</h1>
 </div>
 <div id="main">
 
-	<div class="signin">
+	<div id="login">
 
-		<div class="big-space"> </div>
+		<div class="box">
 
-		<% if session[:return_to] %>
-			<div class="centre space">
+			<% if session[:return_to] %>
 				<% form_tag session[:return_to] do -%>
 					<%= hidden_field_tag 'create_user' %>
-					<%= submit_tag 'Continue without signing in' %>
+					<fieldset>
+						<legend>I don't have an account yet</legend>
+						<%= submit_tag 'Continue without signing in' %>
+					</fieldset>
 				<% end -%>
-			</div>
-			<div class="bold centre space">OR</div>
-		<% end %>
+			<% end %>
 
-		<% form_tag session_path do -%>
-		<label for="login">I already have a login</label>
-		<%= text_field_tag 'uid', @uid, :autocomplete => "off" %>
+			<% form_tag session_path do -%>
+				<fieldset>
+					<legend>I already have an account</legend>
+			
+					<div>
+						<label for="login">ID</label>
+						<%= text_field_tag 'uid', @uid, :autocomplete => "off" %>
+					</div>
+					<div>
+						<label for="remember_me">Remember me</label>
+						<%= check_box_tag 'remember_me', '1', @remember_me %>
+					</div>
+						<%= submit_tag 'Log me in' %>
+				</fieldset>
+			<% end -%>
 
-		<label for="remember_me">Remember me</label>
-		<%= check_box_tag 'remember_me', '1', @remember_me %>
-		
-		<div class="centre space"><%= submit_tag 'Log me in' %></div>
-		
-		<% end -%>
+		</div>
+
 	</div>
 
 </div>

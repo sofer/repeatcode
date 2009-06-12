@@ -3,7 +3,7 @@ RC.topic = {
 	
 	importedExercises: [],
 	addedExercises: 0,
-	message: '',
+	warning: '',
 	rtl: true, 
 	
 	// if a response is not a number, then it's unlikely that responses should display rtl
@@ -24,7 +24,7 @@ RC.topic = {
 				var hint = terms[2];
 				if ( !phrase || !response ) {
 					i += 1;
-					this.message = "Incomplete exercise on line " + i;
+					this.warning = "Incomplete exercise on line " + i;
 					return false;
 				}
 				this.rtl_check(response);
@@ -32,10 +32,10 @@ RC.topic = {
 			}
 		}
 		if (this.importedExercises.length > 0) {
-			this.message = "";
+			this.warning = "";
 			return true;
 		} else {
-			this.message = "Please enter some data";
+			this.warning = "Please enter some data";
 			return false;
 		}
 	},
@@ -97,9 +97,9 @@ $(document).ready(function(){
 	});
 
 	$("#import-data").focus(function() {
-		if ($(this).hasClass("grey")) {
+		if ($(this).hasClass("disabled")) {
 			$(this).val("");
-			$(this).removeClass("grey");
+			$(this).removeClass("disabled");
 		}
 	});
 
@@ -119,7 +119,7 @@ $(document).ready(function(){
 			$("#table").show();
 			$("#navigation").show();
 		}
-		$(".message").text(RC.topic.message);
+		$(".warning").text(RC.topic.warning);
 		return false;
 	});
 	
@@ -131,16 +131,16 @@ $(document).ready(function(){
 				$("#rtl").hide();
 			}
 			$("#firstly").hide();
+			$(".warning").text("Please add a topic name");
 			$("#finally").show();
 		} else {
-			$(".message").text("Please add some exercises");
+			$(".warning").text("Please add some exercises");
 		}
 		return false;
 	});
 	
 	$("#topic_submit").click(function(){
 		if ($("#topic_name").val() === '') {
-			$(".message").text("Please add a topic name");
 			return false;
 		}
 	});

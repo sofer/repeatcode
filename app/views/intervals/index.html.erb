@@ -1,11 +1,11 @@
 <div id="header">
-	<h1 class="top-left pad">
+	<h1>
 		<%= link_to 'Courses', courses_path %>
 		&raquo; <%= @course.subject.name if @course %>
 	</h1>
-	<div class="top-right pad">
+	<h2>
 		<%= render :partial => 'global/course_links' %>
-	</div>
+	</h2>
 </div>
 
 <div id="main">
@@ -46,8 +46,7 @@
 	<div class="cell fifth"> </div>
 	<div class="cell fifth"> </div>
 	<div class="cell fifth">* since last reset</div>
-	<br clear="all">
-	<div class="bottom-left">
+	<div class="notes">
 		<ul>
 			<li>Each time you respond to an exercise, the <strong>Interval</strong> of time until your next <strong>Revision</strong> increases.</li>
 			<li>The <strong>Accuracy</strong> of your responses gives you an indication of how close you are to your <strong>Target</strong>.</li>

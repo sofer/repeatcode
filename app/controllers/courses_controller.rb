@@ -80,27 +80,21 @@ class CoursesController < ApplicationController
   # POST /courses
   # POST /courses.xml
   def create
-    @subject = Subject.find(params[:subject_id])
-    @course = @subject.courses.new(params[:course])
+    @course = Course.new( { :subject_id => params[:subject_id] } )
 
     respond_to do |format|
-      #if current_user
-        if @course.save
-          current_user.courses << @course
-          lesson = @course.lessons.new
-          @course.lessons << lesson
-          flash[:notice] = 'Start learning'
-          format.html { redirect_to :controller => 'lessons', :action => 'show', :id => lesson.id }
-          format.xml  { render :xml => @course, :status => :created, :location => @course }
-        else
-          flash[:error] = 'Problem encountered.'
-          format.html { redirect_to(:back) }
-          format.xml  { render :xml => @course.errors, :status => :unprocessable_entity }
-        end
-      #else
-        #flash[:notice] = 'Login first?'
-        #format.html { redirect_to :controller => 'users', :action => 'new', }
-      #end
+      if @course.save
+        current_user.courses << @course
+        lesson = @course.lessons.new
+        @course.lessons << lesson
+        flash[:notice] = 'Start learning'
+        format.html { redirect_to :controller => 'lessons', :action => 'show', :id => lesson.id }
+        format.xml  { render :xml => @course, :status => :created, :location => @course }
+      else
+        flash[:error] = 'Problem encountered.'
+        format.html { redirect_to(:back) }
+        format.xml  { render :xml => @course.errors, :status => :unprocessable_entity }
+      end
     end
   end
 

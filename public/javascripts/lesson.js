@@ -92,14 +92,13 @@ RC.DOMnodes = {
 	topic: '#topic',
 	question: '#question',
 	response: '#response',
-	responseBlock: '#response-block',
-	expectedResponseBlock: '#expected-response-block',
-	expectedResponse: '#expected-response',
+	answer: '#answer',
+	answerText: '#answer-text',
 	submitButton: "#ok",
 	responseForm: '#response-form',
 	responseField: '#response-field',
-	translated: '#translated',
-	responseMessage: '#response-message',
+	formattedAnswer: '#formatted-answer',
+	formattedResponse: '#formatted-response',
 	exerciseNo: '#exercise-no',
 	questionNo: '#question-no',
 	currentInterval: '#current-interval',
@@ -110,8 +109,8 @@ RC.DOMnodes = {
 	languagePalette: '#language-palette',
 	daysTilNext: '#days-til-next',
 	symbol: '.symbol',
-	//messageEnvelope: '#message-envelope',
-	messageEnvelope: '#notice',
+	messageEnvelope: '#message-envelope',
+	progressAlert: '#progress-alert',
 	tabs: '#tabs',
 	dataTab: '#data-tab',
 	codeTab: '#code-tab',
@@ -119,6 +118,7 @@ RC.DOMnodes = {
 	outfox: '#outfox'	
 };
 
+// not sure if this is necessary!
 RC.unicodeToHtmlEntity = function(phrase) {
 	return phrase.replace(/\\u(\d\d\d\d)/g, '&#x$1;');
 };
@@ -461,7 +461,7 @@ RC.question = {
 				that.data = json;
 				if (that.notFinished(that.data)) {
 					that.loaded(json);
-					that.show();
+					that.showNext();
 					that.getNext();
 				}
 			}
@@ -526,7 +526,7 @@ RC.question = {
 			$(RC.DOMnodes.responseField).shiftCaret(-1);
 		}
 		if (this.isFormula(this.data.question.response)) {
-			RC.formula.display(RC.DOMnodes.translated, $(RC.DOMnodes.responseField).val());
+			RC.formula.display(RC.DOMnodes.formattedResponse, $(RC.DOMnodes.responseField).val());
 		}
 		if (this.data.topic.rtl) {
 			var fieldValue = $(RC.DOMnodes.responseField).val();
@@ -580,15 +580,15 @@ RC.question = {
 	
 	showResponseMessage: function(message) {
 		if (message) {
-			$(RC.DOMnodes.responseMessage).text(message);
+			$(RC.DOMnodes.progressAlert).text(message);
 		} else if (this.data.correct === parseInt($(RC.DOMnodes.target).text())) {
-			$(RC.DOMnodes.responseMessage).text("CONGRATULATIONS! Today's target reached");
+			$(RC.DOMnodes.progressAlert).text("CONGRATULATIONS! Today's target reached");
 		} else if (this.data.correct % 10 == 0 && this.data.correct > 0) {
-			$(RC.DOMnodes.responseMessage).text(this.data.correct + ' correct answers');
+			$(RC.DOMnodes.progressAlert).text(this.data.correct + ' correct answers');
 		} else {
-			$(RC.DOMnodes.responseMessage).text("Correct");
+			$(RC.DOMnodes.progressAlert).text("Correct");
 		}
-		$(RC.DOMnodes.responseMessage).show().fadeOut(1000);
+		$(RC.DOMnodes.progressAlert).show().fadeOut(1000);
 	},
 	
 	showCode: function() {
@@ -601,26 +601,16 @@ RC.question = {
 	},
 	
 	showAnswer: function() {
-		$(RC.DOMnodes.responseBlock).hide();
-		$(RC.DOMnodes.expectedResponseBlock).show();
-		$(RC.DOMnodes.response).val('');
-		if (this.isFormula(this.data.question.response)) {
-			var formula = this.stripPrefix(this.data.question.response);
-			$(RC.DOMnodes.expectedResponse).text('( '+formula+' )');
-			RC.formula.display(RC.DOMnodes.translated, formula);
-		} else {
-			var response = this.bothVersions(this.data.question.response);
-			$(RC.DOMnodes.expectedResponse).text(response);
-		}
+		$(RC.DOMnodes.response).hide();
+		$(RC.DOMnodes.answer).show();
 		$(RC.DOMnodes.submitButton).focus();
 	},
 	
 	awaitResponse: function() {
-		$(RC.DOMnodes.expectedResponseBlock).hide();
-		$(RC.DOMnodes.responseBlock).show();
-		$(RC.DOMnodes.responseField).val()
-		$(RC.DOMnodes.translated).val('');
-		this.hint(this.data.question.hint);
+		$(RC.DOMnodes.responseField).val(this.hint(this.data.question.hint));
+		$(RC.DOMnodes.formattedResponse).val('');
+		$(RC.DOMnodes.answer).hide();
+		$(RC.DOMnodes.response).show();
 		$(RC.DOMnodes.responseField).focus();
 	},
 	
@@ -664,40 +654,47 @@ RC.question = {
 		}
 	},
 	
-	show: function() {
-		RC.timer.resetSeconds();
-		this.prepare();
-		$(RC.DOMnodes.responseField).val('');
-		$(RC.DOMnodes.translated).html('');
+	showNext: function() {
 		$(RC.DOMnodes.start).hide();
-		$(RC.DOMnodes.response).show();
+		$(RC.DOMnodes.topic).html(this.data.topic.name);
+		RC.timer.resetSeconds();
+		this.updateStats();
 		$(RC.DOMnodes.graph).hide();
 		$(RC.DOMnodes.tabs).hide();
-		$(RC.DOMnodes.topic).html(this.data.topic.name);
-		this.updateStats();
+		$(RC.DOMnodes.responseField).val('');
+		$(RC.DOMnodes.formattedResponse).html('');
+		$(RC.DOMnodes.response).show();
 		if (this.data.topic.rtl) {
 			$(RC.DOMnodes.responseField).addClass('rtl');
 		} else {
 			$(RC.DOMnodes.responseField).removeClass('rtl');
 		}
+
 		if (this.isFormula(this.data.question.phrase)) {
 			RC.formula.display(RC.DOMnodes.question, this.stripPrefix(this.data.question.phrase));
 		} else {
-			this.showCode();
 			this.showPhrase();
+			this.showCode();
 		}
-		var response = this.bothVersions(this.stripPrefix(this.data.question.response));
-		response = RC.unicodeToHtmlEntity(response); //convert to HTML entities 
+
+		if (this.isFormula(this.data.question.response)) {
+			var formula = this.stripPrefix(this.data.question.response);
+			$(RC.DOMnodes.answerText).text('( '+formula+' )');
+			$(RC.DOMnodes.answer).show();
+			RC.formula.display(RC.DOMnodes.formattedAnswer, formula);
+			$(RC.DOMnodes.answer).hide();
+			$(RC.DOMnodes.mathsPalette).show();
+		} else {
+			var response = this.bothVersions(this.stripPrefix(this.data.question.response));
+			response = RC.unicodeToHtmlEntity(response); //convert to HTML entities 
+			$(RC.DOMnodes.answerText).text(response);
+		}
 		if (this.data.question.current_interval === 0) {
 			RC.voices.outfoxQueue(response, 'response');
 			this.showAnswer();
 		} else {
 			this.awaitResponse();
 		}
-		if (this.isFormula(this.data.question.response)) {
-			$(RC.DOMnodes.mathsPalette).show();
-		}
-		
 	},
 	
 	postResponse: function (result) {
@@ -712,7 +709,7 @@ RC.question = {
 		//if not incorrect and not waiting and course not finished, show next question
 		if (result !== 'incorrect' && !this.waiting && this.notFinished(this.next)) { 
 			this.data = this.next;
-			this.show();
+			this.showNext();
 		}
 		$.ajax({
 			url: postUrl,
@@ -806,7 +803,7 @@ RC.corrections = {
 		RC.question.data.question.phrase = phrase;
 		RC.question.data.question.response = response;
 		RC.question.data.question.hint = hint;
-		RC.question.show();
+		RC.question.showNext();
 		var postUrl = '/questions/' + RC.question.data.question.id + '.json';
 		var postData = {
 			'question[phrase]': phrase,
@@ -941,7 +938,7 @@ $(document).ready(function(){
 		var insert = $(this).attr('value');
 		$(RC.DOMnodes.responseField).val($(RC.DOMnodes.responseField).val()+insert);
 		if (RC.question.isFormula(RC.question.data.question.response)) {
-			RC.formula.display(RC.DOMnodes.translated, $(RC.DOMnodes.responseField).val());
+			RC.formula.display(RC.DOMnodes.formattedResponse, $(RC.DOMnodes.responseField).val());
 		}
 		$(RC.DOMnodes.responseField).focus();
 		return false;

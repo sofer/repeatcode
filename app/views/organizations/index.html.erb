@@ -1,8 +1,8 @@
 <div id="header">
-	<h1 class="top-left pad">
+	<h1>
 		Organizations
 	</h1>
-	<h2 class="top-right pad">
+	<h2>
 		<% form_for(@organization) do |f| %>
 			<%= f.text_field :name, :autocomplete => "off"  %>
 	 		<%= f.submit "Create new" %>
@@ -28,7 +28,7 @@
 	</div>
 	<% end %>
 
-	<div class="bottom-centre">
+	<div>
 		<%= will_paginate @organizations %>
 	</div>
 

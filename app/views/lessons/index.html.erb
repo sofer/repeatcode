@@ -1,12 +1,12 @@
 <div id="header">
-	<h1 class="top-left pad">
+	<h1>
 		<%= render :partial => 'global/course_links' %>
 		&raquo; Lessons
 	</h1>
-	<div class="top-right pad">
+	<h2>
 		<%= @course.questions.count %> / 
 		<%= @course.subject.exercises.count %>
-	</div>
+	</h2>
 </div>
 
 <div id="main">
@@ -36,7 +36,7 @@
 </div>
 
 <div id="footer">
-	<div class="centre pad">
+	<div>
 		<%= will_paginate @lessons %>
 	</div>
 	<%= render :partial => 'global/toplevel_links' %>

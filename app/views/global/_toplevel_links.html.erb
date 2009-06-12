@@ -1,5 +1,5 @@
 <% if current_user %>
-	<div class="bottom-left">
+	<div id="user">
 		<% if current_user.login and not current_user.login.empty? %>
 			Logged in as: <%= current_user.login %>
 			&raquo; <%= link_to_unless_current "Edit", '/account' %>
@@ -8,7 +8,7 @@
 			<%= link_to_unless_current 'Save your details', '/account' %>
 		<% end %>
 	</div>
-	<div class="bottom-right">
+	<div id="navigation">
 		<% if current_user.administrator %>
 			<%= link_to_unless_current 'Admin', administrators_path %> |
 		<% end %>
@@ -26,10 +26,10 @@
 		<%= link_to_unless_current 'Logout', '/logout'%>
 	</div>
 <% else %>
-	<div class="bottom-left">
+	<div id="user">
 		Not logged in
 	</div>
-	<div class="bottom-right">
+	<div id="navigation">
 		<%= link_to_unless_current 'About', '/about/faq' %> | 
 		<%= link_to_unless_current 'Login', '/login' %>
 	</div>

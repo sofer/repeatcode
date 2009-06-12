@@ -1,10 +1,10 @@
 <div id="header">
-	<h1 class="top-left pad">
+	<h1>
 		<%= @organization.name %>
 		&raquo; <%= link_to 'Tutor groups', groups_path %>
 		&raquo; <%= @group.name %>
 	</h1>
-	<h2 class="top-right pad">
+	<h2>
 		Add courses
 		| <%= link_to 'Add students', group_users_path(@group) %>
 	</h2>

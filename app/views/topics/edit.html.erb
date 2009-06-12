@@ -1,12 +1,12 @@
 <div id="header">
-	<h1 class="top-left pad">
+	<h1>
 		<%= link_to 'Create', subjects_path %> | 
 		<%= link_to @topic.subject.name, @topic.subject %> | 
 		<%= @topic.name %>
 	</h1>
-	<div class="top-right pad">
+	<h2>
 		Last updated: <%= relative_date @topic.last_update %>
-	</div>
+	</h2>
 </div>
 
 <div id="main">
@@ -15,8 +15,8 @@
 							:html => { :method => :put } do |f| %>
 		<%= render :partial => "exercise_table", :locals => { :exercises => @topic.exercises.current, :add => Exercise.new } %>
 		
-		<div class="bottom-right">
-			<div class="checkbox button space-right">
+		<div class="actions">
+			<div class="checkbox button">
 				<input type="checkbox" name="delete" />
 				Remove checked
 			</div>
@@ -25,7 +25,7 @@
 			</div>
 		</div>
 
-		<div class="bottom-centre">
+		<div class="submit">
 			<%= f.submit "Update" %>
 		</div>
 	

@@ -11,7 +11,7 @@ class Course < ActiveRecord::Base
   named_scope :active, :conditions => { :archived => false }
   named_scope :inactive, :conditions => { :archived => true }
 
-  before_validation_on_create :set_status_and_targets, :copy_subject_details
+  before_validation_on_create :copy_subject_details, :set_status_and_targets
   after_create :set_intervals, :copy_course_material
   
   validates_presence_of :name
@@ -274,36 +274,12 @@ class Course < ActiveRecord::Base
                 :order => 'current_interval'
               )
     unless question
-      question = questions.new.first
+      question = questions.not_yet_queued.first
       question.initial_state if question
     end
     return question
   end
   
-  # NO LONGER BEING USED?
-  def add_question(exercise)
-    next_question = Question.new(:exercise_id => exercise.id)
-    self.questions << next_question
-    self.update_attribute :last_question, next_question.id
-    return next_question
-  end
-
-  # NO LONGER BEING USED?
-  def new_topic(topic)
-    next_exercise = topic.exercises.first
-    if next_exercise
-      next_question = add_question(next_exercise)
-      if topic.add_together
-        next_exercise = next_exercise.lower_item
-        while next_exercise
-          add_question(next_exercise)
-          next_exercise = next_exercise.lower_item
-        end
-      end
-      return next_question
-    end
-  end
-
   def copy_subject_details
     self.name = subject.name
     self.extended_chars = subject.extended_chars
@@ -313,7 +289,6 @@ class Course < ActiveRecord::Base
   
 private
 
-  # this may need speeding up
   def copy_course_material
     subject.topics.current.each do |topic|
       course_topic = CourseTopic.new({ :course_id => self.id })

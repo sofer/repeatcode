@@ -1,9 +1,9 @@
 <div id="header">
-	<h1 class="top-left pad">
+	<h1>
 		RepeatCode
 		<span class="italic white">pre-beta</span>
 	</h1>
-	<h2 class="top-right pad">
+	<h2>
 		<% unless current_user %>
 			Already registered? <%= link_to "Login now", "/login" %>
 		<% end %>
@@ -22,7 +22,7 @@
 			<% row = 0 %>
 		<% end %>
 		<% row += 2 %>
-		<h2 class="centre"> <%= area.name %> </h2>
+		<h3> <%= area.name %> </h3>
 		<% for subject in area.subjects.public %>
 			<% if row >= limit %>
 			</div><div class="col3">
@@ -38,7 +38,7 @@
 		</ul>
 	<% end %>
 	<% if current_user and current_user.subjects.private.count > 0 %>
-	<h2 class="centre">Not public</h2>
+	<h3>Not public</h3>
 		<% for subject in current_user.subjects.private %>
 			<% if row >= limit %>
 			</div><div class="col3">
@@ -55,7 +55,7 @@
 
 	</div>
 
-	<div class="bottom-left clear">
+	<div class="notes">
 		Welcome to RepeatCode! This site is still in development, but you are welcome to try it out.
 	</div>
 

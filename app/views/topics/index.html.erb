@@ -1,8 +1,8 @@
-<div class="navigation">
+<h1>
 	<%= link_to 'Subjects', subjects_path %>: 
 	<%= link_to @subject.name, subject_topics_path(@subject) %>: topics |
 	<%= link_to 'add topic', new_subject_topic_path(@subject) %>
-</div>
+</h1>
 
 <table>
 <% for topic in @topics %>

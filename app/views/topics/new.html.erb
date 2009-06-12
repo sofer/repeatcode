@@ -1,5 +1,5 @@
 <div id="header">
-	<h1 class="top-left pad">
+	<h1>
 		<%= link_to 'Create', subjects_path %>
 		<%= '&raquo;' + link_to(@subject.name, @subject) if @subject %> 
 		&raquo; New topic
@@ -18,7 +18,7 @@
 					<b>Copy and paste</b> from a table
 				</div>
 	
-				<div id="choose-table" class="radio button space-left">
+				<div id="choose-table" class="radio button">
 					<input type="radio" name="choice">
 					<b>Start from scratch</b>
 				</div>
@@ -31,7 +31,7 @@
 
 				<% exercises = (1..12).collect { Exercise.new } %>
 				<%= render :partial => "exercise_table", :locals => { :exercises => exercises, :add => false } %>
-				<div class="small bold pad message warning">Enter some exercises in the table above</div>
+				<div class="warning">Enter some exercises in the table above</div>
 
 				<div class="submit">
 					<input id="confirm" type="submit" value="Continue"/>

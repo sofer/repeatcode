@@ -1,8 +1,8 @@
 <div id="header">
-	<h1 class="top-left pad">
+	<h1>
 		Administrators
 	</h1>
-	<h2 class="top-right pad">
+	<h2>
 		<%= link_to 'Manage organizations', :controller => :organizations %>
 	</h2>
 </div>
@@ -54,7 +54,7 @@
 		</div>
 	<% end %>
 
-	<div class="bottom-centre">
+	<div>
 		<%= will_paginate @users %>
 	</div>
 

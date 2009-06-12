@@ -7,7 +7,7 @@ class Question < ActiveRecord::Base
 
   named_scope :queued, :conditions => "current_interval IS NOT NULL"
   named_scope :started, :conditions => "current_interval > 0"
-  named_scope :new, :conditions => "current_interval IS NULL"
+  named_scope :not_yet_queued, :conditions => "current_interval IS NULL"
   named_scope :current, :conditions => { :ignore => false }
   named_scope :ignored, :conditions => { :ignore => true }
 

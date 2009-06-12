@@ -1,9 +1,9 @@
 <div id="header">
-	<h1 class="top-left pad">
+	<h1>
 		<%= @organization.name %>
 		&raquo; Tutor groups
 	</h1>
-	<h2 class="top-right pad">
+	<h2>
 		<% form_for(@group) do |f| %>
 			<%= f.text_field :name, :autocomplete => "off"  %>
 			<%= f.submit "Create new" %>

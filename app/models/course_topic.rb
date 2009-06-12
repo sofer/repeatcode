@@ -20,7 +20,7 @@ class CourseTopic < ActiveRecord::Base
                                 :ignore_punctuation => topic.ignore_punctuation,
                                 :add_together => topic.add_together,
                                 :rtl => topic.rtl })
-    rescue RecordInvalid => error
+    rescue
         logger.error invalid.record.errors
     end
   end

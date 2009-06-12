@@ -6,7 +6,7 @@ RC.table = {
 	limit: 1,
 	tableSize: 0,
 	tbodyId: "",
-	navigationId: "#navigation",
+	navigationId: "#table-navigation",
 	downId: "#down",
 	upId: "#up",
 	
@@ -39,28 +39,29 @@ RC.table = {
 	},
 
 	navigation: function() {
-		if (this.tableSize > this.offset + this.limit ) {
-			$(this.downId).removeClass("disabled");
+		if (this.tableSize <= this.limit) {
+			$(this.navigationId).hide();
 		} else {
-			$(this.downId).addClass("disabled");
-			$(this.downId).removeClass("ready");
-		}
-		if (this.offset > 0 ) {
-			$(this.upId).removeClass("disabled");
-		} else {
-			$(this.upId).addClass("disabled");
-			$(this.upId).removeClass("ready");
+			$(this.navigationId).show();
+			if (this.tableSize > this.offset + this.limit ) {
+				$(this.downId).removeClass("disabled");
+			} else {
+				$(this.downId).addClass("disabled");
+				$(this.downId).removeClass("ready");
+			}
+			if (this.offset > 0 ) {
+				$(this.upId).removeClass("disabled");
+			} else {
+				$(this.upId).addClass("disabled");
+				$(this.upId).removeClass("ready");
+			}
 		}
 	},
 	
 	display: function() {
 		$("tr", this.tbodyId).hide();
 		$("tr", this.tbodyId).slice(this.offset, this.offset + this.limit).show();
-		if (this.tableSize > this.limit) {
-			$(this.navigationId).show();
-			this.navigation();
-		}
-		$(this.tbodyId).show();
+		this.navigation();
 	},
 	
 	appendRow: function() {
