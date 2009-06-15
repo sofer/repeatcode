@@ -37,7 +37,6 @@ fieldset div { height: 28px; }
 
 #header input[type=text]	{ margin: -2px 0 0 0; }
 .targets input[type=text] { width: 20px; height: 11px; margin: -2px 0; text-align: right; }
-.new-course input[type=submit]	{ width: 240px; height: 22px; margin: 2px; }
 .submit { position: absolute; right:400px; bottom: 6px; left: 400px; text-align: center;}
 
 
@@ -65,7 +64,6 @@ fieldset div { height: 28px; }
 /* intervals */
 .intervals-table input[type=text]	{ width: 20px; }
 
-
 /* error id's THESE NEED WORK */
 .fieldWithErrors	{ background-color: red; display: table; }
 #errorExplanation	{ xwidth: 400px; border: 2px solid red; padding: 7px; padding-bottom: 12px; margin-bottom: 20px; background-color: #f0f0f0; }
@@ -76,7 +74,6 @@ fieldset div { height: 28px; }
 /* login */
 #login .box	{ margin-top: 40px; }
 #login fieldset	{ margin-bottom: 20px; padding: 30px 0 40px; }
-
 .signin label	{ float: left; width: 160px; height: 14px; margin: 6px; padding-top: 4px; text-align: right; }
 .signin input[type=text], .signin input[type=password], .signin select	{ width: 140px; height: 14px; margin: 6px 70px 6px 6px; }
 .signin input[type=checkbox]	{ margin: 10px 4px; }
@@ -96,6 +93,8 @@ fieldset div { height: 28px; }
 .courses-table .name { width: 40%; font-weight: bold; text-align: left; }
 .course-topics-table .name { width: 60%; font-weight: bold; text-align: left; }
 .questions-table .response { width: 40%; text-align: left; }
+.new-course	{ text-align: center; }
+.new-course input[type=submit]	{ width: 240px; height: 22px; margin: 2px; }
 
 
 /* subjects */
@@ -120,7 +119,7 @@ fieldset div { height: 28px; }
 #question	{ margin-top: 30px; text-align: center; line-height: 1.2;  font-size: 24px; }
 #answer, #response	{ position: absolute; bottom: 0; left: 0; right: 0; text-align: center; font-size: 28px; line-height: 1.2; }
 #answer-text	{ margin-bottom: 24px; }
-#start, #completed, .big-notice	{ padding: 150px; text-align: center; font-size: 18px; }
+#start, #completed	{ padding: 150px; text-align: center; font-size: 18px; }
 #toolbar { height: 32px; }
 #response-form { margin: 0 auto; width: 400px; }
 input#response-field	{ width: 100%; height: 32px; font-size: 24px; padding-top: 8px; font-family: monospace; border: 1px solid black; -moz-border-radius: 4px; -webkit-border-radius: 4px; }
@@ -140,8 +139,6 @@ input#response-field:focus	{ background-color: LightYellow; }
 .divider { float: left; }
 #palette-switch	{ float: right; }
 
-
-
 /* code */
 #code-block	{ position: absolute; left: 0; right: 0; padding-top: 0px; border-top: 1px solid DodgerBlue; }
 .tab	{ float: left; width: 33%; height: 240px; }
@@ -158,26 +155,6 @@ input#response-field:focus	{ background-color: LightYellow; }
 .sigma	{ display: block; line-height: .8em;}
 .r	{ display: block; font-size: 14px; }
 .nospace { letter-spacing: -0.6em; }
-
-/* tables - DEPRECATE! */
-.row { height: 24px; padding: 0; margin: 0; border-bottom: solid 1px DodgerBlue; clear: both; }
-.cell { float: left; height: 20px; padding: 5px 2px 0px 0px; margin: 0; }
-.double-row { height: 48px; }
-.double-cell { height: 40px; }
-.below { clear: right; }
-.vertical-bar { border-left: solid 1px DodgerBlue; }
-.half { width: 49%;}
-.third { width: 33%;}
-.quarter { width: 24%; }
-.fifth { width: 19%; }
-.two-fifths { width: 39%; }
-.sixth { width: 16%; }
-.eighth { width: 12%; }
-.tenth { width: 9%; }
-.twelfth { width: 8%; }
-.end { float: right; xtext-align: right; }
-.cell input[type=submit]	{ margin: -3px 0 0 0; }
-
 
 /* generic classes */
 .rtl { direction: rtl; }
@@ -205,17 +182,5 @@ input#response-field:focus	{ background-color: LightYellow; }
 .notes { position: absolute; bottom: 0; left: 0; }
 .details	{ float: left; }
 .box-text { background-color: #ccc; color: Blue; text-decoration: none; padding: 4px; margin: 4px; border: 2px DodgerBlue solid; -moz-border-radius: 4px; -webkit-border-radius: 4px; font-weight: bold; }
-
-/* generic layout classes - deprecate these: don't really want layout classes in HTML */
-/* deal with left and right slightly differently, partly because of IE oddity */
-/* avoid floats inside absolutely positioned elements because of IE oddity */
-.xright	{ text-align: right; } 
-.xcentre	{ margin: 0 auto; } 
-.xcentre	{ text-align: center; }
 .bold	{ font-weight: bold; }
 .italic { font-style: italic; }
-.xspace	{ margin: 10px; }
-.xbig-space { margin-top: 100px; }
-.small { font-size: 13px; }
-.big { font-size: 18px; }
-.double-height { line-height: 2em; }

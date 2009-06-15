@@ -30,7 +30,7 @@
 			<% end %>
 			<% row += 1 %>
 			<% form_for :course, :url => subject_courses_path(subject) do |f| %>
-				<div class="new-course centre">
+				<div class="new-course">
 					<%= f.submit "#{subject.name} (#{subject.exercises.count})" %>
 				</div>
 				<% end %>
@@ -46,7 +46,7 @@
 			<% end %>
 			<% row += 1 %>
 			<% form_for :course, :url => subject_courses_path(subject) do |f| %>
-				<div class="new-course centre">
+				<div class="new-course">
 					<%= f.submit "#{subject.name} (#{subject.exercises.count})" %>
 				</div>
 				<% end %>
