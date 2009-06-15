@@ -46,9 +46,9 @@ module ApplicationHelper
     return name.length > length ? name.slice(0..length) + '...' : name
   end
   
-  def success_rate(responses)
-    if responses[:correct] + responses[:incorrect] > 0
-      return "#{100 * responses[:correct] / (responses[:correct] + responses[:incorrect])}% of #{responses[:correct] + responses[:incorrect]}"
+  def success_rate(correct, incorrect)
+    if correct + incorrect > 0
+      return "#{100 * correct / (correct + incorrect)}% of #{correct + incorrect}"
     else
       return 0
     end

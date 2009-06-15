@@ -75,15 +75,27 @@ RC.table = {
 $(document).ready(function(){
 	
 	if ($('#topics').length) {
-		RC.table.init('#topics', 16);
+		RC.table.init('#topics', 15);
 	} else if ($('#subjects').length) {
-		RC.table.init('#subjects', 16);
+		RC.table.init('#subjects', 15);
 	} else if ($('#courses').length) {
 		RC.table.init('#courses', 12);
 	} else if ($('#exercises').length) {
 		RC.table.init('#exercises', 12);
+	} else if ($('#questions').length) {
+		RC.table.init('#questions', 16);
+	} else if ($('#responses').length) {
+		RC.table.init('#responses', 16);
 	} else if ($('#course-topics').length) {
 		RC.table.init('#course-topics', 13);
+	} else if ($('#admin').length) {
+		RC.table.init('#admin', 12);
+	} else if ($('#organizations').length) {
+		RC.table.init('#organizations', 17);
+	} else if ($('#students').length) {
+		RC.table.init('#students', 8);
+	} else if ($('#add-students').length) {
+		RC.table.init('#add-students', 16);
 	}
 	
 	
@@ -99,23 +111,11 @@ $(document).ready(function(){
 		}
 	});
 	
-	$(".button").mouseover(function() {
-		if (!$(this).hasClass("disabled")) {
-			$(this).addClass("ready");
-		}
-	});
-
-	$(".button").mouseout(function() {
-		if (!$(this).hasClass("disabled")) {
-			$(this).removeClass("ready");
-		}
-	});
-	
 	$(".radio").click(function() {
-		$(".radio").removeClass("go");
+		$(".radio").removeClass("radio-selected");
 		if (!$(this).hasClass("disabled")) {
 			$(this).children("input:radio").click();
-			$(this).addClass("go");
+			$(this).addClass("radio-selected");
 		}
 	});
 
@@ -124,10 +124,10 @@ $(document).ready(function(){
 			var checkbox = $("input:checkbox:first", this);
 			if (checkbox.attr("checked")) {
 				checkbox.attr("checked", false);
-				$(this).removeClass("go");
+				$(this).removeClass("checkbox-selected");
 			} else {
 				checkbox.attr("checked", true);
-				$(this).addClass("go");
+				$(this).addClass("checkbox-selected");
 			}
 		}
 	});

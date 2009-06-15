@@ -6,10 +6,7 @@ class AdministratorsController < ApplicationController
   # GET /administrators.xml
   def index
     @administrators = Administrator.find(:all)
-    @users = User.paginate(
-              :per_page => 12, 
-              :page => params[:page]
-              )
+    @users = User.find(:all)
     
     respond_to do |format|
       format.html # index.html.erb

@@ -4,8 +4,9 @@ class Course < ActiveRecord::Base
   has_many :lessons
   has_many :subscriptions
   has_one :user, :through => :subscriptions # 2009-05-18: Changed to has_one
-  has_many :intervals
-  has_many :questions
+  has_many :intervals, :order => :index_no
+  has_many :questions, :order => :current_interval
+  has_many :responses, :through => :questions
   has_many :course_topics
   
   named_scope :active, :conditions => { :archived => false }
@@ -184,10 +185,10 @@ class Course < ActiveRecord::Base
     self.lessons.last
   end
   
-  def responses
+  def xresponses
     results = {}
     for interval in self.intervals
-      results[interval.index_no] = { :correct => 0, :incorrect => 0, :last_reset => interval.last_reset_date }
+      results[interval.index_no] = { :correct => 0, :incorrect => 0, :last_reset => interval.updated_at }
     end
     for question in self.questions
       for response in question.responses.find(:all)
@@ -287,6 +288,13 @@ class Course < ActiveRecord::Base
     self.response_speech = subject.response_speech
   end
   
+  def set_intervals
+    DEFAULT_INTERVALS.each do |index, mins|
+      new_interval = intervals.new( :index_no => index, :minutes => mins)
+      new_interval.save
+    end
+  end
+  
 private
 
   def copy_course_material
@@ -297,13 +305,6 @@ private
         question = Question.new({ :course_id => self.id, :course_topic_id => course_topic.id})
         question.update_from_exercise(exercise.id)
       end
-    end
-  end
-  
-  def set_intervals
-    DEFAULT_INTERVALS.each do |index, mins|
-      new_interval = intervals.new( :index_no => index, :minutes => mins)
-      new_interval.save
     end
   end
   

@@ -7,55 +7,47 @@
 	</h2>
 </div>
 
-<div id="main">
-	<h2>Administrators</h2>
-	<% for admin in @administrators %>
-		<div class="row">
-			<div class="bold cell third">
-					<%= admin.user.login %>
-			</div>
-			<div class="cell third right">
-			</div>
-			<div class="cell third right">
-				<% unless admin.user_id == current_user.id %>
-					<%= link_to 'Remove admin responsibilities', admin, :confirm => 'Are you sure?', :method => :delete %>
-				<% end %>
-			</div>
-		</div>
-	<% end %>
-	<br>
-	<h2>Users</h2>
-	<% for user in @users %>
-		<div class="row">
-			<div class="bold cell eighth">
-					<%= user.login %>
-			</div>
-			<div class="bold cell quarter">
-					<%= user.email %>
-			</div>
-			<div class="cell eighth">
-					(<%= user.uid %>)
-			</div>
-			<div class="cell eighth">
-					<%= relative_date user.updated_at %>
-			</div>
-			<div class="cell eighth">
-					<%= user.last_login %>
-			</div>
-			<div class="bold cell eighth">
-					<%= user.organization.name if user.organization %>
-			</div>
-			<div class="cell eighth">
-				<% form_for :administrator, :url => { :action => "create" } do |f| %>
-					<%= f.hidden_field(:user_id, :value => user.id ) %>
-					<%= f.submit "Make administrator" %>
-				<% end %>
-			</div>
-		</div>
-	<% end %>
+<div class="main">
 
-	<div>
-		<%= will_paginate @users %>
+	<table>
+		<tbody>
+			<% for admin in @administrators %>
+				<tr>
+					<td class="heading"><%= admin.user.login %></td>
+					<td>
+						<% unless admin.user_id == current_user.id || admin.user_id == 1 %>
+							<%= link_to 'Remove admin responsibilities', admin, :confirm => 'Are you sure?', :method => :delete %>
+						<% end %>
+					</td>
+				</tr>
+			<% end %>
+		</tbody>
+	</table>
+	
+	<table class="admin-table">
+		<tbody id="admin">
+			<% for user in @users %>
+				<tr>
+					<td class="heading"><%= user.login %></td>
+					<td><%= user.email %></td>
+					<td>(<%= user.uid %>)</td>
+					<td><%= relative_date user.updated_at %></td>
+					<td><%= user.last_login %></td>
+					<td><%= user.organization.name if user.organization %></td>
+					<td>
+						<% form_for :administrator, :url => { :action => "create" } do |f| %>
+							<%= f.hidden_field(:user_id, :value => user.id ) %>
+							<%= f.submit "Make administrator" %>
+						<% end %>
+					</td>
+				</tr>
+			<% end %>
+		</tbody>
+	</table>
+	
+	<div id="table-navigation">
+		<span id="up" class="button">&laquo; Previous</span>
+		<span id="down" class="button">Next &raquo;</span>
 	</div>
 
 </div>

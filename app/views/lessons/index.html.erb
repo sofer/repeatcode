@@ -1,43 +1,51 @@
 <div id="header">
 	<h1>
-		<%= render :partial => 'global/course_links' %>
-		&raquo; Lessons
+		<%= link_to 'Courses', courses_path %>
+		&raquo; <%= @course.name %>
 	</h1>
 	<h2>
-		<%= @course.questions.count %> / 
-		<%= @course.subject.exercises.count %>
+		<%= render :partial => 'global/course_links' %>
 	</h2>
 </div>
 
-<div id="main">
-		
-	<div class="row">
-	    <div class="bold cell quarter">Started at</div>
-	    <div class="bold cell quarter right">Elapsed time</div>
-			<div class="bold cell quarter right">Correct this time</div>
-			<div class="bold cell quarter right">Progress</div>
-	  </div>
-	<% for lesson in @lessons %>
-	<div class="row">
-			<div class="cell quarter">
-				<%= formatted_date lesson.created_at %>
-			</div>
-			<div class="cell quarter right">
-				<%= elapsed_time lesson.created_at, lesson.updated_at %>
-			</div>
-			<div class="cell quarter right">
-				<%= lesson.correct_responses %>
-			</div>
-			<div class="cell quarter right">
-				<%= lesson.total_questions_started %>
-			</div>
-		</div>	
-	<% end %>
+<div class="main">
+	
+	<table class="questions-table">
+		<thead>
+			<tr>
+				<th>Started at</th>
+				<th>Elapsed time</th>
+				<th>Correct this time</th>
+				<th>Progress</th>
+			</tr>
+		</thead>
+		<tbody id="lessons">
+			<% for lesson in @lessons %>
+				<tr>
+					<td>
+						<%= formatted_date lesson.created_at %>
+					</td>
+					<td>
+						<%= elapsed_time lesson.created_at, lesson.updated_at %>
+					</td>
+					<td>
+						<%= lesson.correct_responses %>
+					</td>
+					<td>
+						<%= lesson.total_questions_started %>
+					</td>
+				</tr>
+			<% end %>
+		</tbody>
+	</table>
+
+	<div id="table-navigation">
+		<span id="up" class="button">&laquo; Previous</span>
+		<span id="down" class="button">Next &raquo;</span>
+	</div>
+	
 </div>
 
 <div id="footer">
-	<div>
-		<%= will_paginate @lessons %>
-	</div>
 	<%= render :partial => 'global/toplevel_links' %>
 </div>

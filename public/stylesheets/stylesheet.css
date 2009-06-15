@@ -6,18 +6,24 @@ li { list-style: none; margin: 4px 0; }
 li:before { content: "\00BB \0020"; }
 style	{ display: block; }
 body	{ background: #e8e8e8; font-family: helvetica, arial, sans-serif; margin: 0;}
-hr	{ height: 1px; border: 0; color: DodgerBlue; background-color: DodgerBlue; }
+hr	{ height: 10px; border: 0; color: DodgerBlue; background-color: DodgerBlue; }
 
 /* headers */
 h1 { float: left; }
-h2 { float: right; font-weight: normal; }
+h2 { float: right; }
+h2 a { font-weight: normal; }
+h3 { text-align: center; }
 
 /* tables */
 table	{ border-collapse: collapse; width: 100%; clear: both;}
-th { padding: 2px; border-bottom: 1px solid DodgerBlue; text-align: left; }
-td	{ padding: 2px; margin: 0; border-bottom: 1px solid DodgerBlue; }
+th { padding: 2px; border-bottom: 1px solid DodgerBlue; }
+td	{ padding: 2px; margin: 0; border-bottom: 1px solid DodgerBlue; text-align: right; }
 table input[type=text]	{ height: 14px; width: 98%; margin: 0; padding: 1px; }
 th.first, th.last, td.first, td.last { color: Grey; width: 5%; text-align: right; }
+td.center	{ text-align: center; }
+th.left, td.left	{ text-align: left; }
+td.heading	{ text-align: left; font-weight: bold; }
+tfoot td	{ border-bottom: none; }
 #table-navigation { position: absolute; bottom: 0; left: 0; }
 
 /* forms */
@@ -36,20 +42,28 @@ fieldset div { height: 28px; }
 
 
 /* all pages */
-#envelope	{ position: relative; margin: 0 auto; width: 900px; background: white; border: 4px DodgerBlue solid; -moz-border-radius-bottomright: 10px; -moz-border-radius-bottomleft: 10px; -webkit-border-bottom-right-radius: 10px; -webkit-border-bottom-left-radius: 10px; }
-.fixed	{ height: 500px; }
+#envelope	{ position: relative; height: 500px; margin: 0 auto; width: 900px; background: white; border: 4px DodgerBlue solid; -moz-border-radius-bottomright: 10px; -moz-border-radius-bottomleft: 10px; -webkit-border-bottom-right-radius: 10px; -webkit-border-bottom-left-radius: 10px; }
+.fixed	{ }
 #message-envelope	{ margin: 4px auto; width: 892px; }
 #header	{ height: 20px; padding: 4px; background: DodgerBlue; }
 #header a	{ color: MidnightBlue; }
 #footer	{ position: absolute; height: 36px; left: 0; right: 0; bottom: 0; margin: 4px; padding-top: 4px; border-top: 1px solid; }
-#main	{ margin: 28px 4px 52px 4px; }
-.fixed #main	{ position: absolute; top: 28px; right: 0px; bottom: 44px; left: 0px; margin: 4px; }
+#about .main	{ margin: 28px 4px 52px 4px; }
+.main	{ position: absolute; top: 28px; right: 0px; bottom: 44px; left: 0px; margin: 4px; }
 .signin	{ margin: 40px auto; width: 400px; }
 .fixed-height { height: 420px; }
 .box { margin: 100px auto; width: 480px; }
 .message-frame { position: absolute; padding: 20px; top: 20%; right: 20%; bottom: 20%; left: 20%; }
 #user	{ position: absolute; bottom: 0; left: 0; }
 #navigation	{ position: absolute; bottom: 0; right: 0; }
+
+/* Targets */
+#targets input[type=text]	{ width: 20px; }
+#targets table	{ margin-bottom: 40px; }
+#targets tr	{ height: 26px; }
+
+/* intervals */
+.intervals-table input[type=text]	{ width: 20px; }
 
 
 /* error id's THESE NEED WORK */
@@ -60,7 +74,6 @@ fieldset div { height: 28px; }
 #errorExplanation ul li	{ font-size: 12px; }
 
 /* login */
-
 #login .box	{ margin-top: 40px; }
 #login fieldset	{ margin-bottom: 20px; padding: 30px 0 40px; }
 
@@ -71,22 +84,25 @@ fieldset div { height: 28px; }
 
 /* topics */
 .topic-exercises-table th .content { width: 30%; }
-.topic-exercises-table td { color: Grey; }
+.topic-exercises-table td { color: Grey; text-align: left; }
 .topic-exercises-table input[type=checkbox]	{ float: right; }
-.topics-table .name { width: 50%; font-weight: bold; }
+.topics-table .name { text-align: left; width: 50%; font-weight: bold; }
 #topic-import textarea	{ width: 99%; height: 320px; padding: 4px; margin: 0; font-family: helvetica, arial, sans-serif; }
 #topic-details .form-line { margin-top: 18px; }
 
 /*courses*/
 .col3	{ float: left; width: 32%; }
 .col3 h3	{ margin-top: 9px; }
-.courses-table .name { width: 40%; font-weight: bold; }
-.course-topics-table .name { width: 60%; font-weight: bold; }
+.courses-table .name { width: 40%; font-weight: bold; text-align: left; }
+.course-topics-table .name { width: 60%; font-weight: bold; text-align: left; }
+.questions-table .response { width: 40%; text-align: left; }
 
 
 /* subjects */
-.subjects-table .name { width: 40%; font-weight: bold; }
+#edit-subject .box { margin-top: 50px; }
+.subjects-table .name { width: 40%; font-weight: bold; text-align: left; }
 
+.admin-table	{ margin-top: 40px; }
 
 /* lessons */
 #details, #voices-link, #completed, #graph, #code-block, #answer, #response, #amend, #ignore, #voices, #timeout	{ display: none; }
@@ -165,13 +181,16 @@ input#response-field:focus	{ background-color: LightYellow; }
 
 /* generic classes */
 .rtl { direction: rtl; }
-.stop { background-color: Red; }
-.ready { background-color: Gold; }
-.go { background-color: YellowGreen; }
-.button	{ float: left; position: relative; padding: 10px; height: 14px; margin-right: 4px; cursor: pointer; -moz-user-select: none; -webkit-user-select: none; user-select: none; }
-.button a { text-decoration: none; font-weight: bold; }
+.button	{ float: left; position: relative; padding: 10px; height: 14px; margin-right: 4px; cursor: pointer; -moz-user-select: none; -webkit-user-select: none; user-select: none; text-decoration: underline; }
+.button a { font-weight: bold; }
+.button:hover { background-color: Gold; cursor: pointer; }
 .button input[type=radio], .button input[type=checkbox]	{ float: left; margin-top: 0;}
-.disabled	{ color: grey; cursor: default; }
+.radio-selected { background-color: YellowGreen; text-decoration: none; }
+.radio-selected:hover { background-color: YellowGreen; cursor: default; }
+.checkbox-selected { background-color: YellowGreen; }
+.checkbox-selected:hover { background-color: Gold; }
+.disabled	{ color: grey; cursor: default; text-decoration: none; }
+.disabled:hover	{ color: grey; cursor: default; background-color: white; }
 .hidden	{ display: none; } 
 .notice, .correct	{ color: green; }
 .warning, .error	{ color: Maroon; }

@@ -8,15 +8,9 @@ class GroupsController < ApplicationController
     @organization = current_user.organization
     @group = Group.new
     if current_user.manager
-      @groups = @organization.groups.paginate(
-                :per_page => 14, 
-                :page => params[:page]
-                )
+      @groups = @organization.groups
     elsif current_user.tutor_groups
-      @groups = current_user.tutor_groups.paginate(
-                :per_page => 14, 
-                :page => params[:page]
-                )
+      @groups = current_user.tutor_groups
     end
     respond_to do |format|
       format.html # index.html.erb
@@ -30,12 +24,7 @@ class GroupsController < ApplicationController
     @organization = current_user.organization
     @group = Group.find(params[:id])
     @tutors = @group.tutors
-    @students = @group.students.paginate(
-              :per_page => 14 - @tutors.size, 
-              :page => params[:page]
-              )
-
-
+    @students = @group.students
 
     respond_to do |format|
       format.html # show.html.erb

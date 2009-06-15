@@ -8,113 +8,118 @@
 	</h2>
 </div>
 
-<div id="main">
+<div id="targets" class="main">
 	
-	<div class="row pad">
-		<div class="cell half">
-			Start date:
-		</div>
-		<div class="cell half right">
- 			<%= formatted_date @course.created_at %>
-		</div>
-	</div>
+	<table>
+		<tbody>
+			<tr>
+				<td class="left">
+					Start date:
+				</td>
+				<td>
+		 			<%= formatted_date @course.created_at %>
+				</td>
+			</tr>
+			<tr>
+				<td class="left">
+					Estimated end date: 
+				</td>
+				<td>
+					<%= formatted_date @course.end_date %>
+				</td>
+			</tr>
+			<tr>
+ 				<td class="left">
+					Number of questions awaiting a response
+				</td>
+				<td>
+					<%= @course.backlog_count %>
+				</td>
+			</tr>
+			<tr>
+				<td class="left">
+					Number of exercises begun
+				</td>
+				<td>
+					<% questions = @course.questions.started.count; exercises = @course.subject.exercises.count %>
+					<%=  questions %> out of 
+					<%=  exercises %>
+					(<%=  100 * questions / exercises %>%)
+				</td>
+			</tr>
+			<tr>
+				<td class="left">
+					Number of correct responses [inaccurate]
+				</td>
+				<td>
+					<% responses = @course.response_count(@course.lessons); all_time = @course.responses_on_completion %>
+					<%= responses %> out of 
+					<%= all_time %>
+					(<%=  100 * responses / all_time %>%)
+				</td>
+			</tr>
+		</tbody>
+	</table>	
 
-	<div class="row pad">
-		<div class="cell half">
-			Estimated end date: 
-		</div>
-		<div class="cell half right">
-			<%= formatted_date @course.end_date %>
-		</div>
-	</div>
+	<table>
+		<thead>
+			<tr>
+				<td>
 
-	<div class="row pad">
-		<div class="cell half">
-			Number of questions awaiting a response
-		</div>
-		<div class="cell half right">
-			<%= @course.backlog_count %>
-		</div>
-	</div>
-
-	<div class="row pad">
-		<div class="cell half">
-			Number of exercises begun
-		</div>
-		<div class="cell half right">
-			<% questions = @course.questions.started.count; exercises = @course.subject.exercises.count %>
-			<%=  questions %> out of 
-			<%=  exercises %>
-			(<%=  100 * questions / exercises %>%)
-		</div>
-	</div>
-
-	<div class="row pad">
-		<div class="cell half">
-			Number of correct responses [inaccurate]
-		</div>
-		<div class="cell half right">
-			<% responses = @course.response_count(@course.lessons); all_time = @course.responses_on_completion %>
-			<%= responses %> out of 
-			<%= all_time %>
-			(<%=  100 * responses / all_time %>%)
-		</div>
-	</div>
-
-	<br>
-
-	<div class="row pad">
-		<div class="cell half"> </div>
-		<div class="cell eighth right">
-			24 hours
-		</div>
-		<div class="cell eighth right">
-			1 week
-		</div>
-		<div class="cell eighth right">
-			4 weeks
-		</div>
-		<div class="cell eighth right">
-			16 weeks
-		</div>
-	</div>
-
-	<div class="double-row row pad">
-		<div class="cell half">
-			Correct responses (% of target)
-		</div>
-		<% [1,7,28, 126].each do |days| %>
-			<% progress = @course.progress_for_period(days) %>
-			<div class="double-cell cell eighth right">
-				<%= progress[0] %>
-				<div class="pad correct">
-					<%= progress[1] %>
-				</div>
-			</div>
-		<% end %>
-	</div>
-
-	<br>
+				</td>
+				<td>
+					24 hours
+				</td>
+				<td>
+					1 week
+				</td>
+				<td>
+					4 weeks
+				</td>
+				<td>
+					16 weeks
+				</td>
+			</tr>
+		</thead>
+		<tbody>
+			<tr>
+				<td>
+					Correct responses (% of target)
+				</td>
+				<% [1,7,28, 126].each do |days| %>
+					<% progress = @course.progress_for_period(days) %>
+					<td>
+						<%= progress[0] %>
+						<div class="correct">
+							<%= progress[1] %>
+						</div>
+					</td>
+				<% end %>
+			</tr>
+		</tbody>
+	</table>
 
 	<% form_for @course do |f| %>
-		<div class="targets">
-			<div class="row pad">
-				<div class="cell sixth bold">
+	<table>
+		<tbody>
+			<tr>
+				<td class="heading">
 					Targets 
-				</div>
-				<div class="cell third right">
+				</td>
+				<td>
 					Correct responses each lesson:  
 					<%= f.text_field :lesson_target, :autocomplete => "off"  %> 
-				</div>
-				<div class="cell third right">
+				</td>
+				<td>
 					Lessons per week: 
 					<%= f.text_field :weekly_target, :autocomplete => "off"  %> 
-				</div>
-				<div class="cell sixth right">
+				</td>
+				<td>
 					<%= f.submit "Update targets" %>
-				</div>
-			</div>
-		</div>
+				</td>
+			</tr>
+		</tbody>
+	</table>
 	<% end %>
 	
 </div>

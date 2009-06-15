@@ -2,7 +2,7 @@
 	<div id="header">
 		<h1>
 			<%= link_to 'Courses', courses_path %>
-			&raquo; <%= @course.subject.name if @course %>
+			&raquo; <%= @course.name if @course %>
 			&raquo; <%= truncate @question.phrase, 40 %>
 		</h1>
 		<h2>
@@ -11,35 +11,33 @@
 	</div>
 </div>
 
-<div id="main">
-	<div class="row">
-    <div class="bold cell quarter">Date</div>
-    <div class="bold cell quarter right">Time taken</div>
-		<div class="bold cell quarter right">Interval</div>
-		<div class="bold cell quarter right">Result</div>
-	</div>
+<div class="main">
+	
+	<table>
+		<thead>
+			<tr>
+				<th>Date</th>
+				<th>Time taken</th>
+				<th>Interval</th>
+				<th>Result</th>
+			</tr>
+		</thead>
+		<tbody id="responses">
+			<% for response in @question.responses %>
+				<tr>
+					<td class="left"><%= formatted_date_time response.updated_at %></td>
+					<td><%=h response.seconds_taken %> secs</td>
+					<td><%=h response.interval %></td>
+					<td><%=h response.result %></td>
+				</tr>
+			<% end %>
+		</tbody>
+	</table>
 
-	<% for response in @responses %>
-		<div class="row">
-			<div class="cell quarter">
-				<%= formatted_date_time response.updated_at %>
-			</div>
-			<div class="cell quarter right">
-				<%=h response.seconds_taken %> secs
-			</div>
-			<div class="cell quarter right">
-				<%=h response.interval %>
-			</div>
-			<div class="cell quarter right">
-				<%=h response.result %>
-			</div>
-		</div>	
-	<% end %>
-	
-	<div>
-		<%= will_paginate @responses %>
+	<div id="table-navigation">
+		<span id="up" class="button">&laquo; Previous</span>
+		<span id="down" class="button">Next &raquo;</span>
 	</div>
-	
 
 </div>
 

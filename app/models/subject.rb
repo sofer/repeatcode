@@ -44,8 +44,12 @@ class Subject < ActiveRecord::Base
     end
   end
 
+  
+  # there may be a more sensible way of doing this
+  # perhaps SELECT response FROM exercise WHERE response LIKE...
+  # or SELECT response FROM exercise. then collapse response into a single string.
   def search_extended_chars
-    pattern = /à|á|â|ã|ä|å|ò|ó|ô|õ|ö|ø|è|é|ê|ë|ç|ì|í|î|ï|ù|ú|û|ü|ÿ|ñ/;
+    pattern = /[^!-~\s]/
     matches = { }
     for exercise in exercises
       if pattern =~ exercise.response

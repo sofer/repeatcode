@@ -39,7 +39,12 @@ class SubjectsController < ApplicationController
   # GET /subjects/1/edit
   def edit
     @subject = Subject.find(params[:id])
-    @extended = @subject.search_extended_chars
+    
+    respond_to do |format|
+      format.html # edit.html.erb
+      format.xml  { render :xml => @subject }
+    end
+    
   end
 
   # POST /subjects
@@ -69,7 +74,7 @@ class SubjectsController < ApplicationController
     respond_to do |format|
       if @subject.update_attributes(params[:subject])
         flash[:notice] = 'Subject was successfully updated.'
-        format.html { redirect_to(:back) }
+        format.html { redirect_to(@subject) }
         format.xml  { head :ok }
       else
         format.html { render :action => "edit" }

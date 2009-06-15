@@ -6,42 +6,42 @@
 	</h1>
 </div>
 
-<div id="main">
-	<% for user in @users %>
-		<div class="row">
-			<div class="bold cell third">
-					<%= user.login %>
-			</div>
-			<div class="bold cell third">
-				
-			</div>
-			<div class="cell sixth right">
-				<% if @group.tutors.include? user %>
-					TUTOR
-				<% else %>
-					<% form_for(@group)  do |f| %>
-						<%= f.hidden_field :tutor_id, :value => user.id %>
-						<%= f.submit "Make tutor" %>
-					<% end %>
-				<% end %>
-			</div>
-			<div class="cell sixth right">
-				<% if @group.students.include? user %>
-					Already in group
-				<% else %>
-					<% form_for(@group)  do |f| %>
-						<%= f.hidden_field :student_id, :value => user.id %>
-						<%= f.submit "Add to group" %>
-					<% end %>
-				<% end %>
-			</div>
-		</div>
-	<% end %>
-
-	<div class="centre">
-		<%= will_paginate @users %>
+<div class="main">
+	
+	<table>
+		<tbody id="add-students">
+			<% for user in @users %>
+				<tr>
+					<td class="heading"><%= user.login %></td>
+					<td>
+						<% if @group.tutors.include? user %>
+							TUTOR
+						<% else %>
+							<% form_for(@group)  do |f| %>
+								<%= f.hidden_field :tutor_id, :value => user.id %>
+								<%= f.submit "Make tutor" %>
+							<% end %>
+						<% end %>
+					</td>
+					<td>
+						<% if @group.students.include? user %>
+							Already in group
+						<% else %>
+							<% form_for(@group)  do |f| %>
+								<%= f.hidden_field :student_id, :value => user.id %>
+								<%= f.submit "Add to group" %>
+							<% end %>
+						<% end %>
+					</td>
+			<% end %>
+		</tbody>
+	</table>
+	
+	<div id="table-navigation">
+		<span id="up" class="button">&laquo; Previous</span>
+		<span id="down" class="button">Next &raquo;</span>
 	</div>
-
+	
 </div>
 
 <div id="footer">

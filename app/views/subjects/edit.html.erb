@@ -8,19 +8,21 @@
 		<%= link_to 'Edit subject', edit_subject_path(@subject) %>
 	</h2>
 </div>
-<div id="main">
+<div id="edit-subject" class="main">
 	
-	<fieldset>
-	<% form_for(@subject) do |f| %>
-		<%= render :partial => 'form', :locals => {:f => f } %>
-	  <div class="centre space"><%= f.submit "Update" %></div>
-	<% end %>
-
-<p>Non-standard characters detected: <%= @extended %><br>
-(Paste into text field above to add them to the lesson shortcut menu)
-</p>
-	</fieldset>
-
+	<div class="box">
+		<fieldset>
+			<legend>Edit subject</legend>
+			<% form_for(@subject) do |f| %>
+				<%= render :partial => 'form', :locals => {:f => f } %>
+				<div>
+					<label>Detected: </label>
+					 <code><%= @subject.search_extended_chars %></code> (paste changes above)
+				</div>
+			  <%= f.submit "Update" %>
+			<% end %>
+		</fieldset>
+	</div>
 
 </div>
 

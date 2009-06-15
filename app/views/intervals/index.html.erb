@@ -8,50 +8,58 @@
 	</h2>
 </div>
 
-<div id="main">
-		<div class="row">
-			<div class="bold cell fifth">Revision</div>
-			<div class="bold cell fifth right">Interval</div>
-			<div class="bold cell fifth right">Accuracy *</div>
-			<div class="bold cell fifth right">Last reset</div>
-			<div class="bold cell fifth right targets">
+<div class="main">
+
+	<table class="intervals-table">
+		<thead>
+		<tr>
+			<th>Revision</th>
+			<th>Interval</th>
+			<th>Accuracy *</th>
+			<th>Last reset</th>
+			<th>
 				<% form_for @course do |f| %>
 				Target: 
 				<%= f.text_field :accuracy_target, :autocomplete => "off"  %>
 				%
 				<%= f.submit "Change" %>
 				<% end %>
-			</div>
-	  </div>
-
-	<% for interval in @intervals %>
-		<% responses = @responses[interval.index_no] %>
-		<div class="row">
-	    <div class="cell fifth"><%=h ordinal(interval.index_no) %></div>
-	    <div class="cell fifth right"><%= interval_time interval.minutes %></div>
-			<div class="cell fifth right"><%= success_rate(responses) %></div>
-			<div class="cell fifth right"><%= formatted_date interval.updated_at %></div>
-			<% if interval.index_no > 1 and responses[:correct] > 10 %>
-			<div class="cell fifth right">
-				<% form_for interval do |f| %>
-					<%= hidden_field_tag 'correct', responses[:correct] %>
-					<%= hidden_field_tag 'incorrect', responses[:incorrect] %>
-					<%= f.submit "Reset" %>
-				<% end %>
-			</div>
+			</th>
+		</tr>
+		</thead>
+		<tbody>
+			<% for interval in @course.intervals %>
+				<% correct = @course.responses.correct.interval(interval.index_no).since(interval.updated_at).count %>
+				<% incorrect = @course.responses.incorrect.interval(interval.index_no).since(interval.updated_at).count %>
+				<tr>
+			    <td class="heading"><%=h ordinal(interval.index_no) %></td>
+			    <td><%= interval_time interval.minutes %></td>
+					<td><%= success_rate(correct, incorrect) %></td>
+					<td><%= formatted_date interval.updated_at %></td>
+					<td class="center">
+					<% if interval.index_no > 1 and correct > 10 %>
+							<% form_for interval do |f| %>
+								<%= f.submit "Reset" %>
+							<% end %>
+						</td>
+					<% end %>
+			  </tr>
 			<% end %>
-	  </div>
-	<% end %>
-	<div class="cell fifth"> </div>
-	<div class="cell fifth"> </div>
-	<div class="cell fifth"> </div>
-	<div class="cell fifth">* since last reset</div>
+		</tbody>
+		<tfoot>
+			<tr>
+				<td colspan="2">
+				<td colspan="3">* since last reset</td>
+			</tr>
+		</tfoot>
+		</table>
+
 	<div class="notes">
 		<ul>
 			<li>Each time you respond to an exercise, the <strong>Interval</strong> of time until your next <strong>Revision</strong> increases.</li>
 			<li>The <strong>Accuracy</strong> of your responses gives you an indication of how close you are to your <strong>Target</strong>.</li>
 			<li>An interval can be <strong>Reset</strong> in order to more closely match your target.</li>
-			<li> You can also <strong>Change</strong> the default target (90%) at any time.</li>
+			<li> You can also <strong>Change</strong> the target (default: 90%) at any time.</li>
 		  <li>In this way, you can make best use of your time, and learn as thoroughly or as quickly as you like.
 			</ul>
 	</div>

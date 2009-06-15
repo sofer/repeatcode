@@ -1,31 +1,26 @@
 class Interval < ActiveRecord::Base
   belongs_to :course
 
-  def last_reset_date
-    self.updated_at
-  end
-
-  # f = actual failure rate (= 100 * (incorrect)/(correct+incorrect)
-  # t = target failure rate (= 100 - course.target)
+  # actual = actual failure rate (= 100 * (incorrect)/(correct+incorrect)
+  # target = target failure rate (= 100 - course.target)
   # t1 = current period
   # t2 = new period
-  # t2 = t1 * (1 + (t-f)/(2*f) where f > t
-  # t2 = t1 * (1 + (t-f)/(2*t) where f < t
-  def reset(correct, incorrect)
+  # t2 = t1 * (target+actual)/(2*actual) where actual > target
+  # t2 = t1 * (3*target-actual)/(2*target) where actual < target
+  def reset
+    correct = course.responses.correct.interval(self.index_no).since(self.updated_at).count
+    incorrect = course.responses.incorrect.interval(self.index_no).since(self.updated_at).count
+    
     return false if self.index_no < 2
     
-    correct = correct.to_i
-    incorrect = incorrect.to_i
-    f = 100 * (incorrect) / (correct + incorrect)
-    t = 100 - course.accuracy_target
+    actual = 100.0 * (incorrect) / (correct + incorrect)
+    target = 100.0 - course.accuracy_target
     
     case
-    when f > t
-      self.minutes = self.minutes * (100 + 100 * (t-f)/(2*f)) / 100
-      return true
-    when f < t
-      self.minutes = self.minutes * (100 + 100 * (t-f)/(2*t)) / 100
-      return true
+    when actual > target
+      update_attribute :minutes, ( self.minutes * (target+actual)/(2*actual) ).to_i
+    when actual < target
+      update_attribute :minutes, ( self.minutes * (3*target-actual)/(2*target) ).to_i
     else
       return false
     end

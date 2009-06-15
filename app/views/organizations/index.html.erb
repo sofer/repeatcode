@@ -10,26 +10,34 @@
 	</h2>
 </div>
 
-<div id="main">
-	<div class="xright">
-		<br/>
-	</div>
+<div class="main">
 
-	<% for org in @organizations %>
-	<div class="row">
-		<div class="bold cell half">
-				<%= org.name %>
-		</div>
-		<div class="bold cell quarter right">
-				<%= link_to 'Add manager', organization_managers_path(org) %>
-		</div>
-		<div class="bold cell quarter right">
-			<%= link_to 'Delete', org, :confirm => "WARNING! This will remove #{org.name} from the system. Do you really want to do this?", :method => :delete %>		</div>
-	</div>
-	<% end %>
+	<table>
+		<tbody id="organizations">
+			<% for org in @organizations %>
+					<tr>
+						<td class="heading">
+							<%= org.name %>
+						</td>
+						<td>
+							<%= link_to 'Add manager', organization_managers_path(org) %>
+						</td>
+						<td>
+							<% if org.users.count > 0 %>
+								<%= org.users.count %> users
+							<% else %>
+								<%= link_to 'Delete', org, :confirm => "WARNING! This will remove #{org.name} from the system. Do you really want to do this?", :method => :delete %>		
+							<% end %>
+							</div>
+						</td>
+				</tr>
+			<% end %>
+		</tbody>
+	</table>
 
-	<div>
-		<%= will_paginate @organizations %>
+	<div id="table-navigation">
+		<span id="up" class="button">&laquo; Previous</span>
+		<span id="down" class="button">Next &raquo;</span>
 	</div>
 
 </div>

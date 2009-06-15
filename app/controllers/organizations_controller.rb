@@ -6,10 +6,7 @@ class OrganizationsController < ApplicationController
   # GET /organizations.xml
   def index
     @organization = Organization.new
-    @organizations = Organization.paginate(
-                    :per_page => 15, 
-                    :page => params[:page]
-                    )
+    @organizations = Organization.find(:all)
 
     respond_to do |format|
       format.html # index.html.erb
@@ -25,7 +22,7 @@ class OrganizationsController < ApplicationController
     respond_to do |format|
       if @organization.save
         flash[:notice] = 'Organization was successfully created.'
-        format.html { redirect_to( :back ) }
+        format.html { redirect_to(:back) }
         format.xml  { render :xml => @organization, :status => :created, :location => @organization }
       else
         format.html { render :action => :back }

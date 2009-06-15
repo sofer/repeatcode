@@ -11,26 +11,32 @@
 	</h2>
 </div>
 
-<div id="main">
-	<% for group in @groups %>
-		<div class="row">
-			<div class="bold cell half">
-					<%= group.name %>
-			</div>
-			<div class="bold cell quarter right">
-				<%= group.students.count %> students
-			</div>
-			<div class="cell eighth right">
-					<%= link_to 'View group', group %>
-			</div>
-			<div class="cell eighth right">
-				<%= link_to 'Delete', group, :method => :delete if group.students.empty? %>
-			</div>
-		</div>
-	<% end %>
+<div class="main">
 
-	<div class="centre">
-		<%= will_paginate @groups %>
+	<table>
+		<tbody id="admin">
+			<% for group in @groups %>
+				<tr>
+					<td class="heading">
+						<%= group.name %>
+					</td>
+					<td>
+						<%= group.students.count %> students
+					</td>
+					<td>
+						<%= link_to 'View group', group %>
+					</td>
+					<td>
+						<%= link_to 'Delete', group, :method => :delete if group.students.empty? %>
+					</td>
+				</tr>
+			<% end %>
+		</tbody>
+	</table>
+
+	<div id="table-navigation">
+		<span id="up" class="button">&laquo; Previous</span>
+		<span id="down" class="button">Next &raquo;</span>
 	</div>
 
 </div>

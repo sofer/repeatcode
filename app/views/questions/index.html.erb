@@ -1,37 +1,35 @@
 <div id="header">
 	<h1>
 		<%= link_to 'Courses', courses_path %>
-		&raquo; <%= @course.subject.name if @course %>
+		&raquo; <%= @course.name %>
 	</h1>
 	<h2>
 		<%= render :partial => 'global/course_links' %>
 	</h2>
 </div>
 
-<div id="main">
+<div class="main">
 
-	<div class="row">
-		<div class="bold cell third">Response</div>
-		<div class="bold cell third">Topic</div>
-		<div class="bold cell twelfth"> </div>
-		<div class="bold cell twelfth centre">Due date</div>
-		<div class="bold cell twelfth centre">Interval</div>
-		<div class="bold cell twelfth">Progress</div>
-  </div>
+	<table class="questions-table">
+		<thead>
+			<tr>
+				<th></th>
+				<th>Response</th>
+				<th>Topic</th>
+				<th></th>
+				<th>Due date</th>
+				<th>Interval</th>
+				<th>Progress</th>
+			</tr>
+		</thead>
+		<tbody id="questions">
+			<%= render :partial => "question", :collection => @questions %>
+		</tbody>
+	</table>
 
-	<% for question in @questions %>
-	<div class="row">
-    <div class="cell third"><%= truncate question.response, 40 %></div>
-    <div class="cell third"><%= truncate question.course_topic.name, 40 %></div>
-		<div class="cell twelfth centre error"><%= 'DUE' unless question.next_datetime.nil? or question.next_datetime > Time.now %> </div>
-		<div class="cell twelfth centre"><%= relative_date question.next_datetime unless question.next_datetime.nil? %></div>
-    <div class="cell twelfth centre"><%= question.current_interval %></div>
-		<div class="cell twelfth centre"><%= link_to question.responses.count, question %></div>
-  </div>
-	<% end %>
-
-	<div>
-		<%= will_paginate @questions %>
+	<div id="table-navigation">
+		<span id="up" class="button">&laquo; Previous</span>
+		<span id="down" class="button">Next &raquo;</span>
 	</div>
 
 </div>

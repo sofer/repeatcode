@@ -17,6 +17,7 @@ class Topic < ActiveRecord::Base
 
   validates_presence_of :name
   validates_presence_of :subject_id
+  validates_associated :exercises
 
   # temp
   def show_data
@@ -40,10 +41,12 @@ class Topic < ActiveRecord::Base
   def existing_exercise_attributes=(exercise_attributes)
     exercises.reject(&:new_record?).each do |exercise|
       attributes = exercise_attributes[exercise.id.to_s]
-      if attributes['phrase'].empty?
-        exercises.delete(exercise)
-      else
-        exercise.attributes = attributes
+      if attributes
+        if attributes['phrase'].empty?
+          exercises.delete(exercise)
+        else
+          exercise.attributes = attributes
+        end
       end
     end
   end

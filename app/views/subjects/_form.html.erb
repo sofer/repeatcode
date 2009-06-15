@@ -1,19 +1,27 @@
 
 <%= f.error_messages %>
+<div>
 <%= f.label :name %>
 <%= f.text_field :name, :autocomplete => "off"  %>
+</div>
+<div>
 <%= f.label :area_id %>
 <%= f.select(:area_id, Subject::AREAS_FOR_FORM) %>
+</div>
+<div>
 <%= f.label :public %>
 <%= f.check_box :public %>
-<br class="clear">
+</div>
+<div>
 <%= f.label :archived %>
 <%= f.check_box :archived %>
-<br class="clear">
+</div>
+<div>
 <%= f.label :ignore_punctuation %>
 <%= f.check_box :ignore_punctuation %> 
-<div class="comment">[ , . ! ? - ]</div>
-<br class="clear">
+[ , . ! ? - ]
+</div>
+<div>
 <%= f.label "Non-standard characters" %>
 <%= f.text_field :extended_chars, :autocomplete => "off"   %>
-<br class="space">
+</div>

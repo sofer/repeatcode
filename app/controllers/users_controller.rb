@@ -10,14 +10,6 @@ class UsersController < ApplicationController
 
   end
 
-  def show
-    @student = User.find(params[:id])
-    @courses = @student.courses.paginate(
-              :per_page => 14, 
-              :page => params[:page]
-              )
-  end
- 
   # render new.rhtml
   def new
     @user = User.new

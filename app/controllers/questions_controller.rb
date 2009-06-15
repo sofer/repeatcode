@@ -6,11 +6,7 @@ class QuestionsController < ApplicationController
   # GET /questions.xml
   def index
     @course = Course.find(params[:course_id])
-    @questions =  @course.questions.queued.paginate(
-                  :per_page => 15, 
-                  :page => params[:page], 
-                  :order => "next_datetime"
-                 )
+    @questions =  @course.questions.due + @course.questions.pending
 
     respond_to do |format|
       format.html # index.html.erb
@@ -23,10 +19,6 @@ class QuestionsController < ApplicationController
   def show
     @question = Question.find(params[:id])
     @course = @question.course
-    @responses =  @question.responses.paginate(
-                  :per_page => 15, 
-                  :page => params[:page]
-                 )
 
     respond_to do |format|
       format.html # show.html.erb

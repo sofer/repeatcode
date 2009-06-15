@@ -6,16 +6,11 @@ class LessonsController < ApplicationController
   # GET /courses/1/lessons.xml
   def index
     @course = Course.find(params[:course_id])
-    @lessons =  @course.lessons.paginate(
-                  :per_page => 15, 
-                  :page => params[:page], 
-                  :order => "id DESC",
-                  :conditions => "updated_at > created_at"
-                )
+    @lessons =  @course.lessons
 
     respond_to do |format|
-      format.html # show.html.erb
-      format.xml  { render :xml => @course }
+      format.html # index.html.erb
+      format.xml  { render :xml => @lessons }
     end
   end
 
@@ -29,6 +24,7 @@ class LessonsController < ApplicationController
         else 
           flash[:notice] = 'Text to speech is off. Edit your profile to turn it on.' 
         end
+        render :layout => 'lesson'
       }# show.html.erb
       format.xml  { render :xml => @question.exercise }
       format.json  { 

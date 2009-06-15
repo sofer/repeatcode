@@ -3,51 +3,51 @@
 		<%= @organization.name %>
 		&raquo; <%= link_to 'Manage tutor groups', :controller => :groups %>
 	</h1>
-	<h2>
-
-	</h2>
 </div>
 
-<div id="main">
-	<h2>Managers:</h2>
-	<% for manager in @managers %>
-		<div class="row">
-			<div class="bold cell third">
-					<%= manager.user.login %>
-			</div>
-			<div class="bold cell third">
+<div class="main">
 
-			</div>
-			<div class="cell third right">
-				<% unless manager.user.id == current_user.id %>
-					<%= link_to 'Remove management responsibilities', manager, :confirm => 'Are you sure?', :method => :delete %>
-				<% end %>
-			</div>
-		</div>
-	<% end %>
+	<table>
+		<tbody>
+			<% for manager in @managers %>
+				<tr>
+					<td class="heading">
+						<%= manager.user.login %>
+					</td>
+					<td>Manager</td>
+					<td>
+						<% unless manager.user.id == current_user.id %>
+							<%= link_to 'Remove management responsibilities', manager, :confirm => 'Are you sure?', :method => :delete %>
+						<% end %>
+					</td>
+				</tr>
+			<% end %>
+		</tbody>
+	</table>
 
-	<br>
+	<table class="admin-table">
+		<tbody id="admin">
+			<% for user in @users %>
+				<tr>
+					<td class="heading"><%= user.login %></td>
+					<td><%= user.email %></td>
+					<td>(<%= user.uid %>)</td>
+					<td><%= relative_date user.updated_at %></td>
+					<td><%= user.last_login %></td>
+					<td>
+						<% form_for :manager, :url => organization_managers_path(@organization) do |f| %>
+							<%= f.hidden_field(:user_id, :value => user.id ) %>
+							<%= f.submit "Make manager" %>
+						<% end %>
+					</td>
+				</tr>
+			<% end %>
+		</tbody>
+	</table>
 
-	<h2>Users:</h2>
-	<% for user in @users %>
-		<div class="row">
-			<div class="bold cell third">
-					<%= user.login %>
-			</div>
-			<div class="bold cell third">
-				<%= relative_date user.updated_at %>
-			</div>
-			<div class="cell third right">
-				<% form_for :manager, :url => organization_managers_path(@organization) do |f| %>
-					<%= f.hidden_field(:user_id, :value => user.id ) %>
-					<%= f.submit "Make manager" %>
-				<% end %>
-			</div>
-		</div>
-	<% end %>
-
-	<div class="centre">
-		<%= will_paginate @users %>
+	<div id="table-navigation">
+		<span id="up" class="button">&laquo; Previous</span>
+		<span id="down" class="button">Next &raquo;</span>
 	</div>
 
 </div>

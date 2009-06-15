@@ -1,8 +1,16 @@
 class Response < ActiveRecord::Base
   
   belongs_to :question
+  
   named_scope :correct, :conditions => {:result => 'correct' }
   named_scope :incorrect, :conditions => {:result => 'incorrect' }
+
+  named_scope :interval, lambda { |interval|
+   { :conditions => { :interval => interval } } 
+  }
+  named_scope :since, lambda { |time|
+    { :conditions => { :created_at =>  time..Time.now } }
+  }
   
   before_create :reset_question
   

@@ -6,12 +6,6 @@ class IntervalsController < ApplicationController
   # GET /course/1/intervals.xml
   def index
     @course = Course.find(params[:course_id])
-    @intervals = @course.intervals.find(:all, :order => "index_no")
-    if @intervals.empty?
-      @course.set_intervals
-      @intervals = @course.intervals.find(:all, :order => "index_no")
-    end
-    @responses = @course.responses
 
     respond_to do |format|
       format.html # index.html.erb
@@ -23,9 +17,9 @@ class IntervalsController < ApplicationController
   # PUT /intervals/1.xml
   def update
     @interval = Interval.find(params[:id])
-    reset = @interval.reset(params[:correct], params[:incorrect])
+
     respond_to do |format|
-      if reset
+      if @interval.reset
         if @interval.update_attributes(params[:interval])
           flash[:notice] = 'Interval was successfully updated.'
         end
