@@ -2,14 +2,14 @@ require 'digest/sha1'
 
 class User < ActiveRecord::Base
 
+  belongs_to :organization
   has_many :subscriptions
   has_many :courses, :through => :subscriptions #, :uniq => true
   has_many :authorships
   has_many :subjects, :through => :authorships
-  belongs_to :organization
   has_many :enrolments
   has_many :groups, :through => :enrolments
-  has_many :tuitions # should be 'tutelages'
+  has_many :tuitions # perhaps should be 'tutelages'
   has_many :tutor_groups, :through => :tuitions, :source => :group
   has_one :manager # slightly odd nomenclature here.
   has_one :administrator # and here. It could have been a boolean field instead of a foreign key

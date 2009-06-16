@@ -17,46 +17,34 @@
 	<% form_for @user do |f| -%>
 
 		<div class="box">
-
-	
 			<fieldset>
-
 				<legend>Edit your details</legend>
-
 				<div>
 					<label>Your ID</label>
 					<code><%= current_user.uid %></code>
 				</div>
-		
 				<div>
 					(Make a note of it and keep it safe.)
 				</div>
-
 				<div>
 					<label>Logged in from</label>
 					<code><%= current_user.last_login %></code>
 				</div>
-
 				<div>
 					<label>Logged in at</label>
 					<code><%= formatted_date_time current_user.updated_at %></code>
 				</div>
-
-
-			<!--
 				<div>
-				<label for="organization" class="bold">Organization</label>
-				<%= select_tag 'user[organization_id]',  options_for_select(Organization::LIST_FOR_FORM), { :prompt => 'Select Person'}  %>
-				<br>
-				<%= select_tag 'test', options_from_collection_for_select(@organizations, 'id', 'name') if @organizations %>
-		-->
+					<label for="organization">Organization</label>
+					<%= f.select(:organization_id, Organization.all.collect { |org| [ org.name, org.id ] }, { :include_blank => 'None' }) %>
+				</div>
 				<div>
 						<label for="login">Login</label>
-						<%= f.text_field :login %>
+						<%= f.text_field :login, :autocomplete => "off" %>
 				</div>
 				<div>
 					<label for="email">Email</label>
-					<%= f.text_field :email %>
+					<%= f.text_field :email, :autocomplete => "off" %>
 				</div>
 				<div>
 					<label for="voice">Text to speech</label>
@@ -64,7 +52,7 @@
 					<%= link_to 'Help', :controller => 'about', :action => 'voice' %>
 				</div>
 			</fieldset>
-		
+			<div class="warning message"></div>
 		</div>
 
 		<div class="submit">

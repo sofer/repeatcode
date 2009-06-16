@@ -27,7 +27,7 @@ tfoot td	{ border-bottom: none; }
 #table-navigation { position: absolute; bottom: 0; left: 0; }
 
 /* forms */
-fieldset { padding: 2%; background-color: LightYellow; border: 1px solid DimGray; text-align: center; }
+fieldset { padding: 2%; background-color: LightYellow; border: 1px solid DimGray; text-align: center; -moz-border-radius: 10px; -webkit-border-radius: 10px; }
 fieldset legend { font-weight: bold; margin: 10px;}
 fieldset label	{ float: left; width: 48%; text-align: right; }
 fieldset input[type=text], select	{ width: 48%; margin-top: -3px; }
@@ -65,7 +65,7 @@ fieldset div { height: 28px; }
 .intervals-table input[type=text]	{ width: 20px; }
 
 /* account */
-#account .box	{ margin-top: 40px; }
+#account .box	{ margin-top: 24px; }
 
 /* error id's THESE NEED WORK */
 .fieldWithErrors	{ background-color: red; display: table; }

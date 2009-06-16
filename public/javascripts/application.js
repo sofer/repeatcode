@@ -141,4 +141,12 @@ $(document).ready(function(){
 		$('.display-changed').text(txt);
 	});
 	
+	$('#account form').submit(function(){
+		if ($('#user_login').val() === '') {
+			$('.warning').text('Please enter a login')
+			return false;
+		}
+	});
+	
+	
 });
