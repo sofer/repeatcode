@@ -456,8 +456,8 @@ RC.question = {
 			},
 			success: function (json) {
 				that.data = json;
+				that.loaded();
 				if (that.notFinished(that.data)) {
-					that.loaded();
 					that.showNext();
 					that.getNext();
 				}
