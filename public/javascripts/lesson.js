@@ -149,7 +149,7 @@ RC.voices = {
 	},
 	
 	onStart: function () {
-		$(RC.DOMnodes.notice).text('Outfox is installed. Voices are available for this lesson.');
+		$(RC.DOMnodes.notice).text('Outfox is installed. Set your "Voices" preferences above.');
 		$(RC.DOMnodes.voicesLink).show();
 		this.installedVoices = outfox.audio.getProperty('voices');
 		var options = '';
