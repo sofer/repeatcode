@@ -47,7 +47,7 @@
 *A.* We are working on simulating interactive shells for a variety of languages, so that programming techniques can be learned in a natural way that translates directly back to users' own work experience.
 
 *Q. What is the status of this site?*
-*A.* As of May 2009, it is in public pre-beta. The emphasis in the first few weeks will be on building up and testing a variety of different sorts of learning materials, but we hope to make it easier for other people to start creating and sharing their own materials before the end of the summer.
+*A.* As of June 2009, it is in public pre-beta. The emphasis in the first few weeks will be on building up and testing a variety of different sorts of learning materials, but we hope to make it easier for other people to start creating and sharing their own materials before the end of the summer.
 
 *Q. What is the technology behind this site?*
 *A.* It is developed in "Rails":http://www.rubyonrails.com with significant use of JavaScript and "JQuery":http://www.jquery.com. Graphing is provided by "Flot":http://code.google.com/p/flot/. Text-to-speech is achieved using the "Outfox":http://code.google.com/p/outfox/ Firefox extension. The code is source controlled at "GitHub":http://www.github.com and hosted at "SliceHost":http://www.slicehost.com.

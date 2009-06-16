@@ -6,7 +6,7 @@
 	</h1>
 </div>
 
-<div class="main">
+<div id="account" class="main">
 
 	<div class="announce">
 		Drag this link to your bookmark bar:
@@ -14,64 +14,64 @@
 		in order to login automatically next time.
 	</div>
 
-
-	<div class="box">
-
 	<% form_for @user do |f| -%>
+
+		<div class="box">
+
 	
-	<fieldset>
+			<fieldset>
 
-		<legend>Edit your details</legend>
+				<legend>Edit your details</legend>
 
-		<div>
-			<label>Your ID</label>
-			<code><%= current_user.uid %></code>
-		</div>
+				<div>
+					<label>Your ID</label>
+					<code><%= current_user.uid %></code>
+				</div>
 		
-		<div>
-			(Make a note of it and keep it safe.)
-		</div>
+				<div>
+					(Make a note of it and keep it safe.)
+				</div>
 
-		<div>
-			<label>Logged in from:</label>
-			<%= current_user.last_login %>
-		</div>
+				<div>
+					<label>Logged in from</label>
+					<code><%= current_user.last_login %></code>
+				</div>
 
-		<div>
-			<label>Logged in at:</label>
-			<%= formatted_date_time current_user.updated_at %>
-		</div>
+				<div>
+					<label>Logged in at</label>
+					<code><%= formatted_date_time current_user.updated_at %></code>
+				</div>
 
 
-	<!--
-		<div>
-		<label for="organization" class="bold">Organization</label>
-		<%= select_tag 'user[organization_id]',  options_for_select(Organization::LIST_FOR_FORM), { :prompt => 'Select Person'}  %>
-		<br>
-		<%= select_tag 'test', options_from_collection_for_select(@organizations, 'id', 'name') if @organizations %>
--->
-		<div>
-				<label for="login">Login</label>
-				<%= f.text_field :login %>
-		</div>
-		<div>
-			<label for="email">Email</label>
-			<%= f.text_field :email %>
-		</div>
-		<div>
-			<label for="voice">Text to speech</label>
-			<%= f.check_box :voice %> 
-			<%= link_to 'Help', :controller => 'about', :action => 'voice' %>
-		</div>
-	</fieldset>
+			<!--
+				<div>
+				<label for="organization" class="bold">Organization</label>
+				<%= select_tag 'user[organization_id]',  options_for_select(Organization::LIST_FOR_FORM), { :prompt => 'Select Person'}  %>
+				<br>
+				<%= select_tag 'test', options_from_collection_for_select(@organizations, 'id', 'name') if @organizations %>
+		-->
+				<div>
+						<label for="login">Login</label>
+						<%= f.text_field :login %>
+				</div>
+				<div>
+					<label for="email">Email</label>
+					<%= f.text_field :email %>
+				</div>
+				<div>
+					<label for="voice">Text to speech</label>
+					<%= f.check_box :voice %> 
+					<%= link_to 'Help', :controller => 'about', :action => 'voice' %>
+				</div>
+			</fieldset>
 		
+		</div>
+
 		<div class="submit">
 			<%= submit_tag 'Update' %>
 		</div>
 		
 	<% end -%>
-
-	</div>
 
 </div>
 

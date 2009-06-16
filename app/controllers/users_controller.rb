@@ -1,5 +1,7 @@
 class UsersController < ApplicationController
   
+  before_filter :login_required
+  
   # For show users to groups
   def index
     @group =  Group.find(params[:group_id])

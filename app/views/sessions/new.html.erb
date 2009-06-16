@@ -10,7 +10,7 @@
 
 		<div class="box">
 
-			<% if session[:return_to] %>
+			<% if session[:return_to] =~ /\/subjects\/\d+\/course/ %>
 				<% form_tag session[:return_to] do -%>
 					<%= hidden_field_tag 'create_user' %>
 					<fieldset>

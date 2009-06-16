@@ -49,9 +49,7 @@
 		</div>
 
 		<div id="answer">
-		
-			<div id="formatted-answer"> </div>
-		
+			<div id="formatted-answer"> </div>		
 			<div id="answer-text"> </div>
 			<div class="submit">
 				<%= submit_tag "OK", :id => "ok"%>
@@ -59,7 +57,6 @@
 			<div id="corrections">
 				<a href="" id="amend-link">Amend</a> | <a href="" id="ignore-link">Ignore</a>
 			</div>
-		
 		</div>
 
 		<div id="response">
@@ -94,7 +91,7 @@
 			| Backlog: <span id="backlog"></span>
 			| <span id="seconds">0</span> seconds
 		</div>
-		<div id="loading"><img src="/images/furniture/loading.gif" width="16" height="16" alt="waiting..." align="right"></div>
+		<div id="loading"><img src="/images/furniture/loading.gif" width="16" height="16" alt="waiting..." xalign="right"></div>
 			
 		<div id="user">
 			<% if current_user.login %>

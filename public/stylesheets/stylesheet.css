@@ -14,8 +14,8 @@ h2 { float: right; }
 h2 a { font-weight: normal; }
 h3 { text-align: center; }
 
-/* tables */
-table	{ border-collapse: collapse; width: 100%; clear: both;}
+/* tables - NOTE: don't use percentage on table width because of IE6 bug */
+table	{ border-collapse: collapse; clear: both; width: 892px; }
 th { padding: 2px; border-bottom: 1px solid DodgerBlue; }
 td	{ padding: 2px; margin: 0; border-bottom: 1px solid DodgerBlue; text-align: right; }
 table input[type=text]	{ height: 14px; width: 98%; margin: 0; padding: 1px; }
@@ -51,7 +51,7 @@ fieldset div { height: 28px; }
 .main	{ position: absolute; top: 28px; right: 0px; bottom: 44px; left: 0px; margin: 4px; }
 .signin	{ margin: 40px auto; width: 400px; }
 .fixed-height { height: 420px; }
-.box { margin: 100px auto; width: 480px; }
+.box { margin: 100px auto 0; width: 480px; }
 .message-frame { position: absolute; padding: 20px; top: 20%; right: 20%; bottom: 20%; left: 20%; }
 #user	{ position: absolute; bottom: 0; left: 0; }
 #navigation	{ position: absolute; bottom: 0; right: 0; }
@@ -63,6 +63,9 @@ fieldset div { height: 28px; }
 
 /* intervals */
 .intervals-table input[type=text]	{ width: 20px; }
+
+/* account */
+#account .box	{ margin-top: 40px; }
 
 /* error id's THESE NEED WORK */
 .fieldWithErrors	{ background-color: red; display: table; }
@@ -84,7 +87,7 @@ fieldset div { height: 28px; }
 .topic-exercises-table td { color: Grey; text-align: left; }
 .topic-exercises-table input[type=checkbox]	{ float: right; }
 .topics-table .name { text-align: left; width: 50%; font-weight: bold; }
-#topic-import textarea	{ width: 99%; height: 320px; padding: 4px; margin: 0; font-family: helvetica, arial, sans-serif; }
+#topic-import textarea	{ width: 882px; height: 320px; padding: 4px; margin: 0; font-family: helvetica, arial, sans-serif; }
 #topic-details .form-line { margin-top: 18px; }
 
 /*courses*/
@@ -105,8 +108,7 @@ fieldset div { height: 28px; }
 
 /* lessons */
 #details, #voices-link, #completed, #graph, #code-block, #answer, #response, #amend, #ignore, #voices, #timeout	{ display: none; }
-#details	{ float: left; }
-#loading	{ float: right; }
+#loading	{ position: absolute; right: 0; }
 .overlay	{ position: absolute; left: 0; right: 0; top: 0; bottom: 4px; background-color: white; opacity: 0.8; filter:alpha(opacity=80); xdisplay: none; }
 #amend fieldset * { margin-top: 10px; }
 #amend label	{ text-align: left; }
@@ -118,7 +120,7 @@ fieldset div { height: 28px; }
 #timeout fieldset	{ padding: 110px 0; }
 #question	{ margin-top: 30px; text-align: center; line-height: 1.2;  font-size: 24px; }
 #answer, #response	{ position: absolute; bottom: 0; left: 0; right: 0; text-align: center; font-size: 28px; line-height: 1.2; }
-#answer-text	{ margin-bottom: 24px; }
+#answer-text	{ margin-bottom: 32px; }
 #start, #completed	{ padding: 150px; text-align: center; font-size: 18px; }
 #toolbar { height: 32px; }
 #response-form { margin: 0 auto; width: 400px; }
@@ -130,7 +132,8 @@ input#response-field:focus	{ background-color: LightYellow; }
 #progress-alert	{ position: absolute; top: 200px; right: 0; left: 0; color: LimeGreen; text-align: center; font-size: 24px; }
 #graph	{ margin: 0 auto; width: 180px; height: 180px; }
 #answer, #response	{ position: absolute; right: 0; bottom: 0; left: 0; }
-#corrections { float: right; font-size: 14px; }
+#xcorrections { float: right; font-size: 14px; }
+#corrections { position: absolute; right: 0; bottom: 0; font-size: 14px; }
 #course_target	{ text-align: right; width: 30px; height: 13px; font-size: 12px; }
 .formula	{ float: left; height: 60px; }
 .maths	{ height: 80px; }
@@ -158,7 +161,7 @@ input#response-field:focus	{ background-color: LightYellow; }
 
 /* generic classes */
 .rtl { direction: rtl; }
-.button	{ float: left; position: relative; padding: 10px; height: 14px; margin-right: 4px; cursor: pointer; -moz-user-select: none; -webkit-user-select: none; user-select: none; text-decoration: underline; }
+.button	{ float: left; position: relative; height: 20px; padding: 6px 6px 0; margin: 0 4px 0 0; cursor: pointer; -moz-user-select: none; -webkit-user-select: none; user-select: none; text-decoration: underline; }
 .button a { font-weight: bold; }
 .button:hover { background-color: Gold; cursor: pointer; }
 .button input[type=radio], .button input[type=checkbox]	{ float: left; margin-top: 0;}
@@ -172,7 +175,7 @@ input#response-field:focus	{ background-color: LightYellow; }
 .notice, .correct	{ color: green; }
 .warning, .error	{ color: Maroon; }
 .notice, .warning { padding: 4px 0; }
-.announce { position: absolute; text-align: center; top: 40px; right: 0; left: 0; }
+.announce { text-align: center; margin-top: 40px; }
 .incorrect	{ text-decoration: line-through; color: red; }
 .pointer	{ cursor: pointer; cursor: pointer; -moz-user-select: none; -webkit-user-select: none; user-select: none; }
 .disabled { cursor: default; color: grey; }
@@ -184,3 +187,4 @@ input#response-field:focus	{ background-color: LightYellow; }
 .box-text { background-color: #ccc; color: Blue; text-decoration: none; padding: 4px; margin: 4px; border: 2px DodgerBlue solid; -moz-border-radius: 4px; -webkit-border-radius: 4px; font-weight: bold; }
 .bold	{ font-weight: bold; }
 .italic { font-style: italic; }
+.scroll	{ overflow: auto; }
