@@ -440,12 +440,9 @@ RC.question = {
 		this.waiting = true;
 	},
 	
-	loaded: function (json) {
+	loaded: function () {
 		$(RC.DOMnodes.loading).hide();
 		this.waiting = false;
-		if (json.question && json.question.currentInterval == null) {
-			json.question.currentInterval = 0;
-		}
 	},
 	
 	getFirst: function () {
@@ -460,7 +457,7 @@ RC.question = {
 			success: function (json) {
 				that.data = json;
 				if (that.notFinished(that.data)) {
-					that.loaded(json);
+					that.loaded();
 					that.showNext();
 					that.getNext();
 				}
@@ -480,8 +477,7 @@ RC.question = {
 				that.getNext();
 			},
 			success: function(json){
-				//json.correct += 1 REMOVE THIS!?
-				that.loaded(json);
+				that.loaded();
 				that.next = json;
 			}
 	  });
@@ -625,8 +621,8 @@ RC.question = {
 		this.postResponse('incorrect');
 		this.data.question.current_interval = 0;
 		this.updateStats();
+		$(RC.DOMnodes.responseField).val('');
 		this.showAnswer();
-		//this.showResponseMessage('Try again');
 	},
 	
 	randomNumberInRange: function (min,max) {

@@ -26,12 +26,6 @@ class CoursesController < ApplicationController
     
     @courses = current_user.courses.active
     
-    # check the queue of pending questions
-    if params[:version] and params[:version]=='clear' 
-      message = @courses.first.clear_all
-      flash[:notice] = message
-    end
-
     respond_to do |format|
       format.html # index.html.erb
       format.xml  { render :xml => @courses }

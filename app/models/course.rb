@@ -154,23 +154,6 @@ class Course < ActiveRecord::Base
     @last_question ||= self[:last_question] ? Question.find(self[:last_question]) : false
   end
   
-  # Destroy all questions with no exercise and all exercises with no topic
-  # 2009-05-18: GET RID OF THIS
-  def clear_all
-    questions = Question.find(:all)
-    count = 0
-    for question in questions
-      if not question.exercise or not question.exercise.topic
-        if question.exercise
-          question.exercise.destroy
-        end
-        question.destroy
-        count += 1
-      end
-    end
-    return count
-  end
-  
   def accuracy_target
     self[:accuracy_target] or DEFAULT_TARGETS['ACCURACY']
   end
@@ -183,25 +166,6 @@ class Course < ActiveRecord::Base
 
   def current_lesson
     self.lessons.last
-  end
-  
-  def xresponses
-    results = {}
-    for interval in self.intervals
-      results[interval.index_no] = { :correct => 0, :incorrect => 0, :last_reset => interval.updated_at }
-    end
-    for question in self.questions
-      for response in question.responses.find(:all)
-        if response.updated_at > results[response.interval][:last_reset]
-          if response.result == Response::RESULTS[:correct]
-            results[response.interval][:correct] += 1
-          elsif response.result == Response::RESULTS[:incorrect]
-            results[response.interval][:incorrect] += 1
-          end
-        end
-      end
-    end
-    return results
   end
   
   def update_required?
