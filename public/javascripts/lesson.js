@@ -459,6 +459,7 @@ RC.question = {
 				that.loaded();
 				if (that.notFinished(that.data)) {
 					that.showNext();
+					alert('check');
 					that.getNext();
 				}
 			}
