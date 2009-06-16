@@ -109,7 +109,7 @@ RC.DOMnodes = {
 	languagePalette: '#language-palette',
 	daysTilNext: '#days-til-next',
 	symbol: '.symbol',
-	messageEnvelope: '#message-envelope',
+	messageEnvelope: '#notice',
 	progressAlert: '#progress-alert',
 	tabs: '#tabs',
 	dataTab: '#data-tab',
@@ -458,9 +458,8 @@ RC.question = {
 				that.data = json;
 				that.loaded();
 				if (that.notFinished(that.data)) {
-					that.showNext();
-					alert('check');
 					that.getNext();
+					that.showNext();
 				}
 			}
 	  });
