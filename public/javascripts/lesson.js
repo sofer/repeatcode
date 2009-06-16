@@ -109,7 +109,7 @@ RC.DOMnodes = {
 	languagePalette: '#language-palette',
 	daysTilNext: '#days-til-next',
 	symbol: '.symbol',
-	messageEnvelope: '#notice',
+	notice: '#notice',
 	progressAlert: '#progress-alert',
 	tabs: '#tabs',
 	dataTab: '#data-tab',
@@ -144,12 +144,12 @@ RC.voices = {
 	    	outfox.startService("audio").addCallback(this.onStart).addErrback(this.onFail);
 			}
 		} else {
-			$(RC.DOMnodes.messageEnvelope).text('');
+			$(RC.DOMnodes.notice).text('');
 		}
 	},
 	
 	onStart: function () {
-		$(RC.DOMnodes.messageEnvelope).text('Outfox is installed. Voices are available for this lesson.');
+		$(RC.DOMnodes.notice).text('Outfox is installed. Voices are available for this lesson.');
 		$(RC.DOMnodes.voicesLink).show();
 		this.installedVoices = outfox.audio.getProperty('voices');
 		var options = '';
@@ -163,7 +163,7 @@ RC.voices = {
 	},
 
 	onFail: function (cmd) {
-		$(RC.DOMnodes.messageEnvelope).text(cmd.description);
+		$(RC.DOMnodes.notice).text(cmd.description);
 	},
 
 	outfoxQueue: function (phrase, which) {
@@ -207,7 +207,7 @@ RC.voices = {
 			url: postUrl,
 			data: postData,
 			success: function() {
-				$(RC.DOMnodes.messageEnvelope).text('Course voices updated.');
+				$(RC.DOMnodes.notice).text('Course voices updated.');
 			}
 	  });
 	}
@@ -381,18 +381,9 @@ RC.question = {
 	waiter: null,
 	waiting: true,
 	data: { status: 'waiting' },
-	ignore: false,
 	next: { status: 'waiting' },
 	previouslyIncorrect: false,
 	formulaPrefix: '=',
-	
-	ignoredData: function() {
-		if (this.ignore) {
-			return 'ignore=' + this.data.question.id
-		} else {
-			return '';
-		}
-	},
 
 	stripPrefix: function(str) {
 		if (str && str.charAt(0) === this.formulaPrefix) {
@@ -448,7 +439,7 @@ RC.question = {
 	getFirst: function () {
 		this.loading();
 		var that = this;
-	  $.ajax({
+		$.ajax({
 			url: this.jsonUrl,
 			dataType: 'json',
 			error: function () {
@@ -462,25 +453,24 @@ RC.question = {
 					that.showNext();
 				}
 			}
-	  });
+		});
 	},
 
 	getNext: function () {
 		this.loading(true);
-		this.ignore = true;
 		var that = this;
-	  $.ajax({
+		$.ajax({
 			url: this.jsonUrl,
-			data: this.ignoredData(),
+			data: 'ignore=' + this.data.question.id,
 			dataType: 'json',
 			error: function () {
 				that.getNext();
 			},
 			success: function(json){
-				that.loaded();
 				that.next = json;
+				that.loaded();
 			}
-	  });
+		});
 	},
 
 	hint: function(hintText) {
@@ -697,10 +687,10 @@ RC.question = {
 		var that = this;
 		var postUrl = '/questions/' + this.data.question.id + '/responses.json';
 		var postData = {
-			'response[result]': result,
-		  'response[seconds_taken]': RC.timer.questionSeconds, 
-	    'response[interval]': this.data.question.current_interval,
-		  'authenticity_token': AUTH_TOKEN 
+			'response[result]'			: result,
+			'response[seconds_taken]'	: RC.timer.questionSeconds, 
+			'response[interval]'		: this.data.question.current_interval,
+			'authenticity_token'		: AUTH_TOKEN 
 		};
 		//if not incorrect and not waiting and course not finished, show next question
 		if (result !== 'incorrect' && !this.waiting && this.notFinished(this.next)) { 
@@ -812,7 +802,7 @@ RC.corrections = {
 			url: postUrl,
 			data: postData,
 			success: function() {
-				$(RC.DOMnodes.messageEnvelope).text('Question updated.');
+				$(RC.DOMnodes.notice).text('Question updated.');
 			}
 	  });
 	},
@@ -829,7 +819,7 @@ RC.corrections = {
 			url: postUrl,
 			data: postData,
 			success: function() {
-				$(RC.DOMnodes.messageEnvelope).text('Question removed.');
+				$(RC.DOMnodes.notice).text('Question removed.');
 				RC.question.postResponse('ignored');
 			}
 	  });
@@ -847,11 +837,10 @@ RC.corrections = {
 
 };
 
-RC.question.getFirst();
-RC.intervalTimer = setInterval(RC.timer.tick, 1000);
-
 $(document).ready(function(){
 
+	RC.question.getFirst();
+	RC.intervalTimer = setInterval(RC.timer.tick, 1000);
 	RC.voices.outfoxInit();
 	
 	$(RC.DOMnodes.ignoreAccentsCheckbox).attr('checked', false);
