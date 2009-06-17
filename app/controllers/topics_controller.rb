@@ -29,23 +29,9 @@ class TopicsController < ApplicationController
   # GET /topics/new.xml
   def new
     @topic = Topic.new
-    
-    # put this in user model, perhaps
-    if current_user.subjects.empty?
-      @subject = Subject.new
-      @subject.name = 'Uncategorized'
-      @subject.public = false
-      @subject.save!
-      current_user.subjects << @subject
-    else
-      if params[:subject_id]
-        @subject = Subject.find(params[:subject_id])
-        @topic.ignore_punctuation = @subject.ignore_punctuation
-      else
-        @subject = current_user.subjects.last
-      end
-    end
-    
+    @subject = Subject.find(params[:subject_id])
+    @topic.subject_id = @subject.id
+    @topic.ignore_punctuation = @subject.ignore_punctuation
     @subjects = current_user.subjects
 
     respond_to do |format|

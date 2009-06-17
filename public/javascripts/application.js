@@ -88,6 +88,8 @@ $(document).ready(function(){
 		RC.table.init('#responses', 16);
 	} else if ($('#course-topics').length) {
 		RC.table.init('#course-topics', 13);
+	} else if ($('#lessons').length) {
+		RC.table.init('#lessons', 16);
 	} else if ($('#admin').length) {
 		RC.table.init('#admin', 12);
 	} else if ($('#organizations').length) {

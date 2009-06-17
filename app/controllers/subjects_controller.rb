@@ -8,8 +8,13 @@ class SubjectsController < ApplicationController
     @subjects = current_user.subjects.active
     
     respond_to do |format|
-      format.html # index.html.erb
-      format.xml  { render :xml => @subjects }
+      if @subjects.empty?
+        format.html { redirect_to new_subject_path }
+        format.xml  { render :xml => @subjects }
+      else
+        format.html # index.html.erb
+        format.xml  { render :xml => @subjects }
+      end
     end
   end
 

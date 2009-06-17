@@ -42,7 +42,6 @@ ActionController::Routing::Routes.draw do |map|
     subject.resources :courses
     subject.resources :exercises
   end
-  map.resources :topics
 
   map.resources :courses do |course|
     course.resources :lessons

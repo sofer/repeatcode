@@ -78,14 +78,6 @@ class Course < ActiveRecord::Base
     return self.subject.exercises.count * (DEFAULT_INTERVALS.size - 1)
   end
 
-  def xall_time_responses
-    so_far = response_count(lessons)
-    total = self.subject.exercises.count * DEFAULT_INTERVALS.size
-    return so_far if total == 0
-    percent = 100 * so_far / total
-    return "#{so_far} (#{percent}%)"
-  end
-  
   def progress_for_period(days)
     recent_lessons = lessons.recent(days)
     count = response_count(recent_lessons)
@@ -169,11 +161,16 @@ class Course < ActiveRecord::Base
   end
   
   def update_required?
-    if subject.exercises.updated_since(self.synched_at).empty?
+    if subject.exercises.updated_since(self.synched_at).empty? and subject.updated_at < self.updated_at
       return false
     else
       return true
     end
+  end
+  
+  def copy_subject_details
+    self.name = subject.name
+    self.extended_chars = subject.extended_chars
   end
   
   def update_topics
@@ -199,8 +196,8 @@ class Course < ActiveRecord::Base
     return result_string
   end
 
-  def update_questions
-    result_string = update_topics
+  def update_exercises
+    result_string = ''
     updated_count = created_count = 0
     updated_exercises = subject.exercises.updated_since(self.synched_at)
     if updated_exercises
@@ -231,6 +228,13 @@ class Course < ActiveRecord::Base
       return result_string
     end
   end
+  
+  def subject_update
+    copy_subject_details
+    result_string = update_topics
+    result_string += update_exercises
+    return result_string
+  end
     
   def next_question(exclude_question=0)
     question = questions.current.find(  
@@ -243,13 +247,6 @@ class Course < ActiveRecord::Base
       question.initial_state if question
     end
     return question
-  end
-  
-  def copy_subject_details
-    self.name = subject.name
-    self.extended_chars = subject.extended_chars
-    self.phrase_speech = subject.phrase_speech
-    self.response_speech = subject.response_speech
   end
   
   def set_intervals

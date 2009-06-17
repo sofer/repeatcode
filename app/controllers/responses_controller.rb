@@ -2,21 +2,6 @@ class ResponsesController < ApplicationController
 
   before_filter :authorize
 
-  # GET /responses
-  # GET /responses.xml
-  def index
-    @responses = Response.paginate(
-                  :per_page => 20, 
-                  :page => params[:page], 
-                  :order => "id DESC"
-                  )
-
-    respond_to do |format|
-      format.html # index.html.erb
-      format.xml  { render :xml => @responses }
-    end
-  end
-
   # POST /responses
   # POST /responses.xml
   def create

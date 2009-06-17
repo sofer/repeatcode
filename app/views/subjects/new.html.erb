@@ -1,17 +1,20 @@
 <div id="header">
 	<h1>
 		<%= link_to 'Create', subjects_path %>
-		&raquo; New
+		&raquo; New subject
 	</h1>
 </div>
-<div class="main">
-	<% form_for(@subject) do |f| %>
+
+<div id="edit-subject" class="main">
+	<div class="box">
 		<fieldset>
-			<%= render :partial => 'form', :locals => {:f => f } %>
-		  <br><br>
-			<%= f.submit "Create" %>
+			<legend>Create subject</legend>
+			<% form_for(@subject) do |f| %>
+				<%= render :partial => 'form', :locals => {:f => f } %>
+			  <%= f.submit "Create" %>
+			<% end %>
 		</fieldset>
-	<% end %>
+	</div>
 </div>
 
 <div id="footer">

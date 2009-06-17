@@ -99,19 +99,18 @@ class CoursesController < ApplicationController
     @course = Course.find(params[:id])
     
     if params[:course]
-      @course.update_attributes(params[:course])
-      flash[:notice] = 'Some sort of update happened...'
+      flash[:notice] = 'Course updated'
     else
-      flash[:notice] = @course.update_questions
+      flash[:notice] = @course.subject_update
     end
     
     respond_to do |format|
-      if @course.errors.size == 0
+      if @course.update_attributes(params[:course])
         format.html { redirect_to(:back) }
         format.xml  { head :ok }
         format.json { render :json => "Voices updated OK" }
       else
-        flash[:notice] = 'Course was NOT updated.'
+        flash[:notice] = 'Course was NOT updated'
         format.html { redirect_to(:back) }
         format.xml  { render :xml => @course.errors, :status => :unprocessable_entity }
         format.json { render :json => @course.errors }
