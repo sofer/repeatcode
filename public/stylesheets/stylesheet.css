@@ -85,6 +85,7 @@ fieldset div { height: 28px; }
 /* topics */
 .topic-exercises-table th .content { width: 30%; }
 .topic-exercises-table td { color: Grey; text-align: left; }
+.topic-exercises-table tbody tr { display: none; }
 .topic-exercises-table input[type=checkbox]	{ float: right; }
 .topics-table .name { text-align: left; width: 50%; font-weight: bold; }
 #topic-import textarea	{ width: 882px; height: 320px; padding: 4px; margin: 0; font-family: helvetica, arial, sans-serif; }
