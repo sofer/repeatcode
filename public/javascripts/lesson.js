@@ -839,8 +839,8 @@ RC.corrections = {
 
 $(document).ready(function(){
 
-	RC.question.getFirst();
 	RC.intervalTimer = setInterval(RC.timer.tick, 1000);
+	RC.question.getFirst();
 	RC.voices.outfoxInit();
 	
 	$(RC.DOMnodes.ignoreAccentsCheckbox).attr('checked', false);

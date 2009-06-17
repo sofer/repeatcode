@@ -13,20 +13,28 @@
 
 	<% form_for	@topic,
 							:html => { :method => :put } do |f| %>
-		<%= render :partial => "exercise_table", :locals => { :exercises => @topic.exercises.current, :add => Exercise.new } %>
-		
-		<div class="actions">
-			<div class="checkbox button">
-				<input type="checkbox" name="delete" />
-				Remove checked
+
+		<div id="firstly">
+			<%= render :partial => "exercise_table", :locals => { :exercises => @topic.exercises.current, :add => Exercise.new } %>
+			<div class="actions">
+				<div class="checkbox button">
+					<input type="checkbox" name="delete" />
+					Remove checked
+				</div>
+				<div id="add-exercise" class="button">
+					Add
+				</div>
 			</div>
-			<div id="add-exercise" class="button">
-				Add
+			<div class="submit">
+				<input id="continue-edit" type="submit" value="Continue"/>
 			</div>
 		</div>
-
-		<div class="submit">
-			<%= f.submit "Update" %>
+		
+		<div id="finally">
+			<%= render :partial => "form", :locals => { :f => f } %>
+			<div class="submit">
+				<%= f.submit "Update" %>
+			</div>
 		</div>
 	
 	<% end %>

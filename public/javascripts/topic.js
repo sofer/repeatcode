@@ -4,16 +4,28 @@ RC.topic = {
 	importedExercises: [],
 	addedExercises: 0,
 	warning: '',
-	rtl: true, 
+	rtl: true,
+	name: '', 
 	
 	// if a response is not a number, then it's unlikely that responses should display rtl
-	rtl_check: function(text) {
+	rtlCheck: function(text) {
 		if (text.match(/[^.\d]/)) {
 			this.rtl = false;
 		}
 	},
 	
+	replaceAwkwardCharacters: function(importedText) {
+		importedText = importedText.replace('‘', "'");
+		importedText = importedText.replace('’', "'");
+		importedText = importedText.replace('’', "'");
+		importedText = importedText.replace('“', '"');
+		importedText = importedText.replace('”', '"');
+		importedText = importedText.replace('…', "...");
+		return importedText;
+	},
+
 	parse: function(importedText) {
+		importedText = this.replaceAwkwardCharacters(importedText);
 		this.importedExercises = [];
 		var lines = importedText.split("\n");
 		for (var i = 0; i < lines.length; i += 1) {
@@ -22,17 +34,22 @@ RC.topic = {
 				var phrase = terms[0];
 				var response = terms[1];
 				var hint = terms[2];
-				if ( !phrase || !response ) {
-					i += 1;
-					this.warning = "Incomplete exercise on line " + i;
-					return false;
+				if ( phrase && !response ) {
+					if (i === 0) {
+						this.name = phrase;
+					} else {
+						i += 1;
+						this.warning = "Incomplete exercise on line " + i;
+						return false;
+					}
+				} else {
+					this.rtlCheck(response);
+					this.importedExercises.push([phrase, response, hint ? hint : '']);
 				}
-				this.rtl_check(response);
-				this.importedExercises.push([phrase, response, hint ? hint : '']);
 			}
 		}
 		if (this.importedExercises.length > 0) {
-			this.warning = "";
+			this.warning = this.importedExercises.length + " exercises imported";
 			return true;
 		} else {
 			this.warning = "Please enter some data";
@@ -69,6 +86,10 @@ RC.topic = {
 
 $(document).ready(function(){
 	
+	$("#choose-import").children("input:radio").click();
+	$("#table").hide();
+	$("#finally").hide();
+
 	$("#hint-help").click(function() {
 		alert("Nothing here yet");
 		return false;
@@ -77,10 +98,6 @@ $(document).ready(function(){
 	$("#add-exercise").click(function() {
 		RC.table.appendRow();
 	});
-
-	$("#choose-import").children("input:radio").click();
-	$("#table").hide();
-	$("#finally").hide();
 
 	$("#choose-import").click(function() {
 		$("#table").hide();
@@ -131,11 +148,22 @@ $(document).ready(function(){
 				$("#rtl").hide();
 			}
 			$("#firstly").hide();
-			$(".warning").text("Please add a topic name");
+			if (RC.topic.name !== '') {
+				$('#topic_name').val(RC.topic.name);
+				$(".warning").text("Check details");
+			} else {
+				$(".warning").text("Please add a topic name");
+			}
 			$("#finally").show();
 		} else {
 			$(".warning").text("Please add some exercises");
 		}
+		return false;
+	});
+	
+	$("#continue-edit").click(function(){
+		$("#firstly").hide();
+		$("#finally").show();
 		return false;
 	});
 	
