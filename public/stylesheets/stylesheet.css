@@ -95,7 +95,7 @@ fieldset div { height: 28px; }
 .col3 h3	{ margin-top: 9px; }
 .courses-table .name { width: 40%; font-weight: bold; text-align: left; }
 .course-topics-table .name { width: 60%; font-weight: bold; text-align: left; }
-.questions-table .response { width: 40%; text-align: left; }
+.questions-table .response { text-align: left; }
 .new-course	{ text-align: center; }
 .new-course input[type=submit]	{ width: 240px; height: 22px; margin: 2px; }
 

@@ -573,6 +573,7 @@ RC.question = {
 			$(RC.DOMnodes.progressAlert).text(message);
 		} else if (this.data.correct === parseInt($(RC.DOMnodes.target).text())) {
 			$(RC.DOMnodes.progressAlert).text("CONGRATULATIONS! Today's target reached");
+			$(RC.DOMnodes.notice).text("CONGRATULATIONS! Today's target reached");
 		} else if (this.data.correct % 10 == 0 && this.data.correct > 0) {
 			$(RC.DOMnodes.progressAlert).text(this.data.correct + ' correct answers');
 		} else {
