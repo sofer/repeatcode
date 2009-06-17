@@ -191,9 +191,7 @@ RC.voices = {
 		this.phraseVoice = $(RC.DOMnodes.phraseVoice).val();
 		this.responseVoice = $(RC.DOMnodes.responseVoice).val();
 
-		$(RC.DOMnodes.voices).hide();
-		$(RC.DOMnodes.responseField).focus();
-		this.timedOut = false;
+		this.cancelVoicesForm();
 		
 		// update course
 		var postUrl = '/courses/' + RC.question.data.question.course_id + '.json';
@@ -210,6 +208,12 @@ RC.voices = {
 				$(RC.DOMnodes.notice).text('Course voices updated.');
 			}
 	  });
+	},
+	
+	cancelVoicesForm: function() {
+		$(RC.DOMnodes.voices).hide();
+		$(RC.DOMnodes.submitButton).focus();
+		RC.timer.timedOut = false;
 	}
 	
 }
@@ -769,6 +773,7 @@ RC.question = {
 RC.corrections = {
 	
 	showAmendForm: function() {
+		RC.timer.timedOut = true;
 		$("#amend-phrase", RC.DOMnodes.amend).val(RC.question.data.question.phrase);
 		$("#amend-response", RC.DOMnodes.amend).val(RC.question.data.question.response);
 		$("#hint-response", RC.DOMnodes.amend).val(RC.question.data.question.hint);
@@ -776,6 +781,7 @@ RC.corrections = {
 	},
 	
 	showIgnoreForm: function() {
+		RC.timer.timedOut = true;
 		$(".phrase", RC.DOMnodes.ignore).text(RC.question.data.question.phrase);
 		$(".response", RC.DOMnodes.ignore).text(RC.question.data.question.response);
 		$(RC.DOMnodes.ignore).show();
@@ -828,11 +834,13 @@ RC.corrections = {
 	cancelAmendForm: function() {
 		$(RC.DOMnodes.amend).hide();
 		$(RC.DOMnodes.submitButton).focus();
+		RC.timer.timedOut = false;
 	},
 	
 	cancelIgnoreForm: function() {
 		$(RC.DOMnodes.ignore).hide();
 		$(RC.DOMnodes.submitButton).focus();
+		RC.timer.timedOut = false;
 	}
 
 };
@@ -881,7 +889,7 @@ $(document).ready(function(){
 	});
 
 	$(":submit[value='Cancel']", RC.DOMnodes.voices).click(function() {
-		$(RC.DOMnodes.voices).hide();
+		RC.voices.cancelVoicesForm();
 		return false;
 	});
 
