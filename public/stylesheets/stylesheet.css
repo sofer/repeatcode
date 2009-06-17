@@ -108,6 +108,7 @@ fieldset div { height: 28px; }
 
 /* lessons */
 #details, #voices-link, #completed, #graph, #code-block, #answer, #response, #amend, #ignore, #voices, #timeout	{ display: none; }
+#details	{ position: absolute; left: 0;}
 #loading	{ position: absolute; right: 0; }
 .overlay	{ position: absolute; left: 0; right: 0; top: 0; bottom: 4px; background-color: white; opacity: 0.8; filter:alpha(opacity=80); xdisplay: none; }
 #amend fieldset * { margin-top: 10px; }
