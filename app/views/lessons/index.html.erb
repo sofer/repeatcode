@@ -20,22 +20,7 @@
 			</tr>
 		</thead>
 		<tbody id="lessons">
-			<% for lesson in @lessons %>
-				<tr>
-					<td>
-						<%= formatted_date lesson.created_at %>
-					</td>
-					<td>
-						<%= elapsed_time lesson.created_at, lesson.updated_at %>
-					</td>
-					<td>
-						<%= lesson.correct_responses %>
-					</td>
-					<td>
-						<%= lesson.total_questions_started %>
-					</td>
-				</tr>
-			<% end %>
+			<%= render :partial => 'lesson', :collection => @lessons %>
 		</tbody>
 	</table>
 
