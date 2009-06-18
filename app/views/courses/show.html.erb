@@ -33,7 +33,7 @@
 					Number of exercises begun:
 				</td>
 				<td>
-					<%= @course.questions_started %>
+					<%= number_with_delimiter @course.questions_started %>
 				</td>
 			</tr>
 			<tr>
@@ -41,7 +41,7 @@
 					Number of responses given:
 				</td>
 				<td>
-					<%= @course.responses_completed %>
+					<%= number_with_delimiter @course.responses_completed %>
 				</td>
 			</tr>
 			<tr>
