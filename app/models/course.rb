@@ -20,7 +20,7 @@ class Course < ActiveRecord::Base
   validates_numericality_of :accuracy_target
   validates_numericality_of :lesson_target
   validates_numericality_of :weekly_target
-  validates_inclusion_of :accuracy_target, :in => 0..100, :message => "must between 0 and 100"
+  validates_inclusion_of :accuracy_target, :in => 80..100, :message => "must between 80 and 100"
 
   DEFAULT_TARGETS = { 
     'ACCURACY'  => 90, # accuracy rate of responses
@@ -31,6 +31,7 @@ class Course < ActiveRecord::Base
   MAX_INDEX = 9
 
   DAY = 60 * 24
+  DAY_IN_SECS = DAY * 60
   
   DEFAULT_INTERVALS = {
     0 => 0,
@@ -89,7 +90,12 @@ class Course < ActiveRecord::Base
     set_responses_estimate
 		return "#{responses.count} out of an estimated #{@total_responses} (#{100*responses.count/@total_responses}%)"
 	end
+	
+  def weekly_response_count
+    (7 * DAY_IN_SECS * responses.count / (Time.now - self.created_at)).to_i
+  end
 
+  # RE-DO
   def progress_for_period(days)
     recent_lessons = lessons.recent(days)
     count = response_count(recent_lessons)
@@ -109,6 +115,7 @@ class Course < ActiveRecord::Base
     return result
   end
 
+  # RE-DO
   def response_count(recent_lessons)
     count = 0
     for lesson in recent_lessons

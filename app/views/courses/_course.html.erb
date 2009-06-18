@@ -13,7 +13,7 @@
 			<%= 'On target' if course.on_target? %>
 		</td>
 		<td>
-			<%= course.backlog_count %>
+			<%= course.questions.due.count %>
 		</td>
 		<td>
 			<%= relative_date course.lessons.last.updated_at if course.lessons.last %>

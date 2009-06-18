@@ -11,22 +11,22 @@
 <div class="main">
 
 	<table class="intervals-table">
-		<thead>
-		<tr>
-			<th>Revision</th>
-			<th>Interval</th>
-			<th>Accuracy *</th>
-			<th>Last reset</th>
-			<th>
-				<% form_for @course do |f| %>
-				Target: 
-				<%= f.text_field :accuracy_target, :autocomplete => "off"  %>
-				%
-				<%= f.submit "Change" %>
-				<% end %>
-			</th>
-		</tr>
-		</thead>
+		<% form_for @course do |f| %>
+			<thead>
+				<tr>
+					<th>Revision</th>
+					<th>Interval</th>
+					<th>Accuracy *</th>
+					<th>Last reset</th>
+					<th>
+						Target: 
+						<%= f.text_field :accuracy_target, :autocomplete => "off"  %>
+						%
+						<%= f.submit "Change" %>
+					</th>
+				</tr>
+			</thead>
+		<% end %>
 		<tbody>
 			<% for interval in @course.intervals %>
 				<% correct = @course.responses.correct.interval(interval.index_no).since(interval.updated_at).count %>

@@ -8,7 +8,7 @@
 	</h2>
 </div>
 
-<div id="targets" class="main">
+<div id="progress-report" class="main">
 	
 	<table>
 		<tbody>
@@ -22,23 +22,15 @@
 			</tr>
 			<tr>
 				<td class="left">
-					Estimated end date: 
+					Estimated end date based on current targets: 
 				</td>
 				<td>
 					<%= formatted_date @course.estimated_end_date %>
 				</td>
 			</tr>
 			<tr>
- 				<td class="left">
-					Number of questions awaiting a response
-				</td>
-				<td>
-					<%= @course.questions.due.count %>
-				</td>
-			</tr>
-			<tr>
 				<td class="left">
-					Number of exercises begun
+					Number of exercises begun:
 				</td>
 				<td>
 					<%= @course.questions_started %>
@@ -46,7 +38,7 @@
 			</tr>
 			<tr>
 				<td class="left">
-					Number of responses given
+					Number of responses given:
 				</td>
 				<td>
 					<%= @course.responses_completed %>
@@ -54,21 +46,40 @@
 			</tr>
 			<tr>
 				<td class="left">
-					Success rate
+					Accuracy of responses:
 				</td>
 				<td>
-					<%= 100 * @course.responses.correct.count / @course.responses.count %>%
+					<% accuracy_rate = 100 * @course.responses.correct.count / @course.responses.count %>
+					<%= accuracy_rate %>%
+				</td>
+			</tr>
+			<tr>
+				<td class="left">
+					Average weekly work rate:
+				</td>
+				<td>
+					<% time_per_response = @course.responses.average('seconds_taken').to_i %>
+					<% weekly_response_count =  @course.weekly_response_count %>
+					<%= weekly_response_count %> responses in 
+					<%= weekly_response_count * time_per_response / 60 %> minutes
+				</td>
+			</tr>
+			<tr>
+				<td class="left">
+					Average time taken for each response:
+				</td>
+				<td>
+					<%= time_per_response %> seconds
 				</td>
 			</tr>
 		</tbody>
 	</table>
 
-
 	<table>
 		<thead>
 			<tr>
-				<td>
-
+				<td class="heading">
+					Recent progress
 				</td>
 				<td>
 					24 hours
@@ -86,7 +97,7 @@
 		</thead>
 		<tbody>
 			<tr>
-				<td>
+				<td class="left">
 					Correct responses (% of target)
 				</td>
 				<% [1,7,28, 126].each do |days| %>
@@ -107,7 +118,7 @@
 		<tbody>
 			<tr>
 				<td class="heading">
-					Targets 
+					Weekly targets 
 				</td>
 				<td>
 					Correct responses each lesson:  
@@ -119,6 +130,13 @@
 				</td>
 				<td>
 					<%= f.submit "Update targets" %>
+				</td>
+			</tr>
+			<tr>
+				<td class="left" colspan="3">Estimated weekly time commitment</td>
+				<td> 
+					<%= 100 / 60 * time_per_response * @course.lesson_target * @course.weekly_target / accuracy_rate %> minutes
+					
 				</td>
 			</tr>
 		</tbody>

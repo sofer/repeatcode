@@ -1,5 +1,5 @@
-<%= link_to_unless_current 'Topics', edit_course_path(@course) %>
-| <%= link_to_unless_current 'Targets', @course %>
+<%= link_to_unless_current 'Progress', @course %>
 | <%= link_to_unless_current 'Intervals', course_intervals_path(@course) %>
-| <%= link_to_unless_current 'Lessons', course_lessons_path(@course) %>
+| <%= link_to_unless_current 'Topics', edit_course_path(@course) %>
 | <%= link_to_unless_current 'Questions', course_questions_path(@course) %>
+| <%= link_to_unless_current 'Lessons', course_lessons_path(@course) %>

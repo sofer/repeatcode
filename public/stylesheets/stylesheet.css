@@ -36,7 +36,6 @@ input[type=checkbox], xinput[type=radio]	{ margin-top: 1px;}
 fieldset div { height: 28px; }
 
 #header input[type=text]	{ margin: -2px 0 0 0; }
-.targets input[type=text] { width: 20px; height: 11px; margin: -2px 0; text-align: right; }
 .submit { position: absolute; right:400px; bottom: 6px; left: 400px; text-align: center;}
 
 
@@ -57,9 +56,9 @@ fieldset div { height: 28px; }
 #navigation	{ position: absolute; bottom: 0; right: 0; }
 
 /* Targets */
-#targets input[type=text]	{ width: 20px; }
-#targets table	{ margin-bottom: 40px; }
-#targets tr	{ height: 26px; }
+#progress-report input[type=text]	{ width: 20px; }
+#progress-report table	{ margin-bottom: 40px; }
+#progress-report tr	{ height: 26px; }
 
 /* intervals */
 .intervals-table input[type=text]	{ width: 20px; }
