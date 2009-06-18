@@ -59,13 +59,15 @@ class Course < ActiveRecord::Base
   
   # based on a bit of induction this is the formula I am using for the aproximate
   # number of responses required to finish a course:
-  # RESPONSES = QUESTIONS * REPETITIONS * (100 * SQUARE(FAIL-RATE) + 1)
-  # note use of @instance variable
+  # RESPONSES = QUESTIONS * REPETITIONS * k
+  # where k = 100 * SQUARE(FAIL-RATE) + 1
+  # note use of instance variable @total_responses
   def set_responses_estimate
     unless @total_responses
       repetitions = DEFAULT_INTERVALS.size
       failure_rate = 1.0 * responses.incorrect.count/responses.count
-      @total_responses = (questions.current.count * repetitions * (100 * failure_rate * failure_rate - 1)).to_i
+      k = 100 * failure_rate * failure_rate + 1
+      @total_responses = (questions.current.count * repetitions * k).to_i
     end
   end
   

@@ -46,10 +46,18 @@
 			</tr>
 			<tr>
 				<td class="left">
-					Number of correct responses
+					Number of responses given
 				</td>
 				<td>
 					<%= @course.responses_completed %>
+				</td>
+			</tr>
+			<tr>
+				<td class="left">
+					Success rate
+				</td>
+				<td>
+					<%= 100 * @course.responses.correct.count / @course.responses.count %>%
 				</td>
 			</tr>
 		</tbody>
