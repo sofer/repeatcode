@@ -46,16 +46,26 @@ class Course < ActiveRecord::Base
     9 => DAY * 224
   }
   
+  def response_target(days)
+    response_count = responses.correct.since(Time.now - days * DAY_IN_SECS).count
+    target = days * self.lesson_target * self.weekly_target / 7
+    return response_count, target
+  end
+  
   def on_target?(days=1)
-    if self.lesson_target and self.weekly_target
-      recent_lessons = lessons.recent(days)
-      recent_responses = response_count(recent_lessons)
-      target = days * self.lesson_target * self.weekly_target / 7
-      if recent_responses > target
-        return true
-      end
+    response_count, target = response_target(days)
+    return true if response_count > target
+  end
+  
+  def progress_for_period(days)
+    response_count, target = response_target(days)
+    percent = 100 * response_count / daily_target
+    if count == 0
+      return [0,''] 
+    else
+      on_target = percent >= 100 ? 'ON TARGET' : ''
+      return [ "#{response_count} (#{percent}%)",  on_target ]
     end
-    return false
   end
   
   # based on a bit of induction this is the formula I am using for the aproximate
@@ -93,23 +103,6 @@ class Course < ActiveRecord::Base
 	
   def weekly_response_count
     (7 * DAY_IN_SECS * responses.count / (Time.now - self.created_at)).to_i
-  end
-
-  def progress_for_period(days)
-    if days == 1
-      count = responses.correct.since(Time.now - 23 * 60 * 60).count # 23 hours ago
-      percent = 100 * count / self.lesson_target
-    else
-      count = responses.correct.since(Time.now - days * DAY_IN_SECS).count
-      daily_target = self.lesson_target * self.weekly_target / 7
-      percent = 100 * count / (daily_target * days)
-    end
-    if count == 0
-      return [0,''] 
-    else
-      on_target = percent >= 100 ? 'ON TARGET' : ''
-      return [ "#{count} (#{percent}%)",  on_target ]
-    end
   end
 
   def last_question

@@ -103,7 +103,7 @@
 				<% [1,7,28, 126].each do |days| %>
 					<% progress = @course.progress_for_period(days) %>
 					<td>
-						<%= progress[0] %>
+						<%= number_with_delimiter progress[0] %>
 						<div class="correct">
 							<%= progress[1] %>
 						</div>
