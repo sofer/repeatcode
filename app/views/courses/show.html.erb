@@ -25,7 +25,7 @@
 					Estimated end date: 
 				</td>
 				<td>
-					<%= formatted_date @course.end_date %>
+					<%= formatted_date @course.estimated_end_date %>
 				</td>
 			</tr>
 			<tr>
@@ -33,7 +33,7 @@
 					Number of questions awaiting a response
 				</td>
 				<td>
-					<%= @course.backlog_count %>
+					<%= @course.questions.due.count %>
 				</td>
 			</tr>
 			<tr>
@@ -41,25 +41,20 @@
 					Number of exercises begun
 				</td>
 				<td>
-					<% questions = @course.questions.started.count; exercises = @course.subject.exercises.count %>
-					<%=  questions %> out of 
-					<%=  exercises %>
-					(<%=  100 * questions / exercises %>%)
+					<%= @course.questions_started %>
 				</td>
 			</tr>
 			<tr>
 				<td class="left">
-					Number of correct responses [inaccurate]
+					Number of correct responses
 				</td>
 				<td>
-					<% responses = @course.response_count(@course.lessons); all_time = @course.responses_on_completion %>
-					<%= responses %> out of 
-					<%= all_time %>
-					(<%=  100 * responses / all_time %>%)
+					<%= @course.responses_completed %>
 				</td>
 			</tr>
 		</tbody>
-	</table>	
+	</table>
+
 
 	<table>
 		<thead>

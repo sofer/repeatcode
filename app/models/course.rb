@@ -45,10 +45,6 @@ class Course < ActiveRecord::Base
     9 => DAY * 224
   }
   
-  def backlog_count
-    questions.count(:conditions => ['next_datetime < ? AND current_interval > 0', Time.now])
-  end
-  
   def on_target?(days=1)
     if self.lesson_target and self.weekly_target
       recent_lessons = lessons.recent(days)
@@ -61,22 +57,36 @@ class Course < ActiveRecord::Base
     return false
   end
   
-  def end_date
-    if self.lesson_target and self.weekly_target
-      correct_so_far = 0
-      self.questions.each { |q| correct_so_far += q.responses.correct.count }
-      total_needed = self.subject.exercises.count * (DEFAULT_INTERVALS.size - 1)
-      total_to_go = total_needed - correct_so_far
-      target_daily_rate = self.lesson_target * self.weekly_target / 7
-      target_daily_rate = 1 if target_daily_rate == 0
-      days_to_go = total_to_go / target_daily_rate
-      return Time.now + days_to_go * 24 * 60 * 60 
+  # based on a bit of induction this is the formula I am using for the aproximate
+  # number of responses required to finish a course:
+  # RESPONSES = QUESTIONS * REPETITIONS * (100 * SQUARE(FAIL-RATE) + 1)
+  # note use of @instance variable
+  def set_responses_estimate
+    unless @total_responses
+      repetitions = DEFAULT_INTERVALS.size
+      failure_rate = 1.0 * responses.incorrect.count/responses.count
+      @total_responses = (questions.current.count * repetitions * (100 * failure_rate * failure_rate - 1)).to_i
     end
   end
   
-  def responses_on_completion
-    return self.subject.exercises.count * (DEFAULT_INTERVALS.size - 1)
+  def estimated_end_date
+    set_responses_estimate
+    total_responses_remaining = @total_responses - responses.count
+    target_daily_rate = self.lesson_target * self.weekly_target / 7
+    days_to_go = @total_responses / target_daily_rate
+    return Time.now + days_to_go * 24 * 60 * 60 
   end
+  
+  def questions_started
+  	started = questions.started.count 
+  	total = questions.count
+		return "#{started} out of #{total} (#{100*started/total}%)"
+	end
+	
+	def responses_completed
+    set_responses_estimate
+		return "#{responses.count} out of an estimated #{@total_responses} (#{100*responses.count/@total_responses}%)"
+	end
 
   def progress_for_period(days)
     recent_lessons = lessons.recent(days)
@@ -97,35 +107,6 @@ class Course < ActiveRecord::Base
     return result
   end
 
-  def responses_in_last_days(days)
-    recent_lessons = lessons.recent(days)
-    return response_count(recent_lessons)
-  end
-
-  def target_for_last_days(days)
-    if self.lesson_target and self.weekly_target
-      daily_target = self.lesson_target * self.weekly_target / 7
-      return daily_target * days
-    end
-  end
-  
-  def response_report(days_arr)
-    results = []
-    days_arr.each do |days|
-      target = percent = status = ''
-      recent_lessons = lessons.recent(days)
-      responses = response_count(recent_lessons)
-      if self.lesson_target and self.weekly_target
-        daily_target = self.lesson_target * self.weekly_target / 7
-        target = daily_target * days
-        percent = 100 * responses / target
-        status = 'ON TARGET' if percent >= 100
-      end
-      results << { 'days' => days, 'responses' => responses, 'target' => target, 'percent' => percent, 'status' => status }
-    end
-    return results
-  end
-  
   def response_count(recent_lessons)
     count = 0
     for lesson in recent_lessons
@@ -134,14 +115,6 @@ class Course < ActiveRecord::Base
     return count
   end
 
-  def response_count_check
-    count = 0
-    for question in questions
-      count += question.responses.correct.count 
-    end
-    return count
-  end
-  
   def last_question
     @last_question ||= self[:last_question] ? Question.find(self[:last_question]) : false
   end

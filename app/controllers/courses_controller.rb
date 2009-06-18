@@ -36,12 +36,6 @@ class CoursesController < ApplicationController
   # GET /courses/1.xml
   def show
     @course = Course.find(params[:id])
-    @lessons =  @course.lessons.paginate(
-                  :per_page => 15, 
-                  :page => params[:page], 
-                  :order => "id DESC",
-                  :conditions => "updated_at > created_at"
-                )
 
     respond_to do |format|
       format.html # show.html.erb
