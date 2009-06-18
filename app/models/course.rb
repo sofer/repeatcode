@@ -95,33 +95,21 @@ class Course < ActiveRecord::Base
     (7 * DAY_IN_SECS * responses.count / (Time.now - self.created_at)).to_i
   end
 
-  # RE-DO
   def progress_for_period(days)
-    recent_lessons = lessons.recent(days)
-    count = response_count(recent_lessons)
-    result = ['0','']
-    return result if count == 0
-    result[0] = "#{count}"
-    if self.lesson_target and self.weekly_target
-      if days == 1
-        percent = 100 * count / self.lesson_target
-      else
-        daily_target = self.lesson_target * self.weekly_target / 7
-        percent = 100 * count / (daily_target * days)
-      end
-      result[0] += " (#{percent}%)"      
-      result[1] = 'ON TARGET' if percent >= 100
+    if days == 1
+      count = responses.correct.since(Time.now - 23 * 60 * 60).count # 23 hours ago
+      percent = 100 * count / self.lesson_target
+    else
+      count = responses.correct.since(Time.now - days * DAY_IN_SECS).count
+      daily_target = self.lesson_target * self.weekly_target / 7
+      percent = 100 * count / (daily_target * days)
     end
-    return result
-  end
-
-  # RE-DO
-  def response_count(recent_lessons)
-    count = 0
-    for lesson in recent_lessons
-      count += lesson.correct_responses
+    if count == 0
+      return [0,''] 
+    else
+      on_target = percent >= 100 ? 'ON TARGET' : ''
+      return [ "#{count} (#{percent}%)",  on_target ]
     end
-    return count
   end
 
   def last_question
