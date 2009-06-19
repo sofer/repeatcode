@@ -1,0 +1,3 @@
+<%= link_to_unless_current 'View topics', @subject %>
+| <%= link_to_unless_current 'View user edits', subject_exercises_path(@subject) %>
+| <%= link_to_unless_current 'Edit subject', edit_subject_path(@subject) %>
