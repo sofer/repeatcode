@@ -16,6 +16,7 @@ h3 { text-align: center; }
 
 /* tables - NOTE: don't use percentage on table width because of IE6 bug */
 table	{ border-collapse: collapse; clear: both; width: 892px; }
+tr	{ }
 th { padding: 2px; border-bottom: 1px solid DodgerBlue; }
 td	{ padding: 2px; margin: 0; border-bottom: 1px solid DodgerBlue; text-align: right; }
 table input[type=text]	{ height: 14px; width: 98%; margin: 0; padding: 1px; }
@@ -65,6 +66,10 @@ fieldset div { height: 28px; }
 
 /* account */
 #account .box	{ margin-top: 24px; }
+
+/* user edits */
+#user-edits tr	{ height: 44px; }
+#user-edits td	{ text-align: left; }
 
 /* error id's THESE NEED WORK */
 .fieldWithErrors	{ background-color: red; display: table; }

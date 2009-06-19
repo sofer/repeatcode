@@ -74,15 +74,23 @@ class TopicsController < ApplicationController
   def update
     @topic = Topic.find(params[:id])
 
-    respond_to do |format|
-      if @topic.update_attributes(params[:topic])
-        flash[:notice] = 'Topic was successfully updated.'
-        format.html { redirect_to(subject_path(@topic.subject)) }
-        format.xml  { head :ok }
-      else
-        format.html { render :action => "edit" }
-        format.xml  { render :xml => @topic.errors, :status => :unprocessable_entity }
+    if params[:topic][:removed]
+      @topic.toggle!(:removed)
+      flash[:notice] = "'#{@topic.name}' was successfully removed."
+      redirect_to(:back)
+    else
+
+      respond_to do |format|
+        if @topic.update_attributes(params[:topic])
+          flash[:notice] = 'Topic was successfully updated.'
+          format.html { redirect_to(subject_path(@topic.subject)) }
+          format.xml  { head :ok }
+        else
+          format.html { render :action => "edit" }
+          format.xml  { render :xml => @topic.errors, :status => :unprocessable_entity }
+        end
       end
+
     end
   end
 

@@ -75,9 +75,9 @@ RC.table = {
 $(document).ready(function(){
 	
 	if ($('#topics').length) {
-		RC.table.init('#topics', 15);
+		RC.table.init('#topics', 14);
 	} else if ($('#subjects').length) {
-		RC.table.init('#subjects', 15);
+		RC.table.init('#subjects', 14);
 	} else if ($('#courses').length) {
 		RC.table.init('#courses', 12);
 	} else if ($('#exercises').length) {
@@ -98,8 +98,9 @@ $(document).ready(function(){
 		RC.table.init('#students', 8);
 	} else if ($('#add-students').length) {
 		RC.table.init('#add-students', 16);
+	} else if ($('#user-edits').length) {
+		RC.table.init('#user-edits', 8);
 	}
-	
 	
 	$("#down").click(function() {
 		if (!$(this).hasClass("disabled")) {
@@ -150,5 +151,10 @@ $(document).ready(function(){
 		}
 	});
 	
+	$('.archive-alert').click(function(){
+		if (!confirm('Remove permanently?')) {
+			return false;
+		}
+	})
 	
 });

@@ -3,6 +3,7 @@ class Question < ActiveRecord::Base
   belongs_to :course
   belongs_to :exercise
   belongs_to :course_topic
+  
   has_many :responses, :dependent => :destroy
 
   named_scope :queued, :conditions => "current_interval IS NOT NULL"
@@ -10,6 +11,7 @@ class Question < ActiveRecord::Base
   named_scope :not_yet_queued, :conditions => "current_interval IS NULL"
   named_scope :current, :conditions => { :ignore => false }
   named_scope :ignored, :conditions => { :ignore => true }
+  named_scope :amended, :conditions => { :amended => true }
   named_scope :due, :conditions => [ 'next_datetime < ?', Time.now ]
   named_scope :pending, :conditions => [ 'next_datetime > ?', Time.now ]
 

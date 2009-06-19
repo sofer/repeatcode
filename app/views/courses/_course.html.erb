@@ -21,6 +21,7 @@
 		<td>
 			<% if course.update_required? %>
 				<% form_for course do |f| %>
+					<%= f.hidden_field :update_required, :value => true  %>
 					<%= f.submit 'Update' %>
 				<% end %>
 			<% end %>
@@ -31,7 +32,7 @@
 		<td>
 			<% form_for course do |f| %>
 				<%= f.hidden_field :archived, :value => true  %>
-				<%= f.submit 'Archive' %>
+				<%= f.submit 'Archive', :class => 'archive-alert' %>
 			<% end %>
 		</td>
 	<% end %>

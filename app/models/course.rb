@@ -46,6 +46,20 @@ class Course < ActiveRecord::Base
     9 => DAY * 224
   }
   
+  def update_required?
+    if subject.exercises.updated_since(self.synched_at).empty? and subject.updated_at < self.updated_at
+      return false
+    else
+      return true
+    end
+  end
+  
+  # this will over-ride any attempt to save the "update_required" attribute
+  def update_required=(update_required)
+    notice = subject_update
+    
+  end
+  
   def response_target(days)
     response_count = responses.correct.since(Time.now - days * DAY_IN_SECS).count
     target = days * self.lesson_target * self.weekly_target / 7
@@ -123,14 +137,6 @@ class Course < ActiveRecord::Base
     self.lessons.last
   end
   
-  def update_required?
-    if subject.exercises.updated_since(self.synched_at).empty? and subject.updated_at < self.updated_at
-      return false
-    else
-      return true
-    end
-  end
-  
   def copy_subject_details
     self.name = subject.name
     self.extended_chars = subject.extended_chars
@@ -192,13 +198,6 @@ class Course < ActiveRecord::Base
     end
   end
   
-  def subject_update
-    copy_subject_details
-    result_string = update_topics
-    result_string += update_exercises
-    return result_string
-  end
-    
   def next_question(exclude_question=0)
     question = questions.current.find(  
                 :first,
@@ -221,6 +220,13 @@ class Course < ActiveRecord::Base
   
 private
 
+  def subject_update
+    copy_subject_details
+    result_string = update_topics
+    result_string += update_exercises
+    return result_string
+  end
+  
   def copy_course_material
     subject.topics.current.each do |topic|
       course_topic = CourseTopic.new({ :course_id => self.id })

@@ -88,26 +88,32 @@ class CoursesController < ApplicationController
 
   # PUT /courses/1
   # PUT /courses/1.xml
-  # Used for archiving and for updating questions
+  # Used for archiving and updating defaults and for updating questions
   def update
     @course = Course.find(params[:id])
-    
-    unless params[:course]
+
+    if params[:course][:update_required]
       flash[:notice] = @course.subject_update
-    end
+      redirect_to(courses_path)
+    elsif params[:course][:archived]
+      @course.toggle!(:archived)
+      flash[:notice] = "''#{@course.name}' was successfully archived."
+      redirect_to(courses_path)
+    else
     
-    respond_to do |format|
-      if @course.update_attributes(params[:course])
-        flash[:notice] = 'Course was updated.' unless flash[:notice]
-        format.html { redirect_to(:back) }
-        format.xml  { head :ok }
-        format.json { render :json => "Voices updated OK" }
-      else
-        flash[:error] = 'Course was NOT updated. '
-        @course.errors.each_full { |message| flash[:error] += "#{message}. " }
-        format.html { redirect_to(:back) }
-        format.xml  { render :xml => @course.errors, :status => :unprocessable_entity }
-        format.json { render :json => @course.errors }
+      respond_to do |format|
+        if @course.update_attributes(params[:course])
+          flash[:notice] = 'Course was updated.' unless flash[:notice]
+          format.html { redirect_to(:back) }
+          format.xml  { head :ok }
+          format.json { render :json => "Voices updated OK" }
+        else
+          flash[:error] = 'Course was NOT updated. '
+          @course.errors.each_full { |message| flash[:error] += "#{message}. " }
+          format.html { redirect_to(:back) }
+          format.xml  { render :xml => @course.errors, :status => :unprocessable_entity }
+          format.json { render :json => @course.errors }
+        end
       end
       
     end

@@ -2,10 +2,9 @@
 	<h1>
 		<%= link_to 'Create', subjects_path %>
 	  &raquo; <%=h @subject.name %>
-		&raquo; <%= link_to 'Edit', edit_subject_path(@subject) %>
 	</h1>
 	<h2>
-		Last updated: <%= @subject.days_since_last_update %> days ago
+		<%= render :partial => 'global/subject_links' %>
 	</h2>
 </div>
 
@@ -37,7 +36,5 @@
 </div>
 
 <div id="footer">
-	<div class="left">
-	</div> 
 	<%= render :partial => 'global/toplevel_links' %>
 </div>

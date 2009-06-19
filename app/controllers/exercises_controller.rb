@@ -6,55 +6,29 @@ class ExercisesController < ApplicationController
   # GET /exercises.xml
   def index
     @subject = Subject.find(params[:subject_id])
-    @exercises = @subject.exercises
+    @courses = @subject.courses
+    @amends = Question.amended.find(  :all, 
+                                      :order => :exercise_id,
+                                      :conditions => { :course_id => @courses })
+    @ignored = Question.ignored.find( :all, 
+                                      :order => :exercise_id,
+                                      :conditions => { :course_id => @courses } )
+    @user_edits = @ignored + @amends
+    
+    
+        #+ Question.amended
+    
+    
+    #@amends = Question.amended(:conditions => { :course_id => @courses })
+    
+    #+ Question.ignored
+    
+    
+    #.questions.amended + @subject.courses.questions.removed
 
     respond_to do |format|
       format.html # index.html.erb
       format.xml  { render :xml => @exercises }
-    end
-  end
-
-  # GET /exercises/1
-  # GET /exercises/1.xml
-  def show
-    @exercise = Exercise.find(params[:id])
-
-    respond_to do |format|
-      format.html # show.html.erb
-      format.xml  { render :xml => @exercise }
-    end
-  end
-
-  # GET /exercises/new
-  # GET /exercises/new.xml
-  def new
-    @exercise = Exercise.new
-
-    respond_to do |format|
-      format.html # new.html.erb
-      format.xml  { render :xml => @exercise }
-    end
-  end
-
-  # GET /exercises/1/edit
-  def edit
-    @exercise = Exercise.find(params[:id])
-  end
-
-  # POST /exercises
-  # POST /exercises.xml
-  def create
-    @exercise = Exercise.new(params[:exercise])
-
-    respond_to do |format|
-      if @exercise.save
-        flash[:notice] = 'Exercise was successfully created.'
-        format.html { redirect_to(@exercise) }
-        format.xml  { render :xml => @exercise, :status => :created, :location => @exercise }
-      else
-        format.html { render :action => "new" }
-        format.xml  { render :xml => @exercise.errors, :status => :unprocessable_entity }
-      end
     end
   end
 
@@ -66,7 +40,7 @@ class ExercisesController < ApplicationController
     respond_to do |format|
       if @exercise.update_attributes(params[:exercise])
         flash[:notice] = 'Exercise was successfully updated.'
-        format.html { redirect_to(@exercise) }
+        format.html { redirect_to(:back) }
         format.xml  { head :ok }
       else
         format.html { render :action => "edit" }
@@ -75,15 +49,4 @@ class ExercisesController < ApplicationController
     end
   end
 
-  # DELETE /exercises/1
-  # DELETE /exercises/1.xml
-  def destroy
-    @exercise = Exercise.find(params[:id])
-    @exercise.destroy
-
-    respond_to do |format|
-      format.html { redirect_to(:back) }
-      format.xml  { head :ok }
-    end
-  end
 end

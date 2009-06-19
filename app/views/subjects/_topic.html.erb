@@ -11,7 +11,10 @@
 			<%= topic.exercises.current.count %>
 		</td>
 		<td class="last">
-			[Remove]
+			<% form_for topic do |f| %>
+				<%= f.hidden_field :removed, :value => true  %>
+				<%= f.submit 'Remove', :class => 'archive-alert' %>
+			<% end %>
 		</td>
 	<% end %>
 </td>

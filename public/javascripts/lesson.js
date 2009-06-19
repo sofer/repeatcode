@@ -799,6 +799,7 @@ RC.corrections = {
 		RC.question.showNext();
 		var postUrl = '/questions/' + RC.question.data.question.id + '.json';
 		var postData = {
+			'question[amended]': true,
 			'question[phrase]': phrase,
 			'question[response]': response,
 			'question[hint]': hint,

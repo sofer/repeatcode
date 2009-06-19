@@ -3,6 +3,7 @@ class Exercise < ActiveRecord::Base
   belongs_to :topic
   has_many :questions, :dependent => :destroy
   has_one :subject, :through => :topic
+  
   acts_as_list :scope => :topic
   
   named_scope :current, :conditions => { :removed => false }

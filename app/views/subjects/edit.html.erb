@@ -1,11 +1,10 @@
 <div id="header">
 	<h1>
 		<%= link_to 'Create', subjects_path %>
-		&raquo; <%= link_to @subject.name, @subject %>
-		&raquo; Edit
+	  &raquo; <%= @subject.name %>
 	</h1>
 	<h2>
-		<%= link_to 'Edit subject', edit_subject_path(@subject) %>
+		<%= render :partial => 'global/subject_links' %>
 	</h2>
 </div>
 <div id="edit-subject" class="main">

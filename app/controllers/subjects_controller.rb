@@ -76,15 +76,23 @@ class SubjectsController < ApplicationController
   def update
     @subject = Subject.find(params[:id])
 
-    respond_to do |format|
-      if @subject.update_attributes(params[:subject])
-        flash[:notice] = 'Subject was successfully updated.'
-        format.html { redirect_to(@subject) }
-        format.xml  { head :ok }
-      else
-        format.html { render :action => "edit" }
-        format.xml  { render :xml => @subject.errors, :status => :unprocessable_entity }
+    if params[:subject][:archived]
+      @subject.toggle!(:archived)
+      flash[:notice] = "'#{@subject.name}' was successfully archived."
+      redirect_to(subjects_path)
+    else
+      
+      respond_to do |format|
+        if @subject.update_attributes(params[:subject])
+          flash[:notice] = 'Subject was successfully updated.'
+          format.html { redirect_to(@subject) }
+          format.xml  { head :ok }
+        else
+          format.html { render :action => "edit" }
+          format.xml  { render :xml => @subject.errors, :status => :unprocessable_entity }
+        end
       end
+      
     end
   end
 
