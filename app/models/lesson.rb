@@ -34,19 +34,6 @@ class Lesson < ActiveRecord::Base
     self.course.questions.count( :conditions => ['next_datetime <= ?', Time.now])
   end
   
-  def days_until_next
-    return 30 # TURNED OFF FOR NOW
-    time = Time.now
-    day_count = 0
-    maxcount = self.course.questions.count
-    if maxcount > 20 then maxcount = 20 end
-    while self.course.questions.count( :conditions => ['next_datetime <= ?', time]) < maxcount and day_count < 30
-      day_count += 1
-      time += 60 * 60 * 24
-    end
-    return day_count
-  end
-  
 private
 
   def set_progress

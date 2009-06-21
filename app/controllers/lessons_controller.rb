@@ -36,7 +36,7 @@ class LessonsController < ApplicationController
         if question
           render :json => { 'ignored' => params[:ignore], 'status' => 'ok', 'question' => question, 'topic' => question.course_topic, 'correct' => @lesson.correct_responses, 'backlog' => @lesson.backlog }
         else
-          render :json => { 'status' => 'end', 'days_until_next' => @lesson.days_until_next }
+          render :json => { 'status' => 'end' }
         end
       }
     end

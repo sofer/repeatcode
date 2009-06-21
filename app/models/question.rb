@@ -36,10 +36,14 @@ class Question < ActiveRecord::Base
   end
 
   def reset_interval_and_datetime(interval)
-    self.current_interval = interval + 1 unless interval == Course::MAX_INDEX
-    minutes_to_go = course.intervals.find(:first, :conditions => {:index_no => self.current_interval}).minutes
-    minutes_to_go += rand(minutes_to_go/10) if minutes_to_go > 10
-    self.next_datetime = Time.now + minutes_to_go * 60
+    self.current_interval = interval + 1
+    if interval < course.repetitions
+      minutes_to_go = course.intervals.find(:first, :conditions => {:index_no => self.current_interval}).minutes
+      minutes_to_go += rand(minutes_to_go/10) if minutes_to_go > 10
+      self.next_datetime = Time.now + minutes_to_go * 60
+    else
+      self.next_datetime = nil
+    end
   end
 
   def initial_state

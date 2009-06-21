@@ -7,7 +7,7 @@ class Subject < ActiveRecord::Base
   has_many :authorships
   has_many :users, :through => :authorships
   
-  named_scope :active, :conditions => {:archived => false}
+  named_scope :active, :conditions => {:archived => false}, :order => 'public DESC, area_id'
   named_scope :inactive, :conditions => {:archived => true}
   named_scope :public, :conditions => { :public => true }
   named_scope :private, :conditions => { :public => false }

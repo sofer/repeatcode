@@ -28,6 +28,12 @@ class Topic < ActiveRecord::Base
     true
   end
   
+  def remove_exercises
+    for exercise in exercises
+      exercise.update_attribute( :removed, true )
+    end
+  end
+  
   # for an explanation of what's going on here, see 
   # Advanced Rails Recipes #14: "Handling Multiple Models In One Form"
   def new_exercise_attributes=(exercise_attributes)

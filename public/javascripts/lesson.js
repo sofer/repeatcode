@@ -107,7 +107,6 @@ RC.DOMnodes = {
 	//palettes: '#palettes',
 	mathsPalette: '#maths-palette',
 	languagePalette: '#language-palette',
-	daysTilNext: '#days-til-next',
 	symbol: '.symbol',
 	notice: '#notice',
 	progressAlert: '#progress-alert',
@@ -419,11 +418,6 @@ RC.question = {
 			$(RC.DOMnodes.response).hide();
     	$(RC.DOMnodes.completed).show();
 			$(RC.DOMnodes.loading).hide();
-			if (data.daysUntilNext == 1) {
-				$(RC.DOMnodes.daysTilNext).text('a day or so');
-			} else {
-				$(RC.DOMnodes.daysTilNext).text('about ' + data.days_until_next + ' days');
- 			}
 	    return false;
 	  } else {
 			return true;

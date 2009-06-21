@@ -76,6 +76,7 @@ class TopicsController < ApplicationController
 
     if params[:topic][:removed]
       @topic.toggle!(:removed)
+      @topic.remove_exercises
       flash[:notice] = "'#{@topic.name}' was successfully removed."
       redirect_to(:back)
     else

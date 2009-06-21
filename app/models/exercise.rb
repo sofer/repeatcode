@@ -10,6 +10,7 @@ class Exercise < ActiveRecord::Base
   named_scope :recently_updated, :order => 'updated_at DESC'
 
   # slightly hacked to get 'updated_at' working in course.add_new_material
+  # but see recent fix (noted in my blog)
   named_scope :updated_since, lambda { |time|
    { :conditions => [ 'exercises.updated_at > ?', time ] } 
   }
