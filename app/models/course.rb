@@ -223,8 +223,6 @@ class Course < ActiveRecord::Base
     end
   end
   
-private
-
   def subject_update
     copy_subject_details
     result_string = update_topics
@@ -232,6 +230,8 @@ private
     return result_string
   end
   
+private
+
   def copy_course_material
     subject.topics.current.each do |topic|
       course_topic = CourseTopic.new({ :course_id => self.id })
