@@ -97,7 +97,8 @@ class Course < ActiveRecord::Base
       end
       k = 100 * failure_rate * failure_rate + 1
       logger.debug "#{responses.incorrect.count}, #{responses.count}.  #{questions.current.count} x #{self.repetitions} x #{k}"
-      @total_responses = (questions.current.count * self.repetitions * k / 100).to_i * 100
+      @total_responses = (questions.current.count * self.repetitions * k).to_i
+      @total_responses = (@total_responses/100).to_i * 100 if @total_responses > 200
     end
   end
   

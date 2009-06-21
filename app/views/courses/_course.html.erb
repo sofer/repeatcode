@@ -9,7 +9,7 @@
 		<td class="name">
 			<%= course.name %>
 		</td>
-		<td class="correct">
+		<td class="correc">
 			<% if not course.next_question %>
 				Completed
 			<% elsif course.on_target? %>
@@ -31,7 +31,7 @@
 			<% end %>
 		</td>
 		<td>
-			<%= link_to "manage", edit_course_path(course) %>
+			<%= link_to "manage", course %>
 		</td>
 		<td>
 			<% form_for course do |f| %>
