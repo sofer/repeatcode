@@ -9,8 +9,12 @@
 		<td class="name">
 			<%= course.name %>
 		</td>
-		<td class="warning">
-			<%= 'On target' if course.on_target? %>
+		<td class="correct">
+			<% if not course.next_question %>
+				Completed
+			<% elsif course.on_target? %>
+				On target
+			<% end %>
 		</td>
 		<td>
 			<%= course.questions.due.count %>
