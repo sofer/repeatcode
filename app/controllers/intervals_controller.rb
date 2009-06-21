@@ -6,7 +6,8 @@ class IntervalsController < ApplicationController
   # GET /course/1/intervals.xml
   def index
     @course = Course.find(params[:course_id])
-
+    @intervals = @course.intervals.find(:all, :limit => @course.repetitions + 1 )
+    
     respond_to do |format|
       format.html # index.html.erb
       format.xml  { render :xml => @intervals }

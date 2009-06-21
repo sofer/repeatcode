@@ -21,6 +21,7 @@ class Course < ActiveRecord::Base
   validates_numericality_of :lesson_target
   validates_numericality_of :weekly_target
   validates_inclusion_of :accuracy_target, :in => 80..100, :message => "must between 80 and 100"
+  validates_inclusion_of :repetitions, :in => 1..9, :message => "must between 1 and 9"
 
   DEFAULT_TARGETS = { 
     'ACCURACY'  => 90, # accuracy rate of responses
@@ -73,8 +74,8 @@ class Course < ActiveRecord::Base
   
   def progress_for_period(days)
     response_count, target = response_target(days)
-    percent = 100 * response_count / daily_target
-    if count == 0
+    percent = 100 * response_count / target
+    if response_count == 0
       return [0,''] 
     else
       on_target = percent >= 100 ? 'ON TARGET' : ''
@@ -89,10 +90,14 @@ class Course < ActiveRecord::Base
   # note use of instance variable @total_responses
   def set_responses_estimate
     unless @total_responses
-      repetitions = DEFAULT_INTERVALS.size
-      failure_rate = 1.0 * responses.incorrect.count/responses.count
+      if responses.count == 0
+        failure_rate = 1 - 1.0 * self.accuracy_target/100
+      else 
+        failure_rate = 1.0 * responses.incorrect.count/responses.count
+      end
       k = 100 * failure_rate * failure_rate + 1
-      @total_responses = (questions.current.count * repetitions * k).to_i
+      logger.debug "#{responses.incorrect.count}, #{responses.count}.  #{questions.current.count} x #{self.repetitions} x #{k}"
+      @total_responses = (questions.current.count * self.repetitions * k / 100).to_i * 100
     end
   end
   
@@ -104,15 +109,15 @@ class Course < ActiveRecord::Base
     return Time.now + days_to_go * 24 * 60 * 60 
   end
   
+	def responses_completed
+    set_responses_estimate
+		return "#{responses.count} out of an estimated #{@total_responses} (#{100*responses.count/@total_responses}%)"
+	end
+	
   def questions_started
   	started = questions.started.count 
   	total = questions.count
 		return "#{started} out of #{total} (#{100*started/total}%)"
-	end
-	
-	def responses_completed
-    set_responses_estimate
-		return "#{responses.count} out of an estimated #{@total_responses} (#{100*responses.count/@total_responses}%)"
 	end
 	
   def weekly_response_count

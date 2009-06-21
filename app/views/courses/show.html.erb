@@ -49,7 +49,7 @@
 					Accuracy of responses:
 				</td>
 				<td>
-					<% accuracy_rate = 100 * @course.responses.correct.count / @course.responses.count %>
+					<% accuracy_rate = @course.responses.count == 0 ? @course.accuracy_target : 100 * @course.responses.correct.count / @course.responses.count %>
 					<%= accuracy_rate %>%
 				</td>
 			</tr>

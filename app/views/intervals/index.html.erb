@@ -14,7 +14,8 @@
 		<% form_for @course do |f| %>
 			<thead>
 				<tr>
-					<th>Revision</th>
+					<th align="left"><%= f.text_field :repetitions, :autocomplete => "off"  %> Revisions
+					</th>
 					<th>Interval</th>
 					<th>Accuracy *</th>
 					<th>Last reset</th>
@@ -22,13 +23,15 @@
 						Target: 
 						<%= f.text_field :accuracy_target, :autocomplete => "off"  %>
 						%
+					</th>
+					<th>
 						<%= f.submit "Change" %>
 					</th>
 				</tr>
 			</thead>
 		<% end %>
 		<tbody>
-			<% for interval in @course.intervals %>
+			<% for interval in @intervals %>
 				<% correct = @course.responses.correct.interval(interval.index_no).since(interval.updated_at).count %>
 				<% incorrect = @course.responses.incorrect.interval(interval.index_no).since(interval.updated_at).count %>
 				<tr>
@@ -43,6 +46,7 @@
 							<% end %>
 						</td>
 					<% end %>
+					<td> </td>
 			  </tr>
 			<% end %>
 		</tbody>
@@ -51,7 +55,7 @@
 				<td colspan="3">* since last reset</td>
 			</tr>
 		</tfoot>
-		</table>
+	</table>
 
 	<div class="notes">
 		<ul>
