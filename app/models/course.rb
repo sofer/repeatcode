@@ -207,7 +207,7 @@ class Course < ActiveRecord::Base
     question = questions.current.due.find(
       :first,
       :conditions => ['id != ?', exclude_question]) ||
-      questions.current.not_yet_queued.first || 
+      questions.not_yet_queued.first || 
       questions.current.pending.find(
       :first,
       :conditions => ['id != ? and current_interval <= ?', exclude_question, self.repetitions])
