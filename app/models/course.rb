@@ -203,14 +203,18 @@ class Course < ActiveRecord::Base
     end
   end
   
-  def next_question(exclude_question=0)
-    question = questions.current.due.find(
+  def next_question(ignore_id=0)
+    
+    question = questions.current.find(
       :first,
-      :conditions => ['id != ?', exclude_question]) ||
+      :conditions => "next_datetime < '#{Time.now}' AND id != #{ignore_id}") ||
+      
       questions.not_yet_queued.first || 
+      
       questions.current.pending.find(
-      :first,
-      :conditions => ['id != ? and current_interval <= ?', exclude_question, self.repetitions])
+        :first,
+        :conditions => ['id != ? and current_interval <= ?', ignore_id, self.repetitions])
+    
     question.initial_state if question and not question.current_interval
     return question
   end
