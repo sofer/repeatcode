@@ -121,7 +121,12 @@ class Course < ActiveRecord::Base
 	end
 	
   def weekly_response_count
-    (7 * DAY_IN_SECS * responses.count / (Time.now - self.created_at)).to_i
+    weeks_since_start =  (Time.now - self.created_at) / (7.0 * DAY_IN_SECS)
+    if weeks_since_start < 1
+      return responses.count
+    else
+      return (responses.count / weeks_since_start).to_i
+    end
   end
 
   def last_question
