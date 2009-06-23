@@ -203,17 +203,22 @@ class Course < ActiveRecord::Base
     end
   end
   
+  # there appear to be some caching problems with named_scope here
   def next_question(ignore_id=0)
     
-    question = questions.current.find(
-      :first,
-      :conditions => "next_datetime < '#{Time.now}' AND id != #{ignore_id}") ||
+    question = 
+    
+      questions.current.find(
+        :first,
+        :conditions => [ "next_datetime < ? AND id != ?", Time.now, ignore_id ] ) ||
       
-      questions.not_yet_queued.first || 
+      questions.find(
+        :first,
+        :conditions => "current_interval IS NULL" ) || 
       
       questions.current.pending.find(
         :first,
-        :conditions => ['id != ? and current_interval <= ?', ignore_id, self.repetitions])
+        :conditions => "current_interval <= #{self.repetitions}" )
     
     question.initial_state if question and not question.current_interval
     return question
