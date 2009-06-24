@@ -16,7 +16,7 @@
 			<%= link_to_unless_current 'Manage', managers_path %> |
 		<% end %>
 		<% if not current_user.tutor_groups.empty? %>
-			<%= link_to_unless_current 'Groups', groups_path %> |
+			<%= link_to_unless_current 'Teach', groups_path %> |
 		<% end %>
 		<%= link_to_unless_current 'Learn', :controller => 'courses', :action => 'index' %> |
 		<% if current_user.login and not current_user.login.empty? %>

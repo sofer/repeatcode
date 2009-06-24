@@ -135,7 +135,7 @@
 			<tr>
 				<td class="left" colspan="3">Estimated weekly time commitment</td>
 				<td> 
-					<%= 100 / 60 * time_per_response * @course.lesson_target * @course.weekly_target / accuracy_rate %> minutes
+					<%= time_per_response * @course.lesson_target * @course.weekly_target * 100 / (accuracy_rate * 60) %> minutes
 					
 				</td>
 			</tr>

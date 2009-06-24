@@ -411,6 +411,50 @@ RC.question = {
 		}
 	},
 	
+	bothVersions: function (text) {
+		var re = /(.*)\(([^)]*)\s*\|\s*([^)]*)\)(.*)/;
+		return text.replace(re, '"$1$2$4" or "$1$3$4"')
+	},
+	
+	randomNumberInRange: function (min,max) {
+	  var range = max - min + 1
+	  var rand = Math.floor(Math.random() * range)
+	  return min + rand
+	},
+	
+	// use for arithmetic operations
+	reverseOrder: function() {
+		var val = $(RC.DOMnodes.responseField).val();
+		$(RC.DOMnodes.responseField).val($(RC.DOMnodes.responseField).val()+' ');
+	},
+	
+	augmentResponse: function(key) {
+		var lastChar = $(RC.DOMnodes.responseField).val().slice(-1);
+		if (RC.parens[lastChar]) {
+			$(RC.DOMnodes.responseField).val($(RC.DOMnodes.responseField).val()+RC.parens[lastChar]);
+			$(RC.DOMnodes.responseField).shiftCaret(-1);
+		}
+		if (this.isFormula(this.data.question.response)) {
+			RC.formula.display(RC.DOMnodes.formattedResponse, $(RC.DOMnodes.responseField).val());
+		}
+		if (this.data.topic.rtl) {
+			var fieldValue = $(RC.DOMnodes.responseField).val();
+			// use key.keyCode.fromCharCode();
+			//alert(key.keyCode);
+			var str = '0123456789';
+			var txt = '';
+			//for (var i=0;i<10;++) {
+				
+			//}
+			if (key.keyCode === 8) { // delete key
+				fieldValue = fieldValue.slice(0,fieldValue.length-1)
+			} else {
+				fieldValue = fieldValue + ' '
+			}
+			$(RC.DOMnodes.responseField).val(fieldValue);
+		}
+	},
+	
 	notFinished: function (data) {
 	  if (data.status === 'end') {
 			$(RC.DOMnodes.start).hide();
@@ -471,6 +515,11 @@ RC.question = {
 		});
 	},
 
+	// do a very simple test for XSS before executing eval
+	xEval: function(func, x) {
+		return (/^[!-~ ]+$/.test(func)) && eval(func);	
+	},
+
 	hint: function(hintText) {
 		var mathChar = '#';
 		var splitChar = '|';
@@ -479,78 +528,17 @@ RC.question = {
 			var data = [];
 			var functs = hintText.slice(1);
 			var fxArray = functs.split(splitChar);
-			for (var fx=0; fx<fxArray.length; fx+=1) {
+			for (var func=0; func<fxArray.length; func+=1) {
 				data.push([]);
 				for (var x=-4; x<=4.1; x+=.1) {
-		      data[fx].push([x, eval(fxArray[fx])]); //Need another way of doing this?
+					var fx = this.xEval(fxArray[func], x);
+					data[func].push([x, fx]);
 				}
 			}
 			$.plot($($(RC.DOMnodes.graph)), data, { xaxis: { ticks: [-4,0,4] }, yaxis: { min: -5, max: 10, ticks: [0,10], labelWidth: '10px' }, shadowSize: 0 } );
 		 	$(RC.DOMnodes.graph).show();
 		} else {
 			$(RC.DOMnodes.responseField).val(hintText);
-		}
-	},
-	
-	bothVersions: function (text) {
-		var re = /(.*)\(([^)]*)\s*\|\s*([^)]*)\)(.*)/;
-		return text.replace(re, '"$1$2$4" or "$1$3$4"')
-	},
-	
-	// use for arithmetic operations
-	reverseOrder: function() {
-		var val = $(RC.DOMnodes.responseField).val();
-		$(RC.DOMnodes.responseField).val($(RC.DOMnodes.responseField).val()+' ');
-	},
-	
-	augmentResponse: function(key) {
-		var lastChar = $(RC.DOMnodes.responseField).val().slice(-1);
-		if (RC.parens[lastChar]) {
-			$(RC.DOMnodes.responseField).val($(RC.DOMnodes.responseField).val()+RC.parens[lastChar]);
-			$(RC.DOMnodes.responseField).shiftCaret(-1);
-		}
-		if (this.isFormula(this.data.question.response)) {
-			RC.formula.display(RC.DOMnodes.formattedResponse, $(RC.DOMnodes.responseField).val());
-		}
-		if (this.data.topic.rtl) {
-			var fieldValue = $(RC.DOMnodes.responseField).val();
-			// use key.keyCode.fromCharCode();
-			//alert(key.keyCode);
-			var str = '0123456789';
-			var txt = '';
-			//for (var i=0;i<10;++) {
-				
-			//}
-			if (key.keyCode === 8) { // delete key
-				fieldValue = fieldValue.slice(0,fieldValue.length-1)
-			} else {
-				fieldValue = fieldValue + ' '
-			}
-			$(RC.DOMnodes.responseField).val(fieldValue);
-		}
-	},
-	
-	showPhrase: function () {
-		var phrase = this.data.question.phrase;
-		if (this.data.question.current_interval > 0) {
-			phrase = phrase.replace(/\(\(.*?\)\)/g, '');
-		} else {
-			phrase = phrase.replace(/\(\((.*?)\)\)/g, '$1');
-		}
-		phrase = this.bothVersions(phrase);
-		phrase = phrase.markup();
-		phrase = phrase.replaceSymbols();
-		$(RC.DOMnodes.question).html(phrase);
-		RC.voices.outfoxQueue(phrase, 'phrase');
-	},
-
-	showResponse: function (node, response) {
-		$(node).show();
-		if (this.isFormula(this.data.question.response)) {
-			response = this.stripPrefix(response);
-			$(node).html(RC.formula.display(node, response));
-		} else {
-			$(node).html(response);
 		}
 	},
 	
@@ -614,12 +602,6 @@ RC.question = {
 		this.showAnswer();
 	},
 	
-	randomNumberInRange: function (min,max) {
-	  var range = max - min + 1
-	  var rand = Math.floor(Math.random() * range)
-	  return min + rand
-	},
-	
 	prepare: function () {
 		var phrase = this.data.question.phrase;
 		var result;
@@ -639,29 +621,30 @@ RC.question = {
 		}
 	},
 	
-	showNext: function() {
-		$(RC.DOMnodes.start).hide();
-		$(RC.DOMnodes.topic).html(this.data.topic.name);
-		RC.timer.resetSeconds();
-		this.updateStats();
-		$(RC.DOMnodes.graph).hide();
-		$(RC.DOMnodes.tabs).hide();
-		$(RC.DOMnodes.responseField).val('');
-		$(RC.DOMnodes.formattedResponse).html('');
-		$(RC.DOMnodes.response).show();
+	preparePhrase: function () {
+		var phrase = this.data.question.phrase;
+		if (this.isFormula(phrase)) { // MATHS
+			RC.formula.display(RC.DOMnodes.question, this.stripPrefix(phrase));
+		} else {
+			if (this.data.question.current_interval === 0) { // (()) DENOTES INTRO TEXT
+				phrase = phrase.replace(/\(\((.*?)\)\)/g, '$1');
+			} else {
+				phrase = phrase.replace(/\(\(.*?\)\)/g, ''); 
+			}
+			phrase = this.bothVersions(phrase);
+			phrase = phrase.markup();
+			phrase = phrase.replaceSymbols();
+			$(RC.DOMnodes.question).text(phrase);
+			RC.voices.outfoxQueue(phrase, 'phrase');
+		}
+	},
+	
+	prepareResponse: function() {
 		if (this.data.topic.rtl) {
 			$(RC.DOMnodes.responseField).addClass('rtl');
 		} else {
 			$(RC.DOMnodes.responseField).removeClass('rtl');
 		}
-
-		if (this.isFormula(this.data.question.phrase)) {
-			RC.formula.display(RC.DOMnodes.question, this.stripPrefix(this.data.question.phrase));
-		} else {
-			this.showPhrase();
-			this.showCode();
-		}
-
 		if (this.isFormula(this.data.question.response)) {
 			var formula = this.stripPrefix(this.data.question.response);
 			$(RC.DOMnodes.answerText).text('( '+formula+' )');
@@ -680,6 +663,34 @@ RC.question = {
 		} else {
 			this.awaitResponse();
 		}
+	},
+
+	showResponse: function (node, response) {
+		$(node).show();
+		if (this.isFormula(this.data.question.response)) {
+			response = this.stripPrefix(response);
+			$(node).html(RC.formula.display(node, response));
+		} else {
+			$(node).text(response);
+		}
+	},
+	
+	clearFields: function() {
+		$(RC.DOMnodes.graph).hide();
+		$(RC.DOMnodes.tabs).hide();
+		$(RC.DOMnodes.responseField).val('');
+		$(RC.DOMnodes.formattedResponse).html('');
+	},
+
+	showNext: function() {
+		$(RC.DOMnodes.start).hide();
+		$(RC.DOMnodes.topic).text(this.data.topic.name);
+		RC.timer.resetSeconds();
+		this.updateStats();
+		this.clearFields();
+		$(RC.DOMnodes.response).show();
+		this.preparePhrase();
+		this.prepareResponse();
 	},
 	
 	postResponse: function (result) {
