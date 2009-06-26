@@ -20,22 +20,7 @@
 			Elapsed time: <span id="elapsed-time">0</span> minutes
 		</div>
 		
-		<div id="progress-alert"> </div>
-
-		<div id="start">
-			<div>
-				Course loading...<br><br>(<%= link_to "reload" %>)
-			</div>
-		</div>
-
-		<div id="completed">
-			<div>
-				Course completed.
-			</div>
-			<div>
-				<%= link_to "Back to courses", courses_path %>
-			</div>
-		</div>
+		<div id="progress-alert"></div>
 
 		<div id="question"> </div>
 		
@@ -93,7 +78,7 @@
 			| Backlog: <span id="backlog"></span>
 			| <span id="seconds">0</span> seconds
 		</div>
-		<div id="loading"><img src="/images/furniture/loading.gif" width="16" height="16" alt="waiting..." xalign="right"></div>
+		<div id="loading"><img src="/images/furniture/loading.gif" width="16" height="16" alt="loading..."></div>
 			
 		<div id="user">
 			<% if current_user.login %>
@@ -117,15 +102,17 @@
 	<div class="message-frame">
 		<fieldset>
 			<legend>Amend this question</legend>
-				<%= label_tag 'Phrase' %>
-				<%= text_field_tag "amend-phrase", nil, :autocomplete => "off" %> 
-				<%= label_tag 'Response' %>
-				<%= text_field_tag "amend-response", nil, :autocomplete => "off" %> 
-				<%= label_tag 'Hint' %>
-				<%= text_field_tag "amend-hint", nil, :autocomplete => "off" %> 
-				<%= submit_tag 'Cancel' %>
-				<%= submit_tag 'OK' %>
+			<%= label_tag 'Phrase' %>
+			<%= text_field_tag "amend-phrase", nil, :autocomplete => "off" %> 
+			<%= label_tag 'Response' %>
+			<%= text_field_tag "amend-response", nil, :autocomplete => "off" %> 
+			<%= label_tag 'Hint' %>
+			<%= text_field_tag "amend-hint", nil, :autocomplete => "off" %> 
 		</fieldset>
+		<div class="footer">
+			<%= submit_tag 'Cancel' %>
+			<%= submit_tag 'OK' %>
+		</div>
 	</div>
 </div>
 
@@ -134,16 +121,14 @@
 	<div class="message-frame">
 		<fieldset>
 			<legend>Ignore this question</legend>
-
 			<div class="phrase"></div>
-			
 			<div class="response"></div>
-
-				<%= submit_tag 'Cancel' %>
-				<%= submit_tag 'OK' %>
-
 			<div>(This question will not appear again)</div>
 		</fieldset>
+		<div class="footer">
+			<%= submit_tag 'Cancel' %>
+			<%= submit_tag 'OK' %>
+		</div>
 	</div>
 </div>
 
@@ -162,20 +147,45 @@
 				<option value="">None</option>
 				<%= selected_voice @lesson.course.response_voice %>
 			</select>
+		</fieldset>
+		<div class="footer">
 			<%= submit_tag 'Cancel' %>
 			<%= submit_tag 'OK' %>
-		</fieldset>
+		</div>
 	</div>
 </div>
-
 
 <div id="timeout">
 	<div class="overlay"></div>
 	<div class="message-frame">
 		<fieldset>
 			<h3>Taking time out</h3>
-			Click to continue
-		</div>
+			<div>Click to continue</div>
+		</fieldset>
 	</div>
 </div>
 
+<div id="wait">
+	<div class="overlay"></div>
+	<div class="message-frame">
+		<fieldset>
+			<h3>Course loading...</h3>
+			<div>
+				<img src="/images/furniture/loading.gif" width="16" height="16" alt="waiting...">
+			</div>
+			<div>(<%= link_to "reload" %>)</div>
+		</fieldset>
+	</div>
+</div>
+
+<div id="completed">
+	<div class="overlay"></div>
+	<div class="message-frame">
+		<fieldset>
+			<h3>Course completed.</h3>
+			<div>
+				<%= link_to "Back to courses", courses_path %>
+			</div>
+		</fieldset>
+	</div>
+</div>

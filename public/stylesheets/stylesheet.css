@@ -16,7 +16,6 @@ h3 { text-align: center; }
 
 /* tables - NOTE: don't use percentage on table width because of IE6 bug */
 table	{ border-collapse: collapse; clear: both; width: 892px; }
-tr	{ }
 th { padding: 2px; border-bottom: 1px solid DodgerBlue; }
 td	{ padding: 2px; margin: 0; border-bottom: 1px solid DodgerBlue; text-align: right; }
 table input[type=text]	{ height: 14px; width: 98%; margin: 0; padding: 1px; }
@@ -52,9 +51,47 @@ fieldset div { height: 28px; }
 .signin	{ margin: 40px auto; width: 400px; }
 .fixed-height { height: 420px; }
 .box { margin: 100px auto 0; width: 480px; }
-.message-frame { position: absolute; padding: 20px; top: 20%; right: 20%; bottom: 20%; left: 20%; }
+.message-frame	{ position: absolute; padding: 20px; top: 20%; right: 20%; bottom: 20%; left: 20%; }
+.message-frame fieldset	{ position: absolute; top: 0; right: 0; bottom: 0; left: 0; }
+.message-frame h3	{ margin-bottom: 12px; }
+.message-frame .footer	{ position: absolute; right: 0; bottom: 20px; left: 0; text-align: center; }
+
 #user	{ position: absolute; bottom: 0; left: 0; }
 #navigation	{ position: absolute; bottom: 0; right: 0; }
+
+/* error id's THESE NEED WORK */
+.fieldWithErrors	{ background-color: red; display: table; }
+#errorExplanation	{ xwidth: 400px; border: 2px solid red; padding: 7px; padding-bottom: 12px; margin-bottom: 20px; background-color: #f0f0f0; }
+#errorExplanation h2	{ text-align: left; font-weight: bold; padding: 5px 5px 5px 15px; font-size: 12px; margin: -7px; background-color: #c00; color: #fff; }
+#errorExplanation p	{ color: #333; margin-bottom: 0; padding: 5px; }
+#errorExplanation ul li	{ font-size: 12px; }
+
+/* code */
+#code-block	{ position: absolute; left: 0; right: 0; padding-top: 0px; border-top: 1px solid DodgerBlue; }
+.tab	{ float: left; width: 33%; height: 240px; }
+.data, .code	{ white-space: pre; font-family: monospace; overflow: auto; }
+.output	{  }
+
+/* maths */
+.sup	{ vertical-align: 50%; font-size: 16px; }
+.sub	{ vertical-align: -20%; font-size: 16px; }
+.radical	{ border-top: 3px solid; padding-top: 4px; }
+.denominate	{ display: block; border-top: 3px solid; padding: 6px; vertical-align: -100%; }
+.term	{float: left; height: 60px; padding: 4px; }
+.n	{ display: block; font-size: 14px; margin-top: -10px; }
+.sigma	{ display: block; line-height: .8em;}
+.r	{ display: block; font-size: 14px; }
+.nospace { letter-spacing: -0.6em; }
+
+/* help */
+.help-text { display: none; }
+.help-text .message-frame { top: 0; bottom: 20px; left: 20px; right: 20px; }
+.help-text table	{ border-collapse: collapse; clear: both; width: 100%; }
+.help-text th { padding-bottom: 12px; border-bottom: none; vertical-align: top; }
+.help-text td	{ border-bottom: none; text-align: left; vertical-align: top; }
+.help-text .term	{float: left; height: 36px; padding: 0 6px 0 0; }
+.help-text .denominate	{ border-top: 1px solid; padding: 0; }
+
 
 /* Targets */
 #progress-report input[type=text]	{ width: 20px; }
@@ -70,13 +107,6 @@ fieldset div { height: 28px; }
 /* user edits */
 #user-edits tr	{ height: 44px; }
 #user-edits td	{ text-align: left; }
-
-/* error id's THESE NEED WORK */
-.fieldWithErrors	{ background-color: red; display: table; }
-#errorExplanation	{ xwidth: 400px; border: 2px solid red; padding: 7px; padding-bottom: 12px; margin-bottom: 20px; background-color: #f0f0f0; }
-#errorExplanation h2	{ text-align: left; font-weight: bold; padding: 5px 5px 5px 15px; font-size: 12px; margin: -7px; background-color: #c00; color: #fff; }
-#errorExplanation p	{ color: #333; margin-bottom: 0; padding: 5px; }
-#errorExplanation ul li	{ font-size: 12px; }
 
 /* login */
 #login .box	{ margin-top: 40px; }
@@ -123,11 +153,11 @@ fieldset div { height: 28px; }
 #voices fieldset * { margin-top: 20px; }
 #voices fieldset option { margin-top: 0; }
 
-#timeout fieldset	{ padding: 110px 0; }
+#timeout fieldset, #wait fieldset, #completed fieldset	{ padding: 80px 0; }
 #question	{ margin-top: 30px; text-align: center; line-height: 1.2;  font-size: 24px; }
 #answer, #response	{ position: absolute; bottom: 0; left: 0; right: 0; text-align: center; font-size: 28px; line-height: 1.2; }
 #answer-text	{ margin-bottom: 36px; }
-#start, #completed	{ padding: 150px; text-align: center; font-size: 18px; }
+#wait, #completed	{ padding: 150px; text-align: center; font-size: 18px; }
 #toolbar { height: 32px; }
 #response-form { margin: 0 auto; width: 400px; }
 input#response-field	{ width: 100%; height: 32px; font-size: 24px; padding-top: 8px; font-family: monospace; border: 1px solid black; -moz-border-radius: 4px; -webkit-border-radius: 4px; }
@@ -148,23 +178,6 @@ input#response-field:focus	{ background-color: LightYellow; }
 .symbol	{ float: left; height: 20px; padding: 4px 6px 0 6px; border: 1px solid; margin: -4px -1px; background: LightCyan; cursor: pointer; }
 .divider { float: left; }
 #palette-switch	{ float: right; }
-
-/* code */
-#code-block	{ position: absolute; left: 0; right: 0; padding-top: 0px; border-top: 1px solid DodgerBlue; }
-.tab	{ float: left; width: 33%; height: 240px; }
-.data, .code	{ white-space: pre; font-family: monospace; overflow: auto; }
-.output	{  }
-
-/* maths */
-.sup	{ vertical-align: 50%; font-size: 16px; }
-.sub	{ vertical-align: -20%; font-size: 16px; }
-.radical	{ border-top: 3px solid; padding-top: 4px; }
-.denominate	{ display: block; border-top: 3px solid; padding: 6px; vertical-align: -100%; }
-.term	{float: left; height: 60px; padding: 4px; }
-.n	{ display: block; font-size: 14px; margin-top: -10px; }
-.sigma	{ display: block; line-height: .8em;}
-.r	{ display: block; font-size: 14px; }
-.nospace { letter-spacing: -0.6em; }
 
 /* generic classes */
 .rtl { direction: rtl; }

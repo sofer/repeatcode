@@ -74,6 +74,7 @@ RC.table = {
 
 $(document).ready(function(){
 	
+	// CHANGE THIS! so that rows is worked out in the tbody, i.e <tbody rows=10>
 	if ($('#topics').length) {
 		RC.table.init('#topics', 14);
 	} else if ($('#subjects').length) {
@@ -101,6 +102,20 @@ $(document).ready(function(){
 	} else if ($('#user-edits').length) {
 		RC.table.init('#user-edits', 8);
 	}
+	
+	$(".help").click(function() {
+		var helpId = $(this).attr("help");
+		$(helpId).fadeIn();
+		$(":submit", helpId).focus();
+		return false;
+	});
+	
+	$(".help-text").submit(function() {
+		$(".help-text").fadeOut();
+		return false;
+	});
+
+	
 	
 	$("#down").click(function() {
 		if (!$(this).hasClass("disabled")) {
@@ -155,6 +170,6 @@ $(document).ready(function(){
 		if (!confirm('Remove permanently?')) {
 			return false;
 		}
-	})
+	});
 	
 });

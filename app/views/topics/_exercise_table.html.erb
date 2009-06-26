@@ -2,9 +2,9 @@
 	<thead>
 		<tr>
 			<th class="first"> </th>
-			<th class="input">Question or phrase</th>
-			<th class="input">Response</th>
-			<th class="input">Hint <%= link_to '?', {}, :id => "hint-help" %></th>
+			<th class="input">Question or phrase <%= link_to '?', {}, :class => "help", :help => "#phrase-help" %></th>
+			<th class="input">Response <%= link_to '?', {}, :class => "help", :help => "#response-help" %></th>
+			<th class="input">Hint <%= link_to '?', {}, :class => "help", :help => "#hint-help" %></th>
 			<th class="last"> </th>
 		</tr>
 	</thead>

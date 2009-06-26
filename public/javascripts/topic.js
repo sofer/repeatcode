@@ -90,11 +90,6 @@ $(document).ready(function(){
 	$("#table").hide();
 	$("#finally").hide();
 
-	$("#hint-help").click(function() {
-		alert("Nothing here yet");
-		return false;
-	});
-
 	$("#add-exercise").click(function() {
 		RC.table.appendRow();
 	});

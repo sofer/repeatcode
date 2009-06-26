@@ -26,7 +26,7 @@
 			</div>
 				
 			<div id="topic-import">
-				<%= text_area_tag "import-data", "Copy and paste straight from a spreadsheet. Questions or phrases go in the first column. Responses go in the second column. A third column can be used to provide hints. If copying from a text file, remember to separate columns with tabs.", { :class => "disabled" } %>
+				<%= text_area_tag "import-data", "Copy and paste straight from a spreadsheet. Questions or phrases go in the first column. Responses go in the second column. A third column can be used to provide hints. If copying from a text file, remember to separate columns with tabs. If the first line contains text, but no tabs it will be imported as the topic name. For help on constructing phrases, responses and hints, follow the \"Start from scratch\" link above and click on the ?'s beside the column headings.", { :class => "disabled" } %>
 				<div class="warning">Copy a table of questions and responses into the box above</div>
 				<div class="submit">
 					<input id="parse-import-data" type="submit" value="Continue"/>		
@@ -64,3 +64,45 @@
 <div id="hidden-exercise-template">
 	<%= render :partial => "new_exercise", :layout => "hidden_exercise", :object => Exercise.new  %>
 </div>
+
+<form id="phrase-help" class="help-text">
+	<div class="overlay"></div>
+	<div class="message-frame">
+		<fieldset>
+			<legend>Questions or phrases</legend>
+				<%= render :partial => "phrase_help.txt" %>
+		</fieldset>
+		<div class="footer">
+			<%= submit_tag 'OK' %>
+		</div>
+	</div>
+</form>
+
+<form id="response-help" class="help-text">
+	<div class="overlay"></div>
+	<div class="message-frame">
+		<fieldset>
+			<legend>Responses</legend>
+				<%= render :partial => "response_help.txt" %>
+		</fieldset>
+		<div class="footer">
+			<%= submit_tag 'OK' %>
+		</div>
+	</div>
+</form>
+
+<form id="hint-help" class="help-text">
+	<div class="overlay"></div>
+	<div class="message-frame">
+		<fieldset>
+			<legend>Hints</legend>
+				<%= render :partial => "hint_help.txt" %>
+		</fieldset>
+		<div class="footer">
+			<%= submit_tag 'OK' %>
+		</div>
+	</div>
+</form>
+
+
+

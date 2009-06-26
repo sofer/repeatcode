@@ -32,7 +32,7 @@
 *A.* you can study as often and for as long as you like, but you are likely to get most benefit from studying regularly. If you are not in a hurry, or if you are studying several courses simultaneously, you may want to study each course for just a few minutes each day. You can also study more intensively, although some of the benefits of combining the gradual introduction of new material with the spaced revision of old material will be lost if you attempt to cover too much material in too short a period of time.
 
 *Q. Can I create my own course materials?*
-*A.* Yes. Just follow the _Create_ link after you have logged in. Creating course materials is a bit more complicated than following an existing course. Instructions on how to add material will be added soon.
+*A.* Yes. Just follow the _Create_ link after you have logged in. Subjects can be built up gradually over time and entire topics can be imported from a spreadsheet or text file. Online help is available.
 
 *Q. Can I use this in my school or organization?*
 *A.* Yes. A range of tools for teachers and administrators will be added soon.
@@ -47,7 +47,7 @@
 *A.* We are still working on this.
 
 *Q. What is the status of this site?*
-*A.* As of June 2009, it is in public pre-beta. The emphasis in the first few weeks will be on building up and testing a variety of different sorts of learning materials, but we hope to make it easier for other people to start creating and sharing their own materials before the end of the summer.
+*A.* As of June 2009, it is in public pre-beta. The emphasis in the first few weeks will be on removing a long list of bugs and on beginning to build up and test a variety of different sorts of learning materials. Later, it will become easier for other people, including schools and other organizations, to start creating and sharing their own materials.
 
 *Q. Who maintains this site.*
 *A.* It is owned and managed by "Danny Sofer":http://www.sofer.com/.
