@@ -683,18 +683,14 @@ RC.question = {
 	},
 
 	showNext: function() {
-		if ( this.data.question && this.next.question && this.data.question.id === this.next.question.id) {
-			$(RC.DOMnodes.wait).fadeIn()
-		} else {
-			$(RC.DOMnodes.wait).fadeOut(400);
-			$(RC.DOMnodes.topic).text(this.data.topic.name);
-			RC.timer.resetSeconds();
-			this.updateStats();
-			this.clearFields();
-			$(RC.DOMnodes.response).show();
-			this.preparePhrase();
-			this.prepareResponse();
-		}
+		$(RC.DOMnodes.wait).fadeOut(400);
+		$(RC.DOMnodes.topic).text(this.data.topic.name);
+		RC.timer.resetSeconds();
+		this.updateStats();
+		this.clearFields();
+		$(RC.DOMnodes.response).show();
+		this.preparePhrase();
+		this.prepareResponse();
 	},
 	
 	postResponse: function (result) {
