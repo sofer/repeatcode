@@ -15,7 +15,7 @@ RC.table = {
 	},
 	
 	init: function() {
-		this.limit = $(this.tableId).attr("limit");
+		this.limit = parseInt($(this.tableId).attr("limit"), 10);
 		this.tableSize = $("tr", this.tableId).length;
 		this.display();
 	},
