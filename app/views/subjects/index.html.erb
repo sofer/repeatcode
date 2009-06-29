@@ -17,7 +17,7 @@
 				<th class="last"> </th>
 			</tr>
 		</thead>
-		<tbody id="subjects">
+		<tbody class="paging" limit="14" id="subjects">
 			<%= render :partial => "subject", :collection => @subjects.active %>
 		</tbody>
 	</table>

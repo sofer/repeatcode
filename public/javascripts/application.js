@@ -3,9 +3,9 @@ var RC = {};
 RC.table = {
 	
 	offset: 0,
-	limit: 1,
+	limit: 12,
 	tableSize: 0,
-	tbodyId: "",
+	tableId: ".paging:first",
 	navigationId: "#table-navigation",
 	downId: "#down",
 	upId: "#up",
@@ -14,10 +14,9 @@ RC.table = {
 		alert(this.tableSize + ' : ' + this.offset + ' : ' + this.limit );
 	},
 	
-	init: function(tbodyId, limit) {
-		this.tbodyId = tbodyId;
-		this.limit = limit;
-		this.tableSize = $("tr", this.tbodyId).length;
+	init: function() {
+		this.limit = $(this.tableId).attr("limit");
+		this.tableSize = $("tr", this.tableId).length;
 		this.display();
 	},
 	
@@ -59,14 +58,13 @@ RC.table = {
 	},
 	
 	display: function() {
-		//#(this.tbodyId).show();
-		$("tr", this.tbodyId).hide();
-		$("tr", this.tbodyId).slice(this.offset, this.offset + this.limit).show();
+		$("tr", this.tableId).hide();
+		$("tr", this.tableId).slice(this.offset, this.offset + this.limit).show();
 		this.navigation();
 	},
 	
 	appendRow: function() {
-		$("tr:last", this.tbodyId).clone().appendTo(this.tbodyId);
+		$(".paging tr:last").clone().appendTo(this.tableId);
 		this.tableSize += 1;
 		this.tail();
 	}
@@ -75,35 +73,8 @@ RC.table = {
 
 $(document).ready(function(){
 	
-	// CHANGE THIS! so that rows is worked out in the tbody, i.e <tbody rows=10>
-	if ($('#topics').length) {
-		RC.table.init('#topics', 14);
-	} else if ($('#subjects').length) {
-		RC.table.init('#subjects', 14);
-	} else if ($('#courses').length) {
-		RC.table.init('#courses', 12);
-	} else if ($('#exercises').length) {
-		RC.table.init('#exercises', 12);
-	} else if ($('#questions').length) {
-		RC.table.init('#questions', 16);
-	} else if ($('#responses').length) {
-		RC.table.init('#responses', 16);
-	} else if ($('#course-topics').length) {
-		RC.table.init('#course-topics', 13);
-	} else if ($('#lessons').length) {
-		RC.table.init('#lessons', 16);
-	} else if ($('#admin').length) {
-		RC.table.init('#admin', 12);
-	} else if ($('#organizations').length) {
-		RC.table.init('#organizations', 17);
-	} else if ($('#students').length) {
-		RC.table.init('#students', 8);
-	} else if ($('#add-students').length) {
-		RC.table.init('#add-students', 16);
-	} else if ($('#user-edits').length) {
-		RC.table.init('#user-edits', 8);
-	}
-	
+	RC.table.init();
+
 	$(".help").click(function() {
 		var helpId = $(this).attr("help");
 		$(helpId).fadeIn();

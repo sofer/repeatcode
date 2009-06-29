@@ -20,7 +20,7 @@
 				<th>Progress</th>
 			</tr>
 		</thead>
-		<tbody id="lessons">
+		<tbody class="paging" limit="16" id="lessons">
 			<%= render :partial => 'lesson', :collection => @lessons %>
 		</tbody>
 	</table>

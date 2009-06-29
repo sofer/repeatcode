@@ -9,7 +9,7 @@
 <div class="main">
 	
 	<table>
-		<tbody id="add-students">
+		<tbody class="paging" limit="16" id="add-students">
 			<% for user in @users %>
 				<tr>
 					<td class="heading"><%= user.login %></td>

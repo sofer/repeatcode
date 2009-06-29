@@ -22,7 +22,7 @@
 				<th>Result</th>
 			</tr>
 		</thead>
-		<tbody id="responses">
+		<tbody class="paging" limit="16" id="responses">
 			<% for response in @question.responses %>
 				<tr>
 					<td class="left"><%= formatted_date_time response.updated_at %></td>

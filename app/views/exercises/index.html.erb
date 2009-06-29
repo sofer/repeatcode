@@ -11,7 +11,7 @@
 <div class="main">
 
 	<table class="user-edit-table">
-		<tbody id="user-edits">
+		<tbody class="paging" limit="8" id="user-edits">
 			<%= render :partial => 'user_edit', :collection => @user_edits %>
 		</tbody>
 	</table>

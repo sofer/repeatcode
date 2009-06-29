@@ -8,7 +8,7 @@
 			<th class="last"> </th>
 		</tr>
 	</thead>
-	<tbody id="exercises">
+	<tbody class="paging" limit="12" id="exercises">
 		<%= render :partial => "exercise", :collection => exercises %>
 		<%= render(:partial => "new_exercise", :object => add) if add %>
 	</tbody>
