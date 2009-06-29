@@ -83,6 +83,9 @@ fieldset div { height: 28px; }
 .r	{ display: block; font-size: 14px; }
 .nospace { letter-spacing: -0.6em; }
 
+/* tabkes */
+.paging	{ display: none; }
+
 /* help */
 .help-text { display: none; }
 .help-text .message-frame { top: 0; bottom: 20px; left: 20px; right: 20px; }

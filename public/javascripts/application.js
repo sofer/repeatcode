@@ -59,6 +59,7 @@ RC.table = {
 	},
 	
 	display: function() {
+		//#(this.tbodyId).show();
 		$("tr", this.tbodyId).hide();
 		$("tr", this.tbodyId).slice(this.offset, this.offset + this.limit).show();
 		this.navigation();
