@@ -74,6 +74,8 @@ RC.table = {
 $(document).ready(function(){
 	
 	RC.table.init();
+	
+	$(".new-course submit").rollove
 
 	$(".display").click(function() {
 		var displayId = $(this).attr("display");

@@ -149,6 +149,7 @@ class Course < ActiveRecord::Base
   
   def copy_subject_details
     self.name = subject.name
+    self.description = subject.description
     self.extended_chars = subject.extended_chars
   end
   

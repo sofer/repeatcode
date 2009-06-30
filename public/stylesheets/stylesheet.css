@@ -27,13 +27,16 @@ tfoot td	{ border-bottom: none; }
 #table-navigation { position: absolute; bottom: 0; left: 0; }
 
 /* forms */
+input[type=checkbox], xinput[type=radio]	{ margin-top: 1px;}
 fieldset { padding: 2%; background-color: LightYellow; border: 1px solid DimGray; text-align: center; -moz-border-radius: 10px; -webkit-border-radius: 10px; }
 fieldset legend { font-weight: bold; margin: 10px;}
 fieldset label	{ float: left; width: 48%; text-align: right; }
 fieldset input[type=text], select	{ width: 48%; margin-top: -3px; }
 fieldset input[type=checkbox], formset input[type=radio]	{ float: left; width: 20px; margin: 0 6px; }
-input[type=checkbox], xinput[type=radio]	{ margin-top: 1px;}
-fieldset div { height: 28px; }
+fieldset div	{ height: 28px; }
+fieldset .textarea	{ height: 56px; }
+fieldset textarea	{ width: 48%; height: 50px; }
+
 
 #header input[type=text]	{ margin: -2px 0 0 0; }
 .submit { position: absolute; right:400px; bottom: 6px; left: 400px; text-align: center;}
@@ -97,7 +100,7 @@ fieldset div { height: 28px; }
 
 /* Targets */
 #progress-report input[type=text]	{ width: 20px; }
-#progress-report table	{ margin-bottom: 40px; }
+#progress-report table	{ margin: 16px 0; }
 #progress-report tr	{ height: 26px; }
 
 /* intervals */
@@ -137,6 +140,8 @@ td .fixed-height { height: 23px; overflow: hidden; }
 .questions-table .response { text-align: left; }
 .new-course	{ text-align: center; }
 .new-course input[type=submit]	{ width: 240px; height: 22px; margin: 2px; }
+.new-course .description	{ display: none; }
+.new-course:hover .description	{ display: block; position: absolute; bottom: 0; right: 0; width: 200px; padding: 4px; }
 
 
 /* subjects */

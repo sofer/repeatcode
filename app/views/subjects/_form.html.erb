@@ -8,6 +8,10 @@
 <%= f.label :area_id %>
 <%= f.select(:area_id, Subject::AREAS_FOR_FORM) %>
 </div>
+<div class="textarea">
+<%= f.label :description %>
+<%= f.text_area :description %>
+</div>
 <div>
 <%= f.label :public %>
 <%= f.check_box :public %>

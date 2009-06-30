@@ -1,19 +1,21 @@
 <div id="header">
 	<h1>
-		RepeatCode
+		<%= name_from_domain request.domain %>
 		<span class="italic white">pre-beta</span>
 	</h1>
 	<h2>
-		<% unless current_user %>
-			Already registered? <%= link_to "Login now", "/login" %>
-		<% end %>
+		<%= link_to_unless_current "Code", "http://www.repeatcode.com/" %>
+		<%= link_to_unless_current "Words", "http://www.repeatwords.com/" %>
+		<%= link_to_unless_current "Maths", "http://www.repeatsums.com/" %>
+		<%= link_to_unless_current "Facts", "http://www.repeatfacts.com/" %>
+
 	</h2>
 </div>
 <div class="main">
 
 	<div class="col3">
 
-	<% row = 0; limit = 16 %>
+	<% row = 0; limit = 15 %>
 	<% for area in @areas %>
 		<% next if area.subjects.public.count == 0 %>
 		<% if row >= limit - 4 %>
@@ -31,7 +33,8 @@
 			<% row += 1 %>
 			<% form_for :course, :url => subject_courses_path(subject) do |f| %>
 				<div class="new-course">
-					<%= f.submit "#{subject.name} (#{subject.exercises.current.count})" %>
+					<%= f.submit "#{subject.name} (#{subject.exercises.current.count})", :description => subject.description %>
+					<div class="description"><%= subject.description %></div>
 				</div>
 				<% end %>
 		<% end %>
@@ -56,7 +59,7 @@
 	</div>
 
 	<div class="notes">
-		Welcome to RepeatCode! This site is still in development, but you are welcome to try it out.
+		Welcome to <%= name_from_domain request.domain %>! This site is still in development, but you are welcome to try it out.
 	</div>
 
 

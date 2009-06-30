@@ -10,7 +10,7 @@
 
 	<div class="announce">
 		Drag this link to your bookmark bar:
-		<%= link_to "RepeatCode login", '/u/' + current_user.uid , :class => 'box-text' %>
+		<%= link_to name_from_domain(request.domain) + ' login', '/u/' + current_user.uid , :class => 'box-text' %>
 		in order to login automatically next time.
 	</div>
 

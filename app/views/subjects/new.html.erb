@@ -5,17 +5,17 @@
 	</h1>
 </div>
 
-<div id="edit-subject" class="main">
-	<div class="box">
-		<fieldset>
-			<legend>Create subject</legend>
-			<% form_for(@subject) do |f| %>
+<% form_for(@subject) do |f| %>
+	<div id="edit-subject" class="main">
+		<div class="box">
+			<fieldset>
+				<legend>Create subject</legend>
 				<%= render :partial => 'form', :locals => {:f => f } %>
 			  <%= f.submit "Create" %>
-			<% end %>
-		</fieldset>
+			</fieldset>
+		</div>
 	</div>
-</div>
+<% end %>
 
 <div id="footer">
 	<%= render :partial => 'global/toplevel_links' %>

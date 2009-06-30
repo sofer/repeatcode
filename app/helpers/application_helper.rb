@@ -1,6 +1,11 @@
 # Methods added to this helper will be available to all templates in the application.
 module ApplicationHelper
   
+  def name_from_domain(domain)
+    domain.match /repeat(\w+)\./
+    return 'Repeat' + $1.capitalize
+  end
+  
   def selected_voice(voice)
     unless voice.blank?
       name = voice[/[^.]+$/] 

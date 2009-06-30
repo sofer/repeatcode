@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20090621145955) do
+ActiveRecord::Schema.define(:version => 20090630121722) do
 
   create_table "administrators", :force => true do |t|
     t.integer  "user_id"
@@ -61,6 +61,7 @@ ActiveRecord::Schema.define(:version => 20090621145955) do
     t.string   "phrase_voice"
     t.datetime "synched_at"
     t.integer  "repetitions",     :default => 9
+    t.text     "description"
   end
 
   create_table "enrolments", :force => true do |t|
@@ -172,6 +173,7 @@ ActiveRecord::Schema.define(:version => 20090621145955) do
     t.string   "phrase_speech"
     t.string   "response_speech"
     t.boolean  "ignore_punctuation", :default => true
+    t.text     "description"
   end
 
   create_table "subscriptions", :force => true do |t|
