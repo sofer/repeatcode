@@ -34,6 +34,7 @@ RC.topic = {
 				var phrase = terms[0];
 				var response = terms[1];
 				var hint = terms[2];
+				var notes = terms[3];
 				if ( phrase && !response ) {
 					if (i === 0) {
 						this.name = phrase;
@@ -44,7 +45,7 @@ RC.topic = {
 					}
 				} else {
 					this.rtlCheck(response);
-					this.importedExercises.push([phrase, response, hint ? hint : '']);
+					this.importedExercises.push([phrase, response, hint ? hint : '', notes ? notes : '']);
 				}
 			}
 		}
@@ -65,12 +66,14 @@ RC.topic = {
 				$(".phrase:last", "#hidden-fields").val(this.importedExercises[i][0]);
 				$(".response:last", "#hidden-fields").val(this.importedExercises[i][1]);
 				$(".hint:last", "#hidden-fields").val(this.importedExercises[i][2]);
+				$(".notes:last", "#hidden-fields").val(this.importedExercises[i][3]);
 				var rowNo = i + 1;
 				var row = "<tr>" +
 									"<td>" + rowNo + "</td>" +
-									"<td>" + this.importedExercises[i][0] + "</td>" +
-									"<td>" + this.importedExercises[i][1] + "</td>" +
-									"<td>" + this.importedExercises[i][2] + "</td>" +
+									"<td><div class=\"fixed-height\">" + this.importedExercises[i][0] + "</div></td>" +
+									"<td><div class=\"fixed-height\">" + this.importedExercises[i][1] + "</div></td>" +
+									"<td><div class=\"fixed-height\">" + this.importedExercises[i][2] + "</div></td>" +
+									"<td><div class=\"fixed-height\">" + this.importedExercises[i][3] + "</div></td>" +
 									"<td> </td>" +
 									"</tr>"
 				$("#exercises").append(row);

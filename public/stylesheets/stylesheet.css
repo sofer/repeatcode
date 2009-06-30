@@ -49,7 +49,6 @@ fieldset div { height: 28px; }
 #about .main	{ margin: 28px 4px 52px 4px; }
 .main	{ position: absolute; top: 28px; right: 0px; bottom: 44px; left: 0px; margin: 4px; }
 .signin	{ margin: 40px auto; width: 400px; }
-.fixed-height { height: 420px; }
 .box { margin: 100px auto 0; width: 480px; }
 .message-frame	{ position: absolute; padding: 20px; top: 20%; right: 20%; bottom: 20%; left: 20%; }
 .message-frame fieldset	{ position: absolute; top: 0; right: 0; bottom: 0; left: 0; }
@@ -127,6 +126,8 @@ fieldset div { height: 28px; }
 .topics-table .name { text-align: left; width: 50%; font-weight: bold; }
 #topic-import textarea	{ width: 882px; height: 320px; padding: 4px; margin: 0; font-family: helvetica, arial, sans-serif; }
 #topic-details .form-line { margin-top: 18px; }
+td .fixed-height { height: 23px; overflow: hidden; }
+
 
 /*courses*/
 .col3	{ float: left; width: 32%; }
