@@ -79,6 +79,8 @@ RC.DOMnodes = {
 	target: '#target',
 	details: '#details',
 	detailsSwitch: '.details-switch',
+	notesLink: '#notes-link',
+	notesText: '#notes-text',
 	extendedChars: '#extended-chars',
 	ignoreAccentsCheckbox: '#ignore-accents',
 	voices: '#voices',
@@ -664,8 +666,17 @@ RC.question = {
 			this.awaitResponse();
 		}
 	},
+	
+	addNotes: function() {
+		if (this.data.question.notes) {
+			$(RC.DOMnodes.notesText).text(this.data.question.notes);
+			$(RC.DOMnodes.notesLink).fadeIn();
+		} else {
+			$(RC.DOMnodes.notesLink).fadeOut();
+		}
+	},
 
-	showResponse: function (node, response) {
+	showResponse: function(node, response) {
 		$(node).show();
 		if (this.isFormula(this.data.question.response)) {
 			response = this.stripPrefix(response);
@@ -691,6 +702,7 @@ RC.question = {
 		$(RC.DOMnodes.response).show();
 		this.preparePhrase();
 		this.prepareResponse();
+		this.addNotes();
 	},
 	
 	postResponse: function (result) {
@@ -782,7 +794,8 @@ RC.corrections = {
 		RC.timer.timedOut = true;
 		$("#amend-phrase", RC.DOMnodes.amend).val(RC.question.data.question.phrase);
 		$("#amend-response", RC.DOMnodes.amend).val(RC.question.data.question.response);
-		$("#hint-response", RC.DOMnodes.amend).val(RC.question.data.question.hint);
+		$("#amend-hint", RC.DOMnodes.amend).val(RC.question.data.question.hint);
+		$("#amend-notes", RC.DOMnodes.amend).val(RC.question.data.question.notes);
 		$(RC.DOMnodes.amend).fadeIn();
 	},
 	
@@ -798,9 +811,11 @@ RC.corrections = {
 		var phrase = $("#amend-phrase", RC.DOMnodes.amend).val();
 		var response = $("#amend-response", RC.DOMnodes.amend).val();
 		var hint = $("#amend-hint", RC.DOMnodes.amend).val();
+		var notes = $("#amend-notes", RC.DOMnodes.amend).val();
 		RC.question.data.question.phrase = phrase;
 		RC.question.data.question.response = response;
 		RC.question.data.question.hint = hint;
+		RC.question.data.question.notes = notes;
 		RC.question.showNext();
 		var postUrl = '/questions/' + RC.question.data.question.id + '.json';
 		var postData = {
@@ -808,6 +823,7 @@ RC.corrections = {
 			'question[phrase]': phrase,
 			'question[response]': response,
 			'question[hint]': hint,
+			'question[notes]': notes,
 		  'authenticity_token': AUTH_TOKEN 
 		};
 		$.ajax({
@@ -877,22 +893,22 @@ $(document).ready(function(){
 	});
 	
 	$(":submit[value='Cancel']", RC.DOMnodes.amend).click(function() {
-			RC.corrections.cancelAmendForm();
+		RC.corrections.cancelAmendForm();
 		return false;
 	});
 
 	$(":submit[value='OK']", RC.DOMnodes.amend).click(function() {
-			RC.corrections.amend();
+		RC.corrections.amend();
 		return false;
 	});
 
 	$(":submit[value='Cancel']", RC.DOMnodes.ignore).click(function() {
-			RC.corrections.cancelIgnoreForm();
+		RC.corrections.cancelIgnoreForm();
 		return false;
 	});
 
 	$(":submit[value='OK']", RC.DOMnodes.ignore).click(function() {
-			RC.corrections.ignore();
+		RC.corrections.ignore();
 		return false;
 	});
 

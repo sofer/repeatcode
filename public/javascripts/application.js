@@ -75,15 +75,15 @@ $(document).ready(function(){
 	
 	RC.table.init();
 
-	$(".help").click(function() {
-		var helpId = $(this).attr("help");
-		$(helpId).fadeIn();
-		$(":submit", helpId).focus();
+	$(".display").click(function() {
+		var displayId = $(this).attr("display");
+		$(displayId).fadeIn();
+		$(":submit", displayId).focus();
 		return false;
 	});
 	
-	$(".help-text").submit(function() {
-		$(".help-text").fadeOut();
+	$(".display-box").click(function() {
+		$(".display-box").fadeOut();
 		return false;
 	});
 
