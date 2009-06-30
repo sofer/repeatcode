@@ -2,7 +2,7 @@
 <html>
 <head>
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-	<title>RepeatCode: <%= controller.action_name + ' ' + controller.controller_name -%></title>
+	<title><%= name_from_domain request.domain %>: <%= controller.action_name + ' ' + controller.controller_name -%></title>
 	<%= stylesheet_link_tag 'stylesheet' %>
 	<%= javascript_include_tag 'jquery', 'application' %>
 	<%= javascript_tag "var AUTH_TOKEN = #{form_authenticity_token.inspect};" if protect_against_forgery? %>
