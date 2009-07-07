@@ -141,7 +141,7 @@ td .fixed-height { height: 23px; overflow: hidden; }
 .new-course	{ text-align: center; }
 .new-course input[type=submit]	{ width: 240px; height: 22px; margin: 2px; }
 .new-course .description	{ display: none; }
-.new-course:hover .description	{ display: block; position: absolute; bottom: 0; right: 0; width: 200px; padding: 4px; }
+.new-course:hover .description	{ display: block; position: absolute; bottom: 0; }
 
 
 /* subjects */
