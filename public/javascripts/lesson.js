@@ -533,7 +533,8 @@ RC.question = {
 			for (var func=0; func<fxArray.length; func+=1) {
 				data.push([]);
 				for (var x=-4; x<=4.1; x+=.1) {
-					var fx = this.xEval(fxArray[func], x);
+					//var fx = this.xEval(fxArray[func], x);
+					var fx = eval(fxArray[func]);
 					data[func].push([x, fx]);
 				}
 			}
@@ -636,7 +637,7 @@ RC.question = {
 			phrase = this.bothVersions(phrase);
 			phrase = phrase.markup();
 			phrase = phrase.replaceSymbols();
-			$(RC.DOMnodes.question).text(phrase);
+			$(RC.DOMnodes.question).html(phrase);
 			RC.voices.outfoxQueue(phrase, 'phrase');
 		}
 	},

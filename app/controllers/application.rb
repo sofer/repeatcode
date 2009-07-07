@@ -3,6 +3,7 @@
 
 class ApplicationController < ActionController::Base
   include AuthenticatedSystem
+  before_filter :sanitize_params
 
   helper :all # include all helpers, all the time
 

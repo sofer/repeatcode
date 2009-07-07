@@ -1,6 +1,14 @@
 # Methods added to this helper will be available to all templates in the application.
 module ApplicationHelper
   
+  def link_to_domain_unless_current(text, domain)
+    if domain == request.domain
+      return text
+    else
+      return "<a href =\"http://www.#{domain}/u/#{current_user.uid}\">#{text}</a>"
+    end
+  end
+  
   def name_from_domain(domain)
     domain.match /repeat(\w+)\./
     return 'Repeat' + $1.capitalize
