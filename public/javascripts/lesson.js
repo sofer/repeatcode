@@ -522,13 +522,14 @@ RC.question = {
 		return (/^[!-~ ]+$/.test(func)) && eval(func);	
 	},
 
-	hint: function(hintText) {
+	prepareHint: function() {
+		var hint = this.data.question.hint;
 		var mathChar = '#';
 		var splitChar = '|';
-		if (!hintText) return;
-		if (hintText.charAt(0) === mathChar) {
+		if (!hint) return;
+		if (hint.charAt(0) === mathChar) {
 			var data = [];
-			var functs = hintText.slice(1);
+			var functs = hint.slice(1);
 			var fxArray = functs.split(splitChar);
 			for (var func=0; func<fxArray.length; func+=1) {
 				data.push([]);
@@ -541,7 +542,7 @@ RC.question = {
 			$.plot($($(RC.DOMnodes.graph)), data, { xaxis: { ticks: [-4,0,4] }, yaxis: { min: -5, max: 10, ticks: [0,10], labelWidth: '10px' }, shadowSize: 0 } );
 		 	$(RC.DOMnodes.graph).show();
 		} else {
-			$(RC.DOMnodes.responseField).val(hintText);
+			$(RC.DOMnodes.responseField).val(hint);
 		}
 	},
 	
@@ -583,7 +584,6 @@ RC.question = {
 	},
 	
 	awaitResponse: function() {
-		$(RC.DOMnodes.responseField).val(this.hint(this.data.question.hint));
 		$(RC.DOMnodes.formattedResponse).val('');
 		$(RC.DOMnodes.answer).hide();
 		$(RC.DOMnodes.response).show();
@@ -602,6 +602,7 @@ RC.question = {
 		this.data.question.current_interval = 0;
 		this.updateStats();
 		$(RC.DOMnodes.responseField).val('');
+		this.prepareHint();
 		this.showAnswer();
 	},
 	
@@ -635,10 +636,10 @@ RC.question = {
 				phrase = phrase.replace(/\(\(.*?\)\)/g, ''); 
 			}
 			phrase = this.bothVersions(phrase);
+			RC.voices.outfoxQueue(phrase, 'phrase');
 			phrase = phrase.markup();
 			phrase = phrase.replaceSymbols();
 			$(RC.DOMnodes.question).html(phrase);
-			RC.voices.outfoxQueue(phrase, 'phrase');
 		}
 	},
 	
@@ -702,6 +703,7 @@ RC.question = {
 		this.clearFields();
 		$(RC.DOMnodes.response).show();
 		this.preparePhrase();
+		this.prepareHint();
 		this.prepareResponse();
 		this.addNotes();
 	},
