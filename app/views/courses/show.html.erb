@@ -12,7 +12,7 @@
 	
 	<div>
 		<%= @course.description %>
-		<em>by <%= @course.subject.users.first.login %></em>
+		(created by user: <em><%= @course.subject.users.first.login %></em>)
 	</div>
 	
 	<table>

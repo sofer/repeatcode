@@ -1,14 +1,12 @@
 <div id="header">
-	<div id="header">
-		<h1>
-			<%= link_to 'Courses', courses_path %>
-			&raquo; <%= @course.name if @course %>
-			&raquo; <%= truncate @question.phrase, 40 %>
-		</h1>
-		<h2>
-			<%= render :partial => 'global/course_links' %>
-		</h2>
-	</div>
+	<h1>
+		<%= link_to 'Courses', courses_path %>
+		&raquo; <%= @course.name if @course %>
+		&raquo; <%= truncate @question.phrase, 40 %>
+	</h1>
+	<h2>
+		<%= render :partial => 'global/course_links' %>
+	</h2>
 </div>
 
 <div class="main">

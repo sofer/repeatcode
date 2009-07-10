@@ -41,16 +41,7 @@ fieldset textarea	{ width: 48%; height: 50px; }
 #header input[type=text]	{ margin: -2px 0 0 0; }
 .submit { position: absolute; right:400px; bottom: 6px; left: 400px; text-align: center;}
 
-
-/* all pages */
-#envelope	{ position: relative; height: 500px; margin: 0 auto; width: 900px; background: white; border: 4px DodgerBlue solid; -moz-border-radius-bottomright: 10px; -moz-border-radius-bottomleft: 10px; -webkit-border-bottom-right-radius: 10px; -webkit-border-bottom-left-radius: 10px; }
-.fixed	{ }
-#message-envelope	{ margin: 4px auto; width: 892px; }
-#header	{ height: 20px; padding: 4px; background: DodgerBlue; }
-#header a	{ color: MidnightBlue; }
-#footer	{ position: absolute; height: 36px; left: 0; right: 0; bottom: 0; margin: 4px; padding-top: 4px; border-top: 1px solid; }
-#about .main	{ margin: 28px 4px 52px 4px; }
-.main	{ position: absolute; top: 28px; right: 0px; bottom: 44px; left: 0px; margin: 4px; }
+/* boxes */ 
 .signin	{ margin: 40px auto; width: 400px; }
 .box { margin: 100px auto 0; width: 480px; }
 .message-frame	{ position: absolute; padding: 20px; top: 20%; right: 20%; bottom: 20%; left: 20%; }
@@ -97,6 +88,8 @@ fieldset textarea	{ width: 48%; height: 50px; }
 .help-text .term	{float: left; height: 36px; padding: 0 6px 0 0; }
 .help-text .denominate	{ border-top: 1px solid; padding: 0; }
 
+/* about */
+#xabout .main	{ margin: 28px 4px 52px 4px; }
 
 /* Targets */
 #progress-report input[type=text]	{ width: 20px; }

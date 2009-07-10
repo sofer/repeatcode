@@ -1,23 +1,31 @@
 
 String.prototype.simplify = function () {
-	return this.replace(/[\s,.!?\-\\']/g, '').toLowerCase();
+	return this.replace(/[,.!?\-\\']/g, '').toLowerCase();
 };
 
 String.prototype.stripAccents = function () {
 	var str = this;
-	str=str.replace(/À|Á|Â|Ã|Ä|Å|à|á|â|ã|ä|å/ig,'a');
-	str=str.replace(/Ò|Ó|Ô|Õ|Ö|Ø|ò|ó|ô|õ|ö|ø/ig,'o');
-	str=str.replace(/È|É|Ê|Ë|è|é|ê|ë/ig,'e');
-	str=str.replace(/Ç|ç/ig,'c');
-	str=str.replace(/Ì|Í|Î|Ï|ì|í|î|ï/ig,'i');
-	str=str.replace(/Ù|Ú|Û|Ü|ù|ú|û|ü/ig,'u');
-	str=str.replace(/ÿ/ig,'y');
-	str=str.replace(/Ñ|ñ/ig,'n');
+	str = str.replace(/À|Á|Â|Ã|Ä|Å|à|á|â|ã|ä|å/ig,'a');
+	str = str.replace(/Ò|Ó|Ô|Õ|Ö|Ø|ò|ó|ô|õ|ö|ø/ig,'o');
+	str = str.replace(/È|É|Ê|Ë|è|é|ê|ë/ig,'e');
+	str = str.replace(/Ç|ç/ig,'c');
+	str = str.replace(/Ì|Í|Î|Ï|ì|í|î|ï/ig,'i');
+	str = str.replace(/Ù|Ú|Û|Ü|ù|ú|û|ü/ig,'u');
+	str = str.replace(/ÿ/ig,'y');
+	str = str.replace(/Ñ|ñ/ig,'n');
 	return str;
 };
 
-String.prototype.stripSpaces = function () {
-	return this.replace(/\s/g, '').toLowerCase();
+String.prototype.stripExtraSpaces = function () {
+	var str = this;
+	str = str.replace(/^\s+/g, '');
+	str = str.replace(/\s+$/g, '');
+	str = str.replace(/\s+/g, ' ');
+	return str;
+};
+
+String.prototype.stripAllSpaces = function () {
+	return this.replace(/\s/g, '');
 };
 
 String.prototype.replaceSymbols = function () {
@@ -407,7 +415,6 @@ RC.question = {
 	},
 	
 	isBoolean: function(str) {
-		str = str.stripSpaces();
 		if (str === 'true' || str === 'false' || str === 'yes' || str === 'no' ) {
 			return true
 		}
@@ -693,6 +700,7 @@ RC.question = {
 		$(RC.DOMnodes.tabs).hide();
 		$(RC.DOMnodes.responseField).val('');
 		$(RC.DOMnodes.formattedResponse).html('');
+		$(RC.DOMnodes.formattedAnswer).html('');
 	},
 
 	showNext: function() {
@@ -743,34 +751,76 @@ RC.question = {
 	  });
 	},
 	
-	checkResponse: function (response) {
-		var expected = this.data.question.response;
-		var match = false;
-		if (this.isBoolean(expected) && expected.charAt(0) === response.charAt(0) ) {
-			match = true;
-		} else if (this.isFormula(expected)) { // no pattern matching on formulas
-			expected = this.stripPrefix(expected);
-			if (expected.stripSpaces() === response.stripSpaces()) {
-				match = true;
+	compareTerms: function(expected, response, separator) {
+		expectedTerms = expected.split(separator);
+		responseTerms = response.split(separator);
+		if (!expectedTerms[expectedTerms.length-1]) {
+			expectedTerms.pop();
+		}
+		if (!responseTerms[responseTerms.length-1]) {
+			responseTerms.pop();
+		}
+		for (responseTerm in responseTerms) {
+			var found = false;
+			for (expectedTerm in expectedTerms) {
+				if (responseTerms[responseTerm].stripAllSpaces() === expectedTerms[expectedTerm].stripAllSpaces()) {
+					found = true;
+					expectedTerms[expectedTerm] = null;
+					break;
+				}
 			}
+			if (found === false) {
+				return false;
+			}
+		}
+		for (expectedTerm in expectedTerms) {
+			if (expectedTerms[expectedTerm] !== null) {
+				return false;
+			}
+		}
+		return true;
+	},
+
+	checkResponse: function (response) {
+		response = response.stripExtraSpaces();
+		var expected = this.data.question.response.stripExtraSpaces();
+		if (!this.data.caseSensitive) { // needs to be added
+			response = response.toLowerCase();
+			expected = expected.toLowerCase();
+		}
+		var match = false;
+		if (this.isBoolean(expected)) {
+			if (expected.charAt(0) === response.charAt(0)) {
+				match = true;
+			} 
 		} else {
 			if (this.data.topic.ignore_punctuation === true) {
-				var expectedPattern = expected.simplify();
-				var responsePattern = response.simplify();
-			} else {
-				var expectedPattern = expected.stripSpaces();
-				var responsePattern = response.stripSpaces();
+				expected = expected.simplify();
+				response = response.simplify();
 			}
 			if ($(RC.DOMnodes.ignoreAccentsCheckbox).is(':checked')) {
-				expectedPattern = expectedPattern.stripAccents();
-				responsePattern = responsePattern.stripAccents();
+				expected = expected.stripAccents();
+				response = response.stripAccents();
 			}
 			if (this.data.topic.rtl) {
-				responsePattern = responsePattern.reverse();
+				response = response.reverse();
 			}
-			var pattern = new RegExp(expectedPattern);
-			if (pattern.test(responsePattern)) {
-				match = true;
+			if (expected.match(/^(\([^)]+\)){2,}$/)) { // i.e. of the form (a)(b)
+				match = this.compareTerms(expected, response, ')');
+			} else if (this.data.topic.unordered) {
+				match = this.compareTerms(expected, response, ' ');
+			} else {
+				expected = this.stripPrefix(expected); // in case it is a formula
+				if (expected.match(/\|/)) { // i.e. it looks like a regex
+					var pattern = new RegExp(expected);
+					if (pattern.test(response)) {
+						match = true;
+					}
+				} else {
+					if (expected === response) {
+						match = true;
+					}
+				}
 			}
 		}
 		if (match) {
@@ -786,7 +836,7 @@ RC.question = {
 			} else {
 				this.tryAgain();
 			}
-    }
+    	}
 	}
 
 };
@@ -795,6 +845,7 @@ RC.corrections = {
 	
 	showAmendForm: function() {
 		RC.timer.timedOut = true;
+		$("#amend-notes", RC.DOMnodes.amend).val(''); // not sure why i need this
 		$("#amend-phrase", RC.DOMnodes.amend).val(RC.question.data.question.phrase);
 		$("#amend-response", RC.DOMnodes.amend).val(RC.question.data.question.response);
 		$("#amend-hint", RC.DOMnodes.amend).val(RC.question.data.question.hint);
@@ -925,12 +976,6 @@ $(document).ready(function(){
 		return false;
 	});
 
-	$(RC.DOMnodes.responseForm).submit(function(){
-    var response = $(RC.DOMnodes.responseField).val();
-		RC.question.checkResponse(response);
-		return false;
-	});
-
 	$(RC.DOMnodes.ignoreAccentsCheckbox).click(function () {
 		$(RC.DOMnodes.responseField).focus();
 	});
@@ -939,11 +984,17 @@ $(document).ready(function(){
 		RC.question.awaitResponse();
 	});
 
+	$(RC.DOMnodes.responseForm).submit(function(){
+    	var response = $(RC.DOMnodes.responseField).val();
+		RC.question.checkResponse(response);
+		return false;
+	});
+
 	$(RC.DOMnodes.responseField).focus(function (){
 		RC.timer.resetTimeout();
 	});
 
-	$(RC.DOMnodes.responseField).keydown(function (key){
+	$(RC.DOMnodes.responseField).keydown(function (){
 		if ($(RC.DOMnodes.responseField).hasClass('incorrect')) {
 			$(RC.DOMnodes.responseField).removeClass('incorrect');
 		}

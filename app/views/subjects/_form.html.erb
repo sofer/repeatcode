@@ -22,6 +22,10 @@
 [ , . ! ? - ]
 </div>
 <div>
+<%= f.label "Word order doesn't matter" %>
+<%= f.check_box :unordered %>
+</div>
+<div>
 <%= f.label "Non-standard characters" %>
 <%= f.text_field :extended_chars, :autocomplete => "off"   %>
 </div>
