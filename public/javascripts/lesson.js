@@ -817,13 +817,15 @@ RC.question = {
 			} else if (this.data.topic.unordered) {
 				match = this.compareTerms(expected, response, ' ');
 			} else {
+				expected = expected.stripAllSpaces();
+				response = response.stripAllSpaces();
 				if (expected.match(/\|/)) { // i.e. it looks like a regex
 					var pattern = new RegExp(expected);
 					if (pattern.test(response)) {
 						match = true;
 					}
 				} else {
-					if (expected === response) {
+					if (expected == response) {
 						match = true;
 					}
 				}
