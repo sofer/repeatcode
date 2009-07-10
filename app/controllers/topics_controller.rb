@@ -32,6 +32,7 @@ class TopicsController < ApplicationController
     @subject = Subject.find(params[:subject_id])
     @topic.subject_id = @subject.id
     @topic.ignore_punctuation = @subject.ignore_punctuation
+    @topic.case_sensitive = @subject.case_sensitive
     @topic.unordered = @subject.unordered
     @subjects = current_user.subjects
 

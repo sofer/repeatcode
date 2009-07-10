@@ -1,0 +1,8 @@
+#envelope	{ position: relative; height: 500px; margin: 0 auto; xwidth: 900px; background: white; }
+.fixed	{ }
+#message-envelope	{ margin: 4px auto; width: 892px; }
+#header	{ height: 20px; padding: 4px; background: DodgerBlue; }
+#header a	{ color: MidnightBlue; }
+#footer	{ position: absolute; height: 36px; left: 0; right: 0; bottom: 0; margin: 4px; padding-top: 4px; border-top: 1px solid; }
+.xmain	{ position: absolute; top: 28px; right: 0px; bottom: 44px; left: 0px; margin: 4px; }
+.main	{ width: 900px; height: 400px; padding: 4px; margin: 10px auto; border: 1px Grey solid; background: White; }

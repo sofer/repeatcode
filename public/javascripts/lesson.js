@@ -751,19 +751,25 @@ RC.question = {
 	  });
 	},
 	
+	tidyTerms: function(terms) {
+		tidied = [];
+		for (term in terms) {
+			if (terms[term]) {
+				tidied.push(terms[term].stripAllSpaces());
+			}
+		}
+		return tidied;
+	},
+	
 	compareTerms: function(expected, response, separator) {
 		expectedTerms = expected.split(separator);
+		expectedTerms = this.tidyTerms(expectedTerms);
 		responseTerms = response.split(separator);
-		if (!expectedTerms[expectedTerms.length-1]) {
-			expectedTerms.pop();
-		}
-		if (!responseTerms[responseTerms.length-1]) {
-			responseTerms.pop();
-		}
+		responseTerms = this.tidyTerms(responseTerms);
 		for (responseTerm in responseTerms) {
 			var found = false;
 			for (expectedTerm in expectedTerms) {
-				if (responseTerms[responseTerm].stripAllSpaces() === expectedTerms[expectedTerm].stripAllSpaces()) {
+				if (responseTerms[responseTerm] === expectedTerms[expectedTerm]) {
 					found = true;
 					expectedTerms[expectedTerm] = null;
 					break;
@@ -784,7 +790,7 @@ RC.question = {
 	checkResponse: function (response) {
 		response = response.stripExtraSpaces();
 		var expected = this.data.question.response.stripExtraSpaces();
-		if (!this.data.caseSensitive) { // needs to be added
+		if (!this.data.topic.case_sensitive) {
 			response = response.toLowerCase();
 			expected = expected.toLowerCase();
 		}
@@ -794,7 +800,7 @@ RC.question = {
 				match = true;
 			} 
 		} else {
-			expected = this.stripPrefix(expected); // in case it is a formula
+			expected = this.stripPrefix(expected); // if it is a formula
 			if (this.data.topic.ignore_punctuation === true) {
 				expected = expected.simplify();
 				response = response.simplify();

@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20090710111426) do
+ActiveRecord::Schema.define(:version => 20090710124640) do
 
   create_table "administrators", :force => true do |t|
     t.integer  "user_id"
@@ -43,6 +43,7 @@ ActiveRecord::Schema.define(:version => 20090710111426) do
     t.datetime "updated_at"
     t.boolean  "removed",            :default => false
     t.boolean  "unordered",          :default => false
+    t.boolean  "case_sensitive",     :default => false
   end
 
   create_table "courses", :force => true do |t|
@@ -176,6 +177,7 @@ ActiveRecord::Schema.define(:version => 20090710111426) do
     t.boolean  "ignore_punctuation", :default => true
     t.text     "description"
     t.boolean  "unordered",          :default => false
+    t.boolean  "case_sensitive",     :default => false
   end
 
   create_table "subscriptions", :force => true do |t|
@@ -198,6 +200,7 @@ ActiveRecord::Schema.define(:version => 20090710111426) do
     t.boolean  "rtl",                :default => false
     t.boolean  "removed",            :default => false
     t.boolean  "unordered",          :default => false
+    t.boolean  "case_sensitive",     :default => false
   end
 
   create_table "tuitions", :force => true do |t|

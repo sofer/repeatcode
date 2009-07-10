@@ -9,19 +9,19 @@
 </div>
 <div id="edit-subject" class="main">
 	
+<% form_for(@subject) do |f| %>
 	<div class="box">
 		<fieldset>
 			<legend>Edit subject</legend>
-			<% form_for(@subject) do |f| %>
-				<%= render :partial => 'form', :locals => {:f => f } %>
-				<div>
-					<label>Detected: </label>
-					 <code><%= @subject.search_extended_chars %></code> (paste changes above)
-				</div>
-			  <%= f.submit "Update" %>
-			<% end %>
+			<%= render :partial => 'form', :locals => {:f => f } %>
+			<div>
+				<label>Detected: </label>
+				 <code><%= @subject.search_extended_chars %></code> (paste changes above)
+			</div>
+		  <%= f.submit "Update" %>
 		</fieldset>
 	</div>
+<% end %>
 
 </div>
 

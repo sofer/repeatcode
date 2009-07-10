@@ -18,6 +18,7 @@ class CourseTopic < ActiveRecord::Base
                                 :code => topic.code,
                                 :data => topic.data,
 																:unordered => topic.unordered,
+																:case_sensitive => topic.case_sensitive,
                                 :ignore_punctuation => topic.ignore_punctuation,
                                 :add_together => topic.add_together,
                                 :rtl => topic.rtl })
