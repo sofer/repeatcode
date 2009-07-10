@@ -794,6 +794,7 @@ RC.question = {
 				match = true;
 			} 
 		} else {
+			expected = this.stripPrefix(expected); // in case it is a formula
 			if (this.data.topic.ignore_punctuation === true) {
 				expected = expected.simplify();
 				response = response.simplify();
@@ -810,7 +811,6 @@ RC.question = {
 			} else if (this.data.topic.unordered) {
 				match = this.compareTerms(expected, response, ' ');
 			} else {
-				expected = this.stripPrefix(expected); // in case it is a formula
 				if (expected.match(/\|/)) { // i.e. it looks like a regex
 					var pattern = new RegExp(expected);
 					if (pattern.test(response)) {
