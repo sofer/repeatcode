@@ -832,7 +832,7 @@ RC.question = {
 			}
 		}
 		if (match) {
-			RC.voices.outfoxQueue(this.bothVersions(expected), 'response');
+			RC.voices.outfoxQueue(this.bothVersions(this.data.question.response), 'response');
 			this.previouslyIncorrect = false;
 			this.postResponse('correct');
 			this.showResponseMessage();
