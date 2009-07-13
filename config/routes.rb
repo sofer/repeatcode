@@ -1,6 +1,6 @@
 ActionController::Routing::Routes.draw do |map|
-  map.resources :backlogs
 
+  map.resources :backlogs
 
   map.resources :organizations
   map.resources :organizations do |organization|
@@ -41,6 +41,7 @@ ActionController::Routing::Routes.draw do |map|
     subject.resources :topics
     subject.resources :courses
     subject.resources :exercises
+    subject.resources :amendments
   end
 
   map.resources :courses do |course|

@@ -37,7 +37,7 @@ class Lesson < ActiveRecord::Base
 private
 
   def set_progress
-    self.total_questions_started = course.questions.count
+    self.total_questions_started = course.questions.started.count
   end
   
 end

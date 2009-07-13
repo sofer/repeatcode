@@ -9,10 +9,21 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20090710124640) do
+ActiveRecord::Schema.define(:version => 20090713085839) do
 
   create_table "administrators", :force => true do |t|
     t.integer  "user_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "amendments", :force => true do |t|
+    t.integer  "exercise_id"
+    t.integer  "subject_id"
+    t.integer  "user_id"
+    t.string   "kind"
+    t.string   "text"
+    t.string   "comments"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -232,5 +243,12 @@ ActiveRecord::Schema.define(:version => 20090710124640) do
   end
 
   add_index "users", ["login"], :name => "index_users_on_login", :unique => true
+
+  create_table "votes", :force => true do |t|
+    t.integer  "amendment_id"
+    t.integer  "user_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
 end

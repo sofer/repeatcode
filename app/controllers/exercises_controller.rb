@@ -2,8 +2,7 @@ class ExercisesController < ApplicationController
 
   before_filter :authorize
 
-  # GET /exercises
-  # GET /exercises.xml
+	# NO LONGER IS USE
   def index
     @subject = Subject.find(params[:subject_id])
     @courses = @subject.courses

@@ -873,11 +873,10 @@ RC.corrections = {
 		var phrase = $("#amend-phrase", RC.DOMnodes.amend).val();
 		var response = $("#amend-response", RC.DOMnodes.amend).val();
 		var hint = $("#amend-hint", RC.DOMnodes.amend).val();
-		var notes = $("#amend-notes", RC.DOMnodes.amend).val();
+		var comments = $("#amend-comments", RC.DOMnodes.amend).val();
 		RC.question.data.question.phrase = phrase;
 		RC.question.data.question.response = response;
 		RC.question.data.question.hint = hint;
-		RC.question.data.question.notes = notes;
 		RC.question.showNext();
 		var postUrl = '/questions/' + RC.question.data.question.id + '.json';
 		var postData = {
@@ -885,7 +884,7 @@ RC.corrections = {
 			'question[phrase]': phrase,
 			'question[response]': response,
 			'question[hint]': hint,
-			'question[notes]': notes,
+			'question[comments]': comments,
 		  'authenticity_token': AUTH_TOKEN 
 		};
 		$.ajax({

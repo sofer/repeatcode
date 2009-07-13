@@ -1,0 +1,11 @@
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+
+one:
+  exercise_id: 1
+  type: MyString
+  comments: MyString
+
+two:
+  exercise_id: 1
+  type: MyString
+  comments: MyString

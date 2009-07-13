@@ -10,11 +10,9 @@
 
 <div class="main">
 
-NO LONGER IN USE
-
-	<table class="user-edit-table">
-		<tbody class="paging" limit="8" id="user-edits">
-			<%= render :partial => 'user_edit', :collection => @user_edits %>
+	<table class="amendment-table">
+		<tbody class="paging" limit="12" id="amendments">
+			<%= render :partial => 'amendment', :collection => @amendments %>
 		</tbody>
 	</table>
 
