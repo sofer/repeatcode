@@ -6,7 +6,7 @@
 
 <table>
 <% for topic in @topics %>
-  <tr>
+	<tr class="<%= cycle "odd", "even" -%>">
     <td><%=h topic.id %></td>
     <td><%=h topic.position %></td>
     <td><%=h topic.name %></td>

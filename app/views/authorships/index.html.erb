@@ -8,7 +8,7 @@
   </tr>
 
 <% for authorship in @authorships %>
-  <tr>
+	<tr class="<%= cycle "odd", "even" -%>">
     <td><%=h authorship.subject_id %></td>
     <td><%=h authorship.user_id %></td>
   </tr>

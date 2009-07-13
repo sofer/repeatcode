@@ -1,7 +1,6 @@
 <div id="header">
 	<h1>
-		<%= link_to 'Courses', courses_path %>
-		&raquo; <%= @course.subject.name if @course %>
+		<%= @course.subject.name if @course %>
 	</h1>
 	<h2>
 		<%= render :partial => 'global/course_links' %>

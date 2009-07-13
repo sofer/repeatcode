@@ -7,7 +7,7 @@
   </tr>
 
 <% for subscription in @subscriptions %>
-  <tr>
+	<tr class="<%= cycle "odd", "even" -%>">
     <td><%=h subscription.course_id %></td>
     <td><%=h subscription.user_id %></td>
     <td><%= link_to 'Show', subscription %></td>

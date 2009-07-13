@@ -16,7 +16,7 @@
 	<table>
 		<tbody class="paging" limit="12" id="admin">
 			<% for group in @groups %>
-				<tr>
+				<tr class="<%= cycle "odd", "even" -%>">
 					<td class="heading">
 						<%= group.name %>
 					</td>

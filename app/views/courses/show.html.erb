@@ -1,7 +1,6 @@
 <div id="header">
 	<h1>
-		<%= link_to 'Courses', courses_path %>
-		&raquo; <%= @course.subject.name if @course %>
+		<%= @course.subject.name if @course %>
 	</h1>
 	<h2>
 		<%= render :partial => 'global/course_links' %>
@@ -17,7 +16,7 @@
 	
 	<table>
 		<tbody>
-			<tr>
+			<tr class="even">
 				<td class="left">
 					Start date:
 				</td>
@@ -33,7 +32,7 @@
 					<%= formatted_date @course.estimated_end_date %>
 				</td>
 			</tr>
-			<tr>
+			<tr class="even">
 				<td class="left">
 					Number of exercises begun:
 				</td>
@@ -49,7 +48,7 @@
 					<%= number_with_delimiter @course.responses_completed %>
 				</td>
 			</tr>
-			<tr>
+			<tr class="even">
 				<td class="left">
 					Accuracy of responses:
 				</td>
@@ -69,7 +68,7 @@
 					<%= weekly_response_count * time_per_response / 60 %> minutes
 				</td>
 			</tr>
-			<tr>
+			<tr class="even">
 				<td class="left">
 					Average time taken for each response:
 				</td>
@@ -82,7 +81,7 @@
 
 	<table>
 		<thead>
-			<tr>
+			<tr class="even">
 				<td class="heading">
 					Recent progress
 				</td>
@@ -121,7 +120,7 @@
 	<% form_for @course do |f| %>
 	<table>
 		<tbody>
-			<tr>
+			<tr class="even">
 				<td class="heading">
 					Weekly targets 
 				</td>

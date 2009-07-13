@@ -11,7 +11,7 @@
 	<table>
 		<tbody class="paging" limit="16" id="add-students">
 			<% for user in @users %>
-				<tr>
+				<tr class="<%= cycle "odd", "even" -%>">
 					<td class="heading"><%= user.login %></td>
 					<td>
 						<% if @group.tutors.include? user %>

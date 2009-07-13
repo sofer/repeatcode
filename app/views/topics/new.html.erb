@@ -1,9 +1,10 @@
 <div id="header">
 	<h1>
-		<%= link_to 'Create', subjects_path %>
-		<%= '&raquo;' + link_to(@subject.name, @subject) %> 
-		&raquo; New topic
+		New topic
 	</h1>
+	<h2>
+		<%= link_to(@subject.name, @subject) %> 
+	</h2>
 </div>
 
 <div class="main">

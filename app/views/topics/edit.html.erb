@@ -1,11 +1,9 @@
 <div id="header">
 	<h1>
-		<%= link_to 'Create', subjects_path %> | 
-		<%= link_to @topic.subject.name, @topic.subject %> | 
 		<%= @topic.name %>
 	</h1>
 	<h2>
-		Last updated: <%= relative_date @topic.last_update %>
+		<%= link_to @topic.subject.name, @topic.subject %>
 	</h2>
 </div>
 

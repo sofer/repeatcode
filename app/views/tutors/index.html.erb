@@ -5,7 +5,7 @@
   </tr>
 
 <% for tutor in @tutors %>
-  <tr>
+	<tr class="<%= cycle "odd", "even" -%>">
     <td><%= link_to 'Show', tutor %></td>
     <td><%= link_to 'Edit', edit_tutor_path(tutor) %></td>
     <td><%= link_to 'Destroy', tutor, :confirm => 'Are you sure?', :method => :delete %></td>

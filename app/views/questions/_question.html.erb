@@ -1,4 +1,4 @@
-<tr>
+<tr class="<%= cycle "odd", "even" -%>">
 	<td class="first"><%= question_counter + 1 %></td>
 	<td class="response"><%= truncate question.response, 40 %></td>
 	<td><%= truncate question.course_topic.name, 40 %></td>

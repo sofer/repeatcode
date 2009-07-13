@@ -1,7 +1,6 @@
 <div id="header">
 	<h1>
-		<%= link_to 'Courses', courses_path %>
-		&raquo; <%= @course.subject.name if @course %>
+		<%= @course.subject.name if @course %>
 	</h1>
 	<h2>
 		<%= render :partial => 'global/course_links' %>
@@ -34,7 +33,7 @@
 			<% for interval in @intervals %>
 				<% correct = @course.responses.correct.interval(interval.index_no).since(interval.updated_at).count %>
 				<% incorrect = @course.responses.incorrect.interval(interval.index_no).since(interval.updated_at).count %>
-				<tr>
+				<tr class="<%= cycle "odd", "even" -%>">
 			    <td class="heading"><%=h ordinal(interval.index_no) %></td>
 			    <td><%= interval_time interval.minutes %></td>
 					<td><%= success_rate(correct, incorrect) %></td>

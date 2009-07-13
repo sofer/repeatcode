@@ -1,4 +1,4 @@
-<tr>
+<tr class="<%= cycle "odd", "even" -%>">
   <% fields_for(course) do |f| %>
 		<td>
 			<% form_for :lesson,

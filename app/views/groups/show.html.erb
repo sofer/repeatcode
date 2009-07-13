@@ -22,7 +22,7 @@
 		</thead>
 		<tbody>
 			<% for tutor in @tutors %>
-				<tr>
+				<tr class="<%= cycle "odd", "even" -%>">
 					<td class="heading">
 						<%= tutor.login %>
 					</td>
@@ -53,7 +53,7 @@
 		</thead>
 		<tbody class="paging" limit="8" id="students">
 			<% for student in @students %>
-				<tr>
+				<tr class="<%= cycle "odd", "even" -%>">
 					<td class="heading">
 						<%= student.login %>
 					</td>

@@ -15,7 +15,7 @@
 	<table>
 		<tbody class="paging" limit="17" id="organizations">
 			<% for org in @organizations %>
-					<tr>
+				<tr class="<%= cycle "odd", "even" -%>">
 						<td class="heading">
 							<%= org.name %>
 						</td>

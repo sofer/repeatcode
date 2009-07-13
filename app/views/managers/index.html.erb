@@ -10,7 +10,7 @@
 	<table>
 		<tbody>
 			<% for manager in @managers %>
-				<tr>
+				<tr class="<%= cycle "odd", "even" -%>">
 					<td class="heading">
 						<%= manager.user.login %>
 					</td>
@@ -28,7 +28,7 @@
 	<table class="admin-table">
 		<tbody class="paging" limit="12" id="admin">
 			<% for user in @users %>
-				<tr>
+				<tr class="<%= cycle "odd", "even" -%>">
 					<td class="heading"><%= user.login %></td>
 					<td><%= user.email %></td>
 					<td>(<%= user.uid %>)</td>

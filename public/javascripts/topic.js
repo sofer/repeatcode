@@ -68,14 +68,18 @@ RC.topic = {
 				$(".hint:last", "#hidden-fields").val(this.importedExercises[i][2]);
 				$(".notes:last", "#hidden-fields").val(this.importedExercises[i][3]);
 				var rowNo = i + 1;
-				var row = "<tr>" +
-									"<td>" + rowNo + "</td>" +
-									"<td><div class=\"fixed-height\">" + this.importedExercises[i][0] + "</div></td>" +
-									"<td><div class=\"fixed-height\">" + this.importedExercises[i][1] + "</div></td>" +
-									"<td><div class=\"fixed-height\">" + this.importedExercises[i][2] + "</div></td>" +
-									"<td><div class=\"fixed-height\">" + this.importedExercises[i][3] + "</div></td>" +
-									"<td> </td>" +
-									"</tr>"
+				if (rowNo % 2 === 0) {
+ 					var row = '<tr class="even">'
+				} else {
+					var row = "<tr>"
+				}
+				row +=	"<td>" + rowNo + "</td>" +
+						"<td><div class=\"fixed-height\">" + this.importedExercises[i][0] + "</div></td>" +
+						"<td><div class=\"fixed-height\">" + this.importedExercises[i][1] + "</div></td>" +
+						"<td><div class=\"fixed-height\">" + this.importedExercises[i][2] + "</div></td>" +
+						"<td><div class=\"fixed-height\">" + this.importedExercises[i][3] + "</div></td>" +
+						"<td> </td>" +
+						"</tr>"
 				$("#exercises").append(row);
 			}
 		}
