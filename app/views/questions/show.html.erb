@@ -1,7 +1,5 @@
 <div id="header">
 	<h1>
-		<%= link_to 'Courses', courses_path %>
-		&raquo; <%= @course.name if @course %>
 		&raquo; <%= truncate @question.phrase, 40 %>
 	</h1>
 	<h2>
@@ -22,7 +20,7 @@
 		</thead>
 		<tbody class="paging" limit="16" id="responses">
 			<% for response in @question.responses %>
-				<tr>
+			<tr class="<%= cycle "odd", "even" -%>">
 					<td class="left"><%= formatted_date_time response.updated_at %></td>
 					<td><%=h response.seconds_taken %> secs</td>
 					<td><%=h response.interval %></td>
