@@ -1,6 +1,6 @@
 #envelope	{ position: relative; height: 500px; margin: 10px auto; width: 900px; background: white; border: 1px solid LightGrey; -moz-border-radius: 10px; -webkit-border-radius: 10px; }
 #message-envelope	{ margin: 4px auto; width: 892px; }
-#header	{ height: 20px; padding: 12px; background: DodgerBlue; -moz-border-radius: 10px 10px 0 0; -webkit-border-radius: 10px 10px 0 0; }
+#header	{ height: 20px; padding: 12px; background: DodgerBlue; -moz-border-radius: 10px 10px 0 0; -webkit-border-top-left-radius: 10px; -webkit-border-top-right-radius: 10px; }
 #header a	{ color: MidnightBlue; }
 #footer	{ position: absolute; height: 36px; left: 0; right: 0; bottom: 0; margin: 4px; padding-top: 4px; border-top: 1px solid; }
 .main	{ position: absolute; top: 44px; right: 0px; bottom: 44px; left: 0px; margin: 4px; }
