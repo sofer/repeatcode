@@ -97,7 +97,7 @@ class CoursesController < ApplicationController
       redirect_to(courses_path)
     elsif params[:course][:archived]
       @course.toggle!(:archived)
-      flash[:notice] = "''#{@course.name}' was successfully archived."
+      flash[:notice] = "'#{@course.name}' was successfully archived."
       redirect_to(courses_path)
     else
     
