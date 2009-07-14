@@ -9,8 +9,10 @@
 </div>
 <div class="main">
 
-	<div>
-		Welcome to <%= name_from_domain request.domain %>! Select a course and start studying now.
+	<div> &nbsp;
+		<% unless current_user %>
+			Welcome to <%= name_from_domain request.domain %>! Select a course and start studying now.
+		<% end %>
 	</div>
 
 	<div class="col3">
