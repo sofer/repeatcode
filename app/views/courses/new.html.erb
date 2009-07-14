@@ -15,15 +15,14 @@
 
 	<div class="col3">
 
-	<% row = 0; limit = 15 %>
+	<% row = 0; limit = 14 %>
 	<% for area in @areas %>
 		<% next if area.subjects.public.count == 0 %>
 		<% if row >= limit - 4 %>
 			<% row = 0 %>
 			</div><div class="col3">
-			<% row = 0 %>
 		<% end %>
-		<% row += 2 %>
+		<% row += 1 %>
 		<h3> <%= area.name %> </h3>
 		<% for subject in area.subjects.public %>
 			<% if row >= limit %>
@@ -41,6 +40,11 @@
 		</ul>
 	<% end %>
 	<% if current_user and current_user.subjects.private.count > 0 %>
+	<% if row >= limit - 4 %>
+		<% row = 0 %>
+		</div><div class="col3">
+	<% end %>
+	<% row += 1 %>
 	<h3>Not public</h3>
 		<% for subject in current_user.subjects.private %>
 			<% if row >= limit %>
