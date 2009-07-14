@@ -18,7 +18,7 @@
 		<% if not current_user.tutor_groups.empty? %>
 			<%= link_to_unless_current 'Teach', groups_path %> |
 		<% end %>
-		<%= link_to_unless_current 'Learn', :controller => 'courses', :action => 'index' %> |
+		<%= link_to_unless_current 'Study', :controller => 'courses', :action => 'index' %> |
 		<% if current_user.login and not current_user.login.empty? %>
 			<%= link_to_unless_current 'Create', :controller => 'subjects', :action => 'index' %> | 
 		<% end %>
@@ -30,6 +30,7 @@
 		Not logged in
 	</div>
 	<div id="navigation">
+		<%= link_to_unless_current 'Start studying', '/' %> | 
 		<%= link_to_unless_current 'About', '/about/faq' %> | 
 		<%= link_to_unless_current 'Login', '/login' %>
 	</div>

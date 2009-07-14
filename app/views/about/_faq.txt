@@ -47,7 +47,7 @@
 *A.* We are still working on this.
 
 *Q. What is the status of this site?*
-*A.* As of June 2009, it is in public pre-beta. The emphasis in the first few weeks will be on removing a long list of bugs and on beginning to build up and test a variety of different sorts of learning materials. Later, it will become easier for other people, including schools and other organizations, to start creating and sharing their own materials.
+*A.* As of July 2009, it is not yet officially launched, although it is open to the public. Over the next few weeks, the emphasis will be on removing a long list of bugs and on beginning to build up and test a variety of different sorts of learning materials.
 
 *Q. Who maintains this site.*
 *A.* It is owned and managed by "Danny Sofer":http://www.sofer.com/.

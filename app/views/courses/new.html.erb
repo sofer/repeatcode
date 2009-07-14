@@ -1,13 +1,17 @@
 <div id="header">
 	<h1>
 		<%= name_from_domain request.domain %>
-		<span class="italic white">pre-beta</span>
+		<span class="italic">pre-launch</span>
 	</h1>
 	<h2>
 		<%= render :partial => 'global/site_links'%>
 	</h2>
 </div>
 <div class="main">
+
+	<div>
+		Welcome to <%= name_from_domain request.domain %>! Select a course and start studying now.
+	</div>
 
 	<div class="col3">
 
@@ -57,6 +61,5 @@
 </div>
 
 <div id="footer">
-		Welcome to <%= name_from_domain request.domain %>! This site is still in development, but you are welcome to try it out.
 		<%= render :partial => 'global/toplevel_links' %>
 </div>
