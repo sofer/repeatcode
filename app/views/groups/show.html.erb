@@ -1,5 +1,6 @@
 <div id="header">
-	<h1>
+	<%= render :partial => 'global/logo' %>
+	<h1>Repeat
 		<%= @organization.name %>
 		&raquo; <%= link_to 'Tutor groups', groups_path %>
 		&raquo; <%= @group.name %>

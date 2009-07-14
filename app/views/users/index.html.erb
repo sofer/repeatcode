@@ -1,5 +1,6 @@
 <div id="header">
-	<h1>
+	<%= render :partial => 'global/logo' %>
+	<h1>Repeat
 		<%= @group.organization.name %>
 		&raquo; <%=link_to @group.name, @group %>
 		&raquo; Add users
