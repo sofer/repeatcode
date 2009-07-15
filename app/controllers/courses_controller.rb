@@ -27,8 +27,12 @@ class CoursesController < ApplicationController
     @courses = current_user.courses.active
     
     respond_to do |format|
-      format.html # index.html.erb
-      format.xml  { render :xml => @courses }
+			if current_user and current_user.login.blank?
+				format.html { redirect_to '/account' }
+			else
+      	format.html # index.html.erb
+      	format.xml  { render :xml => @courses }
+			end
     end
   end
 
@@ -38,8 +42,8 @@ class CoursesController < ApplicationController
     @course = Course.find(params[:id])
 
     respond_to do |format|
-      format.html # show.html.erb
-      format.xml  { render :xml => @course }
+			format.html # show.html.erb
+			format.xml  { render :xml => @course }
     end
   end
 

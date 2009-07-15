@@ -100,7 +100,7 @@ fieldset textarea	{ width: 48%; height: 50px; }
 .intervals-table input[type=text]	{ width: 20px; }
 
 /* account */
-#account .box	{ margin-top: 24px; }
+#account .box	{ margin-top: 0; }
 
 /* user edits */
 #user-edits tr	{ height: 44px; }

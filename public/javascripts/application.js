@@ -75,8 +75,6 @@ $(document).ready(function(){
 	
 	RC.table.init();
 	
-	$(".new-course submit").rollove
-
 	$(".display").click(function() {
 		var displayId = $(this).attr("display");
 		$(displayId).fadeIn();
@@ -137,12 +135,16 @@ $(document).ready(function(){
 		if ($('#user_login').val() === '') {
 			$('.warning').text('Please enter a login')
 			return false;
+		} else {
+			return true;
 		}
 	});
 	
 	$('.archive-alert').click(function(){
 		if (!confirm('Remove permanently?')) {
 			return false;
+		} else {
+			return true;
 		}
 	});
 	

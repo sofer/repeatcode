@@ -1,46 +1,44 @@
 <div id="header">
 	<%= render :partial => 'global/logo' %>
 	<h1>Repeat
-		<%= @user.login if @user.login %>
-		&raquo; account details
+		Account details
 	</h1>
 </div>
 
 <div id="account" class="main">
 
-	<div class="announce">
-		Drag this link to your bookmark bar:
-		<%= link_to name_from_domain(request.domain) + ' login', '/u/' + current_user.uid , :class => 'box-text' %>
-		in order to login automatically next time.
-	</div>
-
 	<% form_for @user do |f| -%>
 
 		<div class="box">
+
 			<fieldset>
-				<legend>Edit your details</legend>
+				<legend>Drag this link to your bookmark bar</legend>
 				<div>
-					<label>Your ID</label>
-					<code><%= current_user.uid %></code>
+					<%= link_to name_from_domain(request.domain) + ' login', '/u/' + current_user.uid , :class => 'box-text' %>
 				</div>
+				<div>in order to login automatically next time.</div>
+			</fieldset>
+			
+			<fieldset>
+				<legend>Make a note of your ID and keep it safe</legend>
 				<div>
-					(Make a note of it and keep it safe.)
+					<strong><%= current_user.uid %></strong>
 				</div>
-				<div>
-					<label>Logged in from</label>
-					<code><%= current_user.last_login %></code>
-				</div>
-				<div>
-					<label>Logged in at</label>
-					<code><%= formatted_date_time current_user.updated_at %></code>
-				</div>
+			</fieldset>
+			
+			<fieldset>
+				<legend>Update your details</legend>
 				<div>
 					<label for="organization">Organization</label>
 					<%= f.select(:organization_id, Organization.all.collect { |org| [ org.name, org.id ] }, { :include_blank => 'None' }) %>
 				</div>
 				<div>
 						<label for="login">Login</label>
-						<%= f.text_field :login, :autocomplete => "off" %>
+						<% if current_user.login %>
+							<%= current_user.login %>
+						<% else %>
+							<%= f.text_field :login, :autocomplete => "off" %>
+						<% end %>
 				</div>
 				<div>
 					<label for="email">Email</label>
@@ -52,6 +50,7 @@
 					<%= link_to 'Help', :controller => 'about', :action => 'voice' %>
 				</div>
 			</fieldset>
+
 			<div class="warning message"></div>
 		</div>
 
