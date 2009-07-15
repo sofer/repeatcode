@@ -6,7 +6,7 @@ class LessonsController < ApplicationController
   # GET /courses/1/lessons.xml
   def index
     @course = Course.find(params[:course_id])
-    @lessons =  @course.lessons
+    @lessons =  @course.lessons.find(:all, :order => 'ID DESC')
 
     respond_to do |format|
       format.html # index.html.erb
