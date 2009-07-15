@@ -6,7 +6,7 @@ class QuestionsController < ApplicationController
   # GET /questions.xml
   def index
     @course = Course.find(params[:course_id])
-    @questions =  @course.questions.current.due + @course.questions.current.pending.find(:all, :order => :next_datetime)
+    @questions =  @course.questions.current.due + @course.questions.current.pending.find(:all, :order => :next_datetime, :limit => 200)
 
     respond_to do |format|
       format.html # index.html.erb
