@@ -29,16 +29,20 @@
 			<fieldset>
 				<legend>Update your details</legend>
 				<div>
-					<label for="organization">Organization</label>
-					<%= f.select(:organization_id, Organization.all.collect { |org| [ org.name, org.id ] }, { :include_blank => 'None' }) %>
-				</div>
-				<div>
 						<label for="login">Login</label>
 						<% if current_user.login %>
-							<%= current_user.login %>
+						<div class="user-details"><%= current_user.login %></div>
 						<% else %>
 							<%= f.text_field :login, :autocomplete => "off" %>
 						<% end %>
+				</div>
+				<div>
+					<label for="organization">Organization</label>
+					<% if current_user.organization_id %>
+						<div class="user-details"><%= current_user.organization.name %></div>
+					<% else %>
+						<%= f.select(:organization_id, Organization.all.collect { |org| [ org.name, org.id ] }, { :include_blank => 'None' }) %>
+					<% end %>
 				</div>
 				<div>
 					<label for="email">Email</label>

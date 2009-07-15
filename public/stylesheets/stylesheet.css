@@ -101,6 +101,7 @@ fieldset textarea	{ width: 48%; height: 50px; }
 
 /* account */
 #account .box	{ margin-top: 0; }
+#account div .user-details	{ float: left; font-weight: bold; margin-left: 10px; text-align: left; }
 
 /* user edits */
 #user-edits tr	{ height: 44px; }
