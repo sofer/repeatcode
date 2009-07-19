@@ -1,11 +1,11 @@
 *Q. What can I use this site for?*
-*A.* For learning and revising a variety of material, including programming languages and various academic subjects.
+*A.* For learning and revising a variety of material, including programming languages, spoken languages and various academic subjects.
 
 *Q. How does it work?*
-*A.* A course of study is presented through a series of questions and answers, which are introduced gradually and repeated regularly until the material is mastered.
+*A.* A course of study is presented through a series of questions and answers, which are introduced gradually and repeated regularly until the material is mastered. 
 
-*Q. What is different about studying this way?*
-*A.* It is very efficient. If you are revising for an exam or are trying to commit information to long-term memory, studying here is likely to work very well for you.
+*Q. How is this different to any other method of learning?*
+*A.* It is more efficient. If you are revising for an exam or are trying to commit information to long-term memory, studying here is likely to be a better use of your time than any other form of study.
 
 *Q. What are the key principles involved?*
 *A.* Spaced repetition and active recall.
@@ -26,7 +26,7 @@
 *A.* Just select a <%= link_to 'new course', new_course_path %> from the several that are available.
 
 *Q. How do I return to a course that I have already started?*
-*A.* When you select a course for the first time, a new account is created automatically for you. If you want to continue to use this account, you should follow the _save your details_ link.
+*A.* When you select a course for the first time, a new account is created automatically for you. If you want to continue to use this account, you should save your details after you finish studying for the first time.
 
 *Q. Once I have started a course, how often should I learn?*
 *A.* you can study as often and for as long as you like, but you are likely to get most benefit from studying regularly. If you are not in a hurry, or if you are studying several courses simultaneously, you may want to study each course for just a few minutes each day. You can also study more intensively, although some of the benefits of combining the gradual introduction of new material with the spaced revision of old material will be lost if you attempt to cover too much material in too short a period of time.
@@ -35,7 +35,7 @@
 *A.* Yes. Just follow the _Create_ link after you have logged in. Subjects can be built up gradually over time and entire topics can be imported from a spreadsheet or text file. Online help is available.
 
 *Q. Can I use this in my school or organization?*
-*A.* Yes. A range of tools for teachers and administrators will be added soon.
+*A.* Yes. A range of tools for teachers and administrators is available. Please contact us for details.
 
 *Q. What support do you offer for foreign language learning?*
 *A.* We use the text-to-speech facilities that are installed on most new computers to combine written and spoken translations in a variety of languages. Text-to-speech can also be used to aid learning by visually impaired users.
