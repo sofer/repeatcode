@@ -2,7 +2,8 @@ class Lesson < ActiveRecord::Base
 
   belongs_to :course
   
-  named_scope :recent, lambda { |days|
+named_scope :started,  :conditions => "correct_responses > 0" 
+named_scope :recent, lambda { |days|
     days_ago = Time.now - (days * 24 - 1) * 3600 # 'days' ago - 1 hour
    { :conditions => [ 'created_at > ?', days_ago ] } 
   }

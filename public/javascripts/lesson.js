@@ -858,6 +858,7 @@ RC.corrections = {
 		$("#amend-response", RC.DOMnodes.amend).val(RC.question.data.question.response);
 		$("#amend-hint", RC.DOMnodes.amend).val(RC.question.data.question.hint);
 		$("#amend-notes", RC.DOMnodes.amend).val(RC.question.data.question.notes);
+		$("#amend-comments", RC.DOMnodes.amend).val("");
 		$(RC.DOMnodes.amend).fadeIn();
 	},
 	
