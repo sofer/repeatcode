@@ -224,7 +224,7 @@ class Course < ActiveRecord::Base
       
       questions.current.pending.find(
         :first,
-        :conditions => "current_interval <= #{self.repetitions}" )
+        :conditions => [ "current_interval <= ? AND id != ?", self.repetitions, ignore_id ] )
     
     question.initial_state if question and not question.current_interval
     return question
