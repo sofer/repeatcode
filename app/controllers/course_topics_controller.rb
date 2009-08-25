@@ -13,4 +13,14 @@ class CourseTopicsController < ApplicationController
     end
   end
 
+  def destroy
+    course_topic = CourseTopic.find(params[:id])
+    course_topic.remove_questions
+
+    respond_to do |format|
+        format.html { redirect_to(:back) }
+        format.xml  { head :ok }
+    end
+  end
+
 end

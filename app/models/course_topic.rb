@@ -21,6 +21,7 @@ class CourseTopic < ActiveRecord::Base
 																:case_sensitive => topic.case_sensitive,
                                 :ignore_punctuation => topic.ignore_punctuation,
                                 :add_together => topic.add_together,
+                                :removed => topic.removed,
                                 :rtl => topic.rtl })
     rescue
         logger.error invalid.record.errors
@@ -32,5 +33,14 @@ class CourseTopic < ActiveRecord::Base
       question.initial_state
     end
   end
+
+  def remove_questions
+	  self.update_attribute(:removed, true)
+    for question in questions
+      question.update_attribute( :ignore, true )
+    end
+  end
+  
+
 
 end

@@ -6,6 +6,9 @@
 	<td> <%= course_topic.questions.current.queued.count %> </td>
 	<td> <%= course_topic.questions.current.count %> </td>
 	<td>
+		<%= link_to 'Remove', course_topic, :confirm => 'Are you sure?', :method => :delete %>
+	</td>
+	<td>
 		<% form_for course_topic do |f| %>
 			<%= f.submit 'Send to top' %>
 		<% end %>
