@@ -8,7 +8,7 @@ class Topic < ActiveRecord::Base
 
   # slightly hacked to get 'updated_at' working in course.add_new_material
   named_scope :updated_since, lambda { |time|
-   { :conditions => [ 'topics.updated_at > ?', time ] } 
+   { :conditions => [ 'topics.updated_at > ? or topics.created_at > ?', time, time ] } 
   }
 
   acts_as_list :scope => :subject
