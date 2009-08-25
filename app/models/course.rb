@@ -255,6 +255,7 @@ private
         question.update_from_exercise(exercise.id)
       end
     end
+    self.synched_at = Time.now
   end
   
   def set_status_and_targets

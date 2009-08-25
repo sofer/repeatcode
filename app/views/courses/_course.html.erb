@@ -23,6 +23,7 @@
 			<%= relative_date course.lessons.last.updated_at if course.lessons.last %>
 		</td>
 		<td>
+			<%= relative_date course.synched_at %>
 			<% if course.update_required? %>
 				<% form_for course do |f| %>
 					<%= f.hidden_field :update_required, :value => true  %>
