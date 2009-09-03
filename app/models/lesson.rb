@@ -32,7 +32,7 @@ named_scope :recent, lambda { |days|
   end
   
   def backlog
-    self.course.questions.count( :conditions => ['next_datetime <= ?', Time.now])
+    self.course.questions.current.count( :conditions => ['next_datetime <= ?', Time.now])
   end
   
 private
