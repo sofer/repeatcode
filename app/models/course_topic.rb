@@ -37,7 +37,7 @@ class CourseTopic < ActiveRecord::Base
   def remove_questions
 	  self.update_attribute(:removed, true)
     for question in questions
-      question.update_attribute( :ignore, true )
+			question.update_attributes!({:ignore =>true, :next_datetime => NIL })
     end
   end
   

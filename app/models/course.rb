@@ -47,7 +47,7 @@ class Course < ActiveRecord::Base
     9 => DAY * 224
   }
   
-	def fix
+	def fix_no_longer_in_use
 		count = 0
 		for topic in course_topics
 			if topic.removed == true
