@@ -218,7 +218,7 @@ class Course < ActiveRecord::Base
         :first,
         :conditions => [ "next_datetime < ? AND id != ?", Time.now, ignore_id ] ) ||
       
-      questions.find(
+      questions.current.find(
         :first,
         :conditions => "current_interval IS NULL" ) || 
       
