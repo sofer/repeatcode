@@ -52,7 +52,7 @@ class Course < ActiveRecord::Base
 		for topic in course_topics
 			if topic.removed == true
 				for question in topic.questions
-					question.update_attribute(:ignore, true)
+					question.update_attributes!({:ignore =>true, :next_datetime => NIL })
 					count += 1
 				end
 			end
