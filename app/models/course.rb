@@ -47,6 +47,19 @@ class Course < ActiveRecord::Base
     9 => DAY * 224
   }
   
+	def fix
+		count = 0
+		for topic in course_topics
+			if topic.removed == true
+				for question in topic.questions
+					question.update_attribute(:ignore, true)
+					count += 1
+				end
+			end
+		end
+		return count
+	end
+
   def update_required?
     if subject.exercises.updated_since(self.synched_at).empty? and subject.updated_at < self.updated_at
       return false

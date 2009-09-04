@@ -51,6 +51,8 @@ class CoursesController < ApplicationController
   def edit
     @course = Course.find(params[:id])
 
+    flash[:notice] = "#{@course.fix} questions will now be ignored."
+
     respond_to do |format|
       format.html # edit.html.erb
       format.xml  { render :xml => @course }
