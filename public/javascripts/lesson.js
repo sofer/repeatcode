@@ -839,7 +839,7 @@ RC.question = {
 		} else {
 			// incorrect
 			if (this.previouslyIncorrect || this.isBoolean(expected)) {
-				RC.voices.outfoxQueue(this.bothVersions(expected), 'response');
+				RC.voices.outfoxQueue(this.bothVersions(this.data.question.response), 'response');
 				this.wrong();
 			} else {
 				this.tryAgain();
