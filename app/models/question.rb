@@ -62,8 +62,8 @@ class Question < ActiveRecord::Base
     self.current_interval = interval + 1
     if interval < course.repetitions
       minutes_to_go = course.intervals.find(:first, :conditions => {:index_no => self.current_interval}).minutes
-      minutes_to_go += rand(minutes_to_go/10) if minutes_to_go > 10
-      self.next_datetime = Time.now + minutes_to_go * 60
+			secs_to_go = minutes_to_go * 54 + rand(minutes_to_go * 12) # +- 10%
+			self.next_datetime = Time.now + secs_to_go
     else
       self.next_datetime = nil
     end
