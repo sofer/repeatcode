@@ -129,7 +129,7 @@ class Course < ActiveRecord::Base
 	
   def questions_started
   	started = questions.started.count 
-  	total = questions.count
+  	total = questions.current.count
 		return "#{started} out of #{total} (#{100*started/total}%)"
 	end
 	
