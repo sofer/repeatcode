@@ -9,10 +9,11 @@
 	<!--[if lt IE 8]>
 	<script src="http://ie7-js.googlecode.com/svn/version/2.0(beta3)/IE8.js" type="text/javascript"></script>
 	<![endif]-->
+	<%= yield :head %>
 </head>
 <body>
 	<div id="envelope">
-		<%= yield :layout %>
+		<%= yield %>
 	</div>
 	<div id="message-envelope">
 		<%= content_tag 'div', h(flash[:notice]), :class => 'notice', :id => 'notice' if flash[:notice] %>

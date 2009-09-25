@@ -1,27 +1,7 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html>
-<head>
-	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-	<title><%= name_from_domain request.domain %>: <%= controller.action_name + ' ' + controller.controller_name -%></title>
-	<%= stylesheet_link_tag 'stylesheet', 'theme', :cache => "cache/all" %>
-	<!--[if lt IE 8]>
-	<script src="http://ie7-js.googlecode.com/svn/version/2.0(beta3)/IE8.js" type="text/javascript"></script>
-	<![endif]-->
-	<!-->
-	<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.2.6/jquery.min.js"></script>
-	<!-->
-	<%= javascript_include_tag 'jquery' %>
-	<%= javascript_include_tag 'jquery.flot', 'application', 'lesson' %>
+<% content_for :head do %>
+	<%= javascript_include_tag 'jquery.flot', 'lesson' %>
 	<%= javascript_include_tag 'json2', 'outfox' if current_user.voice %>
-	<%= javascript_tag "var AUTH_TOKEN = #{form_authenticity_token.inspect};" if protect_against_forgery? %>
-</head>
-<body>
-	<div id="envelope">
-		<%= yield :layout %>
-	</div>
-	<div id="message-envelope">
-		<%= content_tag 'div', h(flash[:notice]), :class => 'notice', :id => 'notice' if flash[:notice] %>
-		<%= content_tag 'div', h(flash[:error]), :class => 'error', :id => 'error' if flash[:error] %>
-	</div>
-</body>
-</html>
+<% end %>
+
+<%= render :file => 'layouts/application' %>
+
