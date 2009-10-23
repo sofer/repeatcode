@@ -17,7 +17,7 @@
 			<% end %>
 		</td>
 		<td>
-			<%= course.questions.due.count %>
+			<%= course.questions.due.size %>
 		</td>
 		<td>
 			<%= relative_date course.lessons.last.updated_at if course.lessons.last %>

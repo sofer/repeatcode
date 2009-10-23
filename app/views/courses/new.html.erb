@@ -20,7 +20,7 @@
 
 	<% row = 0; limit = 14 %>
 	<% for area in @areas %>
-		<% next if area.subjects.public.count == 0 %>
+		<% next if area.subjects.public.size == 0 %>
 		<% if row >= limit - 4 %>
 			<% row = 0 %>
 			</div><div class="col3">
@@ -36,13 +36,13 @@
 			<% form_for :course, :url => subject_courses_path(subject) do |f| %>
 				<div class="new-course">
 					<%= f.submit subject.name, :description => subject.description %>
-					<div class="description"><%= subject.description %> (<%= subject.exercises.current.count %> exercises)</div>
+					<div class="description"><%= subject.description %> (<%= subject.exercises.current.size %> exercises)</div>
 				</div>
 				<% end %>
 		<% end %>
 		</ul>
 	<% end %>
-	<% if current_user and current_user.subjects.private.count > 0 %>
+	<% if current_user and current_user.subjects.private.size > 0 %>
 	<% if row >= limit - 4 %>
 		<% row = 0 %>
 		</div><div class="col3">
@@ -57,7 +57,7 @@
 			<% row += 1 %>
 			<% form_for :course, :url => subject_courses_path(subject) do |f| %>
 				<div class="new-course">
-					<%= f.submit "#{subject.name} (#{subject.exercises.current.count})" %>
+					<%= f.submit "#{subject.name} (#{subject.exercises.current.size})" %>
 				</div>
 				<% end %>
 		<% end %>

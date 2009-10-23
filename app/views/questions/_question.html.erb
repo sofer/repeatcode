@@ -5,5 +5,5 @@
 	<td class="error"><%= 'DUE' unless question.next_datetime.nil? or question.next_datetime > Time.now %></td>
 	<td><%= relative_date question.next_datetime unless question.next_datetime.nil? %></td>
 	<td><%= question.current_interval %></td>
-	<td><%= link_to question.responses.count, question %></td>
+	<td><%= link_to question.responses.size, question %></td>
 </tr>

@@ -148,7 +148,7 @@ td .fixed-height { height: 23px; overflow: hidden; }
 #details, #voices-link, #completed, #graph, #code-block, #answer, #response, #amend, #ignore, #voices, #timeout, #notes	{ display: none; }
 #details	{ position: absolute; left: 0;}
 #loading	{ position: absolute; right: 0; }
-.overlay	{ position: absolute; left: 0; right: 0; top: 0; bottom: 4px; background-color: white; opacity: 0.8; filter:alpha(opacity=80); xdisplay: none; }
+.overlay	{ position: absolute; left: 0; right: 0; top: 0; bottom: 4px; background-color: white; opacity: 0.8; filter:alpha(opacity=80); }
 #amend fieldset * { margin-top: 10px; }
 #amend label	{ text-align: left; }
 #amend input[type="text"]	{ float: none; width: 96%; margin-top: 2px; }

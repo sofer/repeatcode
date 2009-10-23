@@ -75,7 +75,7 @@ class Course < ActiveRecord::Base
   end
   
   def response_target(days)
-    response_count = responses.correct.since(Time.now - days * DAY_IN_SECS).count
+    response_count = responses.correct.since(Time.now - days * DAY_IN_SECS).size
     target = days * self.lesson_target * self.weekly_target / 7
     return response_count, target
   end
@@ -101,22 +101,23 @@ class Course < ActiveRecord::Base
   # RESPONSES = QUESTIONS * REPETITIONS * k
   # where k = 100 * SQUARE(FAIL-RATE) + 1
   # note use of instance variable @total_responses
+  # I THINK THIS IS HOPELESSLY INACCURATE
   def set_responses_estimate
     unless @total_responses
-      if responses.count == 0
+      if responses.size == 0
         failure_rate = 1 - 1.0 * self.accuracy_target/100
       else 
-        failure_rate = 1.0 * responses.incorrect.count/responses.count
+        failure_rate = 1.0 * responses.incorrect.size/responses.size
       end
       k = 100 * failure_rate * failure_rate + 1
-      @total_responses = (questions.current.count * self.repetitions * k).to_i
+      @total_responses = (questions.current.size * self.repetitions * k).to_i
       @total_responses = (@total_responses/100).to_i * 100 if @total_responses > 200
     end
   end
   
   def estimated_end_date
     set_responses_estimate
-    total_responses_remaining = @total_responses - responses.count
+    total_responses_remaining = @total_responses - responses.size
     target_daily_rate = self.lesson_target * self.weekly_target / 7
     days_to_go = @total_responses / target_daily_rate
     return Time.now + days_to_go * 24 * 60 * 60 
@@ -124,21 +125,21 @@ class Course < ActiveRecord::Base
   
 	def responses_completed
     set_responses_estimate
-		return "#{responses.count} out of an estimated #{@total_responses} (#{100*responses.count/@total_responses}%)"
+		return "#{responses.size} out of an estimated #{@total_responses} (#{100*responses.size/@total_responses}%)"
 	end
 	
   def questions_started
-  	started = questions.started.count 
-  	total = questions.current.count
+  	started = questions.started.size 
+  	total = questions.current.size
 		return "#{started} out of #{total} (#{100*started/total}%)"
 	end
 	
   def weekly_response_count
     weeks_since_start =  (Time.now - self.created_at) / (7.0 * DAY_IN_SECS)
     if weeks_since_start < 1
-      return responses.count
+      return responses.size
     else
-      return (responses.count / weeks_since_start).to_i
+      return (responses.size / weeks_since_start).to_i
     end
   end
 

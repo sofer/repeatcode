@@ -28,7 +28,7 @@
 						<%= tutor.login %>
 					</td>
 					<td>
-						<%= @group.students.count %> students
+						<%= @group.students.size %> students
 					</td>
 					<td>
 						<% unless tutor == current_user %>
@@ -62,7 +62,7 @@
 						<%= relative_date student.updated_at %>
 					</td>
 					<td>
-						<%= student.courses.active.count %>
+						<%= student.courses.active.size %>
 					</td>
 					<td>
 						<% form_for(@group)  do |f| %>

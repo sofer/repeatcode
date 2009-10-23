@@ -24,8 +24,8 @@
 							<%= link_to 'Add manager', organization_managers_path(org) %>
 						</td>
 						<td>
-							<% if org.users.count > 0 %>
-								<%= org.users.count %> users
+							<% if org.users.size > 0 %>
+								<%= org.users.size %> users
 							<% else %>
 								<%= link_to 'Delete', org, :confirm => "WARNING! This will remove #{org.name} from the system. Do you really want to do this?", :method => :delete %>		
 							<% end %>

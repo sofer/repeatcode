@@ -32,8 +32,8 @@
 		<% end %>
 		<tbody>
 			<% for interval in @intervals %>
-				<% correct = @course.responses.correct.interval(interval.index_no).since(interval.updated_at).count %>
-				<% incorrect = @course.responses.incorrect.interval(interval.index_no).since(interval.updated_at).count %>
+				<% correct = @course.responses.correct.interval(interval.index_no).since(interval.updated_at).size %>
+				<% incorrect = @course.responses.incorrect.interval(interval.index_no).since(interval.updated_at).size %>
 				<tr class="<%= cycle "odd", "even" -%>">
 			    <td class="heading"><%=h ordinal(interval.index_no) %></td>
 			    <td><%= interval_time interval.minutes %></td>

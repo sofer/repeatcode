@@ -32,7 +32,7 @@ class Subject < ActiveRecord::Base
   def exercise_count
     count = 0
     for topic in topics
-      count += topic.exercises.count
+      count += topic.exercises.size
     end
     return count
   end

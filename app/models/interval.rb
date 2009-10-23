@@ -8,8 +8,8 @@ class Interval < ActiveRecord::Base
   # t2 = t1 * (target+actual)/(2*actual) where actual > target
   # t2 = t1 * (3*target-actual)/(2*target) where actual < target
   def reset
-    correct = course.responses.correct.interval(self.index_no).since(self.updated_at).count
-    incorrect = course.responses.incorrect.interval(self.index_no).since(self.updated_at).count
+    correct = course.responses.correct.interval(self.index_no).since(self.updated_at).size
+    incorrect = course.responses.incorrect.interval(self.index_no).since(self.updated_at).size
     
     return false if self.index_no < 2
     
