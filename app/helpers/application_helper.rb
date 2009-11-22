@@ -9,9 +9,9 @@ module ApplicationHelper
     end
   end
   
-  def name_from_domain(domain)
+  def name_from_domain(domain) # redundant now
     domain.match /repeat(\w+)\./
-    return 'Repeat' + $1.capitalize
+    return 'Repeat' + $1.capitalize if $1
   end
   
   def selected_voice(voice)
