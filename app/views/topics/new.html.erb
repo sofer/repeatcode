@@ -1,70 +1,71 @@
 <div id="header">
-	<%= render :partial => 'global/logo' %>
-	<h1>Repeat
-		New topic
-	</h1>
-	<h2>
-		<%= link_to(@subject.name, @subject) %> 
-	</h2>
+  
+  <%= render :partial => 'global/logo' %>
+  <h1>
+    New topic
+  </h1>
+  <h2>
+    <%= link_to(@subject.name, @subject) %> 
+  </h2>
 </div>
 
 <div class="main">
-	
-	<% form_for @topic do |f| %>
-	
-		<div id="firstly">
+  
+  <% form_for @topic do |f| %>
+  
+    <div id="firstly">
 
-			<div id="choose">
-				<div id="choose-import" class="radio button radio-selected">
-					<input type="radio" name="choice" checked>
-					<b>Copy and paste</b> from a table
-				</div>
-	
-				<div id="choose-table" class="radio button">
-					<input type="radio" name="choice">
-					<b>Start from scratch</b>
-				</div>
+      <div id="choose">
+        <div id="choose-import" class="radio button radio-selected">
+          <input type="radio" name="choice" checked>
+          <b>Copy and paste</b> from a table
+        </div>
+  
+        <div id="choose-table" class="radio button">
+          <input type="radio" name="choice">
+          <b>Start from scratch</b>
+        </div>
 
-			</div>
-				
-			<div id="topic-import">
-				<%= text_area_tag "import-data", "Copy and paste straight from a spreadsheet. Questions or phrases go in the first column. Responses go in the second column. A third column can be used to provide hints. If copying from a text file, remember to separate columns with tabs. If the first line contains text, but no tabs it will be imported as the topic name. For help on constructing phrases, responses and hints, follow the \"Start from scratch\" link above and click on the ?'s beside the column headings.", { :class => "disabled" } %>
-				<div class="warning">Copy a table of questions and responses into the box above</div>
-				<div class="submit">
-					<input id="parse-import-data" type="submit" value="Continue"/>		
-				</div>
-			</div>
+      </div>
+        
+      <div id="topic-import">
+        <%= text_area_tag "import-data", "Copy and paste straight from a spreadsheet. Questions or phrases go in the first column. Responses go in the second column. A third column can be used to provide hints. If copying from a text file, remember to separate columns with tabs. If the first line contains text, but no tabs it will be imported as the topic name. For help on constructing phrases, responses and hints, follow the \"Start from scratch\" link above and click on the ?'s beside the column headings.", { :class => "disabled" } %>
+        <div class="warning">Copy a table of questions and responses into the box above</div>
+        <div class="submit">
+          <input id="parse-import-data" type="submit" value="Continue"/>    
+        </div>
+      </div>
 
-			<div id="table" class="topic">
-				<% exercises = (1..12).collect { Exercise.new } %>
-				<%= render :partial => "exercise_table", :locals => { :exercises => exercises, :add => false } %>
-				<div class="warning">Enter some exercises in the table above</div>
-				<div class="submit">
-					<input id="confirm" type="submit" value="Continue"/>
-				</div>
-			</div>
+      <div id="table" class="topic">
+        <% exercises = (1..12).collect { Exercise.new } %>
+        <%= render :partial => "exercise_table", :locals => { :exercises => exercises, :add => false } %>
+        <div class="warning">Enter some exercises in the table above</div>
+        <div class="submit">
+          <input id="confirm" type="submit" value="Continue"/>
+        </div>
+      </div>
 
-		</div>
+    </div>
 
-		<div id="finally">
-			<%= render :partial => "form", :locals => { :f => f } %>
-			<div class="submit">
-				<%= f.submit "Finish" %>
-			</div>
-		</div>
+    <div id="finally">
+      <%= render :partial => "form", :locals => { :f => f } %>
+      <div class="submit">
+        <%= f.submit "Finish" %>
+      </div>
+    </div>
 
-		<div id="hidden-fields"> </div>
+    <div id="hidden-fields"> </div>
 
-	<% end %>
+  <% end %>
 
 </div>
 
 <div id="footer">
-	<%= render :partial => 'global/toplevel_links' %>
+  <%= render :partial => 'global/toplevel_links' %>
 </div>
 
 <div id="hidden-exercise-template">
-	<%= render :partial => "new_exercise", :layout => "hidden_exercise", :object => Exercise.new  %>
+  <%= render :partial => "new_exercise", :layout => "hidden_exercise", :object => Exercise.new  %>
 </div>
 
 <%= render :partial => "help" %>

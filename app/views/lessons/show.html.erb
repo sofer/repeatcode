@@ -2,209 +2,210 @@
 
 <div id="content">
 
-	<div id="header">
-	<%= render :partial => 'global/logo' %>
-		<h1>Repeat
-	  	<%= h @lesson.course.name %>
-		</h1>
-		<h2>
-			<div id="topic"></div>
-		</h2>
-	</div>
+  <div id="header">
+  
+    <%= render :partial => 'global/logo' %>
+  <h1>
+      <%= h @lesson.course.name %>
+    </h1>
+    <h2>
+      <div id="topic"></div>
+    </h2>
+  </div>
 
-	<div class="main">
+  <div class="main">
 
-		<div id="progress">
-			Correct responses: <span id="correct-responses"></span> (Target: <span id="target"><%= @lesson.course.lesson_target %></span>)
-		</div>
-		<div id="time">
-			Elapsed time: <span id="elapsed-time">0</span> minutes
-		</div>
-		
-		<div id="progress-alert"></div>
+    <div id="progress">
+      Correct responses: <span id="correct-responses"></span> (Target: <span id="target"><%= @lesson.course.lesson_target %></span>)
+    </div>
+    <div id="time">
+      Elapsed time: <span id="elapsed-time">0</span> minutes
+    </div>
+    
+    <div id="progress-alert"></div>
 
-		<div id="question"> </div>
-		
-		<div id="graph"> </div>
-	
-		<div id="code-block">
-			<div id="data-tab" class="data tab border">
-			</div>
-			<div id="code-tab" class="code tab border">
-			</div>
-			<div id="output-tab" class="output tab border">
-			</div>
-		</div>
+    <div id="question"> </div>
+    
+    <div id="graph"> </div>
+  
+    <div id="code-block">
+      <div id="data-tab" class="data tab border">
+      </div>
+      <div id="code-tab" class="code tab border">
+      </div>
+      <div id="output-tab" class="output tab border">
+      </div>
+    </div>
 
-		<div id="answer">
-			<div id="formatted-answer"> </div>		
-			<div id="answer-text"> </div>
-			<div class="submit">
-				<%= submit_tag "OK", :id => "ok"%>
-			</div>
-		</div>
+    <div id="answer">
+      <div id="formatted-answer"> </div>    
+      <div id="answer-text"> </div>
+      <div class="submit">
+        <%= submit_tag "OK", :id => "ok"%>
+      </div>
+    </div>
 
-		<div id="response">
-			<div id="formatted-response"> </div>
-			<form id="response-form">
-				<%= text_field_tag "response-field", nil, :autocomplete => "off" %> 
-			<div id="toolbar">
-				<div id="palettes">
-					<% unless @lesson.course.extended_chars.blank? %>
-					<div id="language-palette" class="palette">
-						<div id="palette-switch">
-							ignore accents
-							<input type="checkbox" id="ignore-accents">
-						</div>
-						<div id="extended-chars">
-							<%= palette @lesson.course.subject.extended_chars %>
-						</div>
-					</div>
-					<% end %>
-					<%= render :partial => 'maths_palette' %>
-				</div>
-			</div>
-		</form>
-		</div>
-		
-		<div id="corrections">
-			<span id="notes-link">
-				<a href="" class="display" display="#notes">Notes</a> |
-			</span>
-			<a href="" id="amend-link">Amend</a> | <a href="" id="ignore-link">Ignore</a>
-		</div>
-		
-	</div>
+    <div id="response">
+      <div id="formatted-response"> </div>
+      <form id="response-form">
+        <%= text_field_tag "response-field", nil, :autocomplete => "off" %> 
+      <div id="toolbar">
+        <div id="palettes">
+          <% unless @lesson.course.extended_chars.blank? %>
+          <div id="language-palette" class="palette">
+            <div id="palette-switch">
+              ignore accents
+              <input type="checkbox" id="ignore-accents">
+            </div>
+            <div id="extended-chars">
+              <%= palette @lesson.course.subject.extended_chars %>
+            </div>
+          </div>
+          <% end %>
+          <%= render :partial => 'maths_palette' %>
+        </div>
+      </div>
+    </form>
+    </div>
+    
+    <div id="corrections">
+      <span id="notes-link">
+        <a href="" class="display" display="#notes">Notes</a> |
+      </span>
+      <a href="" id="amend-link">Amend</a> | <a href="" id="ignore-link">Ignore</a>
+    </div>
+    
+  </div>
 
-	<div id="footer">
-		<div id="details">
-			Current backlog: <span id="backlog"></span>
-			| Repetition number: <span id="current-interval"></span>
-			| <span id="seconds">0</span> seconds
-		</div>
-		<div id="loading"><img src="/images/furniture/loading.gif" width="16" height="16" alt="loading..."></div>
-			
-		<div id="user">
-			<% if current_user.login %>
-				Logged in as: <%= current_user.login %>
-			<% else %>
-				User ID: <%= current_user.uid %>
-			<% end %>
-		</div>
-		<div id="navigation">
-			<a href="" id="voices-link">Voices</a> 
-			| <a href="" class="details-switch">Show details</a> 
-			<a href="" class="details-switch hidden">Hide details</a> 
-			| <%= link_to 'End lesson', courses_path %>
-		</div>
-	</div>
+  <div id="footer">
+    <div id="details">
+      Current backlog: <span id="backlog"></span>
+      | Repetition number: <span id="current-interval"></span>
+      | <span id="seconds">0</span> seconds
+    </div>
+    <div id="loading"><img src="/images/furniture/loading.gif" width="16" height="16" alt="loading..."></div>
+      
+    <div id="user">
+      <% if current_user.login %>
+        Logged in as: <%= current_user.login %>
+      <% else %>
+        User ID: <%= current_user.uid %>
+      <% end %>
+    </div>
+    <div id="navigation">
+      <a href="" id="voices-link">Voices</a> 
+      | <a href="" class="details-switch">Show details</a> 
+      <a href="" class="details-switch hidden">Hide details</a> 
+      | <%= link_to 'End lesson', courses_path %>
+    </div>
+  </div>
 
 </div>
 
 <div id="amend">
-	<div class="overlay"></div>
-	<div class="message-frame">
-		<fieldset>
-			<legend>Amend this question</legend>
-			<%= label_tag 'Phrase' %>
-			<%= text_field_tag "amend-phrase", nil, :autocomplete => "off" %> 
-			<%= label_tag 'Response' %>
-			<%= text_field_tag "amend-response", nil, :autocomplete => "off" %> 
-			<%= label_tag 'Hint' %>
-			<%= text_field_tag "amend-hint", nil, :autocomplete => "off" %> 
-			<%= label_tag 'Comments' %>
-			<%= text_field_tag "amend-comments", nil, :autocomplete => "off" %> 
-		</fieldset>
-		<div class="footer">
-			<%= submit_tag 'Cancel' %>
-			<%= submit_tag 'OK' %>
-		</div>
-	</div>
+  <div class="overlay"></div>
+  <div class="message-frame">
+    <fieldset>
+      <legend>Amend this question</legend>
+      <%= label_tag 'Phrase' %>
+      <%= text_field_tag "amend-phrase", nil, :autocomplete => "off" %> 
+      <%= label_tag 'Response' %>
+      <%= text_field_tag "amend-response", nil, :autocomplete => "off" %> 
+      <%= label_tag 'Hint' %>
+      <%= text_field_tag "amend-hint", nil, :autocomplete => "off" %> 
+      <%= label_tag 'Comments' %>
+      <%= text_field_tag "amend-comments", nil, :autocomplete => "off" %> 
+    </fieldset>
+    <div class="footer">
+      <%= submit_tag 'Cancel' %>
+      <%= submit_tag 'OK' %>
+    </div>
+  </div>
 </div>
 
 <div id="ignore">
-	<div class="overlay"></div>
-	<div class="message-frame">
-		<fieldset>
-			<legend>Ignore this question</legend>
-			<div class="phrase"></div>
-			<div class="response"></div>
-			<div>(This question will not appear again)</div>
-		</fieldset>
-		<div class="footer">
-			<%= submit_tag 'Cancel' %>
-			<%= submit_tag 'OK' %>
-		</div>
-	</div>
+  <div class="overlay"></div>
+  <div class="message-frame">
+    <fieldset>
+      <legend>Ignore this question</legend>
+      <div class="phrase"></div>
+      <div class="response"></div>
+      <div>(This question will not appear again)</div>
+    </fieldset>
+    <div class="footer">
+      <%= submit_tag 'Cancel' %>
+      <%= submit_tag 'OK' %>
+    </div>
+  </div>
 </div>
 
 <div id="voices">
-	<div class="overlay"></div>
-	<div class="message-frame">
-		<fieldset>
-			<legend>Change text-to-speech options</legend>
-			<%= label_tag 'Voices for phrases' %>
-			<select id="phrase-voice">
-				<option value="">None</option>
-				<%= selected_voice @lesson.course.phrase_voice %>
-			</select>
-			<%= label_tag 'Voices for responses' %>
-			<select id="response-voice">
-				<option value="">None</option>
-				<%= selected_voice @lesson.course.response_voice %>
-			</select>
-		</fieldset>
-		<div class="footer">
-			<%= submit_tag 'Cancel' %>
-			<%= submit_tag 'OK' %>
-		</div>
-	</div>
+  <div class="overlay"></div>
+  <div class="message-frame">
+    <fieldset>
+      <legend>Change text-to-speech options</legend>
+      <%= label_tag 'Voices for phrases' %>
+      <select id="phrase-voice">
+        <option value="">None</option>
+        <%= selected_voice @lesson.course.phrase_voice %>
+      </select>
+      <%= label_tag 'Voices for responses' %>
+      <select id="response-voice">
+        <option value="">None</option>
+        <%= selected_voice @lesson.course.response_voice %>
+      </select>
+    </fieldset>
+    <div class="footer">
+      <%= submit_tag 'Cancel' %>
+      <%= submit_tag 'OK' %>
+    </div>
+  </div>
 </div>
 
 <div id="timeout">
-	<div class="overlay"></div>
-	<div class="message-frame">
-		<fieldset>
-			<h3>Taking time out</h3>
-			<div>Click to continue</div>
-		</fieldset>
-	</div>
+  <div class="overlay"></div>
+  <div class="message-frame">
+    <fieldset>
+      <h3>Taking time out</h3>
+      <div>Click to continue</div>
+    </fieldset>
+  </div>
 </div>
 
 <div id="wait">
-	<div class="overlay"></div>
-	<div class="message-frame">
-		<fieldset>
-			<h3>Course loading...</h3>
-			<div>
-				<img src="/images/furniture/loading.gif" width="16" height="16" alt="waiting...">
-			</div>
-			<div>(<%= link_to "reload" %>)</div>
-		</fieldset>
-	</div>
+  <div class="overlay"></div>
+  <div class="message-frame">
+    <fieldset>
+      <h3>Course loading...</h3>
+      <div>
+        <img src="/images/furniture/loading.gif" width="16" height="16" alt="waiting...">
+      </div>
+      <div>(<%= link_to "reload" %>)</div>
+    </fieldset>
+  </div>
 </div>
 
 <div id="completed">
-	<div class="overlay"></div>
-	<div class="message-frame">
-		<fieldset>
-			<h3>Course completed.</h3>
-			<div>
-				<%= link_to "Back to courses", courses_path %>
-			</div>
-		</fieldset>
-	</div>
+  <div class="overlay"></div>
+  <div class="message-frame">
+    <fieldset>
+      <h3>Course completed.</h3>
+      <div>
+        <%= link_to "Back to courses", courses_path %>
+      </div>
+    </fieldset>
+  </div>
 </div>
 
 <div id="notes" class="display-box">
-	<div class="overlay"></div>
-	<div class="message-frame">
-		<fieldset>
-			<legend>Notes</legend>
-			<div id="notes-text"> </div>
-		</fieldset>
-		<div class="footer">
-			<%= submit_tag 'OK' %>
-		</div>
-	</div>
+  <div class="overlay"></div>
+  <div class="message-frame">
+    <fieldset>
+      <legend>Notes</legend>
+      <div id="notes-text"> </div>
+    </fieldset>
+    <div class="footer">
+      <%= submit_tag 'OK' %>
+    </div>
+  </div>
 </div>

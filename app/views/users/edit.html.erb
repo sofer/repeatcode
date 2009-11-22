@@ -1,71 +1,72 @@
 <div id="header">
-	<%= render :partial => 'global/logo' %>
-	<h1>Repeat
-		Account details
-	</h1>
+  
+  <%= render :partial => 'global/logo' %>
+  <h1>
+    Account details
+  </h1>
 </div>
 
 <div id="account" class="main">
 
-	<% form_for @user do |f| -%>
+  <% form_for @user do |f| -%>
 
-		<div class="box">
+    <div class="box">
 
-			<fieldset>
-				<legend>Drag this link to your bookmark bar</legend>
-				<div>
-					<%= link_to name_from_domain(request.domain) + ' login', '/u/' + current_user.uid , :class => 'box-text' %>
-				</div>
-				<div>in order to login automatically next time.</div>
-			</fieldset>
-			
-			<fieldset>
-				<legend>Make a note of your ID and keep it safe</legend>
-				<div>
-					<strong><%= current_user.uid %></strong>
-				</div>
-			</fieldset>
-			
-			<fieldset>
-				<legend>Update your details</legend>
-				<div>
-						<label for="login">Login</label>
-						<% if current_user.login %>
-						<div class="user-details"><%= current_user.login %></div>
-						<% else %>
-							<%= f.text_field :login, :autocomplete => "off" %>
-						<% end %>
-				</div>
-				<div>
-					<label for="organization">Organization</label>
-					<% if current_user.organization_id %>
-						<div class="user-details"><%= current_user.organization.name %></div>
-					<% else %>
-						<%= f.select(:organization_id, Organization.all.collect { |org| [ org.name, org.id ] }, { :include_blank => 'None' }) %>
-					<% end %>
-				</div>
-				<div>
-					<label for="email">Email</label>
-					<%= f.text_field :email, :autocomplete => "off" %>
-				</div>
-				<div>
-					<label for="voice">Text to speech</label>
-					<%= f.check_box :voice %> 
-					<%= link_to 'Help', :controller => 'about', :action => 'voice' %>
-				</div>
-			</fieldset>
+      <fieldset>
+        <legend>Drag this link to your bookmark bar</legend>
+        <div>
+          <%= link_to name_from_domain(request.domain) + ' login', '/u/' + current_user.uid , :class => 'box-text' %>
+        </div>
+        <div>in order to login automatically next time.</div>
+      </fieldset>
+      
+      <fieldset>
+        <legend>Make a note of your ID and keep it safe</legend>
+        <div>
+          <strong><%= current_user.uid %></strong>
+        </div>
+      </fieldset>
+      
+      <fieldset>
+        <legend>Update your details</legend>
+        <div>
+            <label for="login">Login</label>
+            <% if current_user.login %>
+            <div class="user-details"><%= current_user.login %></div>
+            <% else %>
+              <%= f.text_field :login, :autocomplete => "off" %>
+            <% end %>
+        </div>
+        <div>
+          <label for="organization">Organization</label>
+          <% if current_user.organization_id %>
+            <div class="user-details"><%= current_user.organization.name %></div>
+          <% else %>
+            <%= f.select(:organization_id, Organization.all.collect { |org| [ org.name, org.id ] }, { :include_blank => 'None' }) %>
+          <% end %>
+        </div>
+        <div>
+          <label for="email">Email</label>
+          <%= f.text_field :email, :autocomplete => "off" %>
+        </div>
+        <div>
+          <label for="voice">Text to speech</label>
+          <%= f.check_box :voice %> 
+          <%= link_to 'Help', :controller => 'about', :action => 'voice' %>
+        </div>
+      </fieldset>
 
-			<div class="warning message"></div>
-		</div>
+      <div class="warning message"></div>
+    </div>
 
-		<div class="submit">
-			<%= submit_tag 'Update' %>
-		</div>
-		
-	<% end -%>
+    <div class="submit">
+      <%= submit_tag 'Update' %>
+    </div>
+    
+  <% end -%>
 
 </div>
 
 <div id="footer">
-	<%= render :partial => 'global/toplevel_links' %>
+  <%= render :partial => 'global/toplevel_links' %>
 </div>

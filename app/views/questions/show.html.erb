@@ -1,40 +1,41 @@
 <div id="header">
-	<%= render :partial => 'global/logo' %>
-	<h1>Repeat
-		&raquo; <%= truncate @question.phrase, 40 %>
-	</h1>
-	<h2>
-		<%= render :partial => 'global/course_links' %>
-	</h2>
+  
+  <%= render :partial => 'global/logo' %>
+  <h1>
+    &raquo; <%= truncate @question.phrase, 40 %>
+  </h1>
+  <h2>
+    <%= render :partial => 'global/course_links' %>
+  </h2>
 </div>
 
 <div class="main">
-	
-	<table>
-		<thead>
-			<tr>
-				<th>Date</th>
-				<th>Time taken</th>
-				<th>Interval</th>
-				<th>Result</th>
-			</tr>
-		</thead>
-		<tbody class="paging" limit="16" id="responses">
-			<% for response in @question.responses %>
-			<tr class="<%= cycle "odd", "even" -%>">
-					<td class="left"><%= formatted_date_time response.updated_at %></td>
-					<td><%=h response.seconds_taken %> secs</td>
-					<td><%=h response.interval %></td>
-					<td><%=h response.result %></td>
-				</tr>
-			<% end %>
-		</tbody>
-	</table>
+  
+  <table>
+    <thead>
+      <tr>
+        <th>Date</th>
+        <th>Time taken</th>
+        <th>Interval</th>
+        <th>Result</th>
+      </tr>
+    </thead>
+    <tbody class="paging" limit="16" id="responses">
+      <% for response in @question.responses %>
+      <tr class="<%= cycle "odd", "even" -%>">
+          <td class="left"><%= formatted_date_time response.updated_at %></td>
+          <td><%=h response.seconds_taken %> secs</td>
+          <td><%=h response.interval %></td>
+          <td><%=h response.result %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
 
-		<%= render :partial => 'global/table_navigation' %>
+    <%= render :partial => 'global/table_navigation' %>
 
 </div>
 
 <div id="footer">
-	<%= render :partial => 'global/toplevel_links' %>
+  <%= render :partial => 'global/toplevel_links' %>
 </div>

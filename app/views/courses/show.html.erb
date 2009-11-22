@@ -1,155 +1,155 @@
-<div id="header">
-	<%= render :partial => 'global/logo' %>
-	<h1>Repeat
-		<%= @course.subject.name if @course %>
-	</h1>
-	<h2>
-		<%= render :partial => 'global/course_links' %>
-	</h2>
+<div id="header">  
+  <%= render :partial => 'global/logo' %>
+  <h1>
+    <%= @course.subject.name if @course %>
+  </h1>
+  <h2>
+    <%= render :partial => 'global/course_links' %>
+  </h2>
 </div>
 
 <div id="progress-report" class="main">
-	
-	<div>
-		<%= @course.description %>
-		(created by user: <em><%= @course.subject.users.first.login %></em>)
-	</div>
-	
-	<table>
-		<tbody>
-			<tr class="even">
-				<td class="left">
-					Start date:
-				</td>
-				<td>
-		 			<%= formatted_date @course.created_at %>
-				</td>
-			</tr>
-			<tr>
-				<td class="left">
-					Estimated end date based on current targets: 
-				</td>
-				<td>
-					<%= formatted_date @course.estimated_end_date %>
-				</td>
-			</tr>
-			<tr class="even">
-				<td class="left">
-					Number of exercises begun:
-				</td>
-				<td>
-					<%= number_with_delimiter @course.questions_started %>
-				</td>
-			</tr>
-			<tr>
-				<td class="left">
-					Number of responses given:
-				</td>
-				<td>
-					<%= number_with_delimiter @course.responses_completed %>
-				</td>
-			</tr>
-			<tr class="even">
-				<td class="left">
-					Accuracy of responses:
-				</td>
-				<td>
-					<% accuracy_rate = @course.responses.size == 0 ? @course.accuracy_target : 100 * @course.responses.correct.size / @course.responses.size %>
-					<%= accuracy_rate %>%
-				</td>
-			</tr>
-			<tr>
-				<td class="left">
-					Average weekly work rate:
-				</td>
-				<td>
-					<% time_per_response = @course.responses.average('seconds_taken').to_i %>
-					<% weekly_response_count =  @course.weekly_response_count %>
-					<%= weekly_response_count %> responses in 
-					<%= weekly_response_count * time_per_response / 60 %> minutes
-				</td>
-			</tr>
-			<tr class="even">
-				<td class="left">
-					Average time taken for each response:
-				</td>
-				<td>
-					<%= time_per_response %> seconds
-				</td>
-			</tr>
-		</tbody>
-	</table>
+  
+  <div>
+    <%= @course.description %>
+    (created by user: <em><%= @course.subject.users.first.login %></em>)
+  </div>
+  
+  <table>
+    <tbody>
+      <tr class="even">
+        <td class="left">
+          Start date:
+        </td>
+        <td>
+           <%= formatted_date @course.created_at %>
+        </td>
+      </tr>
+      <tr>
+        <td class="left">
+          Estimated end date based on current targets: 
+        </td>
+        <td>
+          <%= formatted_date @course.estimated_end_date %>
+        </td>
+      </tr>
+      <tr class="even">
+        <td class="left">
+          Number of exercises begun:
+        </td>
+        <td>
+          <%= number_with_delimiter @course.questions_started %>
+        </td>
+      </tr>
+      <tr>
+        <td class="left">
+          Number of responses given:
+        </td>
+        <td>
+          <%= number_with_delimiter @course.responses_completed %>
+        </td>
+      </tr>
+      <tr class="even">
+        <td class="left">
+          Accuracy of responses:
+        </td>
+        <td>
+          <% accuracy_rate = @course.responses.size == 0 ? @course.accuracy_target : 100 * @course.responses.correct.size / @course.responses.size %>
+          <%= accuracy_rate %>%
+        </td>
+      </tr>
+      <tr>
+        <td class="left">
+          Average weekly work rate:
+        </td>
+        <td>
+          <% time_per_response = @course.responses.average('seconds_taken').to_i %>
+          <% weekly_response_count =  @course.weekly_response_count %>
+          <%= weekly_response_count %> responses in 
+          <%= weekly_response_count * time_per_response / 60 %> minutes
+        </td>
+      </tr>
+      <tr class="even">
+        <td class="left">
+          Average time taken for each response:
+        </td>
+        <td>
+          <%= time_per_response %> seconds
+        </td>
+      </tr>
+    </tbody>
+  </table>
 
-	<table>
-		<thead>
-			<tr class="even">
-				<td class="heading">
-					Recent progress
-				</td>
-				<td>
-					24 hours
-				</td>
-				<td>
-					1 week
-				</td>
-				<td>
-					4 weeks
-				</td>
-				<td>
-					16 weeks
-				</td>
-			</tr>
-		</thead>
-		<tbody>
-			<tr>
-				<td class="left">
-					Correct responses (% of target)
-				</td>
-				<% [1,7,28, 126].each do |days| %>
-					<% progress = @course.progress_for_period(days) %>
-					<td>
-						<%= number_with_delimiter progress[0] %>
-						<div class="correct">
-							<%= progress[1] %>
-						</div>
-					</td>
-				<% end %>
-			</tr>
-		</tbody>
-	</table>
+  <table>
+    <thead>
+      <tr class="even">
+        <td class="heading">
+          Recent progress
+        </td>
+        <td>
+          24 hours
+        </td>
+        <td>
+          1 week
+        </td>
+        <td>
+          4 weeks
+        </td>
+        <td>
+          16 weeks
+        </td>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td class="left">
+          Correct responses (% of target)
+        </td>
+        <% [1,7,28, 126].each do |days| %>
+          <% progress = @course.progress_for_period(days) %>
+          <td>
+            <%= number_with_delimiter progress[0] %>
+            <div class="correct">
+              <%= progress[1] %>
+            </div>
+          </td>
+        <% end %>
+      </tr>
+    </tbody>
+  </table>
 
-	<% form_for @course do |f| %>
-	<table>
-		<tbody>
-			<tr class="even">
-				<td class="heading">
-					Weekly targets 
-				</td>
-				<td>
-					Correct responses each lesson:  
-					<%= f.text_field :lesson_target, :autocomplete => "off" %> 
-				</td>
-				<td>
-					Lessons per week: 
-					<%= f.text_field :weekly_target, :autocomplete => "off" %> 
-				</td>
-				<td>
-					<%= f.submit "Update targets" %>
-				</td>
-			</tr>
-			<tr>
-				<td class="left" colspan="3">Estimated weekly time commitment</td>
-				<td> 
-					<%= time_per_response * @course.lesson_target * @course.weekly_target * 100 / (accuracy_rate * 60) %> minutes
-					
-				</td>
-			</tr>
-		</tbody>
-	</table>
-	<% end %>
-	
+  <% form_for @course do |f| %>
+  <table>
+    <tbody>
+      <tr class="even">
+        <td class="heading">
+          Weekly targets 
+        </td>
+        <td>
+          Correct responses each lesson:  
+          <%= f.text_field :lesson_target, :autocomplete => "off" %> 
+        </td>
+        <td>
+          Lessons per week: 
+          <%= f.text_field :weekly_target, :autocomplete => "off" %> 
+        </td>
+        <td>
+          <%= f.submit "Update targets" %>
+        </td>
+      </tr>
+      <tr>
+        <td class="left" colspan="3">Estimated weekly time commitment</td>
+        <td> 
+          <%= time_per_response * @course.lesson_target * @course.weekly_target * 100 / (accuracy_rate * 60) %> minutes
+          
+        </td>
+      </tr>
+    </tbody>
+  </table>
+  <% end %>
+  
 </div>
 
 <div id="footer">
-	<%= render :partial => 'global/toplevel_links' %>
+  <%= render :partial => 'global/toplevel_links' %>
 </div>

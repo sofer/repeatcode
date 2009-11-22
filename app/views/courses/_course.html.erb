@@ -1,43 +1,43 @@
 <tr class="<%= cycle "odd", "even" -%>">
   <% fields_for(course) do |f| %>
-		<td>
-			<% form_for :lesson,
-	 								:url => course_lessons_path(course) do |f| %>
-				<%= f.submit "Learn now" %>
-			<% end %>
-		</td>
-		<td class="name">
-			<%= course.name %>
-		</td>
-		<td class="correct">
-			<% if not course.next_question %>
-				Completed
-			<% elsif course.on_target? %>
-				On target
-			<% end %>
-		</td>
-		<td>
-			<%= course.questions.due.size %>
-		</td>
-		<td>
-			<%= relative_date course.lessons.last.updated_at if course.lessons.last %>
-		</td>
-		<td>
-			<% if course.update_required? %>
-				<% form_for course do |f| %>
-					<%= f.hidden_field :update_required, :value => true  %>
-					<%= f.submit 'Update' %>
-				<% end %>
-			<% end %>
-		</td>
-		<td>
-			<%= link_to "manage", course %>
-		</td>
-		<td>
-			<% form_for course do |f| %>
-				<%= f.hidden_field :archived, :value => true  %>
-				<%= f.submit 'Archive', :class => 'archive-alert' %>
-			<% end %>
-		</td>
-	<% end %>
+    <td>
+      <% form_for :lesson,
+                   :url => course_lessons_path(course) do |f| %>
+        <%= f.submit "Learn now" %>
+      <% end %>
+    </td>
+    <td class="name">
+      <%= course.name %>
+    </td>
+    <td class="correct">
+      <% if not course.next_question %>
+        Completed
+      <% elsif course.on_target? %>
+        On target
+      <% end %>
+    </td>
+    <td>
+      <%= course.questions.due.size %>
+    </td>
+    <td>
+      <%= relative_date course.lessons.last.updated_at if course.lessons.last %>
+    </td>
+    <td>
+      <% if course.update_required? %>
+        <% form_for course do |f| %>
+          <%= f.hidden_field :update_required, :value => true  %>
+          <%= f.submit 'Update' %>
+        <% end %>
+      <% end %>
+    </td>
+    <td>
+      <%= link_to "manage", course %>
+    </td>
+    <td>
+      <% form_for course do |f| %>
+        <%= f.hidden_field :archived, :value => true  %>
+        <%= f.submit 'Archive', :class => 'archive-alert' %>
+      <% end %>
+    </td>
+  <% end %>
 </td>

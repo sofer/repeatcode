@@ -1,72 +1,71 @@
 <div id="header">
-	<%= render :partial => 'global/logo' %>
-	<h1>
-		<%= name_from_domain request.domain %>
-		<span class="italic">pre-launch</span>
-	</h1>
-	<h2>
-		<%= render :partial => 'global/site_links' %>
-	</h2>
+  
+  <%= render :partial => 'global/logo' %>
+  <h1>
+    <% name_from_domain request.domain %>
+    <span class="italic">pre-launch</span>
+  </h1>
+  <h2>
+    <% render :partial => 'global/site_links' %>
+  </h2>
 </div>
 <div class="main">
 
-	<div> &nbsp;
-		<% unless current_user %>
-		  Welcome to <%= name_from_domain request.domain %>! Select a list to study and then repeat until you know it by heart!
-		<% end %>
-	</div>
+  <div>
+      Select a new Study List.
+  </div>
 
-	<div class="col3">
+  <div class="col3">
 
-	<% row = 0; limit = 14 %>
-	<% for area in @areas %>
-		<% next if area.subjects.public.size == 0 %>
-		<% if row >= limit - 4 %>
-			<% row = 0 %>
-			</div><div class="col3">
-		<% end %>
-		<% row += 1 %>
-		<h3> <%= area.name %> </h3>
-		<% for subject in area.subjects.public %>
-			<% if row >= limit %>
-			</div><div class="col3">
-				<% row = 0 %>
-			<% end %>
-			<% row += 1 %>
-			<% form_for :course, :url => subject_courses_path(subject) do |f| %>
-				<div class="new-course">
-					<%= f.submit subject.name, :description => subject.description %>
-					<div class="description"><%= subject.description %> (<%= subject.exercises.current.size %> exercises)</div>
-				</div>
-				<% end %>
-		<% end %>
-		</ul>
-	<% end %>
-	<% if current_user and current_user.subjects.private.size > 0 %>
-	<% if row >= limit - 4 %>
-		<% row = 0 %>
-		</div><div class="col3">
-	<% end %>
-	<% row += 1 %>
-	<h3>Not public</h3>
-		<% for subject in current_user.subjects.private %>
-			<% if row >= limit %>
-			</div><div class="col3">
-				<% row = 0 %>
-			<% end %>
-			<% row += 1 %>
-			<% form_for :course, :url => subject_courses_path(subject) do |f| %>
-				<div class="new-course">
-					<%= f.submit "#{subject.name} (#{subject.exercises.current.size})" %>
-				</div>
-				<% end %>
-		<% end %>
-	<% end %>
+  <% row = 0; limit = 14 %>
+  <% for area in @areas %>
+    <% next if area.subjects.public.size == 0 %>
+    <% if row >= limit - 4 %>
+      <% row = 0 %>
+      </div><div class="col3">
+    <% end %>
+    <% row += 1 %>
+    <h3> <%= area.name %> </h3>
+    <% for subject in area.subjects.public %>
+      <% if row >= limit %>
+      </div><div class="col3">
+        <% row = 0 %>
+      <% end %>
+      <% row += 1 %>
+      <% form_for :course, :url => subject_courses_path(subject) do |f| %>
+        <div class="new-course">
+          <%= f.submit subject.name, :description => subject.description %>
+          <div class="description"><%= subject.description %> (<%= subject.exercises.current.size %> exercises)</div>
+        </div>
+        <% end %>
+    <% end %>
+    </ul>
+  <% end %>
+  <% if current_user and current_user.subjects.private.size > 0 %>
+  <% if row >= limit - 4 %>
+    <% row = 0 %>
+    </div><div class="col3">
+  <% end %>
+  <% row += 1 %>
+  <h3>Not public</h3>
+    <% for subject in current_user.subjects.private %>
+      <% if row >= limit %>
+      </div><div class="col3">
+        <% row = 0 %>
+      <% end %>
+      <% row += 1 %>
+      <% form_for :course, :url => subject_courses_path(subject) do |f| %>
+        <div class="new-course">
+          <%= f.submit "#{subject.name} (#{subject.exercises.current.size})" %>
+        </div>
+        <% end %>
+    <% end %>
+  <% end %>
 
-	</div>
+  </div>
 
 </div>
 
 <div id="footer">
-		<%= render :partial => 'global/toplevel_links' %>
+    <%= render :partial => 'global/toplevel_links' %>
 </div>

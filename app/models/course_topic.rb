@@ -17,8 +17,8 @@ class CourseTopic < ActiveRecord::Base
                                 :name => topic.name,
                                 :code => topic.code,
                                 :data => topic.data,
-																:unordered => topic.unordered,
-																:case_sensitive => topic.case_sensitive,
+                                :unordered => topic.unordered,
+                                :case_sensitive => topic.case_sensitive,
                                 :ignore_punctuation => topic.ignore_punctuation,
                                 :add_together => topic.add_together,
                                 :removed => topic.removed,
@@ -35,9 +35,9 @@ class CourseTopic < ActiveRecord::Base
   end
 
   def remove_questions
-	  self.update_attribute(:removed, true)
+    self.update_attribute(:removed, true)
     for question in questions
-			question.update_attributes!({:ignore =>true, :next_datetime => NIL })
+      question.update_attributes!({:ignore =>true, :next_datetime => NIL })
     end
   end
   

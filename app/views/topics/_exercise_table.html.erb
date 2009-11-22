@@ -1,18 +1,18 @@
 <table class="topic-exercises-table">
-	<thead>
-		<tr>
-			<th class="first"> </th>
-			<th class="input">Question or phrase <%= link_to '?', {}, :class => "display", :display => "#phrase-help" %></th>
-			<th class="input">Response <%= link_to '?', {}, :class => "display", :display => "#response-help" %></th>
-			<th class="input">Hint <%= link_to '?', {}, :class => "display", :display => "#hint-help" %></th>
-			<th class="input">Notes <%= link_to '?', {}, :class => "display", :display => "#notes-help" %></th>
-			<th class="last"> </th>
-		</tr>
-	</thead>
-	<tbody class="paging" limit="12" id="exercises">
-		<%= render :partial => "exercise", :collection => exercises %>
-		<%= render(:partial => "new_exercise", :object => add) if add %>
-	</tbody>
+  <thead>
+    <tr>
+      <th class="first"> </th>
+      <th class="input">Question or phrase <%= link_to '?', {}, :class => "display", :display => "#phrase-help" %></th>
+      <th class="input">Response <%= link_to '?', {}, :class => "display", :display => "#response-help" %></th>
+      <th class="input">Hint <%= link_to '?', {}, :class => "display", :display => "#hint-help" %></th>
+      <th class="input">Notes <%= link_to '?', {}, :class => "display", :display => "#notes-help" %></th>
+      <th class="last"> </th>
+    </tr>
+  </thead>
+  <tbody class="paging" limit="12" id="exercises">
+    <%= render :partial => "exercise", :collection => exercises %>
+    <%= render(:partial => "new_exercise", :object => add) if add %>
+  </tbody>
 </table>
 
 <%= render :partial => 'global/table_navigation' %>

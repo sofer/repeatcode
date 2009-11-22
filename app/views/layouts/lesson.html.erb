@@ -1,6 +1,6 @@
 <% content_for :head do %>
-	<%= javascript_include_tag 'jquery.flot', 'lesson' %>
-	<%= javascript_include_tag 'json2', 'outfox' if current_user.voice %>
+  <%= javascript_include_tag 'jquery.flot', 'lesson' %>
+  <%= javascript_include_tag 'json2', 'outfox' if current_user.voice %>
 <% end %>
 
 <%= render :file => 'layouts/application' %>

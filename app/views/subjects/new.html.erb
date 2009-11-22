@@ -1,23 +1,24 @@
 <div id="header">
-	<%= render :partial => 'global/logo' %>
-	<h1>Repeat
-		<%= link_to 'Create', subjects_path %>
-		&raquo; New subject
-	</h1>
+  
+  <%= render :partial => 'global/logo' %>
+  <h1>
+    <%= link_to 'Create', subjects_path %>
+    &raquo; New subject
+  </h1>
 </div>
 
 <% form_for(@subject) do |f| %>
-	<div id="edit-subject" class="main">
-		<div class="box">
-			<fieldset>
-				<legend>Create subject</legend>
-				<%= render :partial => 'form', :locals => {:f => f } %>
-			  <%= f.submit "Create" %>
-			</fieldset>
-		</div>
-	</div>
+  <div id="edit-subject" class="main">
+    <div class="box">
+      <fieldset>
+        <legend>Create subject</legend>
+        <%= render :partial => 'form', :locals => {:f => f } %>
+        <%= f.submit "Create" %>
+      </fieldset>
+    </div>
+  </div>
 <% end %>
 
 <div id="footer">
-	<%= render :partial => 'global/toplevel_links' %>
+  <%= render :partial => 'global/toplevel_links' %>
 </div>

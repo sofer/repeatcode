@@ -1,19 +1,19 @@
 <tr>
   <td>New</td>
-	<% fields_for_exercise(new_exercise) do |f| %>
-		<td class="phrase">	
-				<%= f.text_field :phrase, :autocomplete => "off"  %>
-		</td>
-		<td>	
-			<%= f.text_field :response, :autocomplete => "off"  %>
-		</td>
-		<td>	
-			<%= f.text_field :hint, :autocomplete => "off"  %>
-		</td>
-		<td>	
-			<%= f.text_field :notes, :autocomplete => "off"  %>
-		</td>
-		<td>
-		</td>
-	<% end %>
+  <% fields_for_exercise(new_exercise) do |f| %>
+    <td class="phrase">  
+        <%= f.text_field :phrase, :autocomplete => "off"  %>
+    </td>
+    <td>  
+      <%= f.text_field :response, :autocomplete => "off"  %>
+    </td>
+    <td>  
+      <%= f.text_field :hint, :autocomplete => "off"  %>
+    </td>
+    <td>  
+      <%= f.text_field :notes, :autocomplete => "off"  %>
+    </td>
+    <td>
+    </td>
+  <% end %>
 </tr>

@@ -1,15 +1,15 @@
 <tr class="<%= cycle "odd", "even" -%>">
-	<td class="first"><%= lesson_counter + 1 %></td>
-	<td>
-		<%= formatted_date lesson.created_at %>
-	</td>
-	<td>
-		<%= elapsed_time lesson.created_at, lesson.updated_at %>
-	</td>
-	<td>
-		<%= lesson.correct_responses %>
-	</td>
-	<td>
-		<%= lesson.total_questions_started %>
-	</td>
+  <td class="first"><%= lesson_counter + 1 %></td>
+  <td>
+    <%= formatted_date lesson.created_at %>
+  </td>
+  <td>
+    <%= elapsed_time lesson.created_at, lesson.updated_at %>
+  </td>
+  <td>
+    <%= lesson.correct_responses %>
+  </td>
+  <td>
+    <%= lesson.total_questions_started %>
+  </td>
 </tr>

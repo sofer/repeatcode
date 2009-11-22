@@ -1,56 +1,56 @@
 <% if user_edit.exercise.removed %>
-	<tr>
-		<td class="first no-border"> <%= user_edit_counter + 1 %> </td>
-		<td colspan="5">Exercise removed</td>
-	</tr>
+  <tr>
+    <td class="first no-border"> <%= user_edit_counter + 1 %> </td>
+    <td colspan="5">Exercise removed</td>
+  </tr>
 
 <% else %>
 
-	<% amended = false %>
+  <% amended = false %>
 
-	<% form_for user_edit.exercise do |f| %>
-  	<% fields_for(user_edit.exercise) do |f| %>
-		<tr>
-			<td class="first"> <%= user_edit_counter + 1 %> </td>
-				<td>
-					<% if user_edit.amended %>
-						Amended
-					<% else %>
-						Removed
-					<% end %>
-				</td>
-				<td>
-					<%= user_edit.phrase %><br>
-					<% if user_edit.phrase != user_edit.exercise.phrase %>
-						<% amended = true %>
-						<%= f.text_field :phrase, :autocomplete => "off"  %>
-					<% end %>	
-				</td>
-				<td>
-					<%= user_edit.response %><br>
-					<% if user_edit.response != user_edit.exercise.response %>
-						<% amended = true %>
-						<%= f.text_field :response, :autocomplete => "off"  %>
-					<% end %>	
-				</td>
-				<td>
-					<%= user_edit.hint %><br>
-					<% if user_edit.hint != user_edit.exercise.hint %>
-						<% amended = true %>
-						<%= f.text_field :hint, :autocomplete => "off"  %>
-					<% end %>	
-				</td>
-				<td class="last">
-					<% if user_edit.amended %>
-							<%= f.submit 'Edit exercise' %>
-					<% else %>
-						<%= f.hidden_field :removed, :value => true  %>
-						<%= f.submit 'Remove exercise' %>
-					<% end %>
-					</td>
-				</td>
-			</tr>
-		<% end %>
-	<% end %>
+  <% form_for user_edit.exercise do |f| %>
+    <% fields_for(user_edit.exercise) do |f| %>
+    <tr>
+      <td class="first"> <%= user_edit_counter + 1 %> </td>
+        <td>
+          <% if user_edit.amended %>
+            Amended
+          <% else %>
+            Removed
+          <% end %>
+        </td>
+        <td>
+          <%= user_edit.phrase %><br>
+          <% if user_edit.phrase != user_edit.exercise.phrase %>
+            <% amended = true %>
+            <%= f.text_field :phrase, :autocomplete => "off"  %>
+          <% end %>  
+        </td>
+        <td>
+          <%= user_edit.response %><br>
+          <% if user_edit.response != user_edit.exercise.response %>
+            <% amended = true %>
+            <%= f.text_field :response, :autocomplete => "off"  %>
+          <% end %>  
+        </td>
+        <td>
+          <%= user_edit.hint %><br>
+          <% if user_edit.hint != user_edit.exercise.hint %>
+            <% amended = true %>
+            <%= f.text_field :hint, :autocomplete => "off"  %>
+          <% end %>  
+        </td>
+        <td class="last">
+          <% if user_edit.amended %>
+              <%= f.submit 'Edit exercise' %>
+          <% else %>
+            <%= f.hidden_field :removed, :value => true  %>
+            <%= f.submit 'Remove exercise' %>
+          <% end %>
+          </td>
+        </td>
+      </tr>
+    <% end %>
+  <% end %>
 
 <% end %>

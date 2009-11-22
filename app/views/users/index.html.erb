@@ -1,47 +1,48 @@
 <div id="header">
-	<%= render :partial => 'global/logo' %>
-	<h1>Repeat
-		<%= @group.organization.name %>
-		&raquo; <%=link_to @group.name, @group %>
-		&raquo; Add users
-	</h1>
+
+  <%= render :partial => 'global/logo' %>
+  <h1>
+    <%= @group.organization.name %>
+    &raquo; <%=link_to @group.name, @group %>
+    &raquo; Add users
+  </h1>
 </div>
 
 <div class="main">
-	
-	<table>
-		<tbody class="paging" limit="16" id="add-students">
-			<% for user in @users %>
-				<tr class="<%= cycle "odd", "even" -%>">
-					<td class="heading"><%= user.login %></td>
-					<td>
-						<% if @group.tutors.include? user %>
-							TUTOR
-						<% else %>
-							<% form_for(@group)  do |f| %>
-								<%= f.hidden_field :tutor_id, :value => user.id %>
-								<%= f.submit "Make tutor" %>
-							<% end %>
-						<% end %>
-					</td>
-					<td>
-						<% if @group.students.include? user %>
-							Already in group
-						<% else %>
-							<% form_for(@group)  do |f| %>
-								<%= f.hidden_field :student_id, :value => user.id %>
-								<%= f.submit "Add to group" %>
-							<% end %>
-						<% end %>
-					</td>
-			<% end %>
-		</tbody>
-	</table>
-	
-		<%= render :partial => 'global/table_navigation' %>
-	
+  
+  <table>
+    <tbody class="paging" limit="16" id="add-students">
+      <% for user in @users %>
+        <tr class="<%= cycle "odd", "even" -%>">
+          <td class="heading"><%= user.login %></td>
+          <td>
+            <% if @group.tutors.include? user %>
+              TUTOR
+            <% else %>
+              <% form_for(@group)  do |f| %>
+                <%= f.hidden_field :tutor_id, :value => user.id %>
+                <%= f.submit "Make tutor" %>
+              <% end %>
+            <% end %>
+          </td>
+          <td>
+            <% if @group.students.include? user %>
+              Already in group
+            <% else %>
+              <% form_for(@group)  do |f| %>
+                <%= f.hidden_field :student_id, :value => user.id %>
+                <%= f.submit "Add to group" %>
+              <% end %>
+            <% end %>
+          </td>
+      <% end %>
+    </tbody>
+  </table>
+  
+    <%= render :partial => 'global/table_navigation' %>
+  
 </div>
 
 <div id="footer">
-	<%= render :partial => 'global/toplevel_links' %>
+  <%= render :partial => 'global/toplevel_links' %>
 </div>

@@ -1,45 +1,46 @@
 <div id="header">
-	<%= render :partial => 'global/logo' %>
-	<h1>Repeat
-		Organizations
-	</h1>
-	<h2>
-		<% form_for(@organization) do |f| %>
-			<%= f.text_field :name, :autocomplete => "off"  %>
-	 		<%= f.submit "Create new" %>
-			<% end %>
-	</h2>
+  
+  <%= render :partial => 'global/logo' %>
+  <h1>
+    Organizations
+  </h1>
+  <h2>
+    <% form_for(@organization) do |f| %>
+      <%= f.text_field :name, :autocomplete => "off"  %>
+       <%= f.submit "Create new" %>
+      <% end %>
+  </h2>
 </div>
 
 <div class="main">
 
-	<table>
-		<tbody class="paging" limit="17" id="organizations">
-			<% for org in @organizations %>
-				<tr class="<%= cycle "odd", "even" -%>">
-						<td class="heading">
-							<%= org.name %>
-						</td>
-						<td>
-							<%= link_to 'Add manager', organization_managers_path(org) %>
-						</td>
-						<td>
-							<% if org.users.size > 0 %>
-								<%= org.users.size %> users
-							<% else %>
-								<%= link_to 'Delete', org, :confirm => "WARNING! This will remove #{org.name} from the system. Do you really want to do this?", :method => :delete %>		
-							<% end %>
-							</div>
-						</td>
-				</tr>
-			<% end %>
-		</tbody>
-	</table>
+  <table>
+    <tbody class="paging" limit="17" id="organizations">
+      <% for org in @organizations %>
+        <tr class="<%= cycle "odd", "even" -%>">
+            <td class="heading">
+              <%= org.name %>
+            </td>
+            <td>
+              <%= link_to 'Add manager', organization_managers_path(org) %>
+            </td>
+            <td>
+              <% if org.users.size > 0 %>
+                <%= org.users.size %> users
+              <% else %>
+                <%= link_to 'Delete', org, :confirm => "WARNING! This will remove #{org.name} from the system. Do you really want to do this?", :method => :delete %>    
+              <% end %>
+              </div>
+            </td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
 
-		<%= render :partial => 'global/table_navigation' %>
+    <%= render :partial => 'global/table_navigation' %>
 
 </div>
 
 <div id="footer">
-	<%= render :partial => 'global/toplevel_links' %>
+  <%= render :partial => 'global/toplevel_links' %>
 </div>

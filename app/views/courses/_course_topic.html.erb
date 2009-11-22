@@ -1,16 +1,16 @@
 <tr class="<%= cycle "odd", "even" -%>">
-	<td class="first"><%= course_topic_counter + 1 %></td>
-	<td class="name"> <%= course_topic.name %></td>
-	<td> </td>
-	<td> <%= course_topic.questions.current.started.size %> </td>
-	<td> <%= course_topic.questions.current.queued.size %> </td>
-	<td> <%= course_topic.questions.current.size %> </td>
-	<td>
-		<%= link_to 'Remove', course_topic, :confirm => 'Are you sure?', :method => :delete %>
-	</td>
-	<td>
-		<% form_for course_topic do |f| %>
-			<%= f.submit 'Send to top' %>
-		<% end %>
-	</td>
+  <td class="first"><%= course_topic_counter + 1 %></td>
+  <td class="name"> <%= course_topic.name %></td>
+  <td> </td>
+  <td> <%= course_topic.questions.current.started.size %> </td>
+  <td> <%= course_topic.questions.current.queued.size %> </td>
+  <td> <%= course_topic.questions.current.size %> </td>
+  <td>
+    <%= link_to 'Remove', course_topic, :confirm => 'Are you sure?', :method => :delete %>
+  </td>
+  <td>
+    <% form_for course_topic do |f| %>
+      <%= f.submit 'Send to top' %>
+    <% end %>
+  </td>
 </td>

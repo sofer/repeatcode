@@ -1,75 +1,76 @@
 <div id="header">
-	<%= render :partial => 'global/logo' %>
-	<h1>Repeat
-		<%= @course.subject.name if @course %>
-	</h1>
-	<h2>
-		<%= render :partial => 'global/course_links' %>
-	</h2>
+  
+  <%= render :partial => 'global/logo' %>
+  <h1>
+    <%= @course.subject.name if @course %>
+  </h1>
+  <h2>
+    <%= render :partial => 'global/course_links' %>
+  </h2>
 </div>
 
 <div class="main">
 
-	<table class="intervals-table">
-		<% form_for @course do |f| %>
-			<thead>
-				<tr>
-					<th align="left"><%= f.text_field :repetitions, :autocomplete => "off"  %> Revisions
-					</th>
-					<th>Interval</th>
-					<th>Accuracy *</th>
-					<th>Last reset</th>
-					<th>
-						Target: 
-						<%= f.text_field :accuracy_target, :autocomplete => "off"  %>
-						%
-					</th>
-					<th>
-						<%= f.submit "Change" %>
-					</th>
-				</tr>
-			</thead>
-		<% end %>
-		<tbody>
-			<% for interval in @intervals %>
-				<% correct = @course.responses.correct.interval(interval.index_no).since(interval.updated_at).size %>
-				<% incorrect = @course.responses.incorrect.interval(interval.index_no).since(interval.updated_at).size %>
-				<tr class="<%= cycle "odd", "even" -%>">
-			    <td class="heading"><%=h ordinal(interval.index_no) %></td>
-			    <td><%= interval_time interval.minutes %></td>
-					<td><%= success_rate(correct, incorrect) %></td>
-					<td><%= formatted_date interval.updated_at %></td>
-					<td class="center">
-					<% if interval.index_no > 1 and correct > 10 %>
-							<% form_for interval do |f| %>
-								<%= f.submit "Reset" %>
-							<% end %>
-						</td>
-					<% end %>
-					<td> </td>
-			  </tr>
-			<% end %>
-		</tbody>
-		<tfoot>
-			<tr>
-				<td colspan="3">* since last reset</td>
-			</tr>
-		</tfoot>
-	</table>
+  <table class="intervals-table">
+    <% form_for @course do |f| %>
+      <thead>
+        <tr>
+          <th align="left"><%= f.text_field :repetitions, :autocomplete => "off"  %> Revisions
+          </th>
+          <th>Interval</th>
+          <th>Accuracy *</th>
+          <th>Last reset</th>
+          <th>
+            Target: 
+            <%= f.text_field :accuracy_target, :autocomplete => "off"  %>
+            %
+          </th>
+          <th>
+            <%= f.submit "Change" %>
+          </th>
+        </tr>
+      </thead>
+    <% end %>
+    <tbody>
+      <% for interval in @intervals %>
+        <% correct = @course.responses.correct.interval(interval.index_no).since(interval.updated_at).size %>
+        <% incorrect = @course.responses.incorrect.interval(interval.index_no).since(interval.updated_at).size %>
+        <tr class="<%= cycle "odd", "even" -%>">
+          <td class="heading"><%=h ordinal(interval.index_no) %></td>
+          <td><%= interval_time interval.minutes %></td>
+          <td><%= success_rate(correct, incorrect) %></td>
+          <td><%= formatted_date interval.updated_at %></td>
+          <td class="center">
+          <% if interval.index_no > 1 and correct > 10 %>
+              <% form_for interval do |f| %>
+                <%= f.submit "Reset" %>
+              <% end %>
+            </td>
+          <% end %>
+          <td> </td>
+        </tr>
+      <% end %>
+    </tbody>
+    <tfoot>
+      <tr>
+        <td colspan="3">* since last reset</td>
+      </tr>
+    </tfoot>
+  </table>
 
-	<div class="notes">
-		<ul>
-			<li>Each time you respond to an exercise, the <strong>Interval</strong> of time until your next <strong>Revision</strong> increases.</li>
-			<li>The <strong>Accuracy</strong> of your responses gives you an indication of how close you are to your <strong>Target</strong>.</li>
-			<li>An interval can be <strong>Reset</strong> in order to more closely match your target.</li>
-			<li>You can shorten the length of the course by reducing the number of revisions (default: 9).</li> 
-			<li>You can also <strong>Change</strong> your accuracy target (default: 90%) at any time.</li>
-		  <li>In this way, you can make best use of your time, and learn as thoroughly or as quickly as you like.
-			</ul>
-	</div>
+  <div class="notes">
+    <ul>
+      <li>Each time you respond to an exercise, the <strong>Interval</strong> of time until your next <strong>Revision</strong> increases.</li>
+      <li>The <strong>Accuracy</strong> of your responses gives you an indication of how close you are to your <strong>Target</strong>.</li>
+      <li>An interval can be <strong>Reset</strong> in order to more closely match your target.</li>
+      <li>You can shorten the length of the course by reducing the number of revisions (default: 9).</li> 
+      <li>You can also <strong>Change</strong> your accuracy target (default: 90%) at any time.</li>
+      <li>In this way, you can make best use of your time, and learn as thoroughly or as quickly as you like.
+      </ul>
+  </div>
 
 </div>
 
 <div id="footer">
-	<%= render :partial => 'global/toplevel_links' %>
+  <%= render :partial => 'global/toplevel_links' %>
 </div>

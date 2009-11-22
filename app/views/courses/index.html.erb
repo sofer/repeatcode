@@ -1,40 +1,40 @@
 <div id="header">
-	<%= render :partial => 'global/logo' %>
-	<h1>
-		Repeat Study
-	</h1>
+  <%= render :partial => 'global/logo' %>
+  <h1>
+    now studying
+  </h1>
 </div>
 
 <div class="main">
 
-	<table class="courses-table">
-		<thead>
-			<tr>
-				<th> </th>
-				<th> </th>
-				<th>Today</th>
-				<th>Backlog</th>
-				<th>Last lesson</th>
-				<th> </th>
-				<th> </th>
-				<th> </th>
-			</tr>
-		</thead>
-		<tbody class="paging" limit="12" id="courses">
-			<%= render :partial => "course", :collection => @courses.active %>
-		</tbody>
-	</table>
+  <table class="courses-table">
+    <thead>
+      <tr>
+        <th> </th>
+        <th> </th>
+        <th>Today</th>
+        <th>Backlog</th>
+        <th>Last lesson</th>
+        <th> </th>
+        <th> </th>
+        <th> </th>
+      </tr>
+    </thead>
+    <tbody class="paging" limit="12" id="courses">
+      <%= render :partial => "course", :collection => @courses.active %>
+    </tbody>
+  </table>
 
-	<%= render :partial => 'global/table_navigation' %>
+  <%= render :partial => 'global/table_navigation' %>
 
-	<div class="actions">
-		<div class="button">
-			<%= link_to 'Choose a new course', new_course_path %>
-		</div>
-	</div>
+  <div class="actions">
+    <div class="button">
+      <%= link_to 'Choose a new course', new_course_path %>
+    </div>
+  </div>
 
 </div>
 
 <div id="footer">
-	<%= render :partial => 'global/toplevel_links' %>
+  <%= render :partial => 'global/toplevel_links' %>
 </div>

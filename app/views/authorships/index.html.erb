@@ -1,4 +1,4 @@
-<h1>Listing authorships</h1>
+  <h1>Listing authorships</h1>
 <p>for testing purposes only</p>
 
 <table>
@@ -8,7 +8,7 @@
   </tr>
 
 <% for authorship in @authorships %>
-	<tr class="<%= cycle "odd", "even" -%>">
+  <tr class="<%= cycle "odd", "even" -%>">
     <td><%=h authorship.subject_id %></td>
     <td><%=h authorship.user_id %></td>
   </tr>

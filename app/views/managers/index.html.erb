@@ -1,55 +1,56 @@
 <div id="header">
-	<%= render :partial => 'global/logo' %>
-	<h1>Repeat
-		<%= @organization.name %>
-		&raquo; <%= link_to 'Manage tutor groups', :controller => :groups %>
-	</h1>
+  
+  <%= render :partial => 'global/logo' %>
+  <h1>
+    <%= @organization.name %>
+    &raquo; <%= link_to 'Manage tutor groups', :controller => :groups %>
+  </h1>
 </div>
 
 <div class="main">
 
-	<table>
-		<tbody>
-			<% for manager in @managers %>
-				<tr class="<%= cycle "odd", "even" -%>">
-					<td class="heading">
-						<%= manager.user.login %>
-					</td>
-					<td>Manager</td>
-					<td>
-						<% unless manager.user.id == current_user.id %>
-							<%= link_to 'Remove management responsibilities', manager, :confirm => 'Are you sure?', :method => :delete %>
-						<% end %>
-					</td>
-				</tr>
-			<% end %>
-		</tbody>
-	</table>
+  <table>
+    <tbody>
+      <% for manager in @managers %>
+        <tr class="<%= cycle "odd", "even" -%>">
+          <td class="heading">
+            <%= manager.user.login %>
+          </td>
+          <td>Manager</td>
+          <td>
+            <% unless manager.user.id == current_user.id %>
+              <%= link_to 'Remove management responsibilities', manager, :confirm => 'Are you sure?', :method => :delete %>
+            <% end %>
+          </td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
 
-	<table class="admin-table">
-		<tbody class="paging" limit="12" id="admin">
-			<% for user in @users %>
-				<tr class="<%= cycle "odd", "even" -%>">
-					<td class="heading"><%= user.login %></td>
-					<td><%= user.email %></td>
-					<td>(<%= user.uid %>)</td>
-					<td><%= relative_date user.updated_at %></td>
-					<td><%= user.last_login %></td>
-					<td>
-						<% form_for :manager, :url => organization_managers_path(@organization) do |f| %>
-							<%= f.hidden_field(:user_id, :value => user.id ) %>
-							<%= f.submit "Make manager" %>
-						<% end %>
-					</td>
-				</tr>
-			<% end %>
-		</tbody>
-	</table>
+  <table class="admin-table">
+    <tbody class="paging" limit="12" id="admin">
+      <% for user in @users %>
+        <tr class="<%= cycle "odd", "even" -%>">
+          <td class="heading"><%= user.login %></td>
+          <td><%= user.email %></td>
+          <td>(<%= user.uid %>)</td>
+          <td><%= relative_date user.updated_at %></td>
+          <td><%= user.last_login %></td>
+          <td>
+            <% form_for :manager, :url => organization_managers_path(@organization) do |f| %>
+              <%= f.hidden_field(:user_id, :value => user.id ) %>
+              <%= f.submit "Make manager" %>
+            <% end %>
+          </td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
 
-	<%= render :partial => 'global/table_navigation' %>
+  <%= render :partial => 'global/table_navigation' %>
 
 </div>
 
 <div id="footer">
-	<%= render :partial => 'global/toplevel_links' %>
+  <%= render :partial => 'global/toplevel_links' %>
 </div>

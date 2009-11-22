@@ -1,28 +1,28 @@
 <div id="header">
-	<%= render :partial => 'global/logo' %>
-	<h1>
-		<%= link_to 'Create', subjects_path %>
-	  &raquo; <%=h @subject.name %>
-	</h1>
-	<h2>
-		<%= render :partial => 'global/subject_links' %>
-	</h2>
+  
+  <h1>
+    <%= link_to 'Create', subjects_path %>
+    &raquo; <%=h @subject.name %>
+  </h1>
+  <h2>
+    <%= render :partial => 'global/subject_links' %>
+  </h2>
 </div>
 
 <div class="main">
 
 NO LONGER IN USE
 
-	<table class="user-edit-table">
-		<tbody class="paging" limit="8" id="user-edits">
-			<%= render :partial => 'user_edit', :collection => @user_edits %>
-		</tbody>
-	</table>
+  <table class="user-edit-table">
+    <tbody class="paging" limit="8" id="user-edits">
+      <%= render :partial => 'user_edit', :collection => @user_edits %>
+    </tbody>
+  </table>
 
-	<%= render :partial => 'global/table_navigation' %>
+  <%= render :partial => 'global/table_navigation' %>
 
 </div>
 
 <div id="footer">
-	<%= render :partial => 'global/toplevel_links' %>
+  <%= render :partial => 'global/toplevel_links' %>
 </div>

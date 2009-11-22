@@ -1,38 +1,38 @@
 <div id="header">
-	<%= render :partial => 'global/logo' %>
-	<h1>Repeat
-		Subjects
-	</h1>
+  
+  <h1>
+    Create StudyLists
+  </h1>
 </div>
 <div class="main">
-	
-	<table class="subjects-table">
-		<thead>
-			<tr>
-				<th class="first"> </th>
-				<th></th>
-				<th>Access</th>
-				<th>Subject area</th>
-				<th>Updated</th>
-				<th>Exercises</th>
-				<th class="last"> </th>
-			</tr>
-		</thead>
-		<tbody class="paging" limit="14" id="subjects">
-			<%= render :partial => "subject", :collection => @subjects.active %>
-		</tbody>
-	</table>
+  
+  <table class="subjects-table">
+    <thead>
+      <tr>
+        <th class="first"> </th>
+        <th></th>
+        <th>Access</th>
+        <th>Subject area</th>
+        <th>Updated</th>
+        <th>Exercises</th>
+        <th class="last"> </th>
+      </tr>
+    </thead>
+    <tbody class="paging" limit="14" id="subjects">
+      <%= render :partial => "subject", :collection => @subjects.active %>
+    </tbody>
+  </table>
 
-		<%= render :partial => 'global/table_navigation' %>
+    <%= render :partial => 'global/table_navigation' %>
 
-	<div class="actions">
-		<div class="button">
-			<%= link_to 'New subject', new_subject_path %>
-		</div>
-	</div>
+  <div class="actions">
+    <div class="button">
+      <%= link_to 'New subject', new_subject_path %>
+    </div>
+  </div>
 
 </div>
 
 <div id="footer">
-	<%= render :partial => 'global/toplevel_links' %>
+  <%= render :partial => 'global/toplevel_links' %>
 </div>

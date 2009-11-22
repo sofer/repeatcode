@@ -1,36 +1,37 @@
 <div id="header">
-	<%= render :partial => 'global/logo' %>
-	<h1>Repeat
-		<%= @course.name %>
-	</h1>
-	<h2>
-		<%= render :partial => 'global/course_links' %>
-	</h2>
+  
+  <%= render :partial => 'global/logo' %>
+  <h1>
+    <%= @course.name %>
+  </h1>
+  <h2>
+    <%= render :partial => 'global/course_links' %>
+  </h2>
 </div>
 
 <div class="main">
 
-	<table class="questions-table">
-		<thead>
-			<tr>
-				<th></th>
-				<th>Response</th>
-				<th>Topic</th>
-				<th></th>
-				<th>Due date</th>
-				<th>Interval</th>
-				<th>Progress</th>
-			</tr>
-		</thead>
-		<tbody class="paging" limit="16" id="questions">
-			<%= render :partial => "question", :collection => @questions %>
-		</tbody>
-	</table>
+  <table class="questions-table">
+    <thead>
+      <tr>
+        <th></th>
+        <th>Response</th>
+        <th>Topic</th>
+        <th></th>
+        <th>Due date</th>
+        <th>Interval</th>
+        <th>Progress</th>
+      </tr>
+    </thead>
+    <tbody class="paging" limit="16" id="questions">
+      <%= render :partial => "question", :collection => @questions %>
+    </tbody>
+  </table>
 
-		<%= render :partial => 'global/table_navigation' %>
+    <%= render :partial => 'global/table_navigation' %>
 
 </div>
 
 <div id="footer">
-	<%= render :partial => 'global/toplevel_links' %>
+  <%= render :partial => 'global/toplevel_links' %>
 </div>

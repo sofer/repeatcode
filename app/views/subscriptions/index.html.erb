@@ -1,4 +1,4 @@
-<h1>Listing subscriptions</h1>
+  <h1>Listing subscriptions</h1>
 
 <table>
   <tr>
@@ -7,7 +7,7 @@
   </tr>
 
 <% for subscription in @subscriptions %>
-	<tr class="<%= cycle "odd", "even" -%>">
+  <tr class="<%= cycle "odd", "even" -%>">
     <td><%=h subscription.course_id %></td>
     <td><%=h subscription.user_id %></td>
     <td><%= link_to 'Show', subscription %></td>

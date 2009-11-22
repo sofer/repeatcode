@@ -1,11 +1,11 @@
-<h1>Listing tutors</h1>
+  <h1>Listing tutors</h1>
 
 <table>
   <tr>
   </tr>
 
 <% for tutor in @tutors %>
-	<tr class="<%= cycle "odd", "even" -%>">
+  <tr class="<%= cycle "odd", "even" -%>">
     <td><%= link_to 'Show', tutor %></td>
     <td><%= link_to 'Edit', edit_tutor_path(tutor) %></td>
     <td><%= link_to 'Destroy', tutor, :confirm => 'Are you sure?', :method => :delete %></td>

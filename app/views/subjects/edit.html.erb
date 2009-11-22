@@ -1,30 +1,31 @@
 <div id="header">
-	<%= render :partial => 'global/logo' %>
-	<h1>Repeat
-	  <%= @subject.name %>
-	</h1>
-	<h2>
-		<%= render :partial => 'global/subject_links' %>
-	</h2>
+  
+  <%= render :partial => 'global/logo' %>
+  <h1>
+    <%= @subject.name %>
+  </h1>
+  <h2>
+    <%= render :partial => 'global/subject_links' %>
+  </h2>
 </div>
 <div id="edit-subject" class="main">
-	
+  
 <% form_for(@subject) do |f| %>
-	<div class="box">
-		<fieldset>
-			<legend>Edit subject</legend>
-			<%= render :partial => 'form', :locals => {:f => f } %>
-			<div>
-				<label>Detected: </label>
-				 <code><%= @subject.search_extended_chars %></code> (paste changes above)
-			</div>
-		  <%= f.submit "Update" %>
-		</fieldset>
-	</div>
+  <div class="box">
+    <fieldset>
+      <legend>Edit subject</legend>
+      <%= render :partial => 'form', :locals => {:f => f } %>
+      <div>
+        <label>Detected: </label>
+         <code><%= @subject.search_extended_chars %></code> (paste changes above)
+      </div>
+      <%= f.submit "Update" %>
+    </fieldset>
+  </div>
 <% end %>
 
 </div>
 
 <div id="footer">
-	<%= render :partial => 'global/toplevel_links' %>
+  <%= render :partial => 'global/toplevel_links' %>
 </div>

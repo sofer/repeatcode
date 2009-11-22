@@ -1,44 +1,45 @@
 <div id="header">
-	<%= render :partial => 'global/logo' %>
-	<h1>Repeat
-		<%= @organization.name %>
-		&raquo; Tutor groups
-	</h1>
-	<h2>
-		<% form_for(@group) do |f| %>
-			<%= f.text_field :name, :autocomplete => "off"  %>
-			<%= f.submit "Create new" %>
-		<% end %>
-	</h2>
+  
+  <%= render :partial => 'global/logo' %>
+  <h1>
+    <%= @organization.name %>
+    &raquo; Tutor groups
+  </h1>
+  <h2>
+    <% form_for(@group) do |f| %>
+      <%= f.text_field :name, :autocomplete => "off"  %>
+      <%= f.submit "Create new" %>
+    <% end %>
+  </h2>
 </div>
 
 <div class="main">
 
-	<table>
-		<tbody class="paging" limit="12" id="admin">
-			<% for group in @groups %>
-				<tr class="<%= cycle "odd", "even" -%>">
-					<td class="heading">
-						<%= group.name %>
-					</td>
-					<td>
-						<%= group.students.size %> students
-					</td>
-					<td>
-						<%= link_to 'View group', group %>
-					</td>
-					<td>
-						<%= link_to 'Delete', group, :method => :delete if group.students.empty? %>
-					</td>
-				</tr>
-			<% end %>
-		</tbody>
-	</table>
+  <table>
+    <tbody class="paging" limit="12" id="admin">
+      <% for group in @groups %>
+        <tr class="<%= cycle "odd", "even" -%>">
+          <td class="heading">
+            <%= group.name %>
+          </td>
+          <td>
+            <%= group.students.size %> students
+          </td>
+          <td>
+            <%= link_to 'View group', group %>
+          </td>
+          <td>
+            <%= link_to 'Delete', group, :method => :delete if group.students.empty? %>
+          </td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
 
-	<%= render :partial => 'global/table_navigation' %>
+  <%= render :partial => 'global/table_navigation' %>
 
 </div>
 
 <div id="footer">
-	<%= render :partial => 'global/toplevel_links' %>
+  <%= render :partial => 'global/toplevel_links' %>
 </div>

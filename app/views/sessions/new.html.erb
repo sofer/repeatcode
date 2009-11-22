@@ -1,47 +1,48 @@
 <div id="header">
-	<%= render :partial => 'global/logo' %>
-	<h1>Repeat
-		Log in
-	</h1>
+  
+  <%= render :partial => 'global/logo' %>
+  <h1>
+    Log in
+  </h1>
 </div>
 <div class="main">
 
-	<div id="login">
+  <div id="login">
 
-		<div class="box">
+    <div class="box">
 
-			<% if session[:return_to] =~ /\/subjects\/\d+\/course/ %>
-				<% form_tag session[:return_to] do -%>
-					<%= hidden_field_tag 'create_user' %>
-					<fieldset>
-						<legend>I don't have an account yet</legend>
-						<%= submit_tag 'Continue without signing in' %>
-					</fieldset>
-				<% end -%>
-			<% end %>
+      <% if session[:return_to] =~ /\/subjects\/\d+\/course/ %>
+        <% form_tag session[:return_to] do -%>
+          <%= hidden_field_tag 'create_user' %>
+          <fieldset>
+            <legend>I don't have an account yet</legend>
+            <%= submit_tag 'Continue without signing in' %>
+          </fieldset>
+        <% end -%>
+      <% end %>
 
-			<% form_tag session_path do -%>
-				<fieldset>
-					<legend>I already have an account</legend>
-			
-					<div>
-						<label for="login">ID</label>
-						<%= text_field_tag 'uid', @uid, :autocomplete => "off" %>
-					</div>
-					<div>
-						<label for="remember_me">Remember me</label>
-						<%= check_box_tag 'remember_me', '1', @remember_me %>
-					</div>
-						<%= submit_tag 'Log me in' %>
-				</fieldset>
-			<% end -%>
+      <% form_tag session_path do -%>
+        <fieldset>
+          <legend>I already have an account</legend>
+      
+          <div>
+            <label for="login">ID</label>
+            <%= text_field_tag 'uid', @uid, :autocomplete => "off" %>
+          </div>
+          <div>
+            <label for="remember_me">Remember me</label>
+            <%= check_box_tag 'remember_me', '1', @remember_me %>
+          </div>
+            <%= submit_tag 'Log me in' %>
+        </fieldset>
+      <% end -%>
 
-		</div>
+    </div>
 
-	</div>
+  </div>
 
 </div>
 
 <div id="footer">
-	<%= render :partial => 'global/toplevel_links' %>
+  <%= render :partial => 'global/toplevel_links' %>
 </div>

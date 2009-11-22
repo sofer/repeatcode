@@ -1,55 +1,55 @@
 <div id="header">
-	<%= render :partial => 'global/logo' %>
-	<h1>
-		Repeat Administrators
-	</h1>
-	<h2>
-		<%= link_to 'Manage organizations', :controller => :organizations %>
-	</h2>
+  <%= render :partial => 'global/logo' %>
+  <h1>
+    Administrators
+  </h1>
+  <h2>
+    <%= link_to 'Manage organizations', :controller => :organizations %>
+  </h2>
 </div>
 
 <div class="main">
 
-	<table>
-		<tbody>
-			<% for admin in @administrators %>
-				<tr class="<%= cycle "odd", "even" -%>">
-					<td class="heading"><%= admin.user.login %></td>
-					<td>
-						<% unless admin.user_id == current_user.id || admin.user_id == 1 %>
-							<%= link_to 'Remove admin responsibilities', admin, :confirm => 'Are you sure?', :method => :delete %>
-						<% end %>
-					</td>
-				</tr>
-			<% end %>
-		</tbody>
-	</table>
-	
-	<table class="admin-table">
-		<tbody class="paging" limit="12" id="admin">
-			<% for user in @users %>
-				<tr class="<%= cycle "odd", "even" -%>">
-					<td class="heading"><%= user.login %></td>
-					<td><%= user.email %></td>
-					<td>(<%= user.uid %>)</td>
-					<td><%= relative_date user.updated_at %></td>
-					<td><%= user.last_login %></td>
-					<td><%= user.organization.name if user.organization %></td>
-					<td>
-						<% form_for :administrator, :url => { :action => "create" } do |f| %>
-							<%= f.hidden_field(:user_id, :value => user.id ) %>
-							<%= f.submit "Make administrator" %>
-						<% end %>
-					</td>
-				</tr>
-			<% end %>
-		</tbody>
-	</table>
-	
-	<%= render :partial => 'global/table_navigation' %>
-	
+  <table>
+    <tbody>
+      <% for admin in @administrators %>
+        <tr class="<%= cycle "odd", "even" -%>">
+          <td class="heading"><%= admin.user.login %></td>
+          <td>
+            <% unless admin.user_id == current_user.id || admin.user_id == 1 %>
+              <%= link_to 'Remove admin responsibilities', admin, :confirm => 'Are you sure?', :method => :delete %>
+            <% end %>
+          </td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+  
+  <table class="admin-table">
+    <tbody class="paging" limit="12" id="admin">
+      <% for user in @users %>
+        <tr class="<%= cycle "odd", "even" -%>">
+          <td class="heading"><%= user.login %></td>
+          <td><%= user.email %></td>
+          <td>(<%= user.uid %>)</td>
+          <td><%= relative_date user.updated_at %></td>
+          <td><%= user.last_login %></td>
+          <td><%= user.organization.name if user.organization %></td>
+          <td>
+            <% form_for :administrator, :url => { :action => "create" } do |f| %>
+              <%= f.hidden_field(:user_id, :value => user.id ) %>
+              <%= f.submit "Make administrator" %>
+            <% end %>
+          </td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+  
+  <%= render :partial => 'global/table_navigation' %>
+  
 </div>
 
 <div id="footer">
-	<%= render :partial => 'global/toplevel_links' %>
+  <%= render :partial => 'global/toplevel_links' %>
 </div>

@@ -1,7 +1,7 @@
 class Exercise < ActiveRecord::Base
   
   belongs_to :topic
-	has_one :subject, :through => :topic
+  has_one :subject, :through => :topic
   has_many :questions, :dependent => :destroy
   has_many :amendments
   

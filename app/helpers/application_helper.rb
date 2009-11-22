@@ -97,20 +97,20 @@ module ApplicationHelper
   end
   
   def relative_date(time)
-		if time
-	    now = Time.now
-	    frmt = "%Y%m%d"
-	    date1 = time.strftime(frmt).to_i
-	    date2 = now.strftime(frmt).to_i
-	    day_diff = date2 - date1
-	    display_date = case day_diff 
-	    when -1 then "Tomorrow"    
-	    when 0 then "Today"
-	    when 1 then "Yesterday"
-	    else  short_date(time)
-	    end
-	    return display_date  
-		end
+    if time
+      now = Time.now
+      frmt = "%Y%m%d"
+      date1 = time.strftime(frmt).to_i
+      date2 = now.strftime(frmt).to_i
+      day_diff = date2 - date1
+      display_date = case day_diff 
+      when -1 then "Tomorrow"    
+      when 0 then "Today"
+      when 1 then "Yesterday"
+      else  short_date(time)
+      end
+      return display_date  
+    end
   end
   
 end

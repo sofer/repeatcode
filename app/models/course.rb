@@ -47,18 +47,18 @@ class Course < ActiveRecord::Base
     9 => DAY * 224
   }
   
-	def fix_no_longer_in_use
-		count = 0
-		for topic in course_topics
-			if topic.removed == true
-				for question in topic.questions
-					question.update_attributes!({:ignore =>true, :next_datetime => NIL })
-					count += 1
-				end
-			end
-		end
-		return count
-	end
+  def fix_no_longer_in_use
+    count = 0
+    for topic in course_topics
+      if topic.removed == true
+        for question in topic.questions
+          question.update_attributes!({:ignore =>true, :next_datetime => NIL })
+          count += 1
+        end
+      end
+    end
+    return count
+  end
 
   def update_required?
     if subject.exercises.updated_since(self.synched_at).empty? and subject.updated_at < self.updated_at
@@ -123,17 +123,17 @@ class Course < ActiveRecord::Base
     return Time.now + days_to_go * 24 * 60 * 60 
   end
   
-	def responses_completed
+  def responses_completed
     set_responses_estimate
-		return "#{responses.size} out of an estimated #{@total_responses} (#{100*responses.size/@total_responses}%)"
-	end
-	
+    return "#{responses.size} out of an estimated #{@total_responses} (#{100*responses.size/@total_responses}%)"
+  end
+  
   def questions_started
-  	started = questions.started.size 
-  	total = questions.current.size
-		return "#{started} out of #{total} (#{100*started/total}%)"
-	end
-	
+    started = questions.started.size 
+    total = questions.current.size
+    return "#{started} out of #{total} (#{100*started/total}%)"
+  end
+  
   def weekly_response_count
     weeks_since_start =  (Time.now - self.created_at) / (7.0 * DAY_IN_SECS)
     if weeks_since_start < 1

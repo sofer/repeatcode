@@ -20,27 +20,27 @@ class Question < ActiveRecord::Base
   validates_presence_of :exercise_id
   validates_presence_of :course_topic_id
 
-	# if a comment has been added then it's an amendment
-	# note (possibly redundant) use of subject_id in order to speed up retrieval of amendments on a subject
-	def comments=(comments)
-		if self.ignore
-			Amendment.create(:subject_id => exercise.subject.id, :exercise_id => exercise.id, :user_id => course.user.id, :kind => 'ignore', :text => '', :comments => comments)
-		else
-			if self.phrase != exercise.phrase
-			Amendment.create(:subject_id => exercise.subject.id, :exercise_id => exercise.id, :user_id => course.user.id, :kind => 'phrase', :text => self.phrase, :comments => comments)
-			end
-			if self.response != exercise.response
-				Amendment.create(:subject_id => exercise.subject.id, :exercise_id => exercise.id, :user_id => course.user.id, :kind => 'response', :text => self.response, :comments => comments)
-			end
-			if self.hint != exercise.hint
-				Amendment.create(:subject_id => exercise.subject.id, :exercise_id => exercise.id, :user_id => course.user.id, :kind => 'hint', :text => self.hint, :comments => comments)
-			end
-			if self.notes != exercise.notes
-				Amendment.create(:subject_id => exercise.subject.id, :exercise_id => exercise.id, :user_id => course.user.id, :kind => 'notes', :text => self.notes, :comments => comments)
-			end
-		end
-		@comments = nil
-	end
+  # if a comment has been added then it's an amendment
+  # note (possibly redundant) use of subject_id in order to speed up retrieval of amendments on a subject
+  def comments=(comments)
+    if self.ignore
+      Amendment.create(:subject_id => exercise.subject.id, :exercise_id => exercise.id, :user_id => course.user.id, :kind => 'ignore', :text => '', :comments => comments)
+    else
+      if self.phrase != exercise.phrase
+      Amendment.create(:subject_id => exercise.subject.id, :exercise_id => exercise.id, :user_id => course.user.id, :kind => 'phrase', :text => self.phrase, :comments => comments)
+      end
+      if self.response != exercise.response
+        Amendment.create(:subject_id => exercise.subject.id, :exercise_id => exercise.id, :user_id => course.user.id, :kind => 'response', :text => self.response, :comments => comments)
+      end
+      if self.hint != exercise.hint
+        Amendment.create(:subject_id => exercise.subject.id, :exercise_id => exercise.id, :user_id => course.user.id, :kind => 'hint', :text => self.hint, :comments => comments)
+      end
+      if self.notes != exercise.notes
+        Amendment.create(:subject_id => exercise.subject.id, :exercise_id => exercise.id, :user_id => course.user.id, :kind => 'notes', :text => self.notes, :comments => comments)
+      end
+    end
+    @comments = nil
+  end
 
   def update_from_exercise(exercise_id)
     exercise = Exercise.find(exercise_id)
@@ -62,8 +62,8 @@ class Question < ActiveRecord::Base
     self.current_interval = interval + 1
     if interval < course.repetitions
       minutes_to_go = course.intervals.find(:first, :conditions => {:index_no => self.current_interval}).minutes
-			secs_to_go = minutes_to_go * 54 + rand(minutes_to_go * 12) # +- 10%
-			self.next_datetime = Time.now + secs_to_go
+      secs_to_go = minutes_to_go * 54 + rand(minutes_to_go * 12) # +- 10%
+      self.next_datetime = Time.now + secs_to_go
     else
       self.next_datetime = nil
     end

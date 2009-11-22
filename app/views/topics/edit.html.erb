@@ -1,47 +1,48 @@
 <div id="header">
-	<%= render :partial => 'global/logo' %>
-	<h1>Repeat
-		<%= @topic.name %>
-	</h1>
-	<h2>
-		<%= link_to @topic.subject.name, @topic.subject %>
-	</h2>
+  
+  <%= render :partial => 'global/logo' %>
+  <h1>
+    <%= @topic.name %>
+  </h1>
+  <h2>
+    <%= link_to @topic.subject.name, @topic.subject %>
+  </h2>
 </div>
 
 <div class="main">
 
-	<% form_for	@topic,
-							:html => { :method => :put } do |f| %>
+  <% form_for  @topic,
+              :html => { :method => :put } do |f| %>
 
-		<div id="firstly">
-			<%= render :partial => "exercise_table", :locals => { :exercises => @topic.exercises.current, :add => Exercise.new } %>
-			<div class="actions">
-				<div class="checkbox button">
-					<input type="checkbox" name="delete" />
-					Remove checked
-				</div>
-				<div id="add-exercise" class="button">
-					Add
-				</div>
-			</div>
-			<div class="submit">
-				<input id="continue-edit" type="submit" value="Continue"/>
-			</div>
-		</div>
-		
-		<div id="finally">
-			<%= render :partial => "form", :locals => { :f => f } %>
-			<div class="submit">
-				<%= f.submit "Update" %>
-			</div>
-		</div>
-	
-	<% end %>
+    <div id="firstly">
+      <%= render :partial => "exercise_table", :locals => { :exercises => @topic.exercises.current, :add => Exercise.new } %>
+      <div class="actions">
+        <div class="checkbox button">
+          <input type="checkbox" name="delete" />
+          Remove checked
+        </div>
+        <div id="add-exercise" class="button">
+          Add
+        </div>
+      </div>
+      <div class="submit">
+        <input id="continue-edit" type="submit" value="Continue"/>
+      </div>
+    </div>
+    
+    <div id="finally">
+      <%= render :partial => "form", :locals => { :f => f } %>
+      <div class="submit">
+        <%= f.submit "Update" %>
+      </div>
+    </div>
+  
+  <% end %>
 
 </div>
 
 <div id="footer">
-	<%= render :partial => 'global/toplevel_links' %>
+  <%= render :partial => 'global/toplevel_links' %>
 </div>
 
 <%= render :partial => "help" %>

@@ -1,25 +1,25 @@
 <div id="header">
-	<%= render :partial => 'global/logo' %>
-	<h1>Repeat
-	  <%=h @subject.name %>
-	</h1>
-	<h2>
-		<%= render :partial => 'global/subject_links' %>
-	</h2>
+  <%= render :partial => 'global/logo' %>
+  <h1>
+    <%=h @subject.name %>
+  </h1>
+  <h2>
+    <%= render :partial => 'global/subject_links' %>
+  </h2>
 </div>
 
 <div class="main">
 
-	<table class="amendment-table">
-		<tbody class="paging" limit="12" id="amendments">
-			<%= render :partial => 'amendment', :collection => @amendments %>
-		</tbody>
-	</table>
+  <table class="amendment-table">
+    <tbody class="paging" limit="12" id="amendments">
+      <%= render :partial => 'amendment', :collection => @amendments %>
+    </tbody>
+  </table>
 
-	<%= render :partial => 'global/table_navigation' %>
+  <%= render :partial => 'global/table_navigation' %>
 
 </div>
 
 <div id="footer">
-	<%= render :partial => 'global/toplevel_links' %>
+  <%= render :partial => 'global/toplevel_links' %>
 </div>
