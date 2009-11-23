@@ -6,7 +6,7 @@ body  { background: #e8e8e8; font-family: helvetica, arial, sans-serif; margin: 
 #footer  { position: absolute; height: 36px; left: 0; right: 0; bottom: 0; margin: 4px; padding-top: 4px; border-top: 1px solid; }
 .main  { position: absolute; top: 44px; right: 0px; bottom: 44px; left: 0px; margin: 4px; }
 
-#logo { color: #fff; float: left; font-size: 28px; margin-right: 2px; }
+#logo { color: #fff; float: left; font-size: 28px; margin: 0 2px; }
 h1  { font-size: 28px; font-weight: normal; }
 h2  { margin-top: 4px; }
 

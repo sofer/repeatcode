@@ -1,6 +1,10 @@
 # Methods added to this helper will be available to all templates in the application.
 module ApplicationHelper
   
+  def header(text)
+    truncate text,26
+  end
+  
   def link_to_domain_unless_current(text, domain)
     if domain == request.domain
       return text

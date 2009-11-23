@@ -2,7 +2,7 @@
   
   <%= render :partial => 'global/logo' %>
   <h1>
-    <%= @course.subject.name if @course %>
+    <%= header @course.subject.name if @course %>
   </h1>
   <h2>
     <%= render :partial => 'global/course_links' %>
